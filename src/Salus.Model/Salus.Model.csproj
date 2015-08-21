@@ -45,11 +45,15 @@
     <Compile Include="Entidades\Hospital.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\IRegistroAdentimentoHistoricoRepositorio.cs" />
+    <Compile Include="Entidades\RegistroAtendimentoHistorico.cs" />
     <Compile Include="Servicos\EntrarNoHispitalServico.cs" />
     <Compile Include="Repositorios\IRegistroAdentimentoRepositorio.cs" />
     <Compile Include="Servicos\IniciarAtendimentoMeditoServico.cs" />
     <Compile Include="Servicos\IRelogio.cs" />
     <Compile Include="Entidades\RegistroAtendimento.cs" />
+    <Compile Include="Entidades\Ranking.cs" />
+    <Compile Include="Servicos\RankingHospitaisServico.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Salus.Data\Salus.Data.csproj">

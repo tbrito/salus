@@ -10,11 +10,13 @@
     public class IniciarAtendimentoMeditoServicoTest
     {
         private IRegistroAdentimentoRepositorio registroAtentimentoRepositorio;
+        private IRegistroAdentimentoHistoricoRepositorio registroAtentimentoHistoricoRepositorio;
         private IRelogio relogio;
 
         public IniciarAtendimentoMeditoServicoTest()
         {
             this.registroAtentimentoRepositorio = MockRepository.GenerateStub<IRegistroAdentimentoRepositorio>();
+            this.registroAtentimentoHistoricoRepositorio = MockRepository.GenerateStub<IRegistroAdentimentoHistoricoRepositorio>();
             this.relogio = MockRepository.GenerateStub<IRelogio>();
         }
 
@@ -22,6 +24,7 @@
         public void DeveIniciarAtendimentoMedico()
         {
             var registroAtendimento = new RegistroAtendimento();
+            var registroAtendimentoHistorico = new RegistroAtendimentoHistorico();
             var usuario = new Usuario();
 
             this.relogio
@@ -34,12 +37,15 @@
 
             var iniciarAtendimentoMedico = new IniciarAtendimentoMeditoServico(
                 this.registroAtentimentoRepositorio,
+                this.registroAtentimentoHistoricoRepositorio,
                 this.relogio);
 
             iniciarAtendimentoMedico.Executar(usuario);
 
             registroAtentimentoRepositorio.AssertWasCalled(x => x.ObterRegistroEntradaDoUsuario(usuario));
             registroAtentimentoRepositorio.AssertWasCalled(x => x.Salvar(registroAtendimento));
+            registroAtentimentoHistoricoRepositorio
+                .AssertWasCalled(x => x.Salvar(registroAtendimentoHistorico), opt => opt.IgnoreArguments());
         }
 
         [Fact]
@@ -53,6 +59,7 @@
 
             var iniciarAtendimentoMedico = new IniciarAtendimentoMeditoServico(
                 this.registroAtentimentoRepositorio,
+                registroAtentimentoHistoricoRepositorio,
                 this.relogio);
 
             var ex = Assert.Throws<Exception>(() => iniciarAtendimentoMedico.Executar(usuario));

@@ -1,12 +1,18 @@
-﻿namespace Salus.Model.Repositorios
+﻿using System.Collections.Generic;
+
+namespace Salus.Model.Repositorios
 {
     using Data;
     using Entidades;
 
     public interface IRegistroAdentimentoRepositorio : IRepositorio<RegistroAtendimento>
     {
-        bool JaExisteEntrada(RegistroAtendimento registroAtendimento);
+        bool JaExisteRegistroEmAberto(RegistroAtendimento registroAtendimento);
 
         RegistroAtendimento ObterRegistroEntradaDoUsuario(Usuario usuario);
+        
+        RegistroAtendimento ObterAtendimentoFinalizado();
+
+        IList<RegistroAtendimento> ObterPorTipoAtendimentoEEspecialidade(Atendimento infantil, Especialidade ortopedia);
     }
 }

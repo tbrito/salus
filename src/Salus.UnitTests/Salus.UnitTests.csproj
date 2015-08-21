@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Model\Servicos\EntrarNoHispitalServicoTest.cs" />
     <Compile Include="Model\Servicos\IniciarAtendimentoMeditoServicoTest.cs" />
+    <Compile Include="Model\Servicos\RankingHospitaisServicoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

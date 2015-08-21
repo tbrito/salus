@@ -22,13 +22,19 @@ namespace Salus.Model.Entidades
             set;
         }
 
-        public DateTime EntradaNoHospital
+        public DateTime? EntradaNoHospital
         {
             get; 
             set;
         }
 
-        public DateTime InicioAtendimentoMedico
+        public DateTime? InicioAtendimentoMedico
+        {
+            get; 
+            set;
+        }
+
+        public bool Finalizado
         {
             get; 
             set;

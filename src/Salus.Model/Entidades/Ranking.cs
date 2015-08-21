@@ -2,15 +2,14 @@
 
 namespace Salus.Model.Entidades
 {
-    public class Hospital : Entidade
+    public class Ranking
     {
-        public int TempoAtendimento
+        public Ranking()
         {
-            get; 
-            set;
+            Hospitais = new List<Hospital>();
         }
 
-        public string Nome
+        public IList<Hospital> Hospitais
         {
             get; 
             set;

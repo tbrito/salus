@@ -20,11 +20,18 @@ namespace Salus.Model.Servicos
 
         public void Executar(RegistroAtendimento registroAtendimento)
         {
-            var jaExisteRegistro = this.registroAtendimentoRepositorio.JaExisteEntrada(registroAtendimento);
+            var jaExisteRegistro = this.registroAtendimentoRepositorio.JaExisteRegistroEmAberto(registroAtendimento);
 
             if (jaExisteRegistro)
             {
                 throw new Exception("Já existe um registro de entrada neste hospital");
+            }
+
+            var registroFinalizado = this.registroAtendimentoRepositorio.ObterAtendimentoFinalizado();
+
+            if (registroFinalizado != null)
+            {
+                this.registroAtendimentoRepositorio.Excluir(registroFinalizado);  
             }
 
             registroAtendimento.EntradaNoHospital = this.relogio.Agora();

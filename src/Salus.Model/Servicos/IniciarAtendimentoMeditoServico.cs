@@ -1,19 +1,22 @@
 namespace Salus.Model.Servicos
 {
     using System;
-    using Salus.Model.Entidades;
-    using Salus.Model.Repositorios;
+    using Entidades;
+    using Repositorios;
 
     public class IniciarAtendimentoMeditoServico
     {
         private readonly IRegistroAdentimentoRepositorio registroAdentimentoRepositorio;
+        private readonly IRegistroAdentimentoHistoricoRepositorio registroAtentimentoHistoricoRepositorio;
         private readonly IRelogio relogio;
 
         public IniciarAtendimentoMeditoServico(
             IRegistroAdentimentoRepositorio registroAdentimentoRepositorio, 
+            IRegistroAdentimentoHistoricoRepositorio registroAtentimentoHistoricoRepositorio, 
             IRelogio relogio)
         {
             this.registroAdentimentoRepositorio = registroAdentimentoRepositorio;
+            this.registroAtentimentoHistoricoRepositorio = registroAtentimentoHistoricoRepositorio;
             this.relogio = relogio;
         }
 
@@ -27,8 +30,12 @@ namespace Salus.Model.Servicos
             }
 
             registroAtendimento.InicioAtendimentoMedico = this.relogio.Agora();
+            registroAtendimento.Finalizado = true;
 
+            var registroAtentimentoHistorico = RegistroAtendimentoHistorico.Novo(registroAtendimento);
             this.registroAdentimentoRepositorio.Salvar(registroAtendimento);
+
+            registroAtentimentoHistoricoRepositorio.Salvar(registroAtentimentoHistorico);
         }
     }
 }

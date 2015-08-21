@@ -30,8 +30,12 @@ namespace Salus.UnitTests.Model.Servicos
                 .Return(new DateTime(2015, 08, 21, 15, 21, 11));
 
             this.registroAdentimentoRepositorio
-                .Stub(x => x.JaExisteEntrada(registroAtendimento))
+                .Stub(x => x.JaExisteRegistroEmAberto(registroAtendimento))
                 .Return(false);
+
+            this.registroAdentimentoRepositorio
+                .Stub(x => x.ObterAtendimentoFinalizado())
+                .Return(null);
 
             var entrarNoHospital = new EntrarNoHispitalServico(
                 this.registroAdentimentoRepositorio,
@@ -39,6 +43,35 @@ namespace Salus.UnitTests.Model.Servicos
 
             entrarNoHospital.Executar(registroAtendimento);
 
+            registroAdentimentoRepositorio.AssertWasCalled(x => x.Salvar(registroAtendimento));
+            relogio.AssertWasCalled(x => x.Agora());
+        }
+
+        [Fact]
+        public void DeveApagarRegistroDeEntradaCasoEstejaFinalizado()
+        {
+            var registroAtendimento = new RegistroAtendimento();
+            var registroAtendimentoFinalizado = new RegistroAtendimento();
+
+            this.relogio
+                .Stub(x => x.Agora())
+                .Return(new DateTime(2015, 08, 21, 15, 21, 11));
+
+            this.registroAdentimentoRepositorio
+                .Stub(x => x.JaExisteRegistroEmAberto(registroAtendimento))
+                .Return(false);
+
+            this.registroAdentimentoRepositorio
+                .Stub(x => x.ObterAtendimentoFinalizado())
+                .Return(registroAtendimentoFinalizado);
+
+            var entrarNoHospital = new EntrarNoHispitalServico(
+                this.registroAdentimentoRepositorio,
+                this.relogio);
+
+            entrarNoHospital.Executar(registroAtendimento);
+
+            registroAdentimentoRepositorio.AssertWasCalled(x => x.Excluir(registroAtendimentoFinalizado));
             registroAdentimentoRepositorio.AssertWasCalled(x => x.Salvar(registroAtendimento));
             relogio.AssertWasCalled(x => x.Agora());
         }
@@ -53,7 +86,7 @@ namespace Salus.UnitTests.Model.Servicos
                 .Return(new DateTime(2015, 08, 21, 15, 21, 11));
 
             this.registroAdentimentoRepositorio
-                .Stub(x => x.JaExisteEntrada(registroAtendimento))
+                .Stub(x => x.JaExisteRegistroEmAberto(registroAtendimento))
                 .Return(true);
 
             var entrarNoHospital = new EntrarNoHispitalServico(
