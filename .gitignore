@@ -1,0 +1,11 @@
+/src/*.suo
+/src/Web/obj
+/src/Web/bin
+/src/Salus.UnitTests/obj
+/src/Salus.UnitTests/bin
+/src/Salus.Model/obj
+/src/Salus.Model/bin
+/src/Salus.Infra/obj
+/src/Salus.Infra/bin
+/src/Salus.Data/obj
+/src/Salus.Data/bin
