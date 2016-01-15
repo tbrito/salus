@@ -1,0 +1,44 @@
+<html ng-app="salus-app">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="css/salus.css">
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-messages.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/LoginController.js"></script>
+        
+    </head>
+    <body ng-controller="LoginController">
+        <div class="jambotron">
+            <div ng-include="'views/mensagem-inicial.html'"></div>
+             
+            <div class="salus login">   
+                Acesso ao sistema
+            </div>
+            
+            <img src="assets/logo.png" alt="" class="salus logo" />
+            
+            <form name="loginForm" class="direita">
+               <div>       
+                    <input type="text" class="form-control login" ng-model="usuario.nome" ng-required ="true" placeholder="nome do usuario" />
+                    <input type="password" class="form-control login" ng-model="usuario.senha" ng-required ="true" placeholder="senha" />
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-block" ng-click="login(usuario)" ng-disabled="loginForm.$invalid">Entrar</button>
+                </div>
+            </form>
+            
+            <div class="salus noaccess">
+                <a href="">Não consigo acessar minha conta</link>
+            </div>
+            
+            <div class="salus noaccount">
+                <a href="">Não possuo conta. Desejo solicitar.</link>
+            </div>
+                
+        </div>
+        
+        <div ng-include="'views/footer.html'"></div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+.direita {
+    position: absolute;
+    top: 200px;
+    right: 80px;
+    width: 300px;
+    height: 200px;
+}
+
+.rodape {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  background-color: lightgray;
+  width: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.mensagem-inicial{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 108em;
+}
+
+.form-control{
+    margin-bottom: 10px;
+}
+
+.salus.login{
+    position: fixed;
+    top: 185px;
+    right: 280px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 8pt;
+}
+
+.salus.logo{
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    width: 20em;
+}
+
+.salus.noaccess{
+    position: fixed;
+    top: 325px;
+    right: 150px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 8pt;
+}
+
+.salus.noaccount{
+    position: fixed;
+    top: 345px;
+    right: 150px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 8pt;
+}
