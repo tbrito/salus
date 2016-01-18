@@ -1,13 +1,13 @@
 var http = require("http");
-var dispatch = require("dispatch");
+var dispatch = require("../lib/dispatch/dispatch");
 
 var server = http.createServer(dispatch ({
     "/usuario": function (req, res) {
-        return {
+       res.text({
             nome:"tbrito",
             senha:"pwd",
             autenticado:true
-        }
+        });
     }    
 }));
 
