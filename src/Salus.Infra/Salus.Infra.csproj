@@ -49,10 +49,6 @@
     <Compile Include="Repositorios\RegistroAtendimentoRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Salus.Data\Salus.Data.csproj">
-      <Project>{c49ae36a-6b0c-45f1-9e07-791a3c11717d}</Project>
-      <Name>Salus.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Salus.Model\Salus.Model.csproj">
       <Project>{42e6b8a4-8e06-47f5-a798-5b5898c56c6b}</Project>
       <Name>Salus.Model</Name>
