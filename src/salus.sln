@@ -7,7 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{201F4ADB-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F32960A3-3425-4AA4-8E57-82BF7868D89A}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web", "Web\Web.xproj", "{BF09ACD6-6204-4496-995B-48BFE7BD8DE0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF09ACD6-6204-4496-995B-48BFE7BD8DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF09ACD6-6204-4496-995B-48BFE7BD8DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF09ACD6-6204-4496-995B-48BFE7BD8DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF09ACD6-6204-4496-995B-48BFE7BD8DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
