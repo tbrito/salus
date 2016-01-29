@@ -61,11 +61,15 @@
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(
+                    model.UserName, 
+                    model.Password, 
+                    model.RememberMe, 
+                    lockoutOnFailure: false);
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation(1, "User logged in.");
+                    _logger.LogInformation(1, "Usuario logado com sucesso");
                     return RedirectToLocal(returnUrl);
                 }
 
@@ -76,7 +80,7 @@
 
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning(2, "User account locked out.");
+                    _logger.LogWarning(2, "Usuário bloqueado");
                     return View("Lockout");
                 }
                 else

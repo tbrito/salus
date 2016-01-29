@@ -1,13 +1,9 @@
 namespace Web.Migrations
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Microsoft.Data.Entity;
     using Microsoft.Data.Entity.Infrastructure;
     using Microsoft.Data.Entity.Metadata;
-    using Microsoft.Data.Entity.Migrations;
     using Web.Models;
 
     [DbContext(typeof(ApplicationDbContext))]

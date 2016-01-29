@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.Logging;
-using Web.Models;
-using Web.Services;
-using Web.ViewModels.Manage;
-
-namespace Web.Controllers
+﻿namespace Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Security.Claims;
+    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Web.Models;
+    using Web.Services;
+    using Web.ViewModels.Manage;
+
     [Authorize]
     public class ManageController : Controller
     {
@@ -23,11 +21,11 @@ namespace Web.Controllers
         private readonly ILogger _logger;
 
         public ManageController(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
-        IEmailSender emailSender,
-        ISmsSender smsSender,
-        ILoggerFactory loggerFactory)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            ISmsSender smsSender,
+            ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
