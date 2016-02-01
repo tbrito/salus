@@ -7,6 +7,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Migrations;
     using Web.Models;
     using Web.Services;
 
@@ -26,6 +27,7 @@
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -42,6 +44,11 @@
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<UserAdminDbContext>(options =>
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
             services.AddMvc();
 
@@ -63,6 +70,9 @@
                     .CreateScope())
                 {
                     serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                         .Database.Migrate();
+
+                    serviceScope.ServiceProvider.GetService<UserAdminDbContext>()
                          .Database.Migrate();
                 }
             }

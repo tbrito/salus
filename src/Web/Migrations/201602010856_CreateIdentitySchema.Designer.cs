@@ -1,17 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-using Web.Models;
-
 namespace Web.Migrations
 {
+    using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.Infrastructure;
+    using Microsoft.Data.Entity.Metadata;
+    using Microsoft.Data.Entity.Migrations;
+    using Web.Models;
+
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("00000000000000_CreateIdentitySchema")]
+    [Migration("201602010856_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
