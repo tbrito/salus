@@ -1,13 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="salus-app">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="~/Scripts/lib/angular/angular.js"></script>
+    <script src="~/Scripts/lib/angular/angular-route.js"></script>
+    <script src="~/Scripts/lib/angular/angular-messages.js"></script>
+    
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/values/configValues.js"></script>
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -19,21 +28,16 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
-        @RenderSection("SPAViews", required: false)
+        <div ng-view></div>
         <hr />
+
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Salus</p>
         </footer>
     </div>
 

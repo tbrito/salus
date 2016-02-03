@@ -17,9 +17,15 @@ namespace Salus.Infra.Migrations
                 .WithColumn("senha").AsAnsiString().NotNullable();
 
             var md5 = new MD5CryptoServiceProvider();
-            var password = Encoding.ASCII.GetBytes("pwd");
-            var hash = md5.ComputeHash(password);
-            
+            var pwd = Encoding.ASCII.GetBytes("pwd");
+            var hash = md5.ComputeHash(pwd);
+            StringBuilder password = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                password.Append(hash[i].ToString("x2"));
+            }
+
             IDictionary<string, object> valores = new Dictionary<string, object>();
             valores.Add("nome", "Administrador de Sistema");
             valores.Add("login", "admin");

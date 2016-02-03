@@ -2,6 +2,7 @@
 
 namespace Web.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: Login

@@ -1,7 +1,34 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/controllers/LoginController.js"></script>
+<script src="~/Scripts/services/usuarioApiService.js"></script>
+
+<div ng-controller="LoginController">
+    <div class="jambotron">
+        
+        <div>
+            Acesso ao sistema
+        </div>
+        <form name="loginForm">
+            <div>
+                <input type="text" class="form-control login" ng-model="usuario.nome" ng-required="true" placeholder="nome do usuario" />
+                <input type="password" class="form-control login" ng-model="usuario.senha" ng-required="true" placeholder="senha" />
+            </div>
+            <div>
+                <button class="btn btn-primary btn-block" ng-click="login(usuario)" ng-disabled="loginForm.$invalid">Entrar</button>
+            </div>
+        </form>
+
+        <div class="salus noaccess">
+            <a href="">Não consigo acessar minha conta</link>
+        </div>
+
+        <div class="salus noaccount">
+            <a href="">Não possuo conta. Desejo solicitar.</link>
+        </div>
+
+    </div>
+</div>
 
