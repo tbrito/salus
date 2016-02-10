@@ -1,4 +1,5 @@
 ﻿using Salus.Infra.Migrations;
+using SharpArch.NHibernate;
 using System.Configuration;
 using System.Web;
 using System.Web.Http;
@@ -17,7 +18,7 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            
             var migrator = new Migrator(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             migrator.Migrate(runner => runner.MigrateUp());
         }

@@ -13,3 +13,5 @@
 /src/packages
 /src/artifacts
 /src/Web/App_Data
+/src/Salus.IntegrationTests/obj
+/src/Salus.IntegrationTests/bin

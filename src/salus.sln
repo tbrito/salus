@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{201F4ADB-8FAA-40EB-A0F8-00982323C6BF}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salus.Infra", "Salus.Infra\Salus.Infra.csproj", "{00CAAAC8-A315-4A0F-A745-2E732A5359BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{F6D0251A-2F09-424F-94D0-ECF0B58C7C63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salus.IntegrationTests", "Salus.IntegrationTests\Salus.IntegrationTests.csproj", "{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{F6D0251A-2F09-424F-94D0-ECF0B58C7C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6D0251A-2F09-424F-94D0-ECF0B58C7C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6D0251A-2F09-424F-94D0-ECF0B58C7C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B62E056F-0850-4973-9337-663CA2F50F86} = {201F4ADB-8FAA-40EB-A0F8-00982323C6BF}
 		{00CAAAC8-A315-4A0F-A745-2E732A5359BB} = {201F4ADB-8FAA-40EB-A0F8-00982323C6BF}
+		{D2EB7DEC-75C8-47D5-A94B-BD1F353CA731} = {F32960A3-3425-4AA4-8E57-82BF7868D89A}
 	EndGlobalSection
 EndGlobal

@@ -13,8 +13,8 @@
         </div>
         <form name="loginForm">
             <div>
-                <input type="text" class="form-control login" ng-model="usuario.nome" ng-required="true" placeholder="nome do usuario" />
-                <input type="password" class="form-control login" ng-model="usuario.senha" ng-required="true" placeholder="senha" />
+                <input type="text" class="form-control login" ng-model="usuario.UserName" ng-required="true" placeholder="nome do usuario" />
+                <input type="password" class="form-control login" ng-model="usuario.Senha" ng-required="true" placeholder="senha" />
             </div>
             <div>
                 <button class="btn btn-primary btn-block" ng-click="login(usuario)" ng-disabled="loginForm.$invalid">Entrar</button>
