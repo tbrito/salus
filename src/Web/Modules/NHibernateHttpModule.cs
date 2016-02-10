@@ -5,13 +5,14 @@ using Salus.Model.Entidades;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Web.Mvc;
 using System;
+using System.IO;
 using System.Web;
 
 namespace Web.Modules
 {
     public class NHibernateHttpModule : IHttpModule
     {
-        private HttpApplication context;
+        private WebSessionStorage webSessionStorage;
 
         public void Dispose()
         {
@@ -20,35 +21,27 @@ namespace Web.Modules
 
         public void Init(HttpApplication context)
         {
-            this.context = context;
+            this.webSessionStorage = new WebSessionStorage(context);
             context.BeginRequest += this.BeginRequest;
             context.EndRequest += this.EndRequest;
         }
 
         private void EndRequest(object sender, EventArgs e)
         {
-            NHibernateSession.Current.Close();
         }
 
         private void BeginRequest(object sender, EventArgs e)
         {
-            var internalTypes = new[] {
-                typeof(Usuario)
+            string[] mappings = new string[]
+            {
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin", "Salus.Infra.dll")
             };
 
-            var mapping = MappingHelper.GetIdentityMappings(internalTypes);
-
-            string[] mappings = new string[mapping.Items.Length];
-
-            for (int i = 0; i < mapping.Items.Length; i++)
-            {
-                mappings[i] = mapping.Items[i].ToString();
-            }
-            
-            NHibernateSession.Init(
-                new WebSessionStorage(this.context), 
-                mappings, 
-                null, null, null, null, BancoDeDados.Configuration());
+            NHibernateInitializer.Instance().InitializeNHibernateOnce(() => 
+                NHibernateSession.Init(
+                    this.webSessionStorage,
+                    mappings,
+                    null, null, null, null, BancoDeDados.Configuration()));
         }
     }
 }

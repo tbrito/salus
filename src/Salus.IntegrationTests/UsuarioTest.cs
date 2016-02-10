@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Salus.IntegrationTests
 {
     [TestClass]
-    public class UnitTest1
+    public class UsuarioTest : TesteAutomatizado
     {
         [TestMethod]
-        public void TestMethod1()
+        public void DeveIniciarCriarUsuario()
         {
+            Console.WriteLine("hello");
         }
     }
 }

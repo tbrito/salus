@@ -1,4 +1,4 @@
-angular.module("salus-app").factory("AuthenticationService", function ($http, $cookieStore, $rootScope, $timeout) {
+angular.module("salus-app").factory("authenticationService", function ($http, $cookieStore, $rootScope, $timeout) {
     var _setCredentials = function (username, password) {
         var authdata = Base64.encode(username + ':' + password);
 

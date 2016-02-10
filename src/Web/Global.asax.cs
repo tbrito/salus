@@ -6,11 +6,18 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Web.Modules;
 
 namespace Web
 {
     public class MvcApplication : HttpApplication
     {
+        public override void Init()
+        {
+            base.Init();
+            HttpModulesInitializer.Execute(this);
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,8 +25,10 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
-            var migrator = new Migrator(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
+            var migrator = new Migrator(
+                ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+
             migrator.Migrate(runner => runner.MigrateUp());
         }
     }
