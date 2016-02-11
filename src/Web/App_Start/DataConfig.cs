@@ -1,6 +1,6 @@
-﻿using NHibernate.AspNet.Identity.Helpers;
+﻿using NHibernate.AspNet.Identity;
+using NHibernate.AspNet.Identity.Helpers;
 using NHibernate.Mapping.ByCode;
-using Salus.Model.Entidades;
 using SharpArch.NHibernate;
 using System.Linq;
 
@@ -11,7 +11,7 @@ namespace Web.App_Start
         public static void Configure(ISessionStorage storage)
         {
             var internalTypes = new[] {
-                typeof(Usuario)
+                typeof(IdentityUser)
             };
 
             var mapping = MappingHelper.GetIdentityMappings(internalTypes);

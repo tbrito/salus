@@ -2,8 +2,6 @@
 {
     using Infra.ConnectionInfra;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Model.Entidades;
-    using NHibernate.AspNet.Identity.Helpers;
     using Salus.Infra.Migrations;
     using SharpArch.NHibernate;
     using System;

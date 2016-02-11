@@ -128,7 +128,7 @@
   <ItemGroup>
     <Compile Include="TesteAutomatizado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuarioTest.cs" />
+    <Compile Include="Repositorios\UsuarioRepositorioTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

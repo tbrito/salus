@@ -38,6 +38,11 @@ namespace Web
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/controllers/homeController.js",
+                "~/Scripts/controllers/loginController.js",
+                "~/Scripts/services/usuarioApiService.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css"));

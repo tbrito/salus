@@ -9,10 +9,10 @@
     <script src="~/Scripts/lib/angular/angular.js"></script>
     <script src="~/Scripts/lib/angular/angular-route.js"></script>
     <script src="~/Scripts/lib/angular/angular-messages.js"></script>
-    <script src="~/Scripts/lib/angular/angular-cookies.js"></script>
+    @*<script src="~/Scripts/lib/angular/angular-cookies.js"></script>*@
     
     <script src="~/Scripts/app.js"></script>
-    <script src="~/Scripts/values/configValues.js"></script>
+    @*<script src="~/Scripts/values/configValues.js"></script>*@
     
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -34,7 +34,7 @@
 
     <div class="container body-content">
         @RenderBody()
-        <div ng-view></div>
+        
         <hr />
 
         <footer>
@@ -44,6 +44,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("Scripts", required: false)
 </body>
 </html>

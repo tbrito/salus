@@ -1,7 +1,4 @@
-﻿using FluentNHibernate.Cfg;
-using NHibernate.AspNet.Identity.Helpers;
-using Salus.Infra.ConnectionInfra;
-using Salus.Model.Entidades;
+﻿using Salus.Infra.ConnectionInfra;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Web.Mvc;
 using System;

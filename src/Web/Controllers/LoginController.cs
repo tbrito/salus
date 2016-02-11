@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using NHibernate.AspNet.Identity;
-using Salus.Infra.UI;
-using Salus.Model.Entidades;
-using SharpArch.NHibernate;
+﻿using Salus.Infra.UI;
 using System.Web.Mvc;
 
 namespace Web.Controllers
@@ -13,12 +9,7 @@ namespace Web.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public Usuario Login(LoginViewModel loginViewModel)
-        {
-            return null;
+            return PartialView();
         }
     }
 }

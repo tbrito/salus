@@ -1,35 +1,23 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿<div ng-controller="loginController">
+    <div class="jumbotron">
+        {{error}}
+        <div class="panel-heading">
+            <h2>Acesso ao sistema</h2>
+            <form name="loginForm">
 
-<script src="~/Scripts/controllers/LoginController.js"></script>
-<script src="~/Scripts/services/usuarioApiService.js"></script>
-<script src="~/Scripts/services/AuthenticationService.js"></script>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="text" class="form-control" name="userName" ng-model="usuario.UserName" ng-required="true" placeholder="nome do usuario" />
+                </div>
 
-<div ng-controller="LoginController">
-    <div class="jambotron">
-        
-        <div>
-            Acesso ao sistema
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" ng-model="usuario.Senha" ng-required="true" placeholder="senha" />
+                </div>
+                
+                <button class="btn btn-lg" ng-click="login(usuario)" ng-disabled="loginForm.$invalid">Entrar</button>
+            </form>
         </div>
-        <form name="loginForm">
-            <div>
-                <input type="text" class="form-control login" ng-model="usuario.UserName" ng-required="true" placeholder="nome do usuario" />
-                <input type="password" class="form-control login" ng-model="usuario.Senha" ng-required="true" placeholder="senha" />
-            </div>
-            <div>
-                <button class="btn btn-primary btn-block" ng-click="login(usuario)" ng-disabled="loginForm.$invalid">Entrar</button>
-            </div>
-        </form>
-
-        <div class="salus noaccess">
-            <a href="">Não consigo acessar minha conta</link>
-        </div>
-
-        <div class="salus noaccount">
-            <a href="">Não possuo conta. Desejo solicitar.</link>
-        </div>
-
     </div>
 </div>
 

@@ -1,22 +1,16 @@
 angular.module("salus-app", ["ngMessages", "ngRoute"])
     .config(config);
     
-function config($routeProvider, $locationProvider){
+function config($routeProvider, $locationProvider) {
+    var viewBase = 'views/';
     $routeProvider
-        .when('/', {
-            controller: 'HomeController',
-            templateUrl: '~/Views/Home/Index.cshtml',
+        .when('/Home', {
+            controller: 'homeController',
+            templateUrl: "Home/Me",
         })
-        
-        .when('/login', {
-            controller: 'LoginController',
-            templateUrl: 'views/login/index.cshtml'
+        .when('/Login', {
+            controller: 'loginController',
+            templateUrl: 'Login/Index'
         })
-        
-        .when('/register', {
-            controller: 'RegisterController',
-            templateUrl: 'views/register/register.html'
-        })
-        
-        .otherwise({ redirectTo: '/login' });
+        .otherwise({ redirectTo: '/Login' });
 }

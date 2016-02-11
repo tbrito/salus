@@ -124,6 +124,7 @@
     <Compile Include="Migrations\201602051009_CriarAspNetUserRoles.cs" />
     <Compile Include="Migrations\Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="UI\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

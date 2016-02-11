@@ -1,3 +1,3 @@
 angular.module("salus-app").value("config", {
-        baseUrl: "/"
+    baseUrl: "http://localhost:64070"
 });
