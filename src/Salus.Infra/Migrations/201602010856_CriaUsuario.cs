@@ -8,7 +8,7 @@ namespace Salus.Infra.Migrations
         public override void Up()
         {
             Create.Table("usuario")
-                .WithColumn("id").AsAnsiString().NotNullable().PrimaryKey().Identity()
+                .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                 .WithColumn("nome").AsAnsiString()
                 .WithColumn("email").AsAnsiString()
                 .WithColumn("senha").AsAnsiString();
