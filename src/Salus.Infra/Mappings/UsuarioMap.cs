@@ -12,6 +12,8 @@
             this.Map(x => x.Nome, "nome");
             this.Map(x => x.Email, "email");
             this.Map(x => x.Senha, "senha");
+            this.References(x => x.Perfil).Column("perfil_id");
+            this.References(x => x.Area).Column("area_id");
 
             this.DynamicUpdate();
         }

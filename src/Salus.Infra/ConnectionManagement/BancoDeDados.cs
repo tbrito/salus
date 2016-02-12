@@ -2,37 +2,31 @@ using System.Collections.Generic;
 using System.Reflection;
 using FluentNHibernate.Cfg.Db;
 using System.Configuration;
+using NHibernate;
+using SharpArch.NHibernate;
 
 namespace Salus.Infra.ConnectionInfra
 {
-    public class BancoDeDados
+    public abstract class BancoDeDados
     {
         public static IList<Assembly> mapeamentos = new List<Assembly>();
 
-        public static string ObterDialect()
+        public ISession Sessao
         {
-            return "NHibernate.Dialect.PostgreSQLDialect";
+            get
+            {
+                return NHibernateSession.Current;
+            }
         }
-
-        public static string ObterProvider()
-        {
-            return "NHibernate.Connection.DriverConnectionProvider";
-        }
-
         public static string ObterConnectionString()
         {
             return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
-        public static string ObterDriver()
-        {
-            return "NHibernate.Driver.NpgsqlDriver";
-        }
-
         public static IPersistenceConfigurer Configuration()
         {
             return MsSqlConfiguration
-                .MsSql2008
+                .MsSql2012
                 .ConnectionString(ObterConnectionString());
         }
 

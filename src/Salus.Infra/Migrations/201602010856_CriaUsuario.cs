@@ -11,7 +11,9 @@ namespace Salus.Infra.Migrations
                 .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                 .WithColumn("nome").AsAnsiString()
                 .WithColumn("email").AsAnsiString()
-                .WithColumn("senha").AsAnsiString();
+                .WithColumn("senha").AsAnsiString()
+                .WithColumn("area_id").AsInt32().Nullable()
+                .WithColumn("perfil_id").AsInt32().Nullable();
         }
 
         public override void Down()

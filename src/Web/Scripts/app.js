@@ -6,7 +6,7 @@ function config($routeProvider, $locationProvider) {
     $routeProvider
         .when('/Home', {
             controller: 'homeController',
-            templateUrl: "Home/Me",
+            templateUrl: 'Home/Me',
         })
         .when('/Login', {
             controller: 'loginController',

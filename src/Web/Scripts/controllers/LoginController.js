@@ -7,7 +7,6 @@ angular.module("salus-app").controller("loginController", function ($scope, usua
                 $scope.usuario = data;
                
                 if ($scope.usuario.autenticado) {
-                    ////authenticationService.SetCredentials(data.UserName, data.Senha);
                     $location.path('/Home');
                 } else {
                     $scope.error = "Usuário ou senha inválidos.";

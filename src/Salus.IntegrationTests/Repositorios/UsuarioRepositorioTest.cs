@@ -1,23 +1,25 @@
 ﻿namespace Salus.IntegrationTests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Infra.Repositorios;
     using Model.Entidades;
-    [TestClass]
-    public class UsuarioRepositorioTest : TesteAutomatizado
+    using NUnit.Framework;
+
+    [TestFixture]
+    public class UsuarioRepositorioTest : TesteDeRepositorio<Usuario, UsuarioRepositorio>
     {
-        [TestMethod]
-        public void DeveIniciarCriarUsuario()
+        public override Usuario CriarEntidade()
         {
-            var usuarioRepositorio = new UsuarioRepositorio();
-
-            var usuario = new Usuario();
-            usuario.Nome = "tiago";
-            usuario.Email = "tiago.sousa.brito@gmail.com";
-            
-            usuarioRepositorio.SalvarComSenha(usuario, "pwd123");
-
-            Assert.AreNotEqual(usuario.Id, 0);
+            return new Usuario
+            {
+                Email = "tiago.sousa.brito@gmail.com",
+                Nome = "tbrito",
+                Senha = "pwd123"
+            };
+        }
+        
+        [Test]
+        public void Teste()
+        {
         }
     }
 }

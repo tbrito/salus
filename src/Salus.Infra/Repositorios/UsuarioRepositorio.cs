@@ -1,14 +1,14 @@
 ﻿namespace Salus.Infra.Repositorios
 {
-    using SharpArch.NHibernate;
     using Salus.Model.Entidades;
 
-    public class UsuarioRepositorio
+    public class UsuarioRepositorio : Repositorio<Usuario>
     {
-        public void SalvarComSenha(Usuario usuario, string password)
+        public Usuario Procurar(string userName, string senha)
         {
-            usuario.Senha = password;
-            NHibernateSession.Current.SaveOrUpdate(usuario);
+            return this.Sessao.QueryOver<Usuario>()
+                .Where(x => x.Nome == userName && x.Senha == senha)
+                .SingleOrDefault();
         }
     }
 }
