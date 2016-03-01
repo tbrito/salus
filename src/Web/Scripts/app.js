@@ -12,5 +12,9 @@ function config($routeProvider, $locationProvider) {
             controller: 'loginController',
             templateUrl: 'Login/Index'
         })
+        .when('/Upload', {
+            controller: 'uploadController',
+            templateUrl: 'Documento/Novo'
+        })
         .otherwise({ redirectTo: '/Login' });
 }

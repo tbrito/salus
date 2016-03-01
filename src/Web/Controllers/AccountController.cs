@@ -49,7 +49,7 @@
                     Autenticado = true
                 };
 
-                ////FormsAuthentication.RedirectFromLoginPage(usuario.Nome, true);
+                FormsAuthentication.SetAuthCookie(usuario.Nome, true);
             }
 
             return login;

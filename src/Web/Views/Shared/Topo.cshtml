@@ -1,0 +1,59 @@
+﻿<style>
+    .dropdown.right
+    {
+        right: auto;
+        margin-right: -5px;
+    }
+</style>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand">Salus</span>
+            <div class="site-search  js-site-search">
+                <form accept-charset="UTF-8" action="/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="" method="get">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+                    <label class="js-chromeless-input-container form-control">
+                        <input type="text" class="js-site-search-focus  chromeless-input" data-hotkey="s" name="q" placeholder="Pesquise no Salus" tabindex="1" autocapitalize="off">
+                    </label>
+                </form>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+                    Documento
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/Upload">Upload</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Vários Arquivos</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Pré-Indexar</a></li>
+                </ul>
+            </div>
+            <div class="dropdown right">
+                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+                    Configurações
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Usuários</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Perfis</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Áreas</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tipos de Dados</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chaves</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tipo de Documentos</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Documentos</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Perfil</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Área</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança de Módulos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".dropdown-toggle").dropdown();
+    });
+</script>
