@@ -216,6 +216,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AtividadeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -245,6 +246,7 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\homeController.js" />
+    <Content Include="Scripts\controllers\menuController.js" />
     <Content Include="Scripts\controllers\uploadController.js" />
     <Content Include="Scripts\controllers\loginController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -259,12 +261,14 @@
     <Content Include="Scripts\lib\angular\angular-messages.js" />
     <Content Include="Scripts\lib\angular\angular-route.js" />
     <Content Include="Scripts\lib\angular\angular.js" />
+    <Content Include="Scripts\lib\angular\ui-bootstrap-tpls-1.2.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\authenticationService.js" />
+    <Content Include="Scripts\services\atividadeApiService.js" />
     <Content Include="Scripts\services\usuarioApiService.js" />
     <Content Include="Scripts\values\configValues.js" />
     <Content Include="Scripts\_references.js" />

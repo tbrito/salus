@@ -1,59 +1,61 @@
-﻿<style>
-    .dropdown.right
-    {
-        right: auto;
-        margin-right: -5px;
-    }
-</style>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container" ng-controller="menuControler">
         <div class="navbar-header">
-            <span class="navbar-brand">Salus</span>
-            <div class="site-search  js-site-search">
-                <form accept-charset="UTF-8" action="/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="" method="get">
-                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-                    <label class="js-chromeless-input-container form-control">
-                        <input type="text" class="js-site-search-focus  chromeless-input" data-hotkey="s" name="q" placeholder="Pesquise no Salus" tabindex="1" autocapitalize="off">
-                    </label>
-                </form>
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
-                    Documento
+            <a class="navbar-brand hidden-xs" href="#">Salus</a>
+            <a class="navbar-brand visible-xs" href="#">S</a>
+
+            <form class="navbar-form pull-left" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="navbar-btn pull-right">
+            <div class="btn-group" uib-dropdown>
+                <button id="split-button" type="button" class="btn btn-toolbar">Documento</button>
+                <button type="button" class="btn btn-toolbar" uib-dropdown-toggle>
                     <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
                 </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/Upload">Upload</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Vários Arquivos</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Pré-Indexar</a></li>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                    <li role="menuitem"><a ng-click="abrirUpload()">Upload</a></li>
+                    <li role="menuitem"><a href="#">Vários Arquivos</a></li>
+                    <li role="menuitem"><a href="#">Pré-Indexar</a></li>
                 </ul>
             </div>
-            <div class="dropdown right">
-                <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
-                    Configurações
+
+            <div class="btn-group" uib-dropdown>
+                <button id="split-button" type="button" class="btn btn-toolbar">Configurações</button>
+                <button type="button" class="btn btn-toolbar" uib-dropdown-toggle>
                     <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
                 </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Usuários</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Perfis</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Áreas</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tipos de Dados</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chaves</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Tipo de Documentos</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Documentos</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Perfil</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança por Área</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Segurança de Módulos</a></li>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                    <li role="menuitem"><a href="#">Usuários</a></li>
+                    <li role="menuitem"><a href="#">Perfis</a></li>
+                    <li role="menuitem"><a href="#">Áreas</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Tipos de chaves</a></li>
+                    <li role="menuitem"><a href="#">Chaves</a></li>
+                    <li role="menuitem"><a href="#">Tipos de documentos</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Segurança por documentos</a></li>
+                    <li role="menuitem"><a href="#">Segurança por perfil</a></li>
+                    <li role="menuitem"><a href="#">Segurança por área</a></li>
+                    <li role="menuitem"><a href="#">Segurança por móduls</a></li>
                 </ul>
+            </div>
+
+            <div class="btn-group">
+                <a class="header-nav-link name tooltipped tooltipped-sw" href="/tbrito" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar">
+                    <img class="avatar" height="30" src="https://avatars0.githubusercontent.com/u/737150?v=3&amp;s=40" width="30">
+                    <span class="dropdown-caret"></span>
+                </a>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        $(".dropdown-toggle").dropdown();
-    });
-</script>

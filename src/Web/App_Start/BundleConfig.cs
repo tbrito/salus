@@ -40,8 +40,11 @@ namespace Web
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/controllers/homeController.js",
+                "~/Scripts/controllers/uploadController.js",
                 "~/Scripts/controllers/loginController.js",
-                "~/Scripts/services/usuarioApiService.js"));
+                "~/Scripts/controllers/menuController.js",
+                "~/Scripts/services/usuarioApiService.js",
+                "~/Scripts/services/atividadeApiService.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",

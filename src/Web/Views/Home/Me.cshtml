@@ -1,5 +1,14 @@
-﻿<script src="~/Scripts/controllers/homeController.js"></script>
+﻿<div ng-controller="homeController" ng-init="obterAtividades(null)">
 
-<div ng-controller="homeController">
-    {{homemessage}}
+    <div>
+        <table ng-show="atividades.length > 0" class="table">
+            <tr ng-repeat="atividade in atividades">
+                <td>{{atividade.usuarioNome}}</td>
+                <td>{{atividade.acao}}</td>
+                <td>{{atividade.documentoId}}</td>
+                <td>{{atividade.hora}}</td>
+            </tr>
+        </table>
+    </div>
+
 </div>

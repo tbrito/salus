@@ -1,4 +1,4 @@
-angular.module("salus-app", ["ngMessages", "ngRoute"])
+angular.module("salus-app", ["ngMessages", "ngRoute", "ui.bootstrap"])
     .config(config);
     
 function config($routeProvider, $locationProvider) {

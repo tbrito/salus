@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Atividade.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Entidades\Entidade.cs" />
     <Compile Include="Entidades\Area.cs" />

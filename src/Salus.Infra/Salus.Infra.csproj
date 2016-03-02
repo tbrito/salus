@@ -125,6 +125,7 @@
     <Compile Include="Migrations\201602010856_CriaUsuario.cs" />
     <Compile Include="Migrations\Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="UI\LoginViewModel.cs" />
