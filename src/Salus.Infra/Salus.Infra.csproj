@@ -128,7 +128,7 @@
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
-    <Compile Include="UI\LoginViewModel.cs" />
+    <Compile Include="WebUI\SessaoDoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Salus.Model\Salus.Model.csproj">

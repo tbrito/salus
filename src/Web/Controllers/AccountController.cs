@@ -1,10 +1,9 @@
 ﻿namespace Web.Controllers
 {
     using Salus.Infra.Repositorios;
-    using Salus.Infra.UI;
+    using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
-    using System.Web.Mvc;
     using System.Web.Security;
 
     public class AccountController : ApiController

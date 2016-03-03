@@ -1,3 +1,39 @@
-﻿<div ng-controller="uploadController">
-    {{mensagem}}
+﻿<div class="body-content" ng-controller="uploadController">
+
+    <form name="myForm" class="form-horizontal">
+        <div class="form-group">
+            <label>Breve descrição sobre o documento:</label>
+            <input type="text" class="form-control" name="userName" ng-model="username" size="150" required>
+            <i ng-show="myForm.userName.$error.required">*obrigatório</i><br/>
+            
+            <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
+                   accept="*/*" ngf-max-size="100MB" required
+                   ngf-model-invalid="errorFiles">
+
+            <i ng-show="myForm.file.$error.required">*obrigatório</i><br>
+            <i ng-show="myForm.file.$error.maxSize">
+                Arquivo muito grande
+                {{errorFiles[0].size / 1000000|number:1}}MB: max 100M
+            </i>
+
+            <span ng-show="myForm.file.$valid">
+                {{picFile.name}}
+            </span>
+
+            <div class="form-group dl-horizontal">
+                <button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile">Cancelar</button>
+                <button class="btn btn-primary" ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Enviar</button>
+            </div>
+
+            <span class="progress" ng-show="picFile.progress >= 0">
+                <div style="width:{{picFile.progress}}%"
+                     ng-bind="picFile.progress + '%'"></div>
+            </span>
+
+            <span ng-show="picFile.result">Upload realizado com sucesso</span>
+
+            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+        </div>
+        <br>
+    </form>
 </div>

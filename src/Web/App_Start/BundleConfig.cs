@@ -41,6 +41,7 @@ namespace Web
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/controllers/homeController.js",
                 "~/Scripts/controllers/uploadController.js",
+                "~/Scripts/controllers/categorizacaoController.js",
                 "~/Scripts/controllers/loginController.js",
                 "~/Scripts/controllers/menuController.js",
                 "~/Scripts/services/usuarioApiService.js",

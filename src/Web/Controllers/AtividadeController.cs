@@ -1,8 +1,8 @@
 ﻿namespace Web.Controllers
 {
     using Salus.Infra.Repositorios;
-    using Salus.Infra.UI;
     using Salus.Model.Entidades;
+    using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
 

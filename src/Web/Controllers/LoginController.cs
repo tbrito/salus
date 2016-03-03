@@ -1,8 +1,7 @@
-﻿using Salus.Infra.UI;
-using System.Web.Mvc;
-
-namespace Web.Controllers
+﻿namespace Web.Controllers
 {
+    using System.Web.Mvc;
+
     [AllowAnonymous]
     public class LoginController : Controller
     {

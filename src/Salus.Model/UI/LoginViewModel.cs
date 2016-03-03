@@ -1,4 +1,4 @@
-﻿namespace Salus.Infra.UI
+﻿namespace Salus.Model.UI
 {
     public class LoginViewModel
     {
