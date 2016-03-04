@@ -1,7 +1,5 @@
 ﻿namespace Web.Controllers
 {
-    using Salus.Model.Entidades;
-    using System.Collections.Generic;
     using System.Web.Mvc;
 
     public class IndexacaoController : Controller
