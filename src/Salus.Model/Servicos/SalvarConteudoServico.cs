@@ -7,14 +7,22 @@ namespace Salus.Model.Servicos
 {
     public class SalvarConteudoServico
     {
-        public IList<Documento> Executar(IList<FileViewModel> documentos)
+        private DocumentoServico documentoServico;
+        private StorageServico storageServico;
+
+        public IList<Documento> Executar(IList<FileViewModel> arquivos)
         {
-            return new List<Documento>
+            var documentos = new List<Documento>();
+
+            foreach (var arquivo in arquivos)
             {
-                new Documento() { Id = 1, DataCriacao = DateTime.Parse("01/02/1995") },
-                new Documento() { Id = 2, DataCriacao = DateTime.Parse("01/03/1996") },
-                new Documento() { Id = 3, DataCriacao = DateTime.Parse("01/04/1997") },
-            };
+                var documento = this.documentoServico.CriaNovo(arquivo);
+                this.storageServico.Adicionar(arquivo.Path, documento.Id);
+
+                documentos.Add(documento);
+            }
+
+            return documentos;
         }
     }
 }

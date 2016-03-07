@@ -4,6 +4,10 @@ namespace Salus.Model.Entidades
 {
     public class Documento : Entidade
     {
-        public DateTime DataCriacao { get; internal set; }
+        public virtual string Assunto { get; set; }
+
+        public virtual DateTime DataCriacao { get; set; }
+
+        public virtual long Tamanho { get; set; }
     }
 }

@@ -136,7 +136,8 @@
                         Name = fileInfo.Name,
                         Created = fileInfo.CreationTime,
                         Modified = fileInfo.LastWriteTime,
-                        Size = fileInfo.Length / 1024
+                        Size = fileInfo.Length / 1024,
+                        Path = fileInfo.FullName
                     }).ToList();
 
                 IList<Documento> documentos = new List<Documento>();
