@@ -1,6 +1,7 @@
 ﻿namespace Web.Controllers
 {
     using Extensions;
+    using Salus.Infra.IoC;
     using Salus.Infra.WebUI;
     using Salus.Model.Entidades;
     using Salus.Model.Servicos;
@@ -18,19 +19,10 @@
         private SessaoDoUsuario sessaoDoUsuario;
         private SalvarConteudoServico salvarConteudoServico;
 
-        public FilesController() : 
-            this(
-                new SessaoDoUsuario(),
-                new SalvarConteudoServico())
+        public FilesController()
         {
-        }
-
-        public FilesController(
-            SessaoDoUsuario sessaoDoUsuario, 
-            SalvarConteudoServico salvarConteudoServico)
-        {
-            this.sessaoDoUsuario = sessaoDoUsuario;
-            this.salvarConteudoServico = salvarConteudoServico;
+            this.sessaoDoUsuario = InversionControl.Current.Resolve<SessaoDoUsuario>();
+            this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
         }
 
         /// <summary>
@@ -137,14 +129,15 @@
                         Created = fileInfo.CreationTime,
                         Modified = fileInfo.LastWriteTime,
                         Size = fileInfo.Length / 1024,
-                        Path = fileInfo.FullName
+                        Path = fileInfo.FullName,
+                        Subject = provider.FormData["username"]
                     }).ToList();
 
                 IList<Documento> documentos = new List<Documento>();
 
                 ////await Task.Factory.StartNew(() =>
                 ////{
-                    documentos = this.salvarConteudoServico.Executar(arquivos);
+                documentos = this.salvarConteudoServico.Executar(arquivos);
                 ////});
 
                 return Ok(new { Message = "Documentos enviados com sucesso", Documentos = documentos });

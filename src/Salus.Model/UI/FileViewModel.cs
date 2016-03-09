@@ -10,6 +10,6 @@
         public DateTime Modified { get; set; }
         public long Size { get; set; }
         public string Path { get; set; }
-        public string Subject { get; internal set; }
+        public string Subject { get; set; }
     }
 }

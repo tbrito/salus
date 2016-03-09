@@ -1,5 +1,6 @@
 ﻿namespace Web.Controllers
 {
+    using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;
     using Salus.Model.UI;
     using System.Collections.Generic;
@@ -9,14 +10,10 @@
     public class AccountController : ApiController
     {
         private UsuarioRepositorio usuarioRepositorio;
-
-        public AccountController() : this(new UsuarioRepositorio())
+        
+        public AccountController()
         {
-        }
-
-        public AccountController(UsuarioRepositorio usuarioRepositorio)
-        {
-            this.usuarioRepositorio = usuarioRepositorio;
+            this.usuarioRepositorio = InversionControl.Current.Resolve<UsuarioRepositorio>();
         }
 
         // GET api/<controller>

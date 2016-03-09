@@ -12,14 +12,14 @@
 
         public Storage()
         {
-            var client = new MongoClient("mongodb://localhost:21021");
-            var database = client.GetDatabase("testdb");
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("salusdb");
             this.gridFs = new GridFSBucket(database);
         }
 
         public ObjectId AdicionarOuAtualizar(string filename)
         {
-            Stream valor = null;
+            Stream valor = File.Open(filename, FileMode.Open);
             var fileInfo = gridFs.UploadFromStream(filename, valor);
 
             return fileInfo;

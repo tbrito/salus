@@ -1,5 +1,6 @@
 ﻿namespace Web.Controllers
 {
+    using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;
     using Salus.Model.Entidades;
     using Salus.Model.UI;
@@ -9,14 +10,10 @@
     public class AtividadeController : ApiController
     {
         private AtividadeRepositorio atividadeRepositorio;
-
-        public AtividadeController() : this(new AtividadeRepositorio())
+        
+        public AtividadeController()
         {
-        }
-
-        public AtividadeController(AtividadeRepositorio usuarioRepositorio)
-        {
-            this.atividadeRepositorio = usuarioRepositorio;
+            this.atividadeRepositorio = InversionControl.Current.Resolve<AtividadeRepositorio>();
         }
 
         // GET api/<controller>/5

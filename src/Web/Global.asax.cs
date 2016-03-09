@@ -1,5 +1,7 @@
 ﻿namespace Web
 {
+    using Salus.Infra;
+    using Salus.Infra.Logs;
     using Salus.Infra.Migrations;
     using System;
     using System.Configuration;
@@ -25,10 +27,22 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            Aplicacao.Boot(Server.MapPath("bin"));
+
+            Log.Initialize();
+            Log.App.Info("Aplicacao Iniciada");
+
             var migrator = new Migrator(
                 ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
             migrator.Migrate(runner => runner.MigrateUp());
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var exception = Server.GetLastError();
+            Log.App.Error("Erro ao processar requisicao.", exception);
+            Server.ClearError();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
