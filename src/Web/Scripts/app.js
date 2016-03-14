@@ -20,7 +20,7 @@ function config($routeProvider, $locationProvider) {
             controller: 'uploadController',
             templateUrl: 'Documento/Novo'
         })
-        .when('/Categorizacao', {
+        .when('/Indexacao/Categorizar', {
             controller: 'categorizacaoController',
             templateUrl: 'Indexacao/Categorizar'
         })

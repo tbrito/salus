@@ -24,7 +24,7 @@
             foreach (var arquivo in arquivos)
             {
                 var documento = this.documentoServico.CriaNovo(arquivo);
-                this.storageServico.Adicionar(arquivo.Path, documento.Id);
+                this.storageServico.Adicionar(arquivo.Path, documento);
 
                 documentos.Add(documento);
             }

@@ -6,11 +6,11 @@
     using MongoDB.Bson;
     using MongoDB.Driver.GridFS;
 
-    public class Storage : IStorage
+    public class MongoStorage : IMongoStorage
     {
         public GridFSBucket gridFs;
 
-        public Storage()
+        public MongoStorage()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("salusdb");
@@ -21,9 +21,10 @@
         {
             Stream valor = File.Open(filename, FileMode.Open);
             var fileInfo = gridFs.UploadFromStream(filename, valor);
+            
+            valor.Close();
 
             return fileInfo;
-
         }
 
         public void Apagar(ObjectId objectId)

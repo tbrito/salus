@@ -1,17 +1,30 @@
-﻿namespace Salus.Model.Servicos
+﻿using Salus.Model.Entidades;
+using Salus.Model.Repositorios;
+
+namespace Salus.Model.Servicos
 {
     public class StorageServico
     {
-        private IStorage storage;
+        private IMongoStorage gridStorage;
+        private IStorageRepositorio storageRepository;
 
-        public StorageServico(IStorage storage)
+        public StorageServico(
+            IMongoStorage gridStorage,
+            IStorageRepositorio storageRepository)
         {
-            this.storage = storage;
+            this.gridStorage = gridStorage;
+            this.storageRepository = storageRepository;
         }
 
-        public void Adicionar(string path, int id)
+        public void Adicionar(string path, Documento documento)
         {
-            this.storage.AdicionarOuAtualizar(path);
+            var objectId = this.gridStorage.AdicionarOuAtualizar(path);
+
+            var storage = Storage.New(
+                documento,
+                objectId.Pid);
+            
+            this.storageRepository.Salvar(storage);
         }
     }
 }

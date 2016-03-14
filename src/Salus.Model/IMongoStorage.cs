@@ -3,7 +3,7 @@
     using MongoDB.Bson;
     using System.IO;
 
-    public interface IStorage
+    public interface IMongoStorage
     {
         ObjectId AdicionarOuAtualizar(string fileName);
 
