@@ -306,6 +306,7 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\authenticationService.js" />
     <Content Include="Scripts\services\atividadeApiService.js" />
+    <Content Include="Scripts\services\indexacaoApiService.js" />
     <Content Include="Scripts\services\usuarioApiService.js" />
     <Content Include="Scripts\values\configValues.js" />
     <Content Include="Scripts\_references.js" />
