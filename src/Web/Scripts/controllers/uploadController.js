@@ -13,7 +13,7 @@ angular.module("salus-app")
             file.upload.then(function (response) {
                 $timeout(function () {
                     file.result = response.data;
-                    $location.path('Indexacao/Categorizar').search('documentoId=1');
+                    $location.path('Indexacao/Categorizar/' + response.data.documentos[0].id);
                 });
             }, function (response) {
                 if (response.status > 0)

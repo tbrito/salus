@@ -128,10 +128,6 @@
       <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvcContrib, Version=2.0.95.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -245,6 +241,13 @@
     <Compile Include="Controllers\IndexacaoController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Extensions\RouteCollectionExtensions.cs" />
+    <Compile Include="Extensions\RouteExtensions.cs" />
+    <Compile Include="Extensions\UrlPageRouteAttribute.cs" />
+    <Compile Include="Extensions\UrlRouteAttribute.cs" />
+    <Compile Include="Extensions\UrlRouteBaseAttribute.cs" />
+    <Compile Include="Extensions\UrlRouteParameterConstraintAttribute.cs" />
+    <Compile Include="Extensions\UrlRouteParameterDefaultAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

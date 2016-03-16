@@ -10,13 +10,12 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-
     public class MvcApplication : HttpApplication
     {
         public override void Init()
         {
-            base.Init();
             HttpModulesInitializer.Execute(this);
+            base.Init();
         }
 
         protected void Application_Start()
