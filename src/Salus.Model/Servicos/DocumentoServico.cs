@@ -8,10 +8,14 @@ namespace Salus.Model.Servicos
     public class DocumentoServico
     {
         private IDocumentoRepositorio documentoRepositorio;
+        private ISessaoDoUsuario sessaoDoUsuario;
 
-        public DocumentoServico(IDocumentoRepositorio documentoRepositorio)
+        public DocumentoServico(
+            IDocumentoRepositorio documentoRepositorio,
+            ISessaoDoUsuario sessaoDoUsuario)
         {
             this.documentoRepositorio = documentoRepositorio;
+            this.sessaoDoUsuario = sessaoDoUsuario;
         }
 
         public Documento CriaNovo(FileViewModel arquivo)
@@ -21,6 +25,7 @@ namespace Salus.Model.Servicos
             documento.DataCriacao = arquivo.Created;
             documento.Assunto = arquivo.Subject;
             documento.Tamanho = arquivo.Size;
+            documento.Usuario = this.sessaoDoUsuario.UsuarioAtual;
 
             this.documentoRepositorio.Salvar(documento);
 

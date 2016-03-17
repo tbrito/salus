@@ -44,6 +44,8 @@ namespace Web
                 "~/Scripts/controllers/categorizacaoController.js",
                 "~/Scripts/controllers/loginController.js",
                 "~/Scripts/controllers/menuController.js",
+                "~/Scripts/controllers/viewController.js",
+                "~/Scripts/services/indexacaoApiService.js",
                 "~/Scripts/services/usuarioApiService.js",
                 "~/Scripts/services/atividadeApiService.js"));
 

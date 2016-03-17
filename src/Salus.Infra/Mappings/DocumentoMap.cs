@@ -12,7 +12,8 @@
             this.Map(x => x.Assunto, "assunto").Nullable();
             this.Map(x => x.DataCriacao, "criadoem");
             this.Map(x => x.Tamanho, "tamanho");
-            
+            this.References(x => x.Usuario, "user_id");
+
             this.DynamicUpdate();
         }
     }

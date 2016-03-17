@@ -227,18 +227,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\ChaveController.cs" />
+    <Compile Include="ApiControllers\IndexacaoController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AtividadeController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="ApiControllers\AtividadeController.cs" />
+    <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="App_Start\ContextoWeb.cs" />
-    <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="ApiControllers\FilesController.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\IndexacaoController.cs" />
+    <Compile Include="Controllers\CategorizarController.cs" />
+    <Compile Include="ApiControllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Extensions\RouteCollectionExtensions.cs" />
@@ -272,6 +276,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\viewController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\controllers\menuController.js" />
     <Content Include="Scripts\controllers\categorizacaoController.js" />
@@ -338,7 +343,8 @@
     <Content Include="Views\Shared\Topo.cshtml" />
     <Content Include="Views\Shared\TopoStart.cshtml" />
     <Content Include="Views\Documento\Novo.cshtml" />
-    <Content Include="Views\Indexacao\Categorizar.cshtml" />
+    <Content Include="Views\Categorizar\Index.cshtml" />
+    <Content Include="Views\View\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

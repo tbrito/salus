@@ -57,13 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Atividade.cs" />
+    <Compile Include="Entidades\Chave.cs" />
+    <Compile Include="Entidades\Indexacao.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Entidades\Entidade.cs" />
     <Compile Include="Entidades\Area.cs" />
+    <Compile Include="Entidades\TipoDado.cs" />
+    <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="IMongoStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entidades\Documento.cs" />
+    <Compile Include="Repositorios\ITipoDocumentoRepositorio.cs" />
+    <Compile Include="Repositorios\IUsuarioRepositorio.cs" />
+    <Compile Include="Repositorios\ISessaoDoUsuario.cs" />
     <Compile Include="Repositorios\IRepositorio.cs" />
     <Compile Include="Repositorios\IStorageRepositorio.cs" />
     <Compile Include="Servicos\DocumentoServico.cs" />

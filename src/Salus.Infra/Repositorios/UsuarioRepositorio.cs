@@ -2,8 +2,8 @@
 {
     using System;
     using Salus.Model.Entidades;
-
-    public class UsuarioRepositorio : Repositorio<Usuario>
+    using Model.Repositorios;
+    public class UsuarioRepositorio : Repositorio<Usuario>, IUsuarioRepositorio
     {
         public Usuario Procurar(string userName, string senha)
         {

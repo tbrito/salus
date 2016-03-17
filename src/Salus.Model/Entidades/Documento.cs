@@ -9,5 +9,7 @@ namespace Salus.Model.Entidades
         public virtual DateTime DataCriacao { get; set; }
 
         public virtual long Tamanho { get; set; }
+
+        public virtual Usuario Usuario { get; internal set; }
     }
 }

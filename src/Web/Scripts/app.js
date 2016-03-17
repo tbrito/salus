@@ -20,9 +20,13 @@ function config($routeProvider, $locationProvider) {
             controller: 'uploadController',
             templateUrl: 'Documento/Novo'
         })
-        .when('/Indexacao/Categorizar/:documentoId', {
+        .when('/Categorizar/:documentoId', {
             controller: 'categorizacaoController',
-            templateUrl: function (params) { return 'Indexacao/Categorizar/' + params.documentoId; }
+            templateUrl: function (params) { return 'Categorizar/' + params.documentoId; }
+        })
+        .when('/View/:documentoId', {
+            controller: 'viewController',
+            templateUrl: function (params) { return 'View/' + params.documentoId; }
         })
         .otherwise({ redirectTo: '/Login' });
 }

@@ -1,4 +1,4 @@
-﻿namespace Web.Controllers
+﻿namespace Web.ApiControllers
 {
     using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;

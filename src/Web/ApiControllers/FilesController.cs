@@ -1,9 +1,10 @@
-﻿namespace Web.Controllers
+﻿namespace Web.ApiControllers
 {
     using Extensions;
     using Salus.Infra.IoC;
     using Salus.Infra.WebUI;
     using Salus.Model.Entidades;
+    using Salus.Model.Repositorios;
     using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System;
@@ -16,12 +17,12 @@
 
     public class FilesController : ApiController
     {
-        private SessaoDoUsuario sessaoDoUsuario;
+        private ISessaoDoUsuario sessaoDoUsuario;
         private SalvarConteudoServico salvarConteudoServico;
 
         public FilesController()
         {
-            this.sessaoDoUsuario = InversionControl.Current.Resolve<SessaoDoUsuario>();
+            this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
         }
 

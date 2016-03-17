@@ -5,17 +5,16 @@
     using System.Web;
     using Repositorios;
     using System.Web.Security;
-    public class SessaoDoUsuario
+    using Model.Repositorios;
+    using IoC;
+
+    public class SessaoDoUsuario : ISessaoDoUsuario
     {
-        private UsuarioRepositorio usuarioRepositorio;
-
-        public SessaoDoUsuario() : this(new UsuarioRepositorio())
+        private IUsuarioRepositorio usuarioRepositorio;
+        
+        public SessaoDoUsuario()
         {
-        }
-
-        public SessaoDoUsuario(UsuarioRepositorio usuarioRepositorio)
-        {
-            this.usuarioRepositorio = usuarioRepositorio;
+            this.usuarioRepositorio = InversionControl.Current.Resolve<IUsuarioRepositorio>();
         }
 
         public Usuario UsuarioAtual
