@@ -8,6 +8,7 @@ namespace Salus.Infra.Migrations
         public override void Up()
         {
             Alter.Table("documento").AddColumn("user_id").AsInt32();
+            Alter.Table("documento").AddColumn("tipodocumento_id").AsInt32();
         }
 
         public override void Down()

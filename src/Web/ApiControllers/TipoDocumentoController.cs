@@ -22,7 +22,7 @@
         public IEnumerable<TipoDocumento> Get()
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
-                .ObterTodosClassificaveis(this.sessaoDoUsuario.UsuarioAtual.Id);
+                .ObterTodosClassificaveis(this.sessaoDoUsuario.UsuarioAtual);
            
             return tiposDocumentos as IEnumerable<TipoDocumento>;
         }

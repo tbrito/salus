@@ -1,6 +1,4 @@
-﻿using Salus.Model.Entidades;
-
-namespace Salus.Model.Entidades
+﻿namespace Salus.Model.Entidades
 {
     public class TipoDocumento : Entidade
     {

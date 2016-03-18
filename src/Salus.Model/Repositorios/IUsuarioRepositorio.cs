@@ -6,6 +6,6 @@ namespace Salus.Model.Repositorios
     {
         Usuario Procurar(string userName, string senha);
 
-        Usuario ProcurarPorNome(string nomeUsuario)
+        Usuario ProcurarPorNome(string nomeUsuario);
     }
 }

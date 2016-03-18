@@ -10,6 +10,8 @@ namespace Salus.Model.Entidades
 
         public virtual long Tamanho { get; set; }
 
-        public virtual Usuario Usuario { get; internal set; }
+        public virtual Usuario Usuario { get; set; }
+
+        public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }

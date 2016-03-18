@@ -1,10 +1,10 @@
-﻿using Salus.Model.Entidades;
-
-namespace Salus.Model
+﻿namespace Salus.Model.Entidades
 {
     public class Chave : Entidade
     {
         public virtual string[] Lista { get; set; }
+
+        public virtual string ItensLista { get; set;  }
 
         public virtual string Mascara { get; set; }
 
@@ -13,5 +13,7 @@ namespace Salus.Model
         public virtual bool Obrigatorio { get; set; }
 
         public virtual TipoDado TipoDado { get; set; }
+
+        public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }

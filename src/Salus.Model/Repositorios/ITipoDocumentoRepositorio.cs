@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Salus.Model.Entidades;
+using System.Collections.Generic;
 
 namespace Salus.Model.Repositorios
 {
-    public interface ITipoDocumentoRepositorio
+    public interface ITipoDocumentoRepositorio : IRepositorio<TipoDocumento>
     {
-        IList<TipoDocumento> ObterTodosClassificaveis(int userId);
+        IList<TipoDocumento> ObterTodosClassificaveis(Usuario usuario);
     }
 }
