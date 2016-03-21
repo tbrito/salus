@@ -47,6 +47,7 @@ namespace Web
                 "~/Scripts/controllers/viewController.js",
                 "~/Scripts/services/indexacaoApiService.js",
                 "~/Scripts/services/usuarioApiService.js",
+                "~/Scripts/services/workflowApiService.js",
                 "~/Scripts/services/atividadeApiService.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

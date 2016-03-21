@@ -1,6 +1,18 @@
 ﻿<div ng-controller="homeController" ng-init="obterAtividades(null)">
 
     <div>
+        <div>Minha Caixa</div>
+        <table ng-show="fluxos.length > 0" class="table">
+            <tr ng-repeat="fluxo in fluxos">
+                <td>{{fluxo.documento.id}}</td>
+                <td>{{fluxo.de.nome}}</td>
+                <td>{{fluxo.assunto}}</td>
+                <td>{{fluxo.criadoem}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <div>Últimas Atividades</div>
         <table ng-show="atividades.length > 0" class="table">
             <tr ng-repeat="atividade in atividades">
                 <td>{{atividade.usuarioNome}}</td>

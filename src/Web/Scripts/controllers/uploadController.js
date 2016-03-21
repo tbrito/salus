@@ -8,7 +8,7 @@ angular.module("salus-app")
             file.upload = Upload.upload({
                 url: 'api/Files/Add',
                 data: { file: file, username: $scope.username },
-            });
+            });d
 
             file.upload.then(function (response) {
                 $timeout(function () {

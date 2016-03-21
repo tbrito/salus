@@ -229,6 +229,7 @@
   <ItemGroup>
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
+    <Compile Include="ApiControllers\WorkflowController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -309,6 +310,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\services\workflowApiService.js" />
     <Content Include="Scripts\services\authenticationService.js" />
     <Content Include="Scripts\services\atividadeApiService.js" />
     <Content Include="Scripts\services\indexacaoApiService.js" />

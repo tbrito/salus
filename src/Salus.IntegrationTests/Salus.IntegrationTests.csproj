@@ -144,6 +144,7 @@
   <ItemGroup>
     <Compile Include="Repositorios\TesteDeRepositorio.cs" />
     <Compile Include="Repositorios\DocumentoRepositorioTest.cs" />
+    <Compile Include="Repositorios\WorkflowRepositorioTest.cs" />
     <Compile Include="TesteAutomatizado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\UsuarioRepositorioTest.cs" />

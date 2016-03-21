@@ -30,7 +30,7 @@ angular.module("salus-app").controller('categorizacaoController', function ($sco
     $scope.salvarIndexacao = function () {
         indexacaoApi.postSalvarIndexacao($scope.indexacao)
             .success(function (data) {
-                $location.path('/View/' + $scope.documentoId);
+                $location.path('/Home');
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao salvar documento " + $scope.documentoId;

@@ -1,4 +1,5 @@
 ﻿using Salus.Model;
+using Salus.Model.Entidades;
 using System.Collections.Generic;
 using System.Web.Http;
 
