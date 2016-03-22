@@ -12,7 +12,7 @@
             this.Map(x => x.CriadoEm, "criadoem");
             this.Map(x => x.FinalizadoEm, "finalizadoem").Nullable();
             this.Map(x => x.Mensagem, "mensagem");
-            this.Map(x => x.Status, "status");
+            this.Map(x => x.Status, "status").CustomType<int>();
             this.Map(x => x.Lido, "lido");
             this.References(x => x.De, "de");
             this.References(x => x.Para, "para");
