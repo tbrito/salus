@@ -239,6 +239,7 @@
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="App_Start\ContextoWeb.cs" />
     <Compile Include="ApiControllers\FilesController.cs" />
+    <Compile Include="Controllers\TipoDocumentoConfigController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -277,6 +278,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\tipoDocumentoConfigController.js" />
     <Content Include="Scripts\controllers\viewController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\controllers\menuController.js" />
@@ -347,6 +349,7 @@
     <Content Include="Views\Documento\Novo.cshtml" />
     <Content Include="Views\Categorizar\Index.cshtml" />
     <Content Include="Views\View\Index.cshtml" />
+    <Content Include="Views\TipoDocumentoConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

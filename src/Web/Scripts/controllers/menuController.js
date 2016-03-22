@@ -24,4 +24,8 @@
   $scope.abrirUpload= function() {
     $location.path('/Upload');;
   };
+
+  $scope.abrirTiposDeDocumento = function () {
+      $location.path('/TipoDocumentoConfig');;
+  };
 });
