@@ -11,7 +11,7 @@
                     <th>Desde</th>
                 </tr>
             </thead>
-            <tr ng-repeat="fluxo in fluxos">
+            <tr ng-repeat="fluxo in fluxos" ng-click="abrirDocumento(fluxo)">
                 <td>{{fluxo.documento.id}}</td>
                 <td>{{fluxo.de.nome}}</td>
                 <td>{{fluxo.mensagem}}</td>

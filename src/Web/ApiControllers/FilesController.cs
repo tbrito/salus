@@ -1,8 +1,10 @@
 ﻿namespace Web.ApiControllers
 {
     using Extensions;
+    using MongoDB.Bson;
     using Salus.Infra.IoC;
     using Salus.Infra.WebUI;
+    using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using Salus.Model.Servicos;
@@ -19,38 +21,30 @@
     {
         private ISessaoDoUsuario sessaoDoUsuario;
         private SalvarConteudoServico salvarConteudoServico;
+        private StorageServico storageServico;
+        private IMongoStorage mongoStorage;
 
         public FilesController()
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
+            this.storageServico = InversionControl.Current.Resolve<StorageServico>();
+            this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
         }
 
         /// <summary>
         ///   Get all photos
         /// </summary>
         /// <returns></returns>
-        public async Task<IHttpActionResult> Get()
+        [HttpGet]
+        public async Task<IHttpActionResult> Documento(int documentoId)
         {
-            ////var photos = new List<PhotoViewModel>();
-            ////var photoFolder = new DirectoryInfo(Caminho.);
-
             ////await Task.Factory.StartNew(() =>
             ////{
-            ////    photos = photoFolder.EnumerateFiles()
-            ////      .Where(fi => new[] { ".jpg", ".bmp", ".png", ".gif", ".tiff" }
-            ////        .Contains(fi.Extension.ToLower()))
-            ////      .Select(fi => new PhotoViewModel
-            ////      {
-            ////          Name = fi.Name,
-            ////          Created = fi.CreationTime,
-            ////          Modified = fi.LastWriteTime,
-            ////          Size = fi.Length / 1024
-            ////      })
-            ////      .ToList();
+                var caminho = this.storageServico.Obter(documentoId);
             ////});
-            
-            return Ok(new { Photos = "abce" });
+
+            return Ok(new { Caminho = caminho });
         }
 
         /// <summary>

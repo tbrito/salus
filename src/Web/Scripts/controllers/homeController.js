@@ -1,4 +1,4 @@
-﻿angular.module("salus-app").controller("homeController", function ($scope, atividadeApi, workflowApi) {
+﻿angular.module("salus-app").controller("homeController", function ($scope, $location, atividadeApi, workflowApi) {
 
     $scope.fluxos = [];
     $scope.atividades = [];
@@ -19,5 +19,9 @@
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao tentar autenticação";
             });
+    };
+
+    $scope.abrirDocumento = function(fluxo) {
+        $location.path('/View/' + fluxo.documento.id);
     };
 });

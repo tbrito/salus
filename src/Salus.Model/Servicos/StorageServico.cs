@@ -1,5 +1,7 @@
-﻿using Salus.Model.Entidades;
+﻿using System;
+using Salus.Model.Entidades;
 using Salus.Model.Repositorios;
+using MongoDB.Bson;
 
 namespace Salus.Model.Servicos
 {
@@ -22,9 +24,17 @@ namespace Salus.Model.Servicos
 
             var storage = Storage.New(
                 documento,
-                objectId.Pid);
+                objectId.);
             
             this.storageRepository.Salvar(storage);
+        }
+
+        public string Obter(int documentoId)
+        {
+            var storage = this.storageRepository.ObterPorDocumentoId(documentoId);
+            var stream = this.gridStorage.Obter(ObjectId.Parse(storage.MongoId.ToString()));
+
+            return string.Empty;
         }
     }
 }
