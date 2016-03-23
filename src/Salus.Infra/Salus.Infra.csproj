@@ -163,6 +163,8 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201603231214_CriaChavesDoTipo.cs" />
+    <Compile Include="Migrations\201603231159_CriaTipoDocumentos.cs" />
     <Compile Include="Migrations\201603211513_CriaWorkflow.cs" />
     <Compile Include="Migrations\201603181225_CriaIndexacao.cs" />
     <Compile Include="Migrations\201603181119_CriaChaves.cs" />

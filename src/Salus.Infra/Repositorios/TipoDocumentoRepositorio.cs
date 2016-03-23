@@ -9,6 +9,7 @@
         public IList<TipoDocumento> ObterTodosClassificaveis(Usuario usuario)
         {
             return this.Sessao.QueryOver<TipoDocumento>()
+                .Fetch(x => x.Parent).Eager
                 .List();
         }
     }

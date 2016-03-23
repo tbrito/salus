@@ -7,5 +7,7 @@
         public virtual bool EhPasta { get; set; }
 
         public virtual string Nome { get; set; }
+
+        public virtual TipoDocumento Parent { get; set; }
     }
 }

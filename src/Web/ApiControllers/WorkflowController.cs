@@ -18,7 +18,8 @@
         }
 
         // GET api/<controller>
-        public IEnumerable<Workflow> CaixaEntrada()
+        [HttpGet]
+        public IEnumerable<Workflow> CaixaEntrada(int id = 0)
         {
             var workflow = this.workflowRepositorio
                 .ObterCaixaEntrada(this.sessaoDoUsuario.UsuarioAtual);
