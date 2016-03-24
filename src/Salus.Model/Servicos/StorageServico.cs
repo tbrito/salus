@@ -33,9 +33,9 @@
         public string Obter(int documentoId)
         {
             var storage = this.storageRepository.ObterPorDocumentoId(documentoId);
-            var stream = this.gridStorage.Obter(storage.MongoId, storage.FileType);
+            var arquivo = this.gridStorage.Obter(storage.MongoId, storage.FileType);
 
-            return string.Empty;
+            return arquivo;
         }
     }
 }

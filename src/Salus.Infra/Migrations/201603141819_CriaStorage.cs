@@ -10,7 +10,7 @@ namespace Salus.Infra.Migrations
             Create.Table("gridstorage")
                .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                .WithColumn("documentoId").AsInt32()
-               .WithColumn("mongoId").AsInt16();
+               .WithColumn("mongoId").AsAnsiString(1024);
         }
 
         public override void Down()

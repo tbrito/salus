@@ -20,7 +20,7 @@ namespace Salus.Infra.ConnectionInfra
         }
         public static string ObterConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            return ConfigurationManager.AppSettings["Database.ConnectionString"];
         }
 
         public static IPersistenceConfigurer Configuration()

@@ -1,4 +1,4 @@
-angular.module("salus-app").controller('viewController', function ($scope, $location, indexacaoApi, ) {
+angular.module("salus-app").controller('viewController', function ($scope, $location, indexacaoApi) {
 
     $scope.indexacao = [];
     $scope.chaves = [];

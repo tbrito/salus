@@ -1,6 +1,7 @@
 ﻿namespace Web.ApiControllers
 {
     using Extensions;
+    using Salus.Infra;
     using Salus.Infra.IoC;
     using Salus.Model;
     using Salus.Model.Entidades;
@@ -13,6 +14,7 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Http;
 
     public class FilesController : ApiController
@@ -30,19 +32,16 @@
             this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
         }
 
-        /// <summary>
-        ///   Get all photos
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
-        public async Task<IHttpActionResult> Documento(int documentoId)
+        public string Documento(int id)
         {
-            ////await Task.Factory.StartNew(() =>
-            ////{
-                var caminho = this.storageServico.Obter(documentoId);
-            ////});
+            var caminho = this.storageServico.Obter(id);
 
-            return Ok(new { Caminho = caminho });
+            var relativo = caminho
+                .Replace(Aplicacao.Caminho, string.Empty)
+                .Replace(@"\", "/");
+            
+            return relativo;
         }
 
         /// <summary>
@@ -87,10 +86,6 @@
             }
         }
 
-        /// <summary>
-        ///   Add a photo
-        /// </summary>
-        /// <returns></returns>
         public async Task<IHttpActionResult> Add()
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
