@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<deploy xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <servicos>
+        <servico executavel="App\SalusQueues.exe" nome="SalusQueues" />
+    </servicos>
+</deploy>

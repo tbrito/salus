@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+
+	<property name="nuget.server" value="http://192.168.10.126/lib"/>
+	<property name="nuget.key" value="da39a3ee5e6b4b0d3255bfef95601890afd80709"/>
+
+	<!-- cria pacote de distribuição do nuget -->
+	<target name="nuget.pack">
+		<echo message="Empacotando ${project.description} versão ${version}" />	
+		<!--
+		<delete>
+			<fileset>
+				<include name="${package.dir}\*.*" />
+			</fileset>
+		</delete>
+		-->
+		
+		<foreach item="File" property="project.nuspec">
+			<in>
+				<items refid="project.nuspecs" />
+			</in>
+			<do>
+
+				<property name="project.nuspec.temp" value="${temp.dir}\temp.nuspec" />
+				
+				<!-- substitui tokens do nuspec -->
+				<copy file="${project.nuspec}" tofile="${project.nuspec.temp}" overwrite="true" outputencoding="utf-8">
+					<filterchain>
+						<replacetokens>
+							<token key="version" value="${version}" />
+							<token key="project.company" value="${project.company}" />
+							<token key="project.description" value="${project.description}" />
+							<token key="release.dir" value="${release.dir}" />
+							<token key="script.dir" value="${script.dir}" />
+						</replacetokens>
+					</filterchain>
+				</copy>
+
+				<!-- gera pacote nupkg -->
+				<exec program="${buildtools.dir}\nuget\NuGet.exe" workingdir="${current.dir}">
+					<arg value="pack" />
+					<arg value="${project.nuspec.temp}" />
+					<arg value="-OutputDirectory" />
+					<arg value="${packagelib.dir}" />
+				</exec>		
+				
+				<delete file="project.nuspec.temp" />
+
+			</do>
+		</foreach>
+		
+	</target>
+
+	<target name="nuget.push">
+		<echo message="Iniciando publicação do [${project.description}] na versão ${version}" />	
+		
+		<foreach item="File" property="nupkg.file">
+			<in>
+				<items>
+                    <include name="${lib.dir}\**\*.nupkg" />
+                    <include name="${packagelib.dir}\**\*.nupkg" />
+				</items>
+			</in>
+			<do>
+				<echo message="Publicando biblioteca ${nupkg.file}" />	
+				<exec program="${buildtools.dir}\nuget\NuGet.exe" workingdir="${current.dir}">
+					<arg value="push" />
+					<arg value="${nupkg.file}" />
+					<arg value="-s" />
+					<arg value="${nuget.server}" />
+					<arg value="${nuget.key}" />
+				</exec>	
+		
+			</do>
+		</foreach>
+
+	</target>
+
+</project>

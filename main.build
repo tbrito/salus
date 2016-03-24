@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project default="quick" xmlns="http://nant.sourceforge.net/release/0.91/nant.xsd">
+
+    <include buildfile="${project::get-base-directory()}\tools\common.build" />
+    
+	<property name="project.name" value="Salus Cm" />
+	<property name="project.company" value="IT Digital Soluctions" />
+	<property name="project.description" value="Produto para cliente especial" />
+	<property name="project.id" value="SalusCm" />
+
+	<!-- caso o projeto seja library -->
+
+	<!-- lista de solucao do projeto -->
+	<fileset basedir="${binary.dir}" id="project.solutions">
+		<include name="${source.dir}\Salus.sln" />
+	</fileset>
+	
+	<!-- lista dos assemblies de teste -->
+	<fileset id="test.files">
+		<include name="${binary.dir}\Salus.UnitTests.dll" />
+		<include name="${binary.dir}\Salus.IntegrationTests.dll" />
+	</fileset>
+
+	<!-- lista dos arquivos que sao distribuidos -->
+	<fileset basedir="${binary.dir}" id="release.files">
+        <include name="**/*" />
+
+		<exclude name="**/*.pdb" />
+        <exclude name="**/*settings.config" />
+        <exclude name="**/*nunit.*" />
+        <exclude name="**/**Tests.*" />
+        <exclude name="**/*TheJoyOfCode.QualityTools.*" />
+        <exclude name="**/*StructureMap.AutoMocking.*" />
+        <exclude name="**/*Rhino.Mocks.*" />
+        <exclude name="**/*Veros.TestFramework.*" />
+		<exclude name="**\Scenarios*" />
+        <exclude name="**\ImpDir*" />
+		<exclude name="**\*.pdb" />
+	</fileset>
+
+    <fileset id="setup.files">
+        <include name="${script.dir}\setup.iss" />
+        <include name="${script.dir}\update.iss" />
+    </fileset>
+
+	<target name="package.custom">
+	
+        <copy todir="${release.dir}\_PublishedWebsites\Web\Public\Images">
+            <fileset basedir="${source.dir}\Web\Public\Images">
+                <include name="*.png" />
+                <include name="*.gif" />
+            </fileset>
+        </copy>
+
+	</target>
+
+</project>

@@ -25,6 +25,7 @@ namespace Web.Modules
 
         private void EndRequest(object sender, EventArgs e)
         {
+            NHibernateSession.Current.Close();
         }
 
         private void BeginRequest(object sender, EventArgs e)

@@ -5,10 +5,10 @@
 
     public interface IMongoStorage
     {
-        ObjectId AdicionarOuAtualizar(string fileName);
+        string AdicionarOuAtualizar(string fileName);
 
-        Stream Obter(ObjectId chave);
+        string Obter(string chave, string tipoArquivo);
 
-        void Apagar(ObjectId chave);
+        void Apagar(string chave);
     }
 }

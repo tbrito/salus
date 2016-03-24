@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+
+	<target name="clean.bin">
+
+		<!-- tem que chamar duas vezes pq as vezes algumas pastas nao sao apagadas -->
+		<call target="clean.bin.execute" />
+		<call target="clean.bin.execute" />
+        
+	</target>
+	
+	<target name="clean.bin.execute">
+
+		<foreach item="Folder" property="foldername">
+            <in>
+                <items basedir=".">
+                    <include name="**\bin" />
+                    <include name="**\obj" />
+					<include name="${lib.dir}" />
+                    <include name="**\_ReSharper.*" />
+                </items>
+            </in>
+            <do>
+                <delete dir="${foldername}" failonerror="false" />
+            </do>
+        </foreach>
+        
+	</target>	
+	
+</project>

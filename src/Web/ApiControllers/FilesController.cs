@@ -1,9 +1,7 @@
 ﻿namespace Web.ApiControllers
 {
     using Extensions;
-    using MongoDB.Bson;
     using Salus.Infra.IoC;
-    using Salus.Infra.WebUI;
     using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;

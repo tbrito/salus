@@ -32,7 +32,7 @@
             Log.App.Info("Aplicacao Iniciada");
 
             var migrator = new Migrator(
-                ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                ConfigurationManager.AppSettings["Database.ConnectionString"]);
 
             migrator.Migrate(runner => runner.MigrateUp());
         }

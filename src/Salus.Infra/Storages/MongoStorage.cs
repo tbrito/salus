@@ -5,6 +5,7 @@
     using MongoDB.Driver;
     using MongoDB.Bson;
     using MongoDB.Driver.GridFS;
+    using System.Configuration;
 
     public class MongoStorage : IMongoStorage
     {
@@ -12,32 +13,42 @@
 
         public MongoStorage()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient(ConfigurationManager.AppSettings["Storage.ConnectionString"]);
             var database = client.GetDatabase("salusdb");
             this.gridFs = new GridFSBucket(database);
         }
 
-        public ObjectId AdicionarOuAtualizar(string filename)
+        public string AdicionarOuAtualizar(string filename)
         {
             Stream valor = File.Open(filename, FileMode.Open);
             var fileInfo = gridFs.UploadFromStream(filename, valor);
             
             valor.Close();
-
-            return fileInfo;
+            
+            return fileInfo.ToString();
         }
 
-        public void Apagar(ObjectId objectId)
+        public void Apagar(string objectId)
         {
-            this.gridFs.Delete(objectId);
+            this.gridFs.Delete(ObjectId.Parse(objectId));
         }
 
-        public Stream Obter(ObjectId objectId)
+        public string Obter(string objectId, string tipoArquivo)
         {
-            Stream valor = null;
-            this.gridFs.DownloadToStream(objectId, valor);
+            var diretorioConteudo = Path.Combine(Aplicacao.Caminho, "storage-temp", objectId);
 
-            return valor;
+            Directory.CreateDirectory(diretorioConteudo);
+
+            var fileFullPath = Path.Combine(
+                diretorioConteudo,
+                objectId + "." + tipoArquivo);
+
+            var streamToDownloadTo = new FileStream(fileFullPath, FileMode.Create);
+            this.gridFs.DownloadToStream(ObjectId.Parse(objectId), streamToDownloadTo);
+
+            streamToDownloadTo.Close();
+            
+            return fileFullPath;
         }
     }
 }

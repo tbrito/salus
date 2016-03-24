@@ -1,0 +1,11 @@
+﻿<appSettings>
+
+    <add key="Log.File" value="true" />
+    <add key="Log.Level" value="Debug" />
+    <add key="Log.Console" value="true" />
+    <add key="Log.Sql" value="true" />
+	
+    <add key="Database.ConnectionString" value="Server=nome_ou_ip_servidor;Port=5432;Database=database;User Id=usuario;Password=senha" />
+	<add key="Storage.ConnectionString" value="mongodb://localhost:27017" />
+
+</appSettings>
