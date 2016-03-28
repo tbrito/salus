@@ -1,18 +1,18 @@
 ﻿namespace Salus.IntegrationTests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Salus.Infra.Repositorios;
     using Salus.Model.Entidades;
 
-    [TestFixture]
+    [TestClass]
     public abstract class TesteDeRepositorio<TEntidade, TRepositorio> : TesteAutomatizado
         where TRepositorio : Repositorio<TEntidade>, new()
         where TEntidade : Entidade, new()
     {
         protected TRepositorio repositorio = new TRepositorio();
 
-        [Test]
-        [Category("TesteRepositorio")]
+
+        [TestMethod]
         public void DeveIncluir()
         {
             var entidade = this.CriarEntidade();
@@ -20,8 +20,7 @@
             Assert.AreNotEqual(entidade.Id, 0);
         }
 
-        [Test]
-        [Category("TesteRepositorio")]
+        [TestMethod]
         public void DeveObterPorId()
         {
             var entidade = this.CriarEntidade();
@@ -32,8 +31,7 @@
             Assert.AreEqual(entidade.Id, novaEntidade.Id);
         }
 
-        [Test]
-        [Category("TesteRepositorio")]
+        [TestMethod]
         public void DeveObterTodos()
         {
             var entidade = this.CriarEntidade();
@@ -47,7 +45,7 @@
             Assert.AreEqual(novasEntidades.Count, 2);
         }
         
-        [TearDown]
+        [TestCleanup]
         public void DepoisDoTest()
         {
             this.repositorio.ApagarTodos();

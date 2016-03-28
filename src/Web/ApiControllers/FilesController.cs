@@ -33,15 +33,17 @@
         }
 
         [HttpGet]
-        public string Documento(int id)
+        public IHttpActionResult Documento(int id)
         {
-            var caminho = this.storageServico.Obter(id);
-
+            var caminho = string.Empty;
+            
+            caminho = this.storageServico.Obter(id);
+            
             var relativo = caminho
                 .Replace(Aplicacao.Caminho, string.Empty)
                 .Replace(@"\", "/");
-            
-            return relativo;
+
+            return Ok(new { urlDocumento = relativo });
         }
 
         /// <summary>

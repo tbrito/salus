@@ -2,9 +2,9 @@
 {
     public class Atividade : Entidade
     {
-        public int DocumentoId;
-        public string Acao { get; set; }
-        public string Hora { get; set; }
-        public string UsuarioNome { get; set; }
+        public virtual int DocumentoId { get; set; }
+        public virtual string Acao { get; set; }
+        public virtual string Hora { get; set; }
+        public virtual string UsuarioNome { get; set; }
     }
 }

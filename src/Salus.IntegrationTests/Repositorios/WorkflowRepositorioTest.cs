@@ -1,11 +1,11 @@
 ﻿namespace Salus.IntegrationTests
 {
     using Infra.Repositorios;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Entidades;
-    using NUnit.Framework;
     using System;
 
-    [TestFixture]
+    [TestClass]
     public class WorkflwoRepositorioTest : TesteDeRepositorio<Workflow, WorkflowRepositorio>
     {
         public override Workflow CriarEntidade()
@@ -17,7 +17,7 @@
             };
         }
         
-        [Test]
+        [TestMethod]
         public void Teste()
         {
         }

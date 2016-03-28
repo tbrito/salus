@@ -189,6 +189,7 @@
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Storages\MongoStorage.cs" />
+    <Compile Include="Transformations\OpenOfficeTransformer.cs" />
     <Compile Include="WebUI\SessaoDoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>

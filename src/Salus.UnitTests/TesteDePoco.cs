@@ -1,21 +1,22 @@
 namespace Salus.UnitTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
     using System.Linq;
-    using NUnit.Framework;
     using TheJoyOfCode.QualityTools;
 
+    [TestClass]
     public class TesteDePoco<T> where T : new()
     {
         protected T entity;
 
-        [SetUp]
+        [TestInitialize]
         public void SetupPropertyAndConstructorTest()
         {
             this.entity = new T();
         }
 
-        [Test]
+        [TestMethod]
         public void ChecaPropriedades()
         {
             var propertyTester = new PropertyTester(new T());
@@ -23,7 +24,7 @@ namespace Salus.UnitTests
             propertyTester.TestProperties();
         }
 
-        [Test]
+        [TestMethod]
         public void ChecaConstrutores()
         {
             new ConstructorTester(typeof(T)).TestConstructors(true);

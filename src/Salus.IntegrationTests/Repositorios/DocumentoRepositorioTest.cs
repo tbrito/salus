@@ -1,11 +1,11 @@
 ﻿namespace Salus.IntegrationTests
 {
     using Infra.Repositorios;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Entidades;
-    using NUnit.Framework;
     using System;
 
-    [TestFixture]
+    [TestClass]
     public class DocumentoRepositorioTest : TesteDeRepositorio<Documento, DocumentoRepositorio>
     {
         public override Documento CriarEntidade()
@@ -17,8 +17,8 @@
                 Tamanho = 12554
             };
         }
-        
-        [Test]
+
+        [TestMethod]
         public void Teste()
         {
         }

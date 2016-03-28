@@ -4,7 +4,7 @@
     using Salus.Model.Entidades;
 
     [TestClass]
-    public class AcessoDocumentoTest : TesteDePoco<AcessoDocumento>
+    public class ChaveTest : TesteDePoco<Chave>
     {
     }
 }

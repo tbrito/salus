@@ -1,12 +1,12 @@
 ﻿namespace Salus.UnitTests.Entidades
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Salus.Model.Entidades;
 
-    [TestFixture]
+    [TestClass]
     public class UsuarioTest : TesteDePoco<Usuario>
     {
-        [Test]
+        [TestMethod]
         public void DeveCriarUsuarioComPerfilAdministrador()
         {
             var tiago = new Usuario();

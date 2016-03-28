@@ -12,7 +12,7 @@
             this.Map(x => x.Nome, "nome").Nullable();
             this.Map(x => x.EhPasta, "ehpasta");
             this.Map(x => x.Ativo, "ativo");
-            this.References(x => x.Parent, "parent_id");
+            this.References(x => x.Parent).Column("parent_id");
 
             this.DynamicUpdate();
         }

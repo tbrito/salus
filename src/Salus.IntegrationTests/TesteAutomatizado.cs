@@ -1,21 +1,21 @@
 ﻿namespace Salus.IntegrationTests
 {
     using Infra.ConnectionInfra;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Salus.Infra.Migrations;
     using SharpArch.NHibernate;
     using System;
     using System.Configuration;
     using System.IO;
 
-    [SetUpFixture]
+    [TestClass]
     public abstract class TesteAutomatizado
     {
-        [OneTimeSetUp]
+        [AssemblyInitialize()]
         public void TestInit()
         {
             var migrator = new Migrator(
-                ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                ConfigurationManager.AppSettings["Database.ConnectionString"]);
 
             migrator.Migrate(runner => runner.MigrateUp());
 
