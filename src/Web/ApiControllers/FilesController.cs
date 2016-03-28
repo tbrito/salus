@@ -43,7 +43,7 @@
                 .Replace(Aplicacao.Caminho, string.Empty)
                 .Replace(@"\", "/");
 
-            return Ok(new { urlDocumento = relativo });
+            return Ok(new { urlDocumento = "/" + relativo });
         }
 
         /// <summary>
