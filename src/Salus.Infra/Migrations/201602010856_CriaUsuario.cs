@@ -13,7 +13,11 @@ namespace Salus.Infra.Migrations
                 .WithColumn("email").AsAnsiString()
                 .WithColumn("senha").AsAnsiString()
                 .WithColumn("area_id").AsInt32().Nullable()
-                .WithColumn("perfil_id").AsInt32().Nullable();
+                .WithColumn("perfil_id").AsInt32().Nullable()
+                .WithColumn("expira").AsBoolean().Nullable()
+                .WithColumn("ativo").AsBoolean().Nullable()
+                .WithColumn("motivo_inatividade").AsAnsiString(1024).Nullable()
+                .WithColumn("expira_em").AsDateTime().Nullable();
         }
 
         public override void Down()

@@ -1,6 +1,7 @@
 ﻿namespace Web.ApiControllers
 {
     using Extensions;
+    using Filters;
     using Salus.Infra;
     using Salus.Infra.IoC;
     using Salus.Infra.Transformations;
@@ -35,6 +36,7 @@
         }
 
         [HttpGet]
+        [RegistraNaTrilha(Tipo = TipoTrilha.Acesso, Descricao = "Acesso a documento")]
         public IHttpActionResult Documento(int id)
         {
             var caminho = string.Empty;

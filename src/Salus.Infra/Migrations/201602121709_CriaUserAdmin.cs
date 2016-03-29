@@ -12,7 +12,9 @@ namespace Salus.Infra.Migrations
                 {
                     nome = "admin",
                     senha = "pwd123",
-                    email = "admin@admin.com"
+                    email = "admin@admin.com",
+                    expira = false,
+                    ativo = false
                 });
         }
 

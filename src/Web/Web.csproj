@@ -227,8 +227,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\AtributeBase.cs" />
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
+    <Compile Include="Filters\RegistraNaTrilhaAttribute.cs" />
     <Compile Include="ApiControllers\WorkflowController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataConfig.cs" />

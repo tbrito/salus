@@ -126,6 +126,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Repositorios\TrilhaRepositorioTest.cs" />
     <Compile Include="Repositorios\TesteDeRepositorio.cs" />
     <Compile Include="Repositorios\DocumentoRepositorioTest.cs" />
     <Compile Include="Repositorios\WorkflowRepositorioTest.cs" />

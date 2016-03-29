@@ -1,4 +1,6 @@
-﻿namespace Salus.Model.Entidades
+﻿using System;
+
+namespace Salus.Model.Entidades
 {
     public class Usuario : Entidade
     {
@@ -7,6 +9,14 @@
         public virtual string Nome { get; set; }
 
         public virtual string Senha { get; set; }
+
+        public virtual bool Expira { get; set; }
+
+        public virtual DateTime? ExpiraEm { get; set; }
+
+        public virtual bool Ativo { get; set; }
+
+        public virtual string MotivoInatividade { get; set; }
 
         public virtual Perfil Perfil { get; set; }
 

@@ -12,6 +12,10 @@
             this.Map(x => x.Nome, "nome");
             this.Map(x => x.Email, "email");
             this.Map(x => x.Senha, "senha");
+            this.Map(x => x.Expira, "expira");
+            this.Map(x => x.Ativo, "ativo");
+            this.Map(x => x.MotivoInatividade, "motivo_inatividade");
+            this.Map(x => x.ExpiraEm, "expira_em");
             this.References(x => x.Perfil).Column("perfil_id");
             this.References(x => x.Area).Column("area_id");
 

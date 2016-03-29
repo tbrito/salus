@@ -65,6 +65,8 @@
     <Compile Include="Entidades\Area.cs" />
     <Compile Include="Entidades\TipoDado.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
+    <Compile Include="Entidades\TipoTrilha.cs" />
+    <Compile Include="Entidades\Trilha.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\WorkflowStatus.cs" />
     <Compile Include="IMongoStorage.cs" />
@@ -72,11 +74,13 @@
     <Compile Include="Entidades\Documento.cs" />
     <Compile Include="Repositorios\IChaveRepositorio.cs" />
     <Compile Include="Repositorios\IIndexacaoRepositorio.cs" />
+    <Compile Include="Repositorios\ITrilhaRepositorio.cs" />
     <Compile Include="Repositorios\ITipoDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Repositorios\ISessaoDoUsuario.cs" />
     <Compile Include="Repositorios\IRepositorio.cs" />
     <Compile Include="Repositorios\IStorageRepositorio.cs" />
+    <Compile Include="Servicos\LogarAcaoDoSistema.cs" />
     <Compile Include="Servicos\DocumentoServico.cs" />
     <Compile Include="Repositorios\IDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\IWorkflowRepositorio.cs" />
