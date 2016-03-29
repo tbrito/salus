@@ -12,11 +12,11 @@
     public abstract class TesteAutomatizado
     {
         [AssemblyInitialize()]
-        public void TestInit()
+        public static void TestInit(TestContext contexto)
         {
             var migrator = new Migrator(
                 ConfigurationManager.AppSettings["Database.ConnectionString"]);
-
+            
             migrator.Migrate(runner => runner.MigrateUp());
 
             string[] mappings = new string[]

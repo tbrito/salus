@@ -152,6 +152,7 @@
     <Compile Include="IoC\Registrar.cs" />
     <Compile Include="IoC\StructureMapContainer.cs" />
     <Compile Include="IoC\StructureMapControllerFactory.cs" />
+    <Compile Include="IO\Files.cs" />
     <Compile Include="Logs\Log.cs" />
     <Compile Include="Logs\LogConfiguration.cs" />
     <Compile Include="Mappings\ChaveMap.cs" />

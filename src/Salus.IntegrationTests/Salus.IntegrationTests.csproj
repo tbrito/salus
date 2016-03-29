@@ -133,9 +133,22 @@
     <Compile Include="TesteAutomatizado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\UsuarioRepositorioTest.cs" />
+    <Compile Include="Transformations\OpenOfficeTransformerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Cenarios\Arquivos\excel-01.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cenarios\Arquivos\word-01.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cenarios\Arquivos\powerpoint-01.pptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Cenarios\Arquivos\word-02.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Cenarios\Arquivos\arquivo.txt">
       <SubType>Component</SubType>

@@ -12,7 +12,7 @@
         public OpenOfficeTransformer()
         {
             var programFilesPath = this.GetProgramFilesPath();
-            this.openOfficePath = Path.Combine(programFilesPath, "OpenOffice.org 3");
+            this.openOfficePath = Path.Combine(programFilesPath, "OpenOffice 4");
         }
 
         public string OpenOfficePath

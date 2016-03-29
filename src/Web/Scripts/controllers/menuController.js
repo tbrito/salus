@@ -25,6 +25,10 @@
     $location.path('/Upload');;
   };
 
+  $scope.abrirHome = function () {
+      $location.path('/Home');
+  };
+
   $scope.abrirTiposDeDocumento = function () {
       $location.path('/TipoDocumentoConfig');;
   };

@@ -3,6 +3,7 @@
     using Extensions;
     using Salus.Infra;
     using Salus.Infra.IoC;
+    using Salus.Infra.Transformations;
     using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
@@ -14,7 +15,6 @@
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Http;
 
     public class FilesController : ApiController
@@ -23,6 +23,7 @@
         private SalvarConteudoServico salvarConteudoServico;
         private StorageServico storageServico;
         private IMongoStorage mongoStorage;
+        private OpenOfficeTransformer openOfficeTransformer;
 
         public FilesController()
         {
@@ -30,16 +31,31 @@
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
             this.storageServico = InversionControl.Current.Resolve<StorageServico>();
             this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
+            this.openOfficeTransformer = InversionControl.Current.Resolve<OpenOfficeTransformer>();
         }
 
         [HttpGet]
         public IHttpActionResult Documento(int id)
         {
             var caminho = string.Empty;
-            
+            var caminhoPdf = string.Empty;
+
             caminho = this.storageServico.Obter(id);
+
+            if (Path.GetExtension(caminho).ToLower() == ".pdf")
+            {
+                caminhoPdf = caminho;
+            }
+            else
+            {
+                caminhoPdf = Path.Combine(
+                    Path.GetDirectoryName(caminho),
+                    Path.GetFileNameWithoutExtension(caminho) + ".pdf");
+
+                this.openOfficeTransformer.Execute(caminho, caminhoPdf);
+            }
             
-            var relativo = caminho
+            var relativo = caminhoPdf
                 .Replace(Aplicacao.Caminho, string.Empty)
                 .Replace(@"\", "/");
 

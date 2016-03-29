@@ -2,7 +2,9 @@
 {
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using System;
     using System.IO;
+
     public class StorageServico
     {
         private IMongoStorage gridStorage;
@@ -33,9 +35,31 @@
         public string Obter(int documentoId)
         {
             var storage = this.storageRepository.ObterPorDocumentoId(documentoId);
-            var arquivo = this.gridStorage.Obter(storage.MongoId, storage.FileType);
+
+            var arquivo = this.ArquivoPdfExisteEmCache(storage);
+
+            if (File.Exists(arquivo) == false)
+            {
+                arquivo = this.gridStorage.Obter(storage.MongoId, storage.FileType);
+            }
 
             return arquivo;
+        }
+
+        private string ArquivoPdfExisteEmCache(Storage storage)
+        {
+            var diretorioConteudo = Path.Combine(
+                            AppDomain.CurrentDomain.BaseDirectory,
+                            "storage-temp",
+                            storage.MongoId);
+
+            Directory.CreateDirectory(diretorioConteudo);
+
+            var fileFullPath = Path.Combine(
+                diretorioConteudo,
+                storage.MongoId + ".pdf");
+
+            return fileFullPath;
         }
     }
 }
