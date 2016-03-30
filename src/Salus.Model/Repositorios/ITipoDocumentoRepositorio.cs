@@ -6,5 +6,7 @@ namespace Salus.Model.Repositorios
     public interface ITipoDocumentoRepositorio : IRepositorio<TipoDocumento>
     {
         IList<TipoDocumento> ObterTodosClassificaveis(Usuario usuario);
+
+        TipoDocumento ObterPorIdComParents(int id);
     }
 }

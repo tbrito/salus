@@ -6,6 +6,14 @@
 
     public class TipoDocumentoRepositorio : Repositorio<TipoDocumento>, ITipoDocumentoRepositorio
     {
+        public TipoDocumento ObterPorIdComParents(int id)
+        {
+            return this.Sessao.QueryOver<TipoDocumento>()
+                .Fetch(x => x.Parent).Eager
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+        }
+
         public IList<TipoDocumento> ObterTodosClassificaveis(Usuario usuario)
         {
             return this.Sessao.QueryOver<TipoDocumento>()

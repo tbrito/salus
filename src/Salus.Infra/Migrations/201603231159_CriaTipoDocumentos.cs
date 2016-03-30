@@ -7,13 +7,13 @@ namespace Salus.Infra.Migrations
     {
         public override void Up()
         {
-            Alter.Table("tipodocumento").AddColumn("parent_id").AsInt32();
+            Alter.Table("tipodocumento").AddColumn("parent_id").AsInt32().Nullable();
             
             this.Insert.IntoTable("tipodocumento")
-                .Row(new { nome = "Administrativo", ativo = true, ehpasta = true, parent_id = 0 });
+                .Row(new { nome = "Administrativo", ativo = true, ehpasta = true });
 
             this.Insert.IntoTable("tipodocumento")
-                .Row(new { nome = "Departamento Pessoal", ativo = true, ehpasta = true, parent_id = 0 });
+                .Row(new { nome = "Departamento Pessoal", ativo = true, ehpasta = true });
 
             this.Insert.IntoTable("tipodocumento")
                 .Row(new { nome = "carta", ativo = true, ehpasta = false, parent_id = 1 });

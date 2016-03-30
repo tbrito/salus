@@ -1,0 +1,29 @@
+﻿@using Salus.Model.Entidades
+@model TipoDocumento
+
+<div ng-controller="tipoDocumentoConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{tipoDocumento.nome}}</h2>
+    
+    <input type="hidden" ng-model="tipoDocumento.id" />
+
+    <div ng-show="tipoDocumento.ehPasta == false">
+        <label>Grupo de documento</label>
+        <select class="form-control"
+                ng-model="tipoDocumento.parentid"
+                ng-options="pasta.id as pasta.nome for pasta in tipoDocumento.pastas">
+            <option value="">Selecione um agrupador</option>
+        </select>
+    </div>
+
+    <label>Nome</label>
+    <input type="text" class="form-control" ng-model="tipoDocumento.nome" />
+
+    <label>Está Ativo?</label>
+    <input type="checkbox" class="form-control" ng-model="tipoDocumento.ativo" />
+
+    <label>É um agrupador de documentos</label>
+    <input type="checkbox" class="form-control" ng-model="tipoDocumento.ehPasta" />
+   
+    <button class="form-control" ng-click="salvar(tipoDocumento)">Salvar e Ver Cahaves</button>
+    <button class="form-control" ng-click="salvar(tipoDocumento)">Ver Tipos de Documentos   </button>
+</div>

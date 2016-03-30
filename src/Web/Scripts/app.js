@@ -28,6 +28,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'tipoDocumentoConfigController',
             templateUrl: 'TipoDocumentoConfig/Index'
         })
+        .when('/TipoDocumentoConfig/Editar/:tipodocumentoId', {
+            controller: 'tipoDocumentoConfigController',
+            templateUrl: function (params) { return 'TipoDocumentoConfig/Editar/' + params.tipodocumentoId; }
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }

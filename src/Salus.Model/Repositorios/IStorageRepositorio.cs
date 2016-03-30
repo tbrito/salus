@@ -4,6 +4,6 @@ namespace Salus.Model.Repositorios
 {
     public interface IStorageRepositorio : IRepositorio<Storage>
     {
-        Storage ObterPorDocumentoId(int documentoId);
+        Storage ObterPorSalusId(string salusId);
     }
 }

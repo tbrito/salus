@@ -1,4 +1,4 @@
-angular.module("salus-app").controller('categorizacaoController', function ($scope, $location, indexacaoApi) {
+angular.module("salus-app").controller('categorizacaoController', function ($scope, $location, indexacaoApi, tipoDocumentoApi, chavesApi) {
 
     $scope.indexacao = [];
     $scope.chaves = [];
@@ -6,7 +6,7 @@ angular.module("salus-app").controller('categorizacaoController', function ($sco
     $scope.carregarFormulario = function (documentoId) {
         $scope.documentoId = documentoId;
 
-        indexacaoApi.getTiposDeDocumentos()
+        tipoDocumentoApi.getTiposDeDocumentos()
             .success(function (data) {
                 $scope.tiposDeDocumento = data;
             })
@@ -18,7 +18,7 @@ angular.module("salus-app").controller('categorizacaoController', function ($sco
     $scope.selecionarTipo = function () {
         tipoDocumentoSelecionadoId = $scope.tipoDocumentoId;
 
-        indexacaoApi.getChavesDoTipo(tipoDocumentoSelecionadoId)
+        chavesApi.getChavesDoTipo(tipoDocumentoSelecionadoId)
             .success(function (data) {
                 $scope.chaves = data;
             })

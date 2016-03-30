@@ -27,7 +27,7 @@
             foreach (var arquivo in arquivos)
             {
                 var documento = this.documentoServico.CriaNovo(arquivo);
-                this.storageServico.Adicionar(arquivo.Path, documento);
+                this.storageServico.Adicionar(arquivo.Path, documento.Id.ToString());
                 this.workflowServico.Iniciar(documento);
 
                 documentos.Add(documento);

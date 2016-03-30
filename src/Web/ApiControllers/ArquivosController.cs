@@ -18,7 +18,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    public class FilesController : ApiController
+    public class ArquivosController : ApiController
     {
         private ISessaoDoUsuario sessaoDoUsuario;
         private SalvarConteudoServico salvarConteudoServico;
@@ -26,7 +26,7 @@
         private IMongoStorage mongoStorage;
         private OpenOfficeTransformer openOfficeTransformer;
 
-        public FilesController()
+        public ArquivosController()
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
@@ -36,13 +36,12 @@
         }
 
         [HttpGet]
-        [RegistraNaTrilha(Tipo = TipoTrilha.Acesso, Descricao = "Acesso a documento")]
         public IHttpActionResult Documento(int id)
         {
             var caminho = string.Empty;
             var caminhoPdf = string.Empty;
 
-            caminho = this.storageServico.Obter(id);
+            caminho = this.storageServico.Obter(id.ToString());
 
             if (Path.GetExtension(caminho).ToLower() == ".pdf")
             {
@@ -138,15 +137,12 @@
                         Modified = fileInfo.LastWriteTime,
                         Size = fileInfo.Length / 1024,
                         Path = fileInfo.FullName,
-                        Subject = provider.FormData["username"]
+                        Subject = provider.FormData["assunto"]
                     }).ToList();
 
                 IList<Documento> documentos = new List<Documento>();
 
-                ////await Task.Factory.StartNew(() =>
-                ////{
                 documentos = this.salvarConteudoServico.Executar(arquivos);
-                ////});
 
                 return Ok(new { Message = "Documentos enviados com sucesso", Documentos = documentos });
             }

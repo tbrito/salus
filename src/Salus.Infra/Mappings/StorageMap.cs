@@ -9,9 +9,9 @@
         {
             this.Table("gridstorage");
             this.Id(x => x.Id).Column("id").GeneratedBy.Identity();
-            this.Map(x => x.MongoId, "mongoId");
+            this.Map(x => x.MongoId, "mongoid");
             this.Map(x => x.FileType, "filetype");
-            this.References(x => x.Documento, "documentoId");
+            this.Map(x => x.SalusId, "salusid");
             
             this.DynamicUpdate();
         }

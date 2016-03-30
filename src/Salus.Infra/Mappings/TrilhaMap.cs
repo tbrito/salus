@@ -1,6 +1,5 @@
 ﻿namespace Salus.Infra.Mappings
 {
-    using System;
     using FluentNHibernate.Mapping;
     using Model.Entidades;
 
@@ -16,11 +15,6 @@
             this.References(x => x.Usuario, "user_id");
 
             this.DynamicUpdate();
-        }
-
-        private object Map(Func<Trilha, object> p, string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

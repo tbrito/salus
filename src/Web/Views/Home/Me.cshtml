@@ -7,6 +7,7 @@
                 <tr>
                     <th>Documento</th>
                     <th>De</th>
+                    <th>Assunto</th>
                     <th>Mensagem</th>
                     <th>Desde</th>
                 </tr>
@@ -14,6 +15,7 @@
             <tr ng-repeat="fluxo in fluxos" ng-click="abrirDocumento(fluxo)">
                 <td>{{fluxo.documento.id}}</td>
                 <td>{{fluxo.de.nome}}</td>
+                <td>{{fluxo.documento.assunto}}</td>
                 <td>{{fluxo.mensagem}}</td>
                 <td>{{fluxo.criadoem}}</td>
             </tr>
@@ -22,6 +24,14 @@
     <div>
         <div>Últimas Atividades</div>
         <table ng-show="atividades.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Por</th>
+                    <th>Ação</th>
+                    <th>Registro</th>
+                    <th>Em</th>
+                </tr>
+            </thead>
             <tr ng-repeat="atividade in atividades">
                 <td>{{atividade.usuarioNome}}</td>
                 <td>{{atividade.acao}}</td>

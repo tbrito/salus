@@ -7,10 +7,18 @@
 
     public class TipoDocumentoConfigController : Controller
     {
-        // GET: Upload
+        // GET: Editar
         public ActionResult Index()
         {
             return PartialView();
+        }
+
+        // GET: Editar
+        [UrlRoute("TipoDocumentoConfig/Editar/{id}")]
+        public ActionResult Editar(int id)
+        {
+            var tipoDocumento = new TipoDocumento { Id = id };
+            return PartialView(tipoDocumento);
         }
     }
 }

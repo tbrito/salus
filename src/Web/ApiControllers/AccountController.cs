@@ -1,9 +1,7 @@
 ﻿namespace Web.ApiControllers
 {
-    using Filters;
     using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;
-    using Salus.Model.Entidades;
     using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -31,7 +29,6 @@
         }
 
         // POST api/<controller>
-        [RegistraNaTrilha(Tipo = TipoTrilha.Acesso, Descricao = "Acesso ao sistema")]
         public LoginViewModel Post([FromBody]LoginViewModel value)
         {
             var usuario = this.usuarioRepositorio.Procurar(value.UserName, value.Senha);

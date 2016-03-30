@@ -3,8 +3,8 @@
     <form name="myForm" class="form-horizontal">
         <div class="form-group">
             <label>Breve descrição sobre o documento:</label>
-            <input type="text" class="form-control" name="userName" ng-model="username" size="150" required>
-            <i ng-show="myForm.userName.$error.required">*obrigatório</i><br/>
+            <input type="text" class="form-control" name="assunto" ng-model="assunto" size="150" required>
+            <i ng-show="myForm.assunto.$error.required">*obrigatório</i><br/>
             
             <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
                    accept="*/*" ngf-max-size="100MB" required

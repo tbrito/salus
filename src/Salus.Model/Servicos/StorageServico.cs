@@ -18,23 +18,23 @@
             this.storageRepository = storageRepository;
         }
 
-        public void Adicionar(string path, Documento documento)
+        public void Adicionar(string path, string salusId)
         {
             var objectId = this.gridStorage.AdicionarOuAtualizar(path);
 
             var extensao = Path.GetExtension(path);
 
             var storage = Storage.New(
-                documento,
+                salusId,
                 objectId,
                 extensao.Replace(".", string.Empty));
             
             this.storageRepository.Salvar(storage);
         }
 
-        public string Obter(int documentoId)
+        public string Obter(string salusId)
         {
-            var storage = this.storageRepository.ObterPorDocumentoId(documentoId);
+            var storage = this.storageRepository.ObterPorSalusId(salusId);
 
             var arquivo = this.ArquivoPdfExisteEmCache(storage);
 

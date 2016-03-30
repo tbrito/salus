@@ -28,14 +28,33 @@
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public TipoDocumento Get(int id)
         {
-            return "value";
+            var tipoDocumento = this.tipoDocumentoRepositorio.ObterPorIdComParents(id);
+            return tipoDocumento;
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void Salvar([FromBody]TipoDocumentoViewModel tipoDocumentoView)
         {
+            TipoDocumento tipoDocumento = null;
+
+            if (tipoDocumentoView.Id == 0)
+            {
+                tipoDocumento = new TipoDocumento();
+            }
+            else
+            {
+                tipoDocumento = this.tipoDocumentoRepositorio.ObterPorId(tipoDocumentoView.Id);
+            }
+
+            tipoDocumento.Ativo = tipoDocumentoView.Ativo;
+            tipoDocumento.Nome = tipoDocumentoView.Nome;
+            tipoDocumento.EhPasta = tipoDocumentoView.EhPasta;
+            tipoDocumento.Parent = new TipoDocumento { Id = tipoDocumentoView.ParentId };
+
+            this.tipoDocumentoRepositorio.Salvar(tipoDocumento);
         }
 
         // PUT api/<controller>/5
@@ -47,5 +66,14 @@
         public void Delete(int id)
         {
         }
+    }
+
+    public class TipoDocumentoViewModel
+    {
+        public int Id { get; set; }
+        public bool Ativo { get; set; }
+        public bool EhPasta { get; set; }
+        public string Nome { get; set; }
+        public int ParentId { get; set; }
     }
 }
