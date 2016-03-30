@@ -1,0 +1,33 @@
+﻿@using Salus.Model.UI
+@model ChaveViewModel
+
+<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarFormulario(@this.Model.TipoDocumentoId, '@this.Model.TipoDocumentoNome')">
+    <h3>Chaves do Tipo de Documento - {{tipoDocumentoNome}}</h3>
+
+    <div class="control-group">
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo</button>
+    </div>
+
+    <div class="control-group">
+        <table ng-show="chaves.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Ativo</th>
+                    <th>Nome</th>
+                    <th>Obrigatorio</th>
+                    <th>Tipo de Dado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr ng-repeat="chave in chaves">
+                <td><input type="checkbox" ng-model="chave.ativo" /></td>
+                <td>{{chave.nome}}</td>
+                <td>{{chave.obrigatorio}}</td>
+                <td>{{chave.tipoDado}}</td>
+                <td><a ng-click="editarChave(chave.id)">Editar</a></td>
+                <td><a ng-click="excluir(tipoDocumento.id)">Inativar</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

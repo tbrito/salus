@@ -227,6 +227,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ChaveConfigController.cs" />
     <Compile Include="Filters\AtributeBase.cs" />
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
@@ -280,6 +281,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\chaveConfigController.js" />
     <Content Include="Scripts\controllers\tipoDocumentoConfigController.js" />
     <Content Include="Scripts\controllers\viewController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
@@ -360,6 +362,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\TipoDocumentoConfig\Editar.cshtml" />
+    <Content Include="Views\ChaveConfig\Index.cshtml" />
+    <Content Include="Views\ChaveConfig\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

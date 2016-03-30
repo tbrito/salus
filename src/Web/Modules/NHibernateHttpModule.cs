@@ -1,4 +1,5 @@
 ﻿using Salus.Infra.ConnectionInfra;
+using Salus.Infra.Logs;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Web.Mvc;
 using System;
@@ -25,7 +26,21 @@ namespace Web.Modules
 
         private void EndRequest(object sender, EventArgs e)
         {
-             NHibernateSession.Current.Close();
+            var transaction = NHibernateSession.Current.Transaction;
+
+            try
+            {
+                transaction.Commit();
+            }
+            catch (Exception exception)
+            {
+                Log.App.Error("erro ao atualizar", exception);
+                transaction.Rollback();
+            }
+            finally
+            {
+                transaction.Dispose();
+            }
         }
 
         private void BeginRequest(object sender, EventArgs e)

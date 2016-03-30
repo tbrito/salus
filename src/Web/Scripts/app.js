@@ -32,6 +32,14 @@ function config($routeProvider, $locationProvider) {
             controller: 'tipoDocumentoConfigController',
             templateUrl: function (params) { return 'TipoDocumentoConfig/Editar/' + params.tipodocumentoId; }
         })
+        .when('/ChaveConfig/:tipodocumentoId', {
+            controller: 'chaveConfigController',
+            templateUrl: function (params) { return 'ChaveConfig/' + params.tipodocumentoId; }
+        })
+        .when('/ChaveConfig/Editar/:chaveid', {
+            controller: 'chaveConfigController',
+            templateUrl: function (params) { return 'ChaveConfig/Editar/' + params.chaveid; }
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }

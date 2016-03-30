@@ -1,12 +1,13 @@
-﻿using Salus.Infra.IoC;
-using Salus.Model;
-using Salus.Model.Entidades;
-using Salus.Model.Repositorios;
-using System.Collections.Generic;
-using System.Web.Http;
-
-namespace Web.ApiControllers
+﻿namespace Web.ApiControllers
 {
+    using Salus.Infra.IoC;
+    using Salus.Model;
+    using Salus.Model.Entidades;
+    using Salus.Model.Repositorios;
+    using Salus.Model.UI;
+    using System.Collections.Generic;
+    using System.Web.Http;
+
     public class ChaveController : ApiController
     {
         private IChaveRepositorio chaveRepositorio;
@@ -23,10 +24,41 @@ namespace Web.ApiControllers
             return chaves as IEnumerable<Chave>;
         }
 
+        [HttpGet]
+        public Chave ObterPorId(int id)
+        {
+            var chave = this.chaveRepositorio.ObterPorIdComTipoDocumento(id);
+            return chave;
+        }
+
         // GET api/<controller>/5
         public string Get(int id)
         {
             return "value";
+        }
+
+        [HttpPost]
+        public void Salvar([FromBody]ChaveViewModel chaveViewModel)
+        {
+            Chave chave = null;
+
+            if (chaveViewModel.Id == 0)
+            {
+                chave = new Chave();
+            }
+            else
+            {
+                chave = this.chaveRepositorio.ObterPorId(chaveViewModel.Id);
+            }
+
+            chave.Nome = chaveViewModel.Nome;
+            chave.Obrigatorio = chaveViewModel.Obrigatorio;
+            chave.TipoDado = (TipoDado)chaveViewModel.TipoDadoId;
+            chave.Mascara = chaveViewModel.Mascara;
+            chave.ItensLista = chaveViewModel.ItensLista;
+            chave.TipoDocumento = new TipoDocumento { Id = chaveViewModel.TipoDocumentoId };
+
+            this.chaveRepositorio.Salvar(chave);
         }
 
         // POST api/<controller>
@@ -39,9 +71,10 @@ namespace Web.ApiControllers
         {
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public void Excluir(int id)
         {
+            this.chaveRepositorio.MarcarComoInativo(id);
         }
     }
 }

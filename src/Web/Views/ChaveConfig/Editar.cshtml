@@ -1,0 +1,50 @@
+﻿@using Salus.Model.UI
+@model ChaveViewModel
+
+<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h3>Editar chave - {{chave.nome}}</h3>
+
+    <form name="tipoDocumentoEditForm">
+        <input type="hidden" ng-model="chave.id" />
+
+        <div class="control-group">
+            <label>Tipo de Dado</label>
+            <select class="form-control"
+                    ng-model="chave.tipoDadoId"
+                    ng-options="tipoDado.id as tipoDado.nome for tipoDado in chave.tiposDeDado">
+                <option value="">Selecione o Tipo de Dado</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Itens da Lista</label>
+            <textarea class="form-control" ng-model="chave.itensLista" />
+        </div>
+
+        <div class="control-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" ng-model="chave.nome" />
+        </div>
+
+        <div class="control-group">
+            <label>Está Ativo?</label>
+            <input type="checkbox" class="form-control" ng-model="chave.ativo" />
+        </div>
+
+        <div class="control-group">
+            <label>É de preenchimento obrigatorio?</label>
+            <input type="checkbox" class="form-control" ng-model="chave.obrigatorio" />
+        </div>
+
+        @*<input type="checkbox" class="form-control" ng-model="chave.mascarar" value="Possui expressão regular" />*@
+        <div class="control-group">
+            <label>Informe a expressão (regex) para validação</label>
+            <input type="text" class="form-control" ng-model="chave.mascara" />
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(chave)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Tipos de documentos</button>
+        </div>
+    </form>
+</div>

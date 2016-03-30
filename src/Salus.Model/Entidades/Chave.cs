@@ -12,6 +12,8 @@
 
         public virtual bool Obrigatorio { get; set; }
 
+        public virtual bool Ativo { get; set; }
+
         public virtual TipoDado TipoDado { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }

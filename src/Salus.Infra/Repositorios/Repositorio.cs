@@ -9,6 +9,7 @@
         public void Salvar(T item)
         {
             this.Sessao.SaveOrUpdate(item);
+            this.Sessao.Flush();
         }
 
         public T ObterPorId(int id)

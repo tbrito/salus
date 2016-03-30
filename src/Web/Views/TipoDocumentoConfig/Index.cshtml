@@ -1,20 +1,28 @@
-﻿<div ng-controller="tipoDocumentoConfigController" ng-init="carregarFormulario()">
+﻿<div class="modal-content" ng-controller="tipoDocumentoConfigController" ng-init="carregarFormulario()">
     <div>Tipos de Documentos</div>
-    <button class="form-control btn-default" name="novoTipo" ng-click="adicionar()">Novo</button>
 
-    <table ng-show="tiposDeDocumento.length > 0" class="table">
-        <thead>
-            <tr>
-                <th>Ativo</th>
-                <th>Nome</th>
-                <th>Pasta</th>
+    <div class="control-group">
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo</button>
+    </div>
+
+    <div class="control-group">
+        <table ng-show="tiposDeDocumento.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Ativo</th>
+                    <th>Nome</th>
+                    <th>Pasta</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr ng-repeat="tipoDocumento in tiposDeDocumento">
+                <td><input type="checkbox" ng-model="tipoDocumento.ativo" /></td>
+                <td>{{tipoDocumento.nome}}</td>
+                <td>{{tipoDocumento.parent.nome}}</td>
+                <td><a ng-click="editarTipoDocumento(tipoDocumento.id)">Editar</a></td>
+                <td><a ng-click="excluir(tipoDocumento.id)">Apagar</a></td>
             </tr>
-        </thead>
-        <tr ng-repeat="tipoDocumento in tiposDeDocumento">
-            <td>{{tipoDocumento.ativo}}</td>
-            <td>{{tipoDocumento.nome}}</td>
-            <td>{{tipoDocumento.ehpasta}}</td>
-            <td><a ng-click="editarTipoDocumento(tipoDocumento.id)">Editar</a></td>
-        </tr>
-    </table>
+        </table>
+    </div>
 </div>

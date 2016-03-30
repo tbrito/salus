@@ -12,6 +12,7 @@
             this.Map(x => x.Nome, "nome").Nullable();
             this.Map(x => x.ItensLista, "itens");
             this.Map(x => x.Obrigatorio, "obrigatorio");
+            this.Map(x => x.Ativo, "ativo");
             this.Map(x => x.Mascara, "mascara").Nullable();
             this.Map(x => x.TipoDado, "tipodado").CustomType<int>().Nullable();
             this.References(x => x.TipoDocumento, "tipodocumento_id");

@@ -1,4 +1,6 @@
-﻿namespace Salus.Model.Entidades
+﻿using System.Collections.Generic;
+
+namespace Salus.Model.Entidades
 {
     public class TipoDocumento : Entidade
     {

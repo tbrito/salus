@@ -4,6 +4,7 @@
     using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
 
@@ -18,7 +19,6 @@
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
         }
 
-        // GET api/<controller>
         public IEnumerable<TipoDocumento> Get()
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
@@ -27,14 +27,13 @@
             return tiposDocumentos as IEnumerable<TipoDocumento>;
         }
 
-        // GET api/<controller>/5
-        public TipoDocumento Get(int id)
+        [HttpGet]
+        public TipoDocumento ObterPorId(int id)
         {
             var tipoDocumento = this.tipoDocumentoRepositorio.ObterPorIdComParents(id);
             return tipoDocumento;
         }
 
-        // POST api/<controller>
         [HttpPost]
         public void Salvar([FromBody]TipoDocumentoViewModel tipoDocumentoView)
         {
@@ -62,18 +61,10 @@
         {
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        public void Excluir(int id)
         {
+            this.tipoDocumentoRepositorio.MarcarComoInativo(id);
         }
-    }
-
-    public class TipoDocumentoViewModel
-    {
-        public int Id { get; set; }
-        public bool Ativo { get; set; }
-        public bool EhPasta { get; set; }
-        public string Nome { get; set; }
-        public int ParentId { get; set; }
     }
 }

@@ -43,6 +43,7 @@ namespace Web
                 "~/Scripts/controllers/uploadController.js",
                 "~/Scripts/controllers/categorizacaoController.js",
                 "~/Scripts/controllers/tipoDocumentoConfigController.js",
+                "~/Scripts/controllers/chaveConfigController.js",
                 "~/Scripts/controllers/loginController.js",
                 "~/Scripts/controllers/menuController.js",
                 "~/Scripts/controllers/viewController.js",
