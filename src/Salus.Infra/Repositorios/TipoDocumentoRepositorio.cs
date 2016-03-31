@@ -1,5 +1,6 @@
 ﻿namespace Salus.Infra.Repositorios
 {
+    using System;
     using System.Collections.Generic;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
@@ -26,6 +27,14 @@
         {
             return this.Sessao.QueryOver<TipoDocumento>()
                 .Fetch(x => x.Parent).Eager
+                .List();
+        }
+
+        public IList<TipoDocumento> ObterTodosGrupos(Usuario usuarioAtual)
+        {
+            return this.Sessao.QueryOver<TipoDocumento>()
+                .Fetch(x => x.Parent).Eager
+                .Where(x => x.EhPasta == true)
                 .List();
         }
     }

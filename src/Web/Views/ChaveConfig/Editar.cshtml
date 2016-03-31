@@ -1,24 +1,27 @@
 ﻿@using Salus.Model.UI
 @model ChaveViewModel
 
-<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarChaveParaEdicao(@this.Model.Id, @this.Model.TipoDocumentoId)">
     <h3>Editar chave - {{chave.nome}}</h3>
+    
+    {{chave}}
 
-    <form name="tipoDocumentoEditForm">
+    <form name="chaveEditForm">
         <input type="hidden" ng-model="chave.id" />
 
         <div class="control-group">
             <label>Tipo de Dado</label>
             <select class="form-control"
-                    ng-model="chave.tipoDadoId"
-                    ng-options="tipoDado.id as tipoDado.nome for tipoDado in chave.tiposDeDado">
+                    ng-model="chave.tipoDado"
+                    ng-options="tipoDado.id as tipoDado.nome for tipoDado in tiposDeDado"
+                    ng-change="configurarCampos()">
                 <option value="">Selecione o Tipo de Dado</option>
             </select>
         </div>
 
-        <div class="control-group">
+        <div class="control-group" ng-show="chave.ehLista == true">
             <label>Itens da Lista</label>
-            <textarea class="form-control" ng-model="chave.itensLista" />
+            <textarea class="form-control" ng-model="chave.itensLista"></textarea>
         </div>
 
         <div class="control-group">
@@ -36,8 +39,8 @@
             <input type="checkbox" class="form-control" ng-model="chave.obrigatorio" />
         </div>
 
-        @*<input type="checkbox" class="form-control" ng-model="chave.mascarar" value="Possui expressão regular" />*@
-        <div class="control-group">
+        <input type="checkbox" class="form-control" ng-model="chave.mascarar" value="Possui expressão regular" />
+        <div class="control-group" ng-show="chave.mascarar==true">
             <label>Informe a expressão (regex) para validação</label>
             <input type="text" class="form-control" ng-model="chave.mascara" />
         </div>

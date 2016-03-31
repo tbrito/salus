@@ -7,6 +7,8 @@ namespace Salus.Model.Repositorios
     {
         IList<TipoDocumento> ObterTodosClassificaveis(Usuario usuario);
 
+        IList<TipoDocumento> ObterTodosGrupos(Usuario usuarioAtual);
+
         TipoDocumento ObterPorIdComParents(int id);
 
         void MarcarComoInativo(int id);

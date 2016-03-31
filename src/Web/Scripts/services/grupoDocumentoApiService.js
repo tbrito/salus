@@ -1,0 +1,24 @@
+angular.module("salus-app").factory("grupoDocumentoApi", function ($http) {
+    var _getTiposDeDocumentos = function () {
+        return $http.get("api/GrupoDocumento");
+    };
+
+    var _getTipoDocumento = function (tipodocumentoId) {
+        return $http.get("api/GrupoDocumento/ObterPorId/" + tipodocumentoId);
+    };
+    
+    var _salvar = function (tipoDocumento) {
+        return $http.post("api/GrupoDocumento/Salvar/", tipoDocumento);
+    };
+
+    var _excluir = function (tipoDocumentoid) {
+        return $http.delete("api/GrupoDocumento/Excluir/" + tipoDocumentoid);
+    };
+    
+    return {
+        getTiposDeDocumentos: _getTiposDeDocumentos,
+        getTipoDocumento: _getTipoDocumento,
+        salvar: _salvar,
+        excluir: _excluir,
+    };
+});

@@ -7,5 +7,6 @@
         public bool EhPasta { get; set; }
         public string Nome { get; set; }
         public int ParentId { get; set; }
+        public dynamic Parent { get; set; }
     }
 }

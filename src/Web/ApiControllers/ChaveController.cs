@@ -45,6 +45,7 @@
             if (chaveViewModel.Id == 0)
             {
                 chave = new Chave();
+                chave.TipoDocumento = new TipoDocumento { Id = chaveViewModel.TipoDocumentoId };
             }
             else
             {
@@ -53,17 +54,12 @@
 
             chave.Nome = chaveViewModel.Nome;
             chave.Obrigatorio = chaveViewModel.Obrigatorio;
-            chave.TipoDado = (TipoDado)chaveViewModel.TipoDadoId;
+            chave.TipoDado = (TipoDado)chaveViewModel.TipoDado;
             chave.Mascara = chaveViewModel.Mascara;
+            chave.Ativo = chaveViewModel.Ativo;
             chave.ItensLista = chaveViewModel.ItensLista;
-            chave.TipoDocumento = new TipoDocumento { Id = chaveViewModel.TipoDocumentoId };
-
+            
             this.chaveRepositorio.Salvar(chave);
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
         }
 
         // PUT api/<controller>/5

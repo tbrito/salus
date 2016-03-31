@@ -1,7 +1,6 @@
 angular.module("salus-app").controller('chaveConfigController', function ($scope, $location, chavesApi) {
 
     $scope.chaves = [];
-
     $scope.chave = {};
 
     $scope.tiposDeDado = [
@@ -13,17 +12,18 @@ angular.module("salus-app").controller('chaveConfigController', function ($scope
         { nome: "CpfCnpj", id: 5 }
     ]
 
-    $scope.adicionar = function () {
-        $location.path('/ChaveConfig/Editar/' + 0);
+    $scope.adicionar = function (tipoDocumentoId, tipodocumentonome) {
+        $scope.chave.tipodocumentoId = tipoDocumentoId;
+        $scope.tipoDocumentoNome = tipodocumentonome;
+        $location.path('/ChaveConfig/Adicionar/' + tipoDocumentoId);
     }
 
-    $scope.carregarFormulario = function (tipodocumentoid, tipodocumentonome) {
-        $scope.tipodocumentoId = tipodocumentoid;
-        $scope.tipoDocumentoNome = tipodocumentonome;
-
+    $scope.carregarFormularioDeChaves = function (tipodocumentoid, tipodocumentonome) {
         chavesApi.getChavesDoTipo(tipodocumentoid)
             .success(function (data) {
                 $scope.chaves = data;
+                $scope.chave.tipodocumentoId = tipodocumentoid;
+                $scope.tipoDocumentoNome = tipodocumentonome;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as chaves";
@@ -35,26 +35,20 @@ angular.module("salus-app").controller('chaveConfigController', function ($scope
     }
 
     $scope.configurarCampos = function () {
-        if (tipoDado.id == 4) {
+        if ($scope.chave.tipoDado == 4) {
             $scope.chave.ehLista = true;
         } else {
             $scope.chave.ehLista = false;
         }
     }
 
-    $scope.carregarParaEdicao = function (chaveid) {
+    $scope.carregarChaveParaEdicao = function (chaveid, tipodocumentoId) {
+        $scope.chave.tipodocumentoId = tipodocumentoId;
+
         if (chaveid != 0) {
             chavesApi.getChave(chaveid)
                 .success(function (data) {
                     $scope.chave = data;
-                    $scope.chave.tiposDeDado = [
-                        { nome: "Texto", id: 0 },
-                        { nome: "Mascara", id: 1 },
-                        { nome: "Inteiro", id: 2 },
-                        { nome: "Moeda", id: 3 },
-                        { nome: "Lista", id: 4 },
-                        { nome: "CpfCnpj", id: 5 }
-                    ]
                 })
                 .error(function (data) {
                     $scope.error = "Ops! Algo aconteceu ao obter a chave";
@@ -65,7 +59,7 @@ angular.module("salus-app").controller('chaveConfigController', function ($scope
     $scope.salvar = function (chave) {
         chavesApi.salvar(chave)
             .success(function (data) {
-                $location.path('/ChaveConfig/' + tipodocumentoId);
+                $location.path('/ChaveConfig/' + $scope.chave.tipodocumentoId);
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao salvar as chaves do tipo do documento";
@@ -75,7 +69,7 @@ angular.module("salus-app").controller('chaveConfigController', function ($scope
     $scope.excluir = function (chaveid) {
         chavesApi.excluir(chaveid)
             .success(function (data) {
-                $location.path('/ChaveConfig/' + tipodocumentoId);
+                $location.path('/ChaveConfig/' + $scope.chave.tipodocumentoId);
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as chaves do tipo do documento";

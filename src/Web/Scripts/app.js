@@ -40,6 +40,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'chaveConfigController',
             templateUrl: function (params) { return 'ChaveConfig/Editar/' + params.chaveid; }
         })
+        .when('/ChaveConfig/Adicionar/:tipodocumentoId', {
+            controller: 'chaveConfigController',
+            templateUrl: function (params) { return 'ChaveConfig/Adicionar/' + params.tipodocumentoId; }
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }

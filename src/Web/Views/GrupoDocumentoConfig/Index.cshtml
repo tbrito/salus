@@ -1,0 +1,26 @@
+﻿<div class="modal-content" ng-controller="grupoDocumentoConfigController" ng-init="carregarFormulario()">
+    <div>Grupo de Documentos</div>
+
+    <div class="control-group">
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Grupo</button>
+    </div>
+
+    <div class="control-group">
+        <table ng-show="gruposDocumentos.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Ativo</th>
+                    <th>Nome</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr ng-repeat="grupoDocumento in gruposDocumentos">
+                <td><input type="checkbox" ng-model="grupoDocumento.ativo" /></td>
+                <td>{{grupoDocumento.nome}}</td>
+                <td><a ng-click="editarGrupoDocumento(grupoDocumento.id)">Editar</a></td>
+                <td><a ng-click="excluir(grupoDocumento.id)">Apagar</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

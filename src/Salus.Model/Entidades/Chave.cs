@@ -1,8 +1,21 @@
-﻿namespace Salus.Model.Entidades
+﻿using System;
+
+namespace Salus.Model.Entidades
 {
     public class Chave : Entidade
     {
-        public virtual string[] Lista { get; set; }
+        public virtual string[] Lista
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ItensLista) == false)
+                {
+                    return this.ItensLista.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                }
+
+                return new string[] { "Sem Itens" };
+            }
+        }
 
         public virtual string ItensLista { get; set;  }
 

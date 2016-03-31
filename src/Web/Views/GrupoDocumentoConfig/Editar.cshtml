@@ -1,0 +1,23 @@
+﻿@using Salus.Model.Entidades
+@model TipoDocumento
+
+<div class="modal-content" ng-controller="grupoDocumentoConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{grupoDocumento.nome}}</h2>
+    
+    <form name="tipoDocumentoEditForm">
+        <input type="hidden" ng-model="grupoDocumento.id" />
+
+        <div class="control-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" ng-model="grupoDocumento.nome" />
+
+            <label>Está Ativo?</label>
+            <input type="checkbox" class="form-control" ng-model="grupoDocumento.ativo" />
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(grupoDocumento)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Todos os Grupos</button>
+        </div>
+    </form>
+</div>

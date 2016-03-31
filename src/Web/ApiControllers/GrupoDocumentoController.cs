@@ -8,12 +8,12 @@
     using System.Collections.Generic;
     using System.Web.Http;
 
-    public class TipoDocumentoController : ApiController
+    public class GrupoDocumentoController : ApiController
     {
         private ITipoDocumentoRepositorio tipoDocumentoRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
 
-        public TipoDocumentoController()
+        public GrupoDocumentoController()
         {
             this.tipoDocumentoRepositorio = InversionControl.Current.Resolve<ITipoDocumentoRepositorio>();
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
@@ -22,7 +22,7 @@
         public IEnumerable<TipoDocumento> Get()
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
-                .ObterTodosClassificaveis(this.sessaoDoUsuario.UsuarioAtual);
+                .ObterTodosGrupos(this.sessaoDoUsuario.UsuarioAtual);
            
             return tiposDocumentos as IEnumerable<TipoDocumento>;
         }
@@ -50,7 +50,7 @@
 
             tipoDocumento.Ativo = tipoDocumentoView.Ativo;
             tipoDocumento.Nome = tipoDocumentoView.Nome;
-            tipoDocumento.EhPasta = tipoDocumentoView.EhPasta;
+            tipoDocumento.EhPasta = true;
             tipoDocumento.Parent = new TipoDocumento { Id = tipoDocumentoView.Parent.id };
 
             this.tipoDocumentoRepositorio.Salvar(tipoDocumento);

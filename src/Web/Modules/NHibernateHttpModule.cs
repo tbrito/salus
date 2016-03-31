@@ -35,7 +35,10 @@ namespace Web.Modules
             catch (Exception exception)
             {
                 Log.App.Error("erro ao atualizar", exception);
-                transaction.Rollback();
+                if (transaction.IsActive)
+                {
+                    transaction.Rollback();
+                }
             }
             finally
             {
