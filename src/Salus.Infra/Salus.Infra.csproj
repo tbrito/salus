@@ -165,6 +165,7 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201603311948_AdicionarParentAtivoNaArea.cs" />
     <Compile Include="Migrations\201603301829_AdicionarAtivoNaChave.cs" />
     <Compile Include="Migrations\201603291705_CriaTrilha.cs" />
     <Compile Include="Migrations\201603240211_AdicionarFiletypeMongoStorage.cs" />

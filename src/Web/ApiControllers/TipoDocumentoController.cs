@@ -50,7 +50,7 @@
 
             tipoDocumento.Ativo = tipoDocumentoView.Ativo;
             tipoDocumento.Nome = tipoDocumentoView.Nome;
-            tipoDocumento.EhPasta = tipoDocumentoView.EhPasta;
+            tipoDocumento.EhPasta = false;
             tipoDocumento.Parent = new TipoDocumento { Id = tipoDocumentoView.Parent.id };
 
             this.tipoDocumentoRepositorio.Salvar(tipoDocumento);

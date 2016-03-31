@@ -32,4 +32,8 @@
   $scope.abrirTiposDeDocumento = function () {
       $location.path('/TipoDocumentoConfig');;
   };
+
+   $scope.abrirGruposDeDocumento = function () {
+      $location.path('/GrupoDocumentoConfig');;
+  };
 });

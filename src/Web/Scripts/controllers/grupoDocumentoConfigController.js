@@ -1,6 +1,6 @@
 angular.module("salus-app").controller('grupoDocumentoConfigController', function ($scope, $location, grupoDocumentoApi) {
 
-    $scope.gruposDocumento = [];
+    $scope.gruposDocumentos = [];
     
     $scope.adicionar = function () {
         $location.path('/GrupoDocumentoConfig/Editar/' + 0);
@@ -10,14 +10,14 @@ angular.module("salus-app").controller('grupoDocumentoConfigController', functio
 
         grupoDocumentoApi.getTiposDeDocumentos()
             .success(function (data) {
-                $scope.gruposDocumento = data;
+                $scope.gruposDocumentos = data;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
             });
     }
 
-    $scope.editarTipoDocumento = function (grupoDocumentoId) {
+    $scope.editarGrupoDocumento = function (grupoDocumentoId) {
         $location.path('/GrupoDocumentoConfig/Editar/' + grupoDocumentoId);
     }
     
@@ -38,7 +38,7 @@ angular.module("salus-app").controller('grupoDocumentoConfigController', functio
     $scope.salvar = function (grupoDocumento) {
         grupoDocumentoApi.salvar(grupoDocumento)
             .success(function (data) {
-                $location.path('/GrupoDocumentoConfig/' + grupoDocumento.id);
+                $location.path('/GrupoDocumentoConfig');
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";

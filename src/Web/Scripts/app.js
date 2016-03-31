@@ -24,6 +24,14 @@ function config($routeProvider, $locationProvider) {
             controller: 'categorizacaoController',
             templateUrl: function (params) { return 'Categorizar/' + params.documentoId; }
         })
+        .when('/GrupoDocumentoConfig', {
+            controller: 'grupoDocumentoConfigController',
+            templateUrl: 'GrupoDocumentoConfig/Index'
+        })
+        .when('/GrupoDocumentoConfig/Editar/:tipodocumentoId', {
+            controller: 'grupoDocumentoConfigController',
+            templateUrl: function (params) { return 'GrupoDocumentoConfig/Editar/' + params.tipodocumentoId; }
+        })
         .when('/TipoDocumentoConfig', {
             controller: 'tipoDocumentoConfigController',
             templateUrl: 'TipoDocumentoConfig/Index'
