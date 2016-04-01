@@ -1,0 +1,28 @@
+﻿<div class="modal-content" ng-controller="areaConfigController" ng-init="carregarFormulario()">
+    <div>Areas</div>
+
+    <div class="control-group">
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Area</button>
+    </div>
+
+    <div class="control-group">
+        <table ng-show="areas.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Abreviacao</th>
+                    <th>Segurança</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr ng-class="{'item-inativo': area.ativo == false}" ng-repeat="area in areas">
+                <td>{{area.nome}}</td>
+                <td>{{area.abreviacao}}</td>
+                <td>{{area.segura}}</td>
+                <td><a ng-click="editarArea(area.id)">Editar</a></td>
+                <td><a ng-click="excluir(Area.id)">Inativar</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

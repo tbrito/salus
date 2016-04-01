@@ -228,8 +228,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
+    <Compile Include="ApiControllers\AreaController.cs" />
     <Compile Include="Controllers\ChaveConfigController.cs" />
     <Compile Include="Controllers\GrupoDocumentoConfigController.cs" />
+    <Compile Include="Controllers\AreaConfigController.cs" />
     <Compile Include="Filters\AtributeBase.cs" />
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
@@ -285,6 +287,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\chaveConfigController.js" />
     <Content Include="Scripts\controllers\grupoDocumentoConfigController.js" />
+    <Content Include="Scripts\controllers\areaConfigController.js" />
     <Content Include="Scripts\controllers\tipoDocumentoConfigController.js" />
     <Content Include="Scripts\controllers\viewController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
@@ -321,6 +324,7 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\chavesApiService.js" />
     <Content Include="Scripts\services\grupoDocumentoApiService.js" />
+    <Content Include="Scripts\services\areaApiService.js" />
     <Content Include="Scripts\services\tipoDocumentoApiService.js" />
     <Content Include="Scripts\services\storageApiService.js" />
     <Content Include="Scripts\services\workflowApiService.js" />
@@ -370,6 +374,8 @@
     <Content Include="Views\ChaveConfig\Editar.cshtml" />
     <Content Include="Views\GrupoDocumentoConfig\Editar.cshtml" />
     <Content Include="Views\GrupoDocumentoConfig\Index.cshtml" />
+    <Content Include="Views\AreaConfig\Editar.cshtml" />
+    <Content Include="Views\AreaConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

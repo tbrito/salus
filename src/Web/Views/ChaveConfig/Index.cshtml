@@ -20,7 +20,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-repeat="chave in chaves">
+            <tr ng-class="{'item-inativo': chave.ativo == false}" ng-repeat="chave in chaves">
                 <td><input type="checkbox" ng-model="chave.ativo" /></td>
                 <td>{{chave.nome}}</td>
                 <td>{{chave.obrigatorio}}</td>

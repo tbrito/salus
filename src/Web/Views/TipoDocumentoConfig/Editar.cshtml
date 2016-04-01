@@ -1,32 +1,38 @@
 ﻿@using Salus.Model.Entidades
 @model TipoDocumento
 
-<div class="modal-content" ng-controller="tipoDocumentoConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
-    <h2>{{tipoDocumento.nome}}</h2>
+<div class="modal-content" ng-controller="areaConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{area.nome}}</h2>
     
     <form name="tipoDocumentoEditForm">
-        <input type="hidden" ng-model="tipoDocumento.id" />
+        <input type="hidden" ng-model="area.id" />
 
-        <div class="control-group" ng-show="tipoDocumento.ehPasta == false">
-            <label>Grupo de documento</label>
+        <div class="control-group">
+            <label>Areas</label>
             <select class="form-control"
-                    ng-model="tipoDocumento.parent.id"
-                    ng-options="pasta.id as pasta.nome for pasta in tipoDocumento.pastas">
-                <option value="">Selecione um agrupador</option>
+                    ng-model="area.parent.id"
+                    ng-options="area.id as area.nome for area in area.todas">
+                <option value="">Selecione uma área</option>
             </select>
         </div>
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="tipoDocumento.nome" />
+            <input type="text" class="form-control" ng-model="area.nome" />
+
+            <label>Abreviação</label>
+            <input type="text" class="form-control" ng-model="area.abreviacao" />
 
             <label>Está Ativo?</label>
-            <input type="checkbox" class="form-control" ng-model="tipoDocumento.ativo" />
+            <input type="checkbox" class="form-control" ng-model="area.ativo" />
+
+            <label>Esta área pode visualizar apenas os próprios documentos</label>
+            <input type="checkbox" class="form-control" ng-model="area.segura" />
         </div>
 
         <div>
-            <button class="btn btn-primary" ng-click="salvar(tipoDocumento)">Salvar</button>
-            <button class="btn btn-primary" ng-click="inicio()">Tipos de documentos</button>
+            <button class="btn btn-primary" ng-click="salvar(area)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Cancelar</button>
         </div>
     </form>
 </div>

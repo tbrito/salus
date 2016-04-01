@@ -9,14 +9,12 @@
         <table ng-show="gruposDocumentos.length > 0" class="table">
             <thead>
                 <tr>
-                    <th>Ativo</th>
                     <th>Nome</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-repeat="grupoDocumento in gruposDocumentos">
-                <td><input type="checkbox" ng-model="grupoDocumento.ativo" /></td>
+            <tr ng-class="{'item-inativo': grupoDocumento.ativo == false}"  ng-repeat="grupoDocumento in gruposDocumentos">
                 <td>{{grupoDocumento.nome}}</td>
                 <td><a ng-click="editarGrupoDocumento(grupoDocumento.id)">Editar</a></td>
                 <td><a ng-click="excluir(grupoDocumento.id)">Apagar</a></td>

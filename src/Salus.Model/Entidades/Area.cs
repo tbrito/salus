@@ -8,11 +8,11 @@
 
         public virtual Area Parent { get; set; }
 
-        public bool Ativa { get; set; }
+        public virtual bool Ativo { get; set; }
 
         /// <summary>
         /// Área pode ver apenas os proprios documentos
         /// </summary>
-        public bool Segura { get; set; }
+        public virtual bool Segura { get; set; }
     }
 }

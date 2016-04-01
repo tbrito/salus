@@ -24,6 +24,14 @@ function config($routeProvider, $locationProvider) {
             controller: 'categorizacaoController',
             templateUrl: function (params) { return 'Categorizar/' + params.documentoId; }
         })
+        .when('/AreaConfig', {
+            controller: 'areaConfigController',
+            templateUrl: 'AreaConfig/Index'
+        })
+        .when('/AreaConfig/Editar/:areaid', {
+            controller: 'areaConfigController',
+            templateUrl: function (params) { return 'AreaConfig/Editar/' + params.areaid; }
+        })
         .when('/GrupoDocumentoConfig', {
             controller: 'grupoDocumentoConfigController',
             templateUrl: 'GrupoDocumentoConfig/Index'

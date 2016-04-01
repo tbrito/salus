@@ -186,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
+    <Compile Include="Repositorios\AreaRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
     <Compile Include="Repositorios\IndexacaoRepositorio.cs" />

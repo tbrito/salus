@@ -9,15 +9,13 @@
         <table ng-show="tiposDeDocumento.length > 0" class="table">
             <thead>
                 <tr>
-                    <th>Ativo</th>
                     <th>Nome</th>
                     <th>Pasta</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-repeat="tipoDocumento in tiposDeDocumento">
-                <td><input type="checkbox" ng-model="tipoDocumento.ativo" /></td>
+            <tr ng-class="{'item-inativo': tipoDocumento.ativo == false}" ng-repeat="tipoDocumento in tiposDeDocumento">
                 <td>{{tipoDocumento.nome}}</td>
                 <td>{{tipoDocumento.parent.nome}}</td>
                 <td><a ng-click="editarTipoDocumento(tipoDocumento.id)">Editar</a></td>

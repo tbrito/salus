@@ -22,7 +22,7 @@
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 
   $scope.abrirUpload= function() {
-    $location.path('/Upload');;
+    $location.path('/Upload');
   };
 
   $scope.abrirHome = function () {
@@ -30,10 +30,14 @@
   };
 
   $scope.abrirTiposDeDocumento = function () {
-      $location.path('/TipoDocumentoConfig');;
+      $location.path('/TipoDocumentoConfig');
   };
 
    $scope.abrirGruposDeDocumento = function () {
-      $location.path('/GrupoDocumentoConfig');;
+      $location.path('/GrupoDocumentoConfig');
+  };
+
+   $scope.abrirAreas = function () {
+       $location.path('/AreaConfig');
   };
 });
