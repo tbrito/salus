@@ -1,0 +1,28 @@
+﻿<div class="modal-content" ng-controller="usuarioConfigController" ng-init="carregarFormulario()">
+    <div>Usuários</div>
+
+    <div class="control-group">
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Usuário</button>
+    </div>
+
+    <div class="control-group">
+        <table ng-show="usuarios.length > 0" class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Área</th>
+                    <th>Perfil</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr ng-class="{'item-inativo': usuario.ativo == false}" ng-repeat="usuario in usuarios">
+                <td>{{usuario.nome}}</td>
+                <td>{{usuario.area.nome}}</td>
+                <td>{{usuario.perfil.nome}}</td>
+                <td><a ng-click="editarUsuario(usuario.id)">Editar</a></td>
+                <td><a ng-click="excluir(usuario.id)">Inativar</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

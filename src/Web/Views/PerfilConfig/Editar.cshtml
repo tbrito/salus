@@ -1,0 +1,23 @@
+﻿@using Salus.Model.Entidades
+@model Perfil
+
+<div class="modal-content" ng-controller="perfilConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{perfil.nome}}</h2>
+    
+    <form name="perfilEditForm">
+        <input type="hidden" ng-model="perfil.id" />
+
+        <div class="control-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" ng-model="perfil.nome" />
+
+            <label>Está Ativo?</label>
+            <input type="checkbox" class="form-control" ng-model="perfil.ativo" />
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(perfil)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Todos os Perfis</button>
+        </div>
+    </form>
+</div>

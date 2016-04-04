@@ -161,10 +161,11 @@
     <Compile Include="Mappings\WorkflowMap.cs" />
     <Compile Include="Mappings\TipoDocumentoMap.cs" />
     <Compile Include="Mappings\StorageMap.cs" />
-    <Compile Include="Mappings\Perfil.cs" />
+    <Compile Include="Mappings\PerfilMap.cs" />
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201604040123_AdicionarAtivoPerfil.cs" />
     <Compile Include="Migrations\201603311948_AdicionarParentAtivoNaArea.cs" />
     <Compile Include="Migrations\201603301829_AdicionarAtivoNaChave.cs" />
     <Compile Include="Migrations\201603291705_CriaTrilha.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
     <Compile Include="Repositorios\AreaRepositorio.cs" />
+    <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
     <Compile Include="Repositorios\IndexacaoRepositorio.cs" />

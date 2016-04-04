@@ -12,7 +12,7 @@ angular.module("salus-app").factory("areaApi", function ($http) {
     };
 
     var _excluir = function (areaid) {
-        return $http.delete("api/TipoDocumento/Excluir/" + areaid);
+        return $http.delete("api/Area/Excluir/" + areaid);
     };
     
     return {

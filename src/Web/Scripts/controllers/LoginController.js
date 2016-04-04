@@ -2,7 +2,7 @@ angular.module("salus-app").controller("loginController", function ($scope, usua
     $scope.usuario = {};
     
     $scope.login = function (usuario) {
-        usuarioApi.getUsuario(usuario)
+        usuarioApi.getUserLogin(usuario)
             .success(function (data) {
                 $scope.usuario = data;
                

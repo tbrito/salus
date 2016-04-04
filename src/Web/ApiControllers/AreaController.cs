@@ -51,7 +51,11 @@
             area.Nome = areaViewModel.Nome;
             area.Abreviacao = areaViewModel.Abreviacao;
             area.Segura = areaViewModel.Segura;
-            area.Parent = new Area { Id = areaViewModel.Parent.id };
+
+            if (areaViewModel.Parent != null)
+            {
+                area.Parent = new Area { Id = areaViewModel.Parent.id };
+            }
 
             this.areaRepositorio.Salvar(area);
         }

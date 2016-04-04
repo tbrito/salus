@@ -1,4 +1,5 @@
 ﻿using Salus.Model.Entidades;
+using System.Collections.Generic;
 
 namespace Salus.Model.Repositorios
 {
@@ -7,5 +8,11 @@ namespace Salus.Model.Repositorios
         Usuario Procurar(string userName, string senha);
 
         Usuario ProcurarPorNome(string nomeUsuario);
+
+        IList<Usuario> ObterTodosComAreaEPerfil();
+
+        Usuario ObterPorIdComParents(int id);
+
+        void MarcarComoInativo(int id);
     }
 }

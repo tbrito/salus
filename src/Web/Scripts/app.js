@@ -24,13 +24,29 @@ function config($routeProvider, $locationProvider) {
             controller: 'categorizacaoController',
             templateUrl: function (params) { return 'Categorizar/' + params.documentoId; }
         })
+        .when('/UsuarioConfig', {
+            controller: 'usuarioConfigController',
+            templateUrl: 'UsuarioConfig/Index'
+        })
+        .when('/UsuarioConfig/Editar/:usuarioId', {
+            controller: 'usuarioConfigController',
+            templateUrl: function (params) { return 'UsuarioConfig/Editar/' + params.usuarioId; }
+        })
+         .when('/PerfilConfig', {
+             controller: 'perfilConfigController',
+             templateUrl: 'PerfilConfig/Index'
+         })
+        .when('/PerfilConfig/Editar/:perfilId', {
+            controller: 'perfilConfigController',
+            templateUrl: function (params) { return 'PerfilConfig/Editar/' + params.perfilId; }
+        })
         .when('/AreaConfig', {
             controller: 'areaConfigController',
             templateUrl: 'AreaConfig/Index'
         })
-        .when('/AreaConfig/Editar/:areaid', {
+        .when('/AreaConfig/Editar/:areaId', {
             controller: 'areaConfigController',
-            templateUrl: function (params) { return 'AreaConfig/Editar/' + params.areaid; }
+            templateUrl: function (params) { return 'AreaConfig/Editar/' + params.areaId; }
         })
         .when('/GrupoDocumentoConfig', {
             controller: 'grupoDocumentoConfigController',

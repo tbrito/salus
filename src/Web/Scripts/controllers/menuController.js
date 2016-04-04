@@ -39,5 +39,13 @@
 
    $scope.abrirAreas = function () {
        $location.path('/AreaConfig');
-  };
+   };
+
+   $scope.abrirUsuarios = function () {
+       $location.path('/UsuarioConfig');
+   };
+
+   $scope.abrirPerfis = function () {
+       $location.path('/PerfilConfig');
+   };
 });

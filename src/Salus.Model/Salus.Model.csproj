@@ -75,6 +75,7 @@
     <Compile Include="Repositorios\IChaveRepositorio.cs" />
     <Compile Include="Repositorios\IIndexacaoRepositorio.cs" />
     <Compile Include="Repositorios\IAreaRepositorio.cs" />
+    <Compile Include="Repositorios\IPerfilRepositorio.cs" />
     <Compile Include="Repositorios\ITrilhaRepositorio.cs" />
     <Compile Include="Repositorios\ITipoDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\IUsuarioRepositorio.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Servicos\StorageServico.cs" />
     <Compile Include="Entidades\Workflow.cs" />
     <Compile Include="Servicos\WorkflowServico.cs" />
+    <Compile Include="UI\UsuarioViewModel.cs" />
     <Compile Include="UI\AreaViewModel.cs" />
     <Compile Include="UI\TipoDocumentoViewModel.cs" />
     <Compile Include="UI\ChaveViewModel.cs" />

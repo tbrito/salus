@@ -1,0 +1,52 @@
+﻿@using Salus.Model.UI
+@model UsuarioViewModel
+
+<div class="modal-content" ng-controller="usuarioConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{usuario.nome}}</h2>
+
+    <form name="usuarioEditForm">
+        <input type="hidden" ng-model="usuario.id" />
+
+        <div class="control-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" ng-model="usuario.nome" />
+
+            <label>Senha</label>
+            <input type="password" class="form-control" ng-model="usuario.senha" />
+
+            <label>Está Ativo?</label>
+            <input type="checkbox" class="form-control" ng-model="usuario.ativo" />
+
+            <label>Expira</label>
+            <input type="checkbox" class="form-control" ng-model="usuario.expira" />
+
+            <div ng-show="usuario.expira">
+                <label>Data Expiração</label>
+                <input type="date" class="form-control" ng-model="usuario.expiraem" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Area</label>
+            <select class="form-control"
+                    ng-model="usuario.area.id"
+                    ng-options="area.id as area.nome for area in area.todas">
+                <option value="">Selecione uma área</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Area</label>
+            <select class="form-control"
+                    ng-model="usuario.perfil.id"
+                    ng-options="perfil.id as perfil.nome for perfil in perfil.todos">
+                <option value="">Selecione um perfil para o usuario</option>
+            </select>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(usuario)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Cancelar</button>
+        </div>
+    </form>
+</div>
