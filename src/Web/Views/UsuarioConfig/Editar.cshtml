@@ -9,10 +9,13 @@
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="usuario.nome" />
+            <input type="text" class="form-control" ng-model="usuario.nome" required />
 
             <label>Senha</label>
-            <input type="password" class="form-control" ng-model="usuario.senha" />
+            <input type="password" class="form-control" ng-model="usuario.senha" required />
+
+            <label>E-mail</label>
+            <input type="email" class="form-control" ng-model="usuario.email" required />
 
             <label>Está Ativo?</label>
             <input type="checkbox" class="form-control" ng-model="usuario.ativo" />
@@ -30,16 +33,16 @@
             <label>Area</label>
             <select class="form-control"
                     ng-model="usuario.area.id"
-                    ng-options="area.id as area.nome for area in area.todas">
+                    ng-options="area.id as area.nome for area in areas">
                 <option value="">Selecione uma área</option>
             </select>
         </div>
 
         <div class="control-group">
-            <label>Area</label>
+            <label>Perfil</label>
             <select class="form-control"
                     ng-model="usuario.perfil.id"
-                    ng-options="perfil.id as perfil.nome for perfil in perfil.todos">
+                    ng-options="perfil.id as perfil.nome for perfil in perfis">
                 <option value="">Selecione um perfil para o usuario</option>
             </select>
         </div>

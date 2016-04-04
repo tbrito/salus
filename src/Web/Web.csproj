@@ -269,6 +269,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HttpModulesInitializer.cs" />
+    <Compile Include="JsonDotNetValueProviderFactory.cs" />
     <Compile Include="Modules\NHibernateHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

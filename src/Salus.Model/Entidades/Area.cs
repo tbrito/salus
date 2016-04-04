@@ -1,4 +1,6 @@
-﻿namespace Salus.Model.Entidades
+﻿using System.Runtime.Serialization;
+
+namespace Salus.Model.Entidades
 {
     public class Area : Entidade
     {

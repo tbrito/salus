@@ -18,12 +18,31 @@
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
         }
 
-        public IEnumerable<Usuario> Get()
+        public IEnumerable<UsuarioViewModel> Get()
         {
             var usuarios = this.usuarioRepositorio
                 .ObterTodosComAreaEPerfil();
-           
-            return usuarios as IEnumerable<Usuario>;
+
+            var usuariosViewModel = new List<UsuarioViewModel>();
+
+            foreach (var usuario in usuarios)
+            {
+                var viewModel = new UsuarioViewModel
+                {
+                    Id = usuario.Id,
+                    Ativo = usuario.Ativo,
+                    Email = usuario.Email,
+                    Expira = usuario.Expira,
+                    ExpiraEm = usuario.ExpiraEm,
+                    Nome = usuario.Nome,
+                    Senha = usuario.Senha,
+                    Area = usuario.Area,
+                    Perfil = usuario.Perfil
+                };
+                
+                usuariosViewModel.Add(viewModel);
+            }
+            return usuariosViewModel as IEnumerable<UsuarioViewModel>;
         }
 
         [HttpGet]
@@ -52,7 +71,10 @@
             usuario.Email = usuarioViewModel.Email;
             usuario.Senha = usuarioViewModel.Senha;
             usuario.Expira = usuarioViewModel.Expira;
-            usuario.ExpiraEm = usuarioViewModel.ExpiraEm;
+
+            usuario.ExpiraEm  = usuarioViewModel.Expira ? 
+                usuario.ExpiraEm = usuarioViewModel.ExpiraEm :
+                usuario.ExpiraEm = null;
 
             if (usuarioViewModel.Area != null)
             {

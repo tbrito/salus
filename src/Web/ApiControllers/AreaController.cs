@@ -18,12 +18,29 @@
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
         }
 
-        public IEnumerable<Area> Get()
+        public IEnumerable<AreaViewModel> Get()
         {
             var areas = this.areaRepositorio
                 .ObterTodosAtivos(this.sessaoDoUsuario.UsuarioAtual);
-           
-            return areas as IEnumerable<Area>;
+
+            var areasViewModel = new List<AreaViewModel>();
+
+            foreach (var area in areas)
+            {
+                var viewModel = new AreaViewModel
+                {
+                    Id = area.Id,
+                    Abreviacao = area.Abreviacao,
+                    Ativo = area.Ativo,
+                    Nome = area.Nome,
+                    Segura = area.Segura,
+                    Parent = area.Parent
+                };
+
+                areasViewModel.Add(viewModel);
+            }
+            
+            return areasViewModel as IEnumerable<AreaViewModel>; ;
         }
 
         [HttpGet]

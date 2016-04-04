@@ -1,6 +1,6 @@
 angular.module("salus-app").controller('usuarioConfigController', function ($scope, $location, areaApi, perfilApi, usuarioApi) {
 
-    $scope.usuario = {};
+    $scope.usuarios = [];
     $scope.areas = [];
     $scope.perfis = [];
     
@@ -10,7 +10,7 @@ angular.module("salus-app").controller('usuarioConfigController', function ($sco
 
     $scope.carregarFormulario = function () {
 
-        usuario.getUsuarios()
+        usuarioApi.getUsuarios()
             .success(function (data) {
                 $scope.usuarios = data;
             })
@@ -30,9 +30,12 @@ angular.module("salus-app").controller('usuarioConfigController', function ($sco
             areaApi.getAreas()
                 .success(function (data) {
                     $scope.areas = data;
+                })
+                .error(function (data) {
+                    $scope.error = "Não foi possível carregar areas." + data;
                 });
 
-            pefilApi.getPerfis()
+            perfilApi.getPerfis()
                 .success(function (data) {
                     $scope.perfis = data;
                 });
@@ -47,7 +50,7 @@ angular.module("salus-app").controller('usuarioConfigController', function ($sco
                             $scope.areas = data;
                         });
 
-                    pefilApi.getPerfis()
+                    perfilApi.getPerfis()
                         .success(function (data) {
                             $scope.perfis = data;
                         });
