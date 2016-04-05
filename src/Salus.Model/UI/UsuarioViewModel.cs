@@ -4,8 +4,6 @@ using System.Runtime.Serialization;
 
 namespace Salus.Model.UI
 {
-    [KnownType(typeof(Area))]
-    [KnownType(typeof(Perfil))]
     public class UsuarioViewModel
     {
         public int Id { get; set; }

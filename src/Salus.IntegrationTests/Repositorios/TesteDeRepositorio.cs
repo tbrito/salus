@@ -4,13 +4,12 @@
     using Salus.Infra.Repositorios;
     using Salus.Model.Entidades;
 
-    [TestClass]
+    [TestClass()]
     public abstract class TesteDeRepositorio<TEntidade, TRepositorio> : TesteAutomatizado
         where TRepositorio : Repositorio<TEntidade>, new()
         where TEntidade : Entidade, new()
     {
         protected TRepositorio repositorio = new TRepositorio();
-
 
         [TestMethod]
         public void DeveIncluir()
@@ -45,11 +44,11 @@
             Assert.AreEqual(novasEntidades.Count, 2);
         }
         
-        [TestCleanup]
-        public void DepoisDoTest()
-        {
-            this.repositorio.ApagarTodos();
-        }
+        ////[TestCleanup]
+        ////public void DepoisDoTest()
+        ////{
+        ////    this.repositorio.ApagarTodos();
+        ////}
 
         public abstract TEntidade CriarEntidade();
     }

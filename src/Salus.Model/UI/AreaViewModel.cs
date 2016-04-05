@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace Salus.Model.UI
 {
-    [KnownType(typeof(Area))]
     public class AreaViewModel
     {
         public int Id { get; set; }

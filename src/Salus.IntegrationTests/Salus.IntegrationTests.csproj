@@ -126,6 +126,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\TestExtensions.cs" />
     <Compile Include="Repositorios\TrilhaRepositorioTest.cs" />
     <Compile Include="Repositorios\TesteDeRepositorio.cs" />
     <Compile Include="Repositorios\DocumentoRepositorioTest.cs" />
@@ -170,6 +171,7 @@
       <Name>Salus.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -4,6 +4,7 @@
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using Salus.Model.UI;
+    using SharpArch.NHibernate;
     using System.Collections.Generic;
     using System.Web.Http;
 

@@ -12,24 +12,32 @@
     public abstract class TesteAutomatizado
     {
         [AssemblyInitialize()]
-        public static void TestInit(TestContext contexto)
+        public static void AssemblyInit(TestContext contexto)
         {
             var migrator = new Migrator(
                 ConfigurationManager.AppSettings["Database.ConnectionString"]);
             
             migrator.Migrate(runner => runner.MigrateUp());
+        }
 
+        [TestInitialize()]
+        public static void ClassInit(TestContext context)
+        {
             string[] mappings = new string[]
             {
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
             };
 
             NHibernateSession.Init(
-                new SimpleSessionStorage(),
-                mappings,
-                null, null, null, null, BancoDeDados.Configuration());
+               new SimpleSessionStorage(),
+               mappings,
+               null, null, null, null, BancoDeDados.Configuration());
+        }
 
-            NHibernateSession.Current.FlushMode = NHibernate.FlushMode.Commit;
+        [ClassCleanup]
+        public static void ClassFinish()
+        {
+            NHibernateSession.CloseAllSessions();
         }
     }
 }
