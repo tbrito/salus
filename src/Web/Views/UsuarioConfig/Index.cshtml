@@ -16,12 +16,12 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': usuario.ativo == false}" ng-repeat="usuario in usuarios">
-                <td>{{usuario.nome}}</td>
-                <td>{{usuario.area.nome}}</td>
-                <td>{{usuario.perfil.nome}}</td>
-                <td><a ng-click="editarUsuario(usuario.id)">Editar</a></td>
-                <td><a ng-click="excluir(usuario.id)">Inativar</a></td>
+            <tr ng-class="{'item-inativo': usuario.Ativo == false}" ng-repeat="usuario in usuarios">
+                <td>{{usuario.Nome}}</td>
+                <td>{{usuario.Area.Nome}}</td>
+                <td>{{usuario.Perfil.Nome}}</td>
+                <td><a ng-click="editarUsuario(usuario.Id)">Editar</a></td>
+                <td><a ng-click="excluir(usuario.Id)">Inativar</a></td>
             </tr>
         </table>
     </div>

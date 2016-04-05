@@ -25,7 +25,7 @@ angular.module("salus-app").controller('usuarioConfigController', function ($sco
     
     $scope.carregarParaEdicao = function (usuarioid) {
         if (usuarioid == 0) {
-            $scope.usuario = { id: 0 };
+            $scope.usuario = { Id: 0 };
             
             areaApi.getAreas()
                 .success(function (data) {
