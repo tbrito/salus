@@ -1,11 +1,11 @@
 angular.module("salus-app").controller("loginController", function ($scope, usuarioApi, $location) {
-    $scope.usuario = {};
+    //$scope.usuario = {};
     
     $scope.login = function (usuario) {
         usuarioApi.getUserLogin(usuario)
             .success(function (data) {
                 $scope.usuario = data;
-               
+
                 if ($scope.usuario.autenticado) {
                     $location.path('/Home');
                 } else {

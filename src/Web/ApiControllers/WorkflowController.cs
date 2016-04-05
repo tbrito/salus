@@ -3,6 +3,7 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
 
@@ -19,12 +20,32 @@
 
         // GET api/<controller>
         [HttpGet]
-        public IEnumerable<Workflow> CaixaEntrada(int id = 0)
+        public IEnumerable<WorkflowViewModel> CaixaEntrada(int id = 0)
         {
             var workflow = this.workflowRepositorio
                 .ObterCaixaEntrada(this.sessaoDoUsuario.UsuarioAtual);
-           
-            return workflow as IEnumerable<Workflow>;
+
+            var fluxos = new List<WorkflowViewModel>();
+
+            foreach (var fluxo in workflow)
+            {
+                var viewModel = new WorkflowViewModel
+                {
+                    Id = fluxo.Id,
+                    CriadoEm = fluxo.CriadoEm,
+                    De = fluxo.De,
+                    Documento = fluxo.Documento,
+                    FinalizadoEm = fluxo.FinalizadoEm,
+                    Lido = fluxo.Lido,
+                    Mensagem = fluxo.Mensagem,
+                    Para = fluxo.Para,
+                    Status = fluxo.Status
+                };
+
+                fluxos.Add(viewModel);
+            }
+
+            return fluxos as IEnumerable<WorkflowViewModel>;
         }
 
         // GET api/<controller>/5

@@ -14,24 +14,14 @@
     <script src="~/Scripts/ng-file-upload.min.js"></script>
     
     <script src="~/Scripts/app.js"></script>
-
-    @*<link rel="resource" type="application/l10n" href="~/Scripts/pdfjs/locale/locale.properties" />
-    <link rel="stylesheet" href="~/Scripts/pdfjs/viewer.css" />
-
-    <script src="~/Scripts/pdfjs/compatibility.js"></script>
-    <script src="~/Scripts/pdfjs/l10n.js"></script>
-    <script src="~/Scripts/pdfjs/pdf.js"></script>
-    <script src="~/Scripts/pdfjs/debugger.js"></script>
-    <script src="~/Scripts/pdfjs/viewer.js"></script>*@
-
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
-   
     @Html.Partial("~/Views/Shared/Topo.cshtml")
-        
+    
     <div class="container body-content">
         @RenderBody()
         

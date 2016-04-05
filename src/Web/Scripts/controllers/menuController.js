@@ -20,6 +20,15 @@
   };
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
+  
+  $scope.usuario = {};
+
+  $scope.start = function () {
+      $scope.usuario = {
+          avatar: 'https://avatars0.githubusercontent.com/u/737150?v=3&amp;s=40',
+          autenticado: false
+      };
+  }
 
   $scope.abrirUpload= function() {
     $location.path('/Upload');
