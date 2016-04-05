@@ -11,8 +11,8 @@
             <label>Nome</label>
             <input type="text" class="form-control" ng-model="usuario.nome" required />
 
-            <label>Senha</label>
-            <input type="password" class="form-control" ng-model="usuario.senha" required />
+            <label ng-show="usuario.id === 0">Senha</label>
+            <input type="password" class="form-control" ng-model="usuario.senha" ng-show="usuario.id === 0" required />
 
             <label>E-mail</label>
             <input type="email" class="form-control" ng-model="usuario.email" required />

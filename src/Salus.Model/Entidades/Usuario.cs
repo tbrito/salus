@@ -21,5 +21,7 @@ namespace Salus.Model.Entidades
         public virtual Perfil Perfil { get; set; }
 
         public virtual Area Area { get; set; }
+
+        public virtual string Avatar { get; set; }
     }
 }

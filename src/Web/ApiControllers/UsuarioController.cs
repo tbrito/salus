@@ -3,6 +3,7 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -11,11 +12,13 @@
     {
         private IUsuarioRepositorio usuarioRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
+        private SalvarUsuarioServico salvarUsuarioServico;
 
         public UsuarioController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<IUsuarioRepositorio>();
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
+            this.salvarUsuarioServico = InversionControl.Current.Resolve<SalvarUsuarioServico>();
         }
 
         public IEnumerable<UsuarioViewModel> Get()
@@ -55,38 +58,7 @@
         [HttpPost]
         public void Salvar([FromBody]UsuarioViewModel usuarioViewModel)
         {
-            Usuario usuario = null;
-
-            if (usuarioViewModel.Id == 0)
-            {
-                usuario = new Usuario();
-            }
-            else
-            {
-                usuario = this.usuarioRepositorio.ObterPorId(usuarioViewModel.Id);
-            }
-
-            usuario.Ativo = usuarioViewModel.Ativo;
-            usuario.Nome = usuarioViewModel.Nome;
-            usuario.Email = usuarioViewModel.Email;
-            usuario.Senha = usuarioViewModel.Senha;
-            usuario.Expira = usuarioViewModel.Expira;
-
-            usuario.ExpiraEm  = usuarioViewModel.Expira ? 
-                usuario.ExpiraEm = usuarioViewModel.ExpiraEm :
-                usuario.ExpiraEm = null;
-
-            if (usuarioViewModel.Area != null)
-            {
-                usuario.Area = new Area { Id = usuarioViewModel.Area.id };
-            }
-
-            if (usuarioViewModel.Perfil != null)
-            {
-                usuario.Perfil = new Perfil { Id = usuarioViewModel.Perfil.id };
-            }
-
-            this.usuarioRepositorio.Salvar(usuario);
+            this.salvarUsuarioServico.Execute(usuarioViewModel);
         }
 
         // PUT api/<controller>/5

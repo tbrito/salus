@@ -2,6 +2,7 @@
 {
     using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;
+    using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -10,10 +11,12 @@
     public class AccountController : ApiController
     {
         private UsuarioRepositorio usuarioRepositorio;
-        
+        private HashString hashString;
+
         public AccountController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<UsuarioRepositorio>();
+            this.hashString = InversionControl.Current.Resolve<HashString>();
         }
 
         // GET api/<controller>
@@ -31,7 +34,8 @@
         // POST api/<controller>
         public LoginViewModel Post([FromBody]LoginViewModel value)
         {
-            var usuario = this.usuarioRepositorio.Procurar(value.UserName, value.Senha);
+            var senha = this.hashString.Do(value.Senha);
+            var usuario = this.usuarioRepositorio.Procurar(value.UserName, senha);
 
             var login = new LoginViewModel();
             login.Autenticado = false;

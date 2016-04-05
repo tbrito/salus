@@ -4,7 +4,6 @@ using System.Runtime.Serialization;
 
 namespace Salus.Model.UI
 {
-    [DataContract]
     [KnownType(typeof(Area))]
     [KnownType(typeof(Perfil))]
     public class UsuarioViewModel

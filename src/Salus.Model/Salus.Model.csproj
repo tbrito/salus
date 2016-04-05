@@ -83,6 +83,8 @@
     <Compile Include="Repositorios\ISessaoDoUsuario.cs" />
     <Compile Include="Repositorios\IRepositorio.cs" />
     <Compile Include="Repositorios\IStorageRepositorio.cs" />
+    <Compile Include="Servicos\HashString.cs" />
+    <Compile Include="Servicos\SalvarUsuarioServico.cs" />
     <Compile Include="Servicos\LogarAcaoDoSistema.cs" />
     <Compile Include="Servicos\DocumentoServico.cs" />
     <Compile Include="Repositorios\IDocumentoRepositorio.cs" />

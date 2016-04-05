@@ -16,6 +16,7 @@
             this.Map(x => x.Ativo, "ativo");
             this.Map(x => x.MotivoInatividade, "motivo_inatividade");
             this.Map(x => x.ExpiraEm, "expira_em");
+            this.Map(x => x.Avatar, "avatar");
             this.References(x => x.Perfil).Column("perfil_id");
             this.References(x => x.Area).Column("area_id");
 
