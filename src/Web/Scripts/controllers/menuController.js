@@ -57,4 +57,12 @@
    $scope.abrirPerfis = function () {
        $location.path('/PerfilConfig');
    };
+
+   $scope.abrirSegurancaDocumentos = function () {
+       $location.path('/AcessoDocumento');
+   };
+
+   $scope.abrirSegurancaFuncionalidades = function () {
+       $location.path('/AcessoFuncionalidade');
+   };
 });

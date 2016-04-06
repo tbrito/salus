@@ -76,6 +76,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'chaveConfigController',
             templateUrl: function (params) { return 'ChaveConfig/Adicionar/' + params.tipodocumentoId; }
         })
+        .when('/AcessoFuncionalidade', {
+            controller: 'acessoFuncionalidadeController',
+            templateUrl: 'AcessoFuncionalidade/Index'
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }

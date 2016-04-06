@@ -388,6 +388,7 @@
     <Content Include="Views\UsuarioConfig\Index.cshtml" />
     <Content Include="Views\PerfilConfig\Editar.cshtml" />
     <Content Include="Views\PerfilConfig\Index.cshtml" />
+    <Content Include="Views\AcessoFuncionalidade\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
