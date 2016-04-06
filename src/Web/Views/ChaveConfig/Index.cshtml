@@ -5,7 +5,7 @@
     <h3>Chaves do Tipo de Documento - {{tipoDocumentoNome}}</h3>
 
     <div class="control-group">
-        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar(@this.Model.TipoDocumentoId, '@this.Model.TipoDocumentoNome')">Novo</button>
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar(@this.Model.TipoDocumentoId, '@this.Model.TipoDocumentoNome')">Nova chave</button>
     </div>
 
     <div class="control-group">
@@ -20,13 +20,13 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': chave.ativo == false}" ng-repeat="chave in chaves">
-                <td><input type="checkbox" ng-model="chave.ativo" /></td>
-                <td>{{chave.nome}}</td>
-                <td>{{chave.obrigatorio}}</td>
-                <td>{{chave.tipoDado}}</td>
-                <td><a ng-click="editarChave(chave.id, tipodocumentoId)">Editar</a></td>
-                <td><a ng-click="excluir(chave.id)">Inativar</a></td>
+            <tr ng-class="{'item-inativo': chave.Ativo == false}" ng-repeat="chave in chaves">
+                <td><input type="checkbox" ng-model="chave.Ativo" /></td>
+                <td>{{chave.Nome}}</td>
+                <td>{{chave.Obrigatorio}}</td>
+                <td>{{chave.TipoDado}}</td>
+                <td><a ng-click="editarChave(chave.Id, tipodocumentoId)">Editar</a></td>
+                <td><a ng-click="excluir(chave.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

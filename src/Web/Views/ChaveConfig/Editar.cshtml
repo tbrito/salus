@@ -2,47 +2,45 @@
 @model ChaveViewModel
 
 <div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarChaveParaEdicao(@this.Model.Id, @this.Model.TipoDocumentoId)">
-    <h3>Editar chave - {{chave.nome}}</h3>
+    <h3>Editar chave - {{chave.Nome}}</h3>
     
-    {{chave}}
-
     <form name="chaveEditForm">
-        <input type="hidden" ng-model="chave.id" />
+        <input type="hidden" ng-model="chave.Id" />
 
         <div class="control-group">
             <label>Tipo de Dado</label>
             <select class="form-control"
-                    ng-model="chave.tipoDado"
-                    ng-options="tipoDado.id as tipoDado.nome for tipoDado in tiposDeDado"
+                    ng-model="chave.TipoDado"
+                    ng-options="tipoDado.Id as tipoDado.Nome for tipoDado in tiposDeDado"
                     ng-change="configurarCampos()">
                 <option value="">Selecione o Tipo de Dado</option>
             </select>
         </div>
 
-        <div class="control-group" ng-show="chave.ehLista == true">
+        <div class="control-group" ng-show="chave.EhLista == true">
             <label>Itens da Lista</label>
-            <textarea class="form-control" ng-model="chave.itensLista"></textarea>
+            <textarea class="form-control" ng-model="chave.ItensLista"></textarea>
         </div>
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="chave.nome" />
+            <input type="text" class="form-control" ng-model="chave.Nome" />
         </div>
 
         <div class="control-group">
             <label>Está Ativo?</label>
-            <input type="checkbox" class="form-control" ng-model="chave.ativo" />
+            <input type="checkbox" class="form-control" ng-model="chave.Ativo" />
         </div>
 
         <div class="control-group">
             <label>É de preenchimento obrigatorio?</label>
-            <input type="checkbox" class="form-control" ng-model="chave.obrigatorio" />
+            <input type="checkbox" class="form-control" ng-model="chave.Obrigatorio" />
         </div>
 
         <input type="checkbox" class="form-control" ng-model="chave.mascarar" value="Possui expressão regular" />
         <div class="control-group" ng-show="chave.mascarar==true">
             <label>Informe a expressão (regex) para validação</label>
-            <input type="text" class="form-control" ng-model="chave.mascara" />
+            <input type="text" class="form-control" ng-model="chave.Mascara" />
         </div>
 
         <div>

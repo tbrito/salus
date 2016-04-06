@@ -14,10 +14,10 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': grupoDocumento.ativo == false}"  ng-repeat="grupoDocumento in gruposDocumentos">
-                <td>{{grupoDocumento.nome}}</td>
-                <td><a ng-click="editarGrupoDocumento(grupoDocumento.id)">Editar</a></td>
-                <td><a ng-click="excluir(grupoDocumento.id)">Apagar</a></td>
+            <tr ng-class="{'item-inativo': grupoDocumento.Ativo == false}"  ng-repeat="grupoDocumento in gruposDocumentos">
+                <td>{{grupoDocumento.Nome}}</td>
+                <td><a ng-click="editarGrupoDocumento(grupoDocumento.Id)">Editar</a></td>
+                <td><a ng-click="excluir(grupoDocumento.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

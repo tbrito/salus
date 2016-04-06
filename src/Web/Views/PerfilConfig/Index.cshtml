@@ -14,10 +14,10 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': perfil.ativo == false}"  ng-repeat="perfil in perfis">
-                <td>{{perfil.nome}}</td>
-                <td><a ng-click="editarPerfil(perfil.id)">Editar</a></td>
-                <td><a ng-click="excluir(perfil.id)">Apagar</a></td>
+            <tr ng-class="{'item-inativo': perfil.Ativo == false}"  ng-repeat="perfil in perfis">
+                <td>{{perfil.Nome}}</td>
+                <td><a ng-click="editarPerfil(perfil.Id)">Editar</a></td>
+                <td><a ng-click="excluir(perfil.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

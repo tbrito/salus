@@ -22,6 +22,6 @@
     };
 
     $scope.abrirDocumento = function(fluxo) {
-        $location.path('/View/' + fluxo.documento.id);
+        $location.path('/View/' + fluxo.Documento.Id);
     };
 });

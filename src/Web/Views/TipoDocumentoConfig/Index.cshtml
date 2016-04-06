@@ -2,7 +2,7 @@
     <div>Tipos de Documentos</div>
 
     <div class="control-group">
-        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo</button>
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Tipo de Documento</button>
     </div>
 
     <div class="control-group">
@@ -15,11 +15,11 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': tipoDocumento.ativo == false}" ng-repeat="tipoDocumento in tiposDeDocumento">
-                <td>{{tipoDocumento.nome}}</td>
-                <td>{{tipoDocumento.parent.nome}}</td>
-                <td><a ng-click="editarTipoDocumento(tipoDocumento.id)">Editar</a></td>
-                <td><a ng-click="excluir(tipoDocumento.id)">Apagar</a></td>
+            <tr ng-class="{'item-inativo': tipoDocumento.Ativo == false}" ng-repeat="tipoDocumento in tiposDeDocumento">
+                <td>{{tipoDocumento.Nome}}</td>
+                <td>{{tipoDocumento.Parent.Nome}}</td>
+                <td><a ng-click="editarTipoDocumento(tipoDocumento.Id)">Editar</a></td>
+                <td><a ng-click="excluir(tipoDocumento.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

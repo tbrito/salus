@@ -11,7 +11,7 @@ angular.module("salus-app").controller('tipoDocumentoConfigController', function
         tipoDocumentoApi.getTiposDeDocumentos()
             .success(function (data) {
                 $scope.tiposDeDocumento = data.filter(function (dado) {
-                    return dado.ehPasta == false;
+                    return dado.EhPasta == false;
                 });
             })
             .error(function (data) {
@@ -26,12 +26,12 @@ angular.module("salus-app").controller('tipoDocumentoConfigController', function
     $scope.carregarParaEdicao = function (tipoDocumentoId) {
         if (tipoDocumentoId == 0) {
             $scope.tipoDocumento = {};
-            $scope.tipoDocumento.ehPasta = false;
+            $scope.tipoDocumento.EhPasta = false;
 
             tipoDocumentoApi.getTiposDeDocumentos()
                 .success(function (data) {
                     $scope.tipoDocumento.pastas = data.filter(function (dado) {
-                        return dado.ehPasta == true;
+                        return dado.EhPasta == true;
                     });
                 });
         }

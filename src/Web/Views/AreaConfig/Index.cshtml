@@ -16,12 +16,12 @@
                     <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': area.ativo == false}" ng-repeat="area in areas">
-                <td>{{area.nome}}</td>
-                <td>{{area.abreviacao}}</td>
-                <td>{{area.segura}}</td>
-                <td><a ng-click="editarArea(area.id)">Editar</a></td>
-                <td><a ng-click="excluir(Area.id)">Inativar</a></td>
+            <tr ng-class="{'item-inativo': area.Ativo == false}" ng-repeat="area in areas">
+                <td>{{area.Nome}}</td>
+                <td>{{area.Abreviacao}}</td>
+                <td>{{area.Segura}}</td>
+                <td><a ng-click="editarArea(area.Id)">Editar</a></td>
+                <td><a ng-click="excluir(Area.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

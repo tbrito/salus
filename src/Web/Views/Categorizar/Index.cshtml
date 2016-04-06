@@ -10,35 +10,35 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 
-                <select class="form-control" ng-model="tipoDocumentoId" ng-options="tipodocumento.id as tipodocumento.nome for tipodocumento in tiposDeDocumento" ng-change="selecionarTipo()">
+                <select class="form-control" ng-model="tipoDocumentoId" ng-options="tipodocumento.Id as tipodocumento.Nome for tipodocumento in tiposDeDocumento" ng-change="selecionarTipo()">
                     <option value="">Selecione o tipo do documento</option>
                 </select>
             </div>
             
             <div class="form-group" ng-repeat="chave in chaves">
                 <ng-form name="categorizacaoFieldForm">
-                    <label>{{ chave.nome }}</label>
+                    <label>{{ chave.Nome }}</label>
                     
-                    {{indexacao[$index].campoId = chave.id}}
+                    {{indexacao[$index].campoId = chave.Id}}
                     {{indexacao[$index].documentoId = documentoId}}
 
                     <input 
                            type="text" 
                            class="form-control" 
                            name="index_{{$index}}" 
-                           ng-model="indexacao[$index].valor"
-                           ng-required="chave.obrigatorio"
-                           ng-show="chave.tipoDado != 4"
-                           ng-pattern="chave.mascara"
-                           placeholder="Informe o {{chave.nome}}">
+                           ng-model="indexacao[$index].Valor"
+                           ng-required="chave.Obrigatorio"
+                           ng-show="chave.TipoDado != 4"
+                           ng-pattern="chave.Mascara"
+                           placeholder="Informe o {{chave.Nome}}">
 
                     <select 
                             class="form-control" 
                             name="index_{{$index}}" 
                             ng-required="chave.obrigatorio"
-                            ng-model="indexacao[$index].valor" 
-                            ng-show="chave.tipoDado == 4"
-                            ng-options="linha for linha in chave.lista">
+                            ng-model="indexacao[$index].Valor" 
+                            ng-show="chave.TipoDado == 4"
+                            ng-options="linha for linha in chave.Lista">
                         <option value="">Selecione um valor</option>
                     </select>
                     <p class="help-block" ng-show="categorizacaoFieldForm.index_{{$index}}.$invalid">Valor Inválido</p>

@@ -2,38 +2,38 @@
 @model UsuarioViewModel
 
 <div class="modal-content" ng-controller="usuarioConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
-    <h2>{{usuario.nome}}</h2>
+    <h2>{{usuario.Nome}}</h2>
 
     <form name="usuarioEditForm">
-        <input type="hidden" ng-model="usuario.id" />
+        <input type="hidden" ng-model="usuario.Id" />
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="usuario.nome" required />
+            <input type="text" class="form-control" ng-model="usuario.Nome" required />
 
-            <label ng-show="usuario.id === 0">Senha</label>
-            <input type="password" class="form-control" ng-model="usuario.senha" ng-show="usuario.id === 0" required />
+            <label ng-show="usuario.Id === 0">Senha</label>
+            <input type="password" class="form-control" ng-model="usuario.Senha" ng-show="usuario.Id === 0" required />
 
             <label>E-mail</label>
-            <input type="email" class="form-control" ng-model="usuario.email" required />
+            <input type="email" class="form-control" ng-model="usuario.Email" required />
 
             <label>Está Ativo?</label>
-            <input type="checkbox" class="form-control" ng-model="usuario.ativo" />
+            <input type="checkbox" class="form-control" ng-model="usuario.Ativo" />
 
             <label>Expira</label>
-            <input type="checkbox" class="form-control" ng-model="usuario.expira" />
+            <input type="checkbox" class="form-control" ng-model="usuario.Expira" />
 
-            <div ng-show="usuario.expira">
+            <div ng-show="usuario.Expira">
                 <label>Data Expiração</label>
-                <input type="date" class="form-control" ng-model="usuario.expiraem" />
+                <input type="date" class="form-control" ng-model="usuario.Expiraem" />
             </div>
         </div>
 
         <div class="control-group">
             <label>Area</label>
             <select class="form-control"
-                    ng-model="usuario.area.id"
-                    ng-options="area.id as area.nome for area in areas">
+                    ng-model="usuario.Area.Id"
+                    ng-options="area.Id as area.Nome for area in areas">
                 <option value="">Selecione uma área</option>
             </select>
         </div>
@@ -41,8 +41,8 @@
         <div class="control-group">
             <label>Perfil</label>
             <select class="form-control"
-                    ng-model="usuario.perfil.id"
-                    ng-options="perfil.id as perfil.nome for perfil in perfis">
+                    ng-model="usuario.Perfil.Id"
+                    ng-options="perfil.Id as perfil.Nome for perfil in perfis">
                 <option value="">Selecione um perfil para o usuario</option>
             </select>
         </div>

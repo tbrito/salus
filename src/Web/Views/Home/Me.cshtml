@@ -13,11 +13,11 @@
                 </tr>
             </thead>
             <tr ng-repeat="fluxo in fluxos" ng-click="abrirDocumento(fluxo)">
-                <td>{{fluxo.documento.id}}</td>
-                <td>{{fluxo.de.nome}}</td>
-                <td>{{fluxo.documento.assunto}}</td>
-                <td>{{fluxo.mensagem}}</td>
-                <td>{{fluxo.criadoem}}</td>
+                <td>{{fluxo.Documento.Id}}</td>
+                <td>{{fluxo.De.Nome}}</td>
+                <td>{{fluxo.Documento.Assunto}}</td>
+                <td>{{fluxo.Mensagem}}</td>
+                <td>{{fluxo.CriadoEm}}</td>
             </tr>
         </table>
     </div>
@@ -33,10 +33,10 @@
                 </tr>
             </thead>
             <tr ng-repeat="atividade in atividades">
-                <td>{{atividade.usuarioNome}}</td>
-                <td>{{atividade.acao}}</td>
-                <td>{{atividade.documentoId}}</td>
-                <td>{{atividade.hora}}</td>
+                <td>{{atividade.UsuarioNome}}</td>
+                <td>{{atividade.Acao}}</td>
+                <td>{{atividade.DocumentoId}}</td>
+                <td>{{atividade.Hora}}</td>
             </tr>
         </table>
     </div>

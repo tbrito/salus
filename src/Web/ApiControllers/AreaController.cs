@@ -71,7 +71,7 @@
 
             if (areaViewModel.Parent != null)
             {
-                area.Parent = new Area { Id = areaViewModel.Parent.id };
+                area.Parent = new Area { Id = areaViewModel.Parent.Id };
             }
 
             this.areaRepositorio.Salvar(area);

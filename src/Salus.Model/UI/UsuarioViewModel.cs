@@ -1,6 +1,5 @@
 ﻿using Salus.Model.Entidades;
 using System;
-using System.Runtime.Serialization;
 
 namespace Salus.Model.UI
 {
@@ -12,8 +11,8 @@ namespace Salus.Model.UI
         public string Email { get; set; }
         public bool Expira { get; set; }
         public DateTime? ExpiraEm { get; set; }
-        public dynamic Area { get; set; }
-        public dynamic Perfil { get; set; }
+        public Area Area { get; set; }
+        public Perfil Perfil { get; set; }
         public string Senha { get; set; }
     }
 }

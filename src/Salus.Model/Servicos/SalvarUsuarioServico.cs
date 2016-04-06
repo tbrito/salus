@@ -43,12 +43,12 @@ namespace Salus.Model.Servicos
 
             if (usuarioViewModel.Area != null)
             {
-                usuario.Area = new Area { Id = usuarioViewModel.Area.id };
+                usuario.Area = new Area { Id = usuarioViewModel.Area.Id };
             }
 
             if (usuarioViewModel.Perfil != null)
             {
-                usuario.Perfil = new Perfil { Id = usuarioViewModel.Perfil.id };
+                usuario.Perfil = new Perfil { Id = usuarioViewModel.Perfil.Id };
             }
 
             this.usuarioRepositorio.Salvar(usuario);

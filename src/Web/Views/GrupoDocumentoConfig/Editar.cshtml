@@ -2,17 +2,17 @@
 @model TipoDocumento
 
 <div class="modal-content" ng-controller="grupoDocumentoConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
-    <h2>{{grupoDocumento.nome}}</h2>
+    <h2>{{grupoDocumento.Nome}}</h2>
     
     <form name="tipoDocumentoEditForm">
-        <input type="hidden" ng-model="grupoDocumento.id" />
+        <input type="hidden" ng-model="grupoDocumento.Id" />
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="grupoDocumento.nome" />
+            <input type="text" class="form-control" ng-model="grupoDocumento.Nome" />
 
             <label>Está Ativo?</label>
-            <input type="checkbox" class="form-control" ng-model="grupoDocumento.ativo" />
+            <input type="checkbox" class="form-control" ng-model="grupoDocumento.Ativo" />
         </div>
 
         <div>

@@ -2,17 +2,17 @@
 @model Perfil
 
 <div class="modal-content" ng-controller="perfilConfigController" ng-init="carregarParaEdicao(@this.Model.Id)">
-    <h2>{{perfil.nome}}</h2>
+    <h2>{{perfil.Nome}}</h2>
     
     <form name="perfilEditForm">
-        <input type="hidden" ng-model="perfil.id" />
+        <input type="hidden" ng-model="perfil.Id" />
 
         <div class="control-group">
             <label>Nome</label>
-            <input type="text" class="form-control" ng-model="perfil.nome" />
+            <input type="text" class="form-control" ng-model="perfil.Nome" />
 
             <label>Está Ativo?</label>
-            <input type="checkbox" class="form-control" ng-model="perfil.ativo" />
+            <input type="checkbox" class="form-control" ng-model="perfil.Ativo" />
         </div>
 
         <div>
