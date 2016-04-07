@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\AcessoDocumento.cs" />
+    <Compile Include="Entidades\AcessoFuncionalidade.cs" />
     <Compile Include="Entidades\Atividade.cs" />
     <Compile Include="Entidades\Chave.cs" />
     <Compile Include="Entidades\Indexacao.cs" />

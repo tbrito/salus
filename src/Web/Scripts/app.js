@@ -78,7 +78,7 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/AcessoFuncionalidade', {
             controller: 'acessoFuncionalidadeController',
-            templateUrl: 'AcessoFuncionalidade/Index'
+            templateUrl: 'AcessoFuncionalidadeConfig/Index'
         })
         .when('/View/:documentoId', {
             controller: 'viewController',

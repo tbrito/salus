@@ -1,0 +1,90 @@
+﻿<div class="modal-content" ng-controller="acessoFuncionalidadeController">
+    <div>Acesso a Funcionalidades</div>
+
+    {{error}}
+    <div class="control-group">
+
+        <div class="input-group input-group-lg">
+            <input type="radio" ng-model="funcionalidade.PapelId" value="P" ng-checked="carregarPerfis()" checked> Perfil
+            <input type="radio" ng-model="funcionalidade.PapelId" value="A" ng-checked="carregarAreas()"> Área
+            <input type="radio" ng-model="funcionalidade.PapelId" value="U" ng-checked="carregarUsuarios()"> Usuário
+
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+            <select class="form-control" 
+                    ng-model="funcionalidade.AtorId" 
+                    ng-options="perfil.Id as perfil.Nome for perfil in perfis" 
+                    ng-change="selecionarPerfil()"
+                    ng-show="funcionalidade.Papel == 'P'">
+                <option value="">Selecione o perfil</option>
+            </select>
+
+            <select class="form-control"
+                    ng-model="funcionalidade.AtorId"
+                    ng-options="area.Id as area.Nome for area in areas"
+                    ng-change="selecionarArea()"
+                    ng-show="funcionalidade.Papel == 'A'">
+                <option value="">Selecione Área</option>
+            </select>
+
+            <select class="form-control"
+                    ng-model="funcionalidade.AtorId"
+                    ng-options="usuario.Id as usuario.Nome for usuario in usuarios"
+                    ng-change="selecionarUsuario()"
+                    ng-show="funcionalidade.Papel == 'U'">
+                <option value="">Selecione o Usuario</option>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.Workflow" />
+            <Label>Documentos da caixa de entrada</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.Upload" />
+            <Label>Importação de arquivos</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.UploadVariosArquivos" />
+            <Label>Importação de vários arquivos</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.PreIndexacao" />
+            <Label>PreIndexar documentos</Label>
+        </div>
+        
+        <hr />
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.usuarioConfig" />
+            <Label>Cadastro de usuário</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.AreaConfig" />
+            <Label>Cadastro de áreas</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.PerfisConfig" />
+            <Label>Cadastro de Perfis</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.AcessoDocumentos" />
+            <Label>Configurar Acesso aos Documentos</Label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" ng-model="funcionalide.AcessoFuncionalidades" />
+            <Label>Configurar Acesso às Funcionalidades</Label>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" ng-click="salvar(funcionalidade)">Salvar</button>
+    </div>
+</div>

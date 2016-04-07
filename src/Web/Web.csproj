@@ -227,10 +227,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\AcessoFuncionalidadeController.cs" />
     <Compile Include="ApiControllers\PerfilController.cs" />
     <Compile Include="ApiControllers\UsuarioController.cs" />
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
     <Compile Include="ApiControllers\AreaController.cs" />
+    <Compile Include="Controllers\AcessoFuncionalidadeConfig.cs" />
     <Compile Include="Controllers\PerfilConfigController.cs" />
     <Compile Include="Controllers\UsuarioConfigController.cs" />
     <Compile Include="Controllers\ChaveConfigController.cs" />
@@ -290,6 +292,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
     <Content Include="Scripts\controllers\usuarioConfigController.js" />
     <Content Include="Scripts\controllers\chaveConfigController.js" />
@@ -330,6 +333,7 @@
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\chavesApiService.js" />
+    <Content Include="Scripts\services\acessoFuncionalidadeApiService.js" />
     <Content Include="Scripts\services\perfilApiService.js" />
     <Content Include="Scripts\services\grupoDocumentoApiService.js" />
     <Content Include="Scripts\services\areaApiService.js" />
@@ -388,7 +392,7 @@
     <Content Include="Views\UsuarioConfig\Index.cshtml" />
     <Content Include="Views\PerfilConfig\Editar.cshtml" />
     <Content Include="Views\PerfilConfig\Index.cshtml" />
-    <Content Include="Views\AcessoFuncionalidade\Index.cshtml" />
+    <Content Include="Views\AcessoFuncionalidadeConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
