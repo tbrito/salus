@@ -3,7 +3,21 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
     $scope.perfis = [];
     $scope.areas = [];
     $scope.usuarios = [];
-    
+    $scope.funcionalidade = {};
+
+    $scope.carregarFormulario = function () {
+        $scope.funcionalidade.PapelId = "P";
+        $scope.funcionalidade.AtorId = 1;
+
+        acessoFuncionalidadeApi.getObterAcesso($scope.funcionalidade.PapelId, $scope.funcionalidade.AtorId)
+            .success(function (data) {
+                $scope.funcionalide = data;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter as áreas" + data;
+            });
+    }
+
     $scope.carregarAreas = function () {
         areaApi.getAreas()
             .success(function (data) {
