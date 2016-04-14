@@ -36,10 +36,18 @@
             </select>
         </div>
 
-        <div ng-repeat="funcionalidade in funcionalidades">
+        <div ng-repeat="acesso in acessos">
             <div class="form-control">
-                <input type="checkbox" ng-model="funcionalide.Workflow" />
-                <Label>Documentos da caixa de entrada</Label>
+                <input type="checkbox" ng-model="funcionalidade.PodeCaixaEntrada" ng-checked="acesso.Funcionalidade.CaixaEntrada.Value == funcionalidade.CaixaEntrada.Value" />
+                <Label>{{funcionalidade.CaixaEntrada.DisplayName}}</Label>
+            </div>
+            <div class="form-control">
+                <input type="checkbox" ng-model="funcionalidade.PodeImportacao" ng-checked="acesso.Funcionalidade.Importacao.Value == funcionalidade.Importacao.Value" />
+                <Label>{{funcionalidade.Importacao.DisplayName}}</Label>
+            </div>
+            <div class="form-control">
+                <input type="checkbox" ng-model="funcionalidade.PodeImportacaoVariosArquivos" ng-checked="acesso.Funcionalidade.ImportacaoVariosArquivos.Value == funcionalidade.ImportacaoVariosArquivos.Value" />
+                <Label>{{funcionalidade.ImportacaoVariosArquivos.DisplayName}}</Label>
             </div>
         </div>
     </div>

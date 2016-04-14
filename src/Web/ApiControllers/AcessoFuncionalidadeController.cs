@@ -8,17 +8,20 @@
 
     public class AcessoFuncionalidadeController : ApiController
     {
-        private ISessaoDoUsuario sessaoDoUsuario;
+        private IAcessoFuncionalidadeRepositorio acessoFuncionalidadeRepositorio;
 
         public AcessoFuncionalidadeController()
         {
-            this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
+            this.acessoFuncionalidadeRepositorio = InversionControl.Current.Resolve<IAcessoFuncionalidadeRepositorio>();
         }
         
         [HttpGet]
-        public IList<AcessoFuncionalidade> ObterPor(int papelId, int atorId)
+        public IEnumerable<AcessoFuncionalidade> ObterPor(int papelId, int atorId)
         {
-            return null;
+            var acessos = this.acessoFuncionalidadeRepositorio
+                .ObterPorPapelComAtorId(papelId, atorId);
+
+            return acessos as IEnumerable<AcessoFuncionalidade>;
         }
 
         [HttpPost]

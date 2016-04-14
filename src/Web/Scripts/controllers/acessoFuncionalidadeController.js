@@ -4,6 +4,7 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
     $scope.areas = [];
     $scope.usuarios = [];
     $scope.funcionalidade = {};
+    $scope.funcionalidades = {};
 
     $scope.carregarFormulario = function () {
         $scope.funcionalidade.PapelId = "P";
@@ -12,6 +13,14 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
         acessoFuncionalidadeApi.getObterAcesso($scope.funcionalidade.PapelId, $scope.funcionalidade.AtorId)
             .success(function (data) {
                 $scope.funcionalide = data;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter as áreas" + data;
+            });
+
+        funcionalidadeApi.getTodos($)
+            .success(function (data) {
+                $scope.funcionalides = data;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as áreas" + data;
