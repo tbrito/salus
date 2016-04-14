@@ -5,7 +5,7 @@
     using Model.Entidades;
     using System;
 
-    [TestClass]
+    [TestClass()]
     public class DocumentoRepositorioTest : TesteDeRepositorio<Documento, DocumentoRepositorio>
     {
         public override Documento CriarEntidade()
@@ -18,9 +18,9 @@
             };
         }
 
-        [TestMethod]
-        public void Teste()
-        {
-        }
+        ////[TestMethod()]
+        ////public void Test()
+        ////{
+        ////}
     }
 }
