@@ -53,6 +53,7 @@ namespace Web
                 "~/Scripts/controllers/menuController.js",
                 "~/Scripts/controllers/viewController.js",
                 "~/Scripts/services/acessoFuncionalidadeApiService.js",
+                "~/Scripts/services/funcionalidadeApiService.js",
                 "~/Scripts/services/indexacaoApiService.js",
                 "~/Scripts/services/areaApiService.js",
                 "~/Scripts/services/perfilApiService.js",

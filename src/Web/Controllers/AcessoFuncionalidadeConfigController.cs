@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    public class AcessoFuncionalidadeConfig : Controller
+    public class AcessoFuncionalidadeConfigController : Controller
     {
         // GET: Editar
         public ActionResult Index()

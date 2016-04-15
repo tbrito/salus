@@ -1,29 +1,33 @@
-angular.module("salus-app").controller('acessoFuncionalidadeController', function ($scope, $location, acessoFuncionalidadeApi, perfilApi, usuarioApi) {
+angular.module("salus-app").controller('acessoFuncionalidadeController', function ($scope, $location, acessoFuncionalidadeApi, funcionalidadeApi, perfilApi, usuarioApi, areaApi) {
 
     $scope.perfis = [];
     $scope.areas = [];
     $scope.usuarios = [];
-    $scope.funcionalidade = {};
-    $scope.funcionalidades = {};
+    $scope.acessosDoPerfil = [];
+    $scope.acessoFuncionalidade = { };
 
     $scope.carregarFormulario = function () {
-        $scope.funcionalidade.PapelId = "P";
-        $scope.funcionalidade.AtorId = 1;
+        
+        var viewModel = {
+            PapelId: $scope.acessoFuncionalidade.PapelId,
+            AtorId: $scope.acessoFuncionalidade.AtorId,
+            Id: 1
+        };
 
-        acessoFuncionalidadeApi.getObterAcesso($scope.funcionalidade.PapelId, $scope.funcionalidade.AtorId)
+        acessoFuncionalidadeApi.getObterAcesso(viewModel)
             .success(function (data) {
-                $scope.funcionalide = data;
+                $scope.acessosDoPerfil = data;
             })
             .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao obter as áreas" + data;
+                $scope.error = "Ops! Algo aconteceu ao obter os acessos do perfil" + data;
             });
 
-        funcionalidadeApi.getTodos($)
+        funcionalidadeApi.getObterTodos()
             .success(function (data) {
-                $scope.funcionalides = data;
+                $scope.funcionalidades = data;
             })
             .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao obter as áreas" + data;
+                $scope.error = "Ops! Algo aconteceu ao obter as funcionalidades" + data;
             });
     }
 
@@ -57,10 +61,11 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
              });
     }
 
-    $scope.salvar = function (funcionalidade) {
-        acessoFuncionalidadeApi.salvar(funcionalidade)
+    $scope.salvar = function (acessoFuncionalidade) {
+        acessoFuncionalidadeApi.postSalvarAcesso(acessoFuncionalidade)
             .success(function (data) {
                 $scope.sucesso = "Operação realizada com sucesso!";
+                $scope.carregarFormulario();
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos" + data;

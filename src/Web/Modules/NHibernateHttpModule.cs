@@ -1,5 +1,7 @@
-﻿using Salus.Infra.ConnectionInfra;
+﻿using FluentNHibernate.Cfg;
+using Salus.Infra.ConnectionInfra;
 using Salus.Infra.Logs;
+using Salus.Infra.Util;
 using SharpArch.NHibernate;
 using SharpArch.NHibernate.Web.Mvc;
 using System;
@@ -62,6 +64,13 @@ namespace Web.Modules
                     mappings,
                     null, null, null, null, BancoDeDados.Configuration());
             });
+
+            var fluentConfiguration = Fluently.Configure()
+               .Database(BancoDeDados.Configuration())
+               .Mappings(m =>
+               {
+                   m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
+               });
         }
     }
 }

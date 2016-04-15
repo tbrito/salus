@@ -4,8 +4,8 @@ angular.module("salus-app").factory("acessoFuncionalidadeApi", function ($http) 
         return $http.post("api/AcessoFuncionalidade/Salvar/", funcionalidade);
     };
 
-    var _getObterAcesso = function (papelId, atorId) {
-        return $http.get("api/AcessoFuncionalidade/ObterPor/" + papelId + "/" + atorId);
+    var _getObterAcesso = function (viewModel) {
+        return $http.get("api/AcessoFuncionalidade/ObterPor", viewModel);
     };
     
     return {

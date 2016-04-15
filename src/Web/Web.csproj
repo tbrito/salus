@@ -228,11 +228,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AcessoFuncionalidadeController.cs" />
+    <Compile Include="ApiControllers\FuncionalidadeController.cs" />
     <Compile Include="ApiControllers\PerfilController.cs" />
     <Compile Include="ApiControllers\UsuarioController.cs" />
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
     <Compile Include="ApiControllers\AreaController.cs" />
-    <Compile Include="Controllers\AcessoFuncionalidadeConfig.cs" />
+    <Compile Include="Controllers\AcessoFuncionalidadeConfigController.cs" />
     <Compile Include="Controllers\PerfilConfigController.cs" />
     <Compile Include="Controllers\UsuarioConfigController.cs" />
     <Compile Include="Controllers\ChaveConfigController.cs" />
@@ -332,6 +333,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\services\funcionalidadeApiService.js" />
     <Content Include="Scripts\services\chavesApiService.js" />
     <Content Include="Scripts\services\acessoFuncionalidadeApiService.js" />
     <Content Include="Scripts\services\perfilApiService.js" />

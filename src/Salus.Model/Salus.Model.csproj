@@ -95,6 +95,8 @@
     <Compile Include="Servicos\StorageServico.cs" />
     <Compile Include="Entidades\Workflow.cs" />
     <Compile Include="Servicos\WorkflowServico.cs" />
+    <Compile Include="UI\AcessoViewModel.cs" />
+    <Compile Include="UI\FuncionalidadeViewModel.cs" />
     <Compile Include="UI\WorkflowViewModel.cs" />
     <Compile Include="UI\UsuarioViewModel.cs" />
     <Compile Include="UI\AreaViewModel.cs" />

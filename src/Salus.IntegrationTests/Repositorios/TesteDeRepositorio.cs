@@ -1,7 +1,9 @@
 ﻿namespace Salus.IntegrationTests
 {
     using Boot;
+    using FluentNHibernate.Cfg;
     using Infra.ConnectionInfra;
+    using Infra.Util;
     using NHibernate;
     using NUnit.Framework;
     using Salus.Infra.Repositorios;
@@ -21,19 +23,9 @@
         [SetUp]
         public void Initialize()
         {
-            string[] mappings = new string[]
-            {
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
-            };
-
             new ClearDatabase().Execute();
 
-            NHibernateSession.Reset();
-
-            NHibernateSession.Init(
-                new SimpleSessionStorage(),
-                mappings,
-                null, null, null, null, BancoDeDados.Configuration());
+            this.ResetarConexao();
         }
 
         [TearDown]
@@ -79,6 +71,28 @@
         public virtual TEntidade CriarEntidade()
         {
             return new TEntidade();
+        }
+
+        public void ResetarConexao()
+        {
+            string[] mappings = new string[]
+            {
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
+            };
+
+            NHibernateSession.Reset();
+
+            NHibernateSession.Init(
+                new SimpleSessionStorage(),
+                mappings,
+                null, null, null, null, BancoDeDados.Configuration());
+
+            var fluentConfiguration = Fluently.Configure()
+               .Database(BancoDeDados.Configuration())
+               .Mappings(m =>
+               {
+                   m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
+               });
         }
     }
 }
