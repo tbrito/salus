@@ -4,6 +4,7 @@ namespace Salus.Infra.IoC
     using System;
     using StructureMap;
     using StructureMap.Graph;
+    using Repositorios;
 
     public class StructureMapContainer : IInversionControl
     {
@@ -22,6 +23,8 @@ namespace Salus.Infra.IoC
                 }
 
                 scan.LookForRegistries();
+                
+                scan.AddAllTypesOf<IDatabaseBoot>();
             }));
         }
 

@@ -148,6 +148,7 @@
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
     <Compile Include="ConnectionManagement\BancoDeDados.cs" />
+    <Compile Include="ForTests\IClearDatabase.cs" />
     <Compile Include="IoC\Dependencias.cs" />
     <Compile Include="IoC\IInversionControl.cs" />
     <Compile Include="IoC\InversionControl.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
     <Compile Include="Repositorios\AreaRepositorio.cs" />
+    <Compile Include="Repositorios\IDatabaseBoot.cs" />
     <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
@@ -219,6 +221,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -1,18 +1,20 @@
-﻿namespace Salus.IntegrationTests
+﻿namespace Salus.IntegrationTests.Boot
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Infra.Repositorios;
+    using Salus.Infra.ConnectionInfra;
     using Salus.Infra.Migrations;
+    using SharpArch.NHibernate;
+    using System;
     using System.Configuration;
+    using System.IO;
 
-    [TestClass]
-    public class AssemblyInitializeTest
+    public class DatabaseBoot : IDatabaseBoot
     {
-        [AssemblyInitialize()]
-        public static void AssemblyInit(TestContext contexto)
+        public void Execute()
         {
             var migrator = new Migrator(
                 ConfigurationManager.AppSettings["Database.ConnectionString"]);
-            
+
             migrator.Migrate(runner => runner.MigrateUp());
         }
     }

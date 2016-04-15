@@ -53,11 +53,15 @@ namespace Web.Modules
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin", "Salus.Infra.dll")
             };
 
-            NHibernateInitializer.Instance().InitializeNHibernateOnce(() => 
+            NHibernateInitializer.Instance().InitializeNHibernateOnce(() =>
+            {
+                NHibernateSession.Reset();
+
                 NHibernateSession.Init(
                     this.webSessionStorage,
                     mappings,
-                    null, null, null, null, BancoDeDados.Configuration()));
+                    null, null, null, null, BancoDeDados.Configuration());
+            });
         }
     }
 }

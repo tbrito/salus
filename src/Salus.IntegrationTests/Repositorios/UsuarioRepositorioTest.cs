@@ -2,10 +2,10 @@
 {
     using Extensions;
     using Infra.Repositorios;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Entidades;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class UsuarioRepositorioTest : TesteDeRepositorio<Usuario, UsuarioRepositorio>
     {
         public override Usuario CriarEntidade()
@@ -32,11 +32,6 @@
                 Area = departamentoPessoal,
                 Perfil = administrador
             };
-        }
-        
-        [TestMethod]
-        public void Teste()
-        {
         }
     }
 }
