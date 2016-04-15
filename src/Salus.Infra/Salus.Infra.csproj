@@ -191,6 +191,7 @@
     <Compile Include="Migrations\201602010856_CriaUsuario.cs" />
     <Compile Include="Migrations\Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AcessoFuncionalidadeRepositorio.cs" />
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
     <Compile Include="Repositorios\AreaRepositorio.cs" />
@@ -206,6 +207,8 @@
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Storages\MongoStorage.cs" />
     <Compile Include="Transformations\OpenOfficeTransformer.cs" />
+    <Compile Include="Util\EnumerationType.cs" />
+    <Compile Include="Util\EnumerationTypeConvention.cs" />
     <Compile Include="WebUI\SessaoDoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>

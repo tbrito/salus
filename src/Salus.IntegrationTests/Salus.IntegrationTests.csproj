@@ -180,6 +180,7 @@
     <Compile Include="Boot\DatabaseBoot.cs" />
     <Compile Include="Boot\RegistrarDependencias.cs" />
     <Compile Include="Extensions\TestExtensions.cs" />
+    <Compile Include="Repositorios\AcessoFuncionalidadeRepositorioTest.cs" />
     <Compile Include="Repositorios\ChaveRepositorioTest.cs" />
     <Compile Include="Repositorios\TipoDocumentoRepositorioTest.cs" />
     <Compile Include="Repositorios\PerfilRepositorioTest.cs" />

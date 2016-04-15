@@ -1,4 +1,6 @@
-﻿namespace Salus.Model.Entidades
+﻿using Headspring;
+
+namespace Salus.Model.Entidades
 {
     public class Funcionalidade : Enumeration<Funcionalidade>
     {

@@ -2,9 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 
-namespace Salus.Model
+namespace Headspring
 {
     [Serializable]
     [DebuggerDisplay("{DisplayName} - {Value}")]
@@ -29,26 +28,17 @@ namespace Salus.Model
 
     [Serializable]
     [DebuggerDisplay("{DisplayName} - {Value}")]
-    [DataContract(Namespace = "http://github.com/HeadspringLabs/Enumeration/5/13")]
     public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumeration>, IEquatable<TEnumeration>
         where TEnumeration : Enumeration<TEnumeration, TValue>
         where TValue : IComparable
     {
-        private static readonly Lazy<TEnumeration[]> Enumerations = new Lazy<TEnumeration[]>(GetEnumerations);
-
-        [DataMember(Order = 1)]
         readonly string _displayName;
-
-        [DataMember(Order = 0)]
         readonly TValue _value;
+
+        private static Lazy<TEnumeration[]> _enumerations = new Lazy<TEnumeration[]>(GetEnumerations);
 
         protected Enumeration(TValue value, string displayName)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             _value = value;
             _displayName = displayName;
         }
@@ -65,7 +55,7 @@ namespace Salus.Model
 
         public int CompareTo(TEnumeration other)
         {
-            return Value.CompareTo(other == default(TEnumeration) ? default(TValue) : other.Value);
+            return Value.CompareTo(other.Value);
         }
 
         public override sealed string ToString()
@@ -75,7 +65,7 @@ namespace Salus.Model
 
         public static TEnumeration[] GetAll()
         {
-            return Enumerations.Value;
+            return _enumerations.Value;
         }
 
         private static TEnumeration[] GetEnumerations()
@@ -96,7 +86,7 @@ namespace Salus.Model
 
         public bool Equals(TEnumeration other)
         {
-            return other != null && ValueEquals(other.Value);
+            return other != null && Value.Equals(other.Value);
         }
 
         public override int GetHashCode()
@@ -145,17 +135,12 @@ namespace Salus.Model
 
         public static bool TryParse(TValue value, out TEnumeration result)
         {
-            return TryParse(e => e.ValueEquals(value), out result);
+            return TryParse(e => e.Value.Equals(value), out result);
         }
 
         public static bool TryParse(string displayName, out TEnumeration result)
         {
             return TryParse(e => e.DisplayName == displayName, out result);
-        }
-
-        protected virtual bool ValueEquals(TValue value)
-        {
-            return Value.Equals(value);
         }
     }
 }

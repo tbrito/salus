@@ -3,6 +3,10 @@ using Salus.Infra.ForTests;
 using SharpArch.NHibernate;
 using System.IO;
 using Salus.Infra.ConnectionInfra;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Automapping;
+using Salus.Infra.Mappings;
+using Salus.Infra.Util;
 
 namespace Salus.IntegrationTests.Boot
 {
@@ -12,6 +16,7 @@ namespace Salus.IntegrationTests.Boot
         {
             this.IniciarBanco();
 
+            NHibernateSession.Current.Delete("from AcessoFuncionalidade");
             NHibernateSession.Current.Delete("from Documento");
             NHibernateSession.Current.Delete("from TipoDocumento");
             NHibernateSession.Current.Delete("from Area");
@@ -34,12 +39,24 @@ namespace Salus.IntegrationTests.Boot
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
           };
 
+          
             NHibernateSession.Reset();
 
             NHibernateSession.Init(
                 new SimpleSessionStorage(),
                 mappings,
                 null, null, null, null, BancoDeDados.Configuration());
+
+
+            //var fluentConfiguration = Fluently.Configure()
+            //    .Database(BancoDeDados.Configuration())
+            //    .Mappings(m =>
+            //    {
+            //        m.AutoMappings.Add(new AutoPersistenceModelGenerator().Generate());
+            //        m.FluentMappings.AddFromAssemblyOf();
+            //        m.HbmMappings.AddFromAssemblyOf();
+            //    });
+
         }
     }
 }

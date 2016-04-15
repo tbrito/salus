@@ -20,7 +20,7 @@
             ////   .SetControllerFactory(new StructureMapControllerFactory());
  
             Dependencias.Registrar(caminhoAssemblies);
-
+            
             var bootsToDatabase = InversionControl.Current.GetAllInstances<IDatabaseBoot>();
             var clearsToDatabase = InversionControl.Current.GetAllInstances<IClearDatabase>();
 
