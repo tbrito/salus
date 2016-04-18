@@ -61,5 +61,56 @@
 
             Assert.AreEqual(funcionalidades.Count, 2);
         }
+
+        [Test]
+        public void DeveApagarPermissoesDeUmAtorId()
+        {
+            var administrador = new Perfil
+            {
+                Nome = "administrador"
+            }.Persistir();
+
+            var departamentoPessoal = new Area
+            {
+                Nome = "DepartamentoPessoal",
+                Abreviacao = "DP",
+                Parent = null
+            }.Persistir();
+
+            new AcessoFuncionalidade
+            {
+                AtorId = administrador.Id,
+                Papel = Papel.Pefil,
+                Funcionalidade = Funcionalidade.CaixaEntrada
+            }.Persistir();
+
+            new AcessoFuncionalidade
+            {
+                AtorId = administrador.Id,
+                Papel = Papel.Pefil,
+                Funcionalidade = Funcionalidade.ConfiguracaoArea
+            }.Persistir();
+
+            new AcessoFuncionalidade
+            {
+                AtorId = departamentoPessoal.Id,
+                Papel = Papel.Area,
+                Funcionalidade = Funcionalidade.ConfiguracaoArea
+            }.Persistir();
+
+            this.ResetarConexao();
+
+            this.repositorio.ApagarAcessosDoAtor(Papel.Pefil.Value, administrador.Id);
+
+            this.ResetarConexao();
+
+            var acessos = this.repositorio.ObterPorPapelComAtorId(Papel.Pefil.Value, administrador.Id);
+            Assert.AreEqual(acessos.Count, 0);
+
+            this.ResetarConexao();
+
+            acessos = this.repositorio.ObterPorPapelComAtorId(Papel.Area.Value, departamentoPessoal.Id);
+            Assert.AreEqual(acessos.Count, 1);
+        }
     }
 }

@@ -1,14 +1,19 @@
-﻿using Salus.Model.Entidades;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Salus.Model.UI
 {
     public class AcessoViewModel
     {
-        public dynamic PapelId { get; set; }
+        public AcessoViewModel()
+        {
+            this.PapelId = 0;
+            this.AtorId = 0;
+        }
 
-        public dynamic AtorId { get; set; }
+        public int PapelId { get; set; }
 
-        public dynamic Funcionalidades { get; set;  }
+        public int AtorId { get; set; }
+
+        public IEnumerable<FuncionalidadeViewModel> Funcionalidades { get; set;  }
     }
 }

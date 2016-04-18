@@ -20,6 +20,11 @@
         [HttpGet]
         public IEnumerable<AcessoFuncionalidade> ObterPor([FromUri] AcessoViewModel viewModel)
         {
+            if (viewModel.PapelId == 0 || viewModel.AtorId == 0)
+            {
+                return null;
+            }
+
             var acessos = this.acessoFuncionalidadeRepositorio
                 .ObterPorPapelComAtorId(viewModel.PapelId, viewModel.AtorId);
 
@@ -29,6 +34,9 @@
         [HttpPost]
         public void Salvar([FromBody]AcessoViewModel acessosViewModel)
         {
+            this.acessoFuncionalidadeRepositorio
+                .ApagarAcessosDoAtor(acessosViewModel.PapelId, acessosViewModel.AtorId);
+
             foreach (var funcionalidade in acessosViewModel.Funcionalidades)
             {
                 if (funcionalidade.Marcado == false)
