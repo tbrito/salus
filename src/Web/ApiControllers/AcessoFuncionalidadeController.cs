@@ -31,6 +31,11 @@
         {
             foreach (var funcionalidade in acessosViewModel.Funcionalidades)
             {
+                if (funcionalidade.Marcado == false)
+                {
+                    continue;
+                }
+
                 var acesso = new AcessoFuncionalidade
                 {
                     AtorId = acessosViewModel.AtorId,

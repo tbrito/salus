@@ -1,7 +1,7 @@
 angular.module("salus-app").factory("acessoFuncionalidadeApi", function ($http) {
     
-    var _postSalvarAcesso = function (funcionalidade) {
-        return $http.post("api/AcessoFuncionalidade/Salvar/", funcionalidade);
+    var _postSalvarAcesso = function (acessoFuncionalidade) {
+        return $http.post("api/AcessoFuncionalidade/Salvar/", acessoFuncionalidade);
     };
 
     var _getObterAcesso = function (viewModel) {

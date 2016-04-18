@@ -5,12 +5,10 @@ namespace Salus.Model.UI
 {
     public class AcessoViewModel
     {
-        public int Id { get; set; }
+        public dynamic PapelId { get; set; }
 
-        public int PapelId { get; set; }
+        public dynamic AtorId { get; set; }
 
-        public int AtorId { get; set; }
-
-        public IList<FuncionalidadeViewModel> Funcionalidades { get; set;  }
+        public dynamic Funcionalidades { get; set;  }
     }
 }

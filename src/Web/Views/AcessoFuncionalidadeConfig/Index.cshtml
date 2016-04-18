@@ -5,9 +5,9 @@
     <div class="control-group">
 
         <div class="input-group input-group-lg">
-            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value="1" ng-click="carregarPerfis()"> Perfil
-            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value="2" ng-click="carregarAreas()"> Área
-            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value="3" ng-click="carregarUsuarios()"> Usuário
+            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value=1 ng-click="carregarPerfis()"> Perfil
+            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value=2 ng-click="carregarAreas()"> Área
+            <input type="radio" ng-model="acessoFuncionalidade.PapelId" value=3 ng-click="carregarUsuarios()"> Usuário
 
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
@@ -15,7 +15,7 @@
                     ng-model="acessoFuncionalidade.AtorId"
                     ng-options="perfil.Id as perfil.Nome for perfil in perfis"
                     ng-change="selecionarPerfil()"
-                    ng-show="acessoFuncionalidade.PapelId == '1'">
+                    ng-show="acessoFuncionalidade.PapelId == 1">
                 <option value="">Selecione o perfil</option>
             </select>
 
@@ -23,7 +23,7 @@
                     ng-model="acessoFuncionalidade.AtorId"
                     ng-options="area.Id as area.Nome for area in areas"
                     ng-change="selecionarArea()"
-                    ng-show="acessoFuncionalidade.PapelId == '2'">
+                    ng-show="acessoFuncionalidade.PapelId == 2">
                 <option value="">Selecione Área</option>
             </select>
 
@@ -31,14 +31,13 @@
                     ng-model="acessoFuncionalidade.AtorId"
                     ng-options="usuario.Id as usuario.Nome for usuario in usuarios"
                     ng-change="selecionarUsuario()"
-                    ng-show="acessoFuncionalidade.PapelId == '3'">
+                    ng-show="acessoFuncionalidade.PapelId == 3">
                 <option value="">Selecione o Usuario</option>
             </select>
         </div>
 
         <div ng-repeat="funcionalidade in funcionalidades">
-            {{acessoFuncionalidade.Funcionalidades[$index].Id = funcionalidade.Value}}
-            <div class="form-control">
+            <div class="form-control" ng-init="popularAcessos($index, funcionalidade)">
                 <input type="checkbox" ng-model="acessoFuncionalidade.Funcionalidades[$index].Marcado" />
                 <Label>{{funcionalidade.DisplayName}}</Label>
             </div>

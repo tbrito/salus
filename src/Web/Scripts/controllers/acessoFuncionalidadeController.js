@@ -5,6 +5,7 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
     $scope.usuarios = [];
     $scope.acessosDoPerfil = [];
     $scope.acessoFuncionalidade = { };
+    $scope.acessoFuncionalidade.Funcionalidades = [];
 
     $scope.carregarFormulario = function () {
         
@@ -72,6 +73,13 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
             });
     }
     
+    $scope.popularAcessos = function (posicaoArray, funcionalidade) {
+        $scope.acessoFuncionalidade.Funcionalidades[posicaoArray] = {
+            Id: funcionalidade.Value,
+            Marcado: false
+        };
+    }
+
     $scope.inicio = function () {
         $location.path('/AcessoFuncionalidade');
     }
