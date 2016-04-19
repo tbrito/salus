@@ -158,6 +158,7 @@
     <Compile Include="IO\Files.cs" />
     <Compile Include="Logs\Log.cs" />
     <Compile Include="Logs\LogConfiguration.cs" />
+    <Compile Include="Mappings\AcessoDocumentoMap.cs" />
     <Compile Include="Mappings\AcessoFuncionalidadeMap.cs" />
     <Compile Include="Mappings\TrilhaMap.cs" />
     <Compile Include="Mappings\ChaveMap.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201604190115_CriaAcessoDocumento.cs" />
     <Compile Include="Migrations\201604131918_CriaAcessoFuncionalidade.cs" />
     <Compile Include="Migrations\201604042156_AdicionarAvatarNoUsuario.cs" />
     <Compile Include="Migrations\201604040123_AdicionarAtivoPerfil.cs" />
@@ -191,6 +193,7 @@
     <Compile Include="Migrations\201602010856_CriaUsuario.cs" />
     <Compile Include="Migrations\Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AcessoDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\AcessoFuncionalidadeRepositorio.cs" />
     <Compile Include="Repositorios\AtividadeRepositorio.cs" />
     <Compile Include="Repositorios\ChaveRepositorio.cs" />

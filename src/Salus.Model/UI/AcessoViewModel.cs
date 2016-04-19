@@ -8,12 +8,13 @@ namespace Salus.Model.UI
         {
             this.PapelId = 0;
             this.AtorId = 0;
+            this.Funcionalidades = new List<FuncionalidadeViewModel>();
         }
 
         public int PapelId { get; set; }
 
         public int AtorId { get; set; }
 
-        public IEnumerable<FuncionalidadeViewModel> Funcionalidades { get; set;  }
+        public IList<FuncionalidadeViewModel> Funcionalidades { get; set;  }
     }
 }

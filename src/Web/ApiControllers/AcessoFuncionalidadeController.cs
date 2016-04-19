@@ -1,11 +1,10 @@
 ﻿namespace Web.ApiControllers
 {
-    using Extensions;
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using Salus.Model.UI;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Http;
 
     public class AcessoFuncionalidadeController : ApiController
@@ -18,17 +17,25 @@
         }
 
         [HttpGet]
-        public IEnumerable<AcessoFuncionalidade> ObterPor([FromUri] AcessoViewModel viewModel)
+        public AcessoViewModel ObterPor(int atorId = 0, int papelId = 0)
         {
-            if (viewModel.PapelId == 0 || viewModel.AtorId == 0)
-            {
-                return null;
-            }
-
             var acessos = this.acessoFuncionalidadeRepositorio
-                .ObterPorPapelComAtorId(viewModel.PapelId, viewModel.AtorId);
+                .ObterPorPapelComAtorId(papelId, atorId);
 
-            return acessos as IEnumerable<AcessoFuncionalidade>;
+            var acessoViewModel = new AcessoViewModel();
+            acessoViewModel.AtorId = atorId;
+            acessoViewModel.PapelId = papelId;
+
+            foreach (var funcionalidade in Funcionalidade.GetAll())
+            {
+                var funcionalidadeViewModel = new FuncionalidadeViewModel();
+                funcionalidadeViewModel.Id = funcionalidade.Value;
+                funcionalidadeViewModel.Marcado = acessos.Any(x => x.Funcionalidade == funcionalidade);
+                funcionalidadeViewModel.Nome = funcionalidade.DisplayName;
+                acessoViewModel.Funcionalidades.Add(funcionalidadeViewModel);
+            }            
+            
+            return acessoViewModel;
         }
 
         [HttpPost]

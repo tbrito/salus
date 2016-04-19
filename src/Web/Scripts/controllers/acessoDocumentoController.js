@@ -1,22 +1,16 @@
-angular.module("salus-app").controller('acessoFuncionalidadeController', function ($scope, $location, acessoFuncionalidadeApi, funcionalidadeApi, perfilApi, usuarioApi, areaApi) {
+angular.module("salus-app").controller('acessoDocumentoController', function ($scope, $location, acessoDocumentoApi, perfilApi, usuarioApi, areaApi) {
 
-    $scope.perfis = [];
-    $scope.areas = [];
-    $scope.usuarios = [];
-    $scope.acessosDoPerfil = [];
-    $scope.funcionalidades = [];
-    $scope.acessoFuncionalidade = { };
-    $scope.acessoFuncionalidade.Funcionalidades = [];
+    $scope.acessoDocumento = {};
 
     $scope.carregarFormulario = function () {
         var viewModel = {
-            PapelId: $scope.acessoFuncionalidade.PapelId,
-            AtorId: $scope.acessoFuncionalidade.AtorId
+            PapelId: $scope.acessoDocumento.PapelId,
+            AtorId: $scope.acessoDocumento.AtorId
         };
 
-        acessoFuncionalidadeApi.getObterAcesso(viewModel)
+        acessoDocumentoApi.getObterAcesso(viewModel)
             .success(function (data) {
-                $scope.acessoFuncionalidade = data;
+                $scope.acessoDocumento = data;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os acessos do perfil" + data;
@@ -56,8 +50,8 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
              });
     }
 
-    $scope.salvar = function (acessoFuncionalidade) {
-        acessoFuncionalidadeApi.postSalvarAcesso(acessoFuncionalidade)
+    $scope.salvar = function (acessoDocumento) {
+        acessoDocumentoApi.postSalvarAcesso(acessoDocumento)
             .success(function (data) {
                 $scope.sucesso = "Operação realizada com sucesso!";
                 $scope.carregarFormulario();
@@ -67,14 +61,14 @@ angular.module("salus-app").controller('acessoFuncionalidadeController', functio
             });
     }
     
-    $scope.popularAcessos = function (posicaoArray, funcionalidade) {
-        $scope.acessoFuncionalidade.Funcionalidades[posicaoArray] = {
-            Id: funcionalidade.Value,
+    $scope.popularAcessos = function (posicaoArray, tipoDocumento) {
+        $scope.acessoDocumento.TiposDocumentos[posicaoArray] = {
+            Id: tipoDocumento.Id,
             Marcado: false
         };
     }
 
     $scope.inicio = function () {
-        $location.path('/AcessoFuncionalidade');
+        $location.path('/AcessoDocumento');
     }
 });

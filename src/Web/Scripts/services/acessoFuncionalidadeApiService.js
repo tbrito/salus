@@ -5,7 +5,11 @@ angular.module("salus-app").factory("acessoFuncionalidadeApi", function ($http) 
     };
 
     var _getObterAcesso = function (viewModel) {
-        return $http.get("api/AcessoFuncionalidade/ObterPor", viewModel);
+        return $http({
+            method: 'GET',
+            url: 'api/AcessoFuncionalidade/ObterPor',
+            params: { atorId: viewModel.AtorId, papelId: viewModel.PapelId, }
+         });
     };
     
     return {

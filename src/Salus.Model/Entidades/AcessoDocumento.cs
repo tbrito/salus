@@ -2,9 +2,12 @@
 {
     public class AcessoDocumento : Entidade
     {
-        public virtual Usuario Usuario { get; set; }
+        public virtual Papel Papel { get; set; }
 
-        public virtual Perfil Perfil { get; set; }
+        /// <summary>
+        /// Codigo da Area do perfil ou do usuario
+        /// </summary>
+        public virtual int AtorId { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
     }

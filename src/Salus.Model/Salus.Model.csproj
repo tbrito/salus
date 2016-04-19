@@ -73,6 +73,7 @@
     <Compile Include="IMongoStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entidades\Documento.cs" />
+    <Compile Include="Repositorios\IAcessoDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\IAcessoFuncionalidadeRepositorio.cs" />
     <Compile Include="Repositorios\IChaveRepositorio.cs" />
     <Compile Include="Repositorios\IIndexacaoRepositorio.cs" />
