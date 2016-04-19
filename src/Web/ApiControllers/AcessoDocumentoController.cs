@@ -24,6 +24,8 @@
             var acessos = this.acessoDocumentoRepositorio
                 .ObterPorPapelComAtorId(papelId, atorId);
 
+            var tiposDocumentos = tipoDocumentoRepositorio.ObterTodos();
+
             var acessoViewModel = new AcessoDocumentoViewModel();
             acessoViewModel.AtorId = atorId;
             acessoViewModel.PapelId = papelId;
@@ -57,7 +59,7 @@
                 {
                     AtorId = acessosViewModel.AtorId,
                     Papel = Papel.FromInt32(acessosViewModel.PapelId),
-                    TipoDocumento = tipoDocumento
+                    TipoDocumento = new TipoDocumento { Id = tipoDocumento.Id }
                 };
 
                 this.acessoDocumentoRepositorio.Salvar(acesso);

@@ -80,6 +80,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'acessoFuncionalidadeController',
             templateUrl: 'AcessoFuncionalidadeConfig/Index'
         })
+        .when('/AcessoDocumento', {
+            controller: 'acessoDocumentoController',
+            templateUrl: 'AcessoDocumentoConfig/Index'
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }

@@ -234,6 +234,7 @@
     <Compile Include="ApiControllers\UsuarioController.cs" />
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
     <Compile Include="ApiControllers\AreaController.cs" />
+    <Compile Include="Controllers\AcessoDocumentoConfigController.cs" />
     <Compile Include="Controllers\AcessoFuncionalidadeConfigController.cs" />
     <Compile Include="Controllers\PerfilConfigController.cs" />
     <Compile Include="Controllers\UsuarioConfigController.cs" />

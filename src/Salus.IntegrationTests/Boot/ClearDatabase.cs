@@ -17,6 +17,7 @@ namespace Salus.IntegrationTests.Boot
             this.IniciarBanco();
 
             NHibernateSession.Current.Delete("from AcessoFuncionalidade");
+            NHibernateSession.Current.Delete("from AcessoDocumento");
             NHibernateSession.Current.Delete("from Trilha");
             NHibernateSession.Current.Delete("from Storage");
             NHibernateSession.Current.Delete("from Workflow");
