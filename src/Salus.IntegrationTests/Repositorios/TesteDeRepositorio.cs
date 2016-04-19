@@ -4,22 +4,20 @@
     using FluentNHibernate.Cfg;
     using Infra.ConnectionInfra;
     using Infra.Util;
-    using NHibernate;
     using NUnit.Framework;
     using Salus.Infra.Repositorios;
     using Salus.Model.Entidades;
     using SharpArch.NHibernate;
     using System;
     using System.IO;
-    using System.Linq;
+
     [TestFixture]
     public class TesteDeRepositorio<TEntidade, TRepositorio> : TesteAutomatizado
         where TRepositorio : Repositorio<TEntidade>, new()
         where TEntidade : Entidade, new()
     {
         protected TRepositorio repositorio = new TRepositorio();
-        private ITransaction transaction;
-
+        
         [SetUp]
         public void Initialize()
         {

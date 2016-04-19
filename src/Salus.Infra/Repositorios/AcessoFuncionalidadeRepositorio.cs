@@ -1,9 +1,10 @@
 ﻿namespace Salus.Infra.Repositorios
 {
+    using System;
     using System.Collections.Generic;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
-
+    using NHibernate.Criterion;
     public class AcessoFuncionalidadeRepositorio : 
         Repositorio<AcessoFuncionalidade>, 
         IAcessoFuncionalidadeRepositorio
@@ -14,6 +15,24 @@
                 .SetParameter("atorId", atorId)
                 .SetParameter("papelId", papelId)
                 .ExecuteUpdate();
+        }
+
+        public IList<AcessoFuncionalidade> ObterDoUsuario(Usuario usuario)
+        {
+            return this.Sessao.CreateQuery(
+@"from 
+    AcessoFuncionalidade
+where 
+    (Papel = :usuario and AtorId = :usuarioId) or
+    (Papel = :perfil and AtorId = :perfilId) or
+    (Papel = :area and AtorId = :areaId)")
+                .SetParameter("usuario", Papel.Usuario)
+                .SetParameter("perfil", Papel.Pefil)
+                .SetParameter("area", Papel.Area)
+                .SetParameter("usuarioId", usuario.Id)
+                .SetParameter("perfilId", usuario.Perfil.Id)
+                .SetParameter("areaId", usuario.Area.Id)
+                .List<AcessoFuncionalidade>();
         }
 
         public IList<AcessoFuncionalidade> ObterPorPapelComAtorId(int papelId, int atorId)

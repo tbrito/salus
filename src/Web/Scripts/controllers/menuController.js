@@ -1,4 +1,4 @@
-﻿angular.module('salus-app').controller('menuControler', function ($scope, $log, $location) {
+﻿angular.module('salus-app').controller('menuControler', function ($scope, $log, $location, autorizacaoApi) {
   $scope.items = [
     'The first choice!',
     'And another choice for you.',
@@ -24,13 +24,10 @@
   $scope.usuario = {};
 
   $scope.start = function () {
-      $scope.usuario = {
-          avatar: 'https://avatars0.githubusercontent.com/u/737150?v=3&amp;s=40',
-          autenticado: false
-      };
+      $scope.usuario = autorizacaoApi.get("usuario_autenticado")
   }
 
-  $scope.abrirUpload= function() {
+  $scope.abrirUpload = function () {
     $location.path('/Upload');
   };
 
@@ -65,4 +62,12 @@
    $scope.abrirSegurancaFuncionalidades = function () {
        $location.path('/AcessoFuncionalidade');
    };
+
+    $scope.usuarioTemPermissao = function(funcionalidadeId){
+        var ok = $scope.usuario.Funcionalidades.filter(function (dado) {
+                return dado.Id == funcionalidadeId;
+        });
+
+        return ok.length > 0;
+    };
 });

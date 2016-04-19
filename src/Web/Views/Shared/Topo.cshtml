@@ -44,7 +44,7 @@
                     <span class="sr-only">Split button!</span>
                 </button>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                    <li role="menuitem"><a ng-click="abrirUsuarios()">Usuários</a></li>
+                    <li role="menuitem"><a ng-click="abrirUsuarios()" ng-show="usuarioTemPermissao(5)">Usuários</a></li>
                     <li role="menuitem"><a ng-click="abrirPerfis()">Perfis</a></li>
                     <li role="menuitem"><a ng-click="abrirAreas()">Áreas</a></li>
                     <li class="divider"></li>

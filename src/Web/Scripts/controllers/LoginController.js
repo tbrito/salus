@@ -1,5 +1,4 @@
-angular.module("salus-app").controller("loginController", function ($scope, usuarioApi, $location) {
-    //$scope.usuario = {};
+angular.module("salus-app").controller("loginController", function ($scope, usuarioApi, autorizacaoApi, $location) {
     
     $scope.login = function (usuario) {
         usuarioApi.getUserLogin(usuario)
@@ -7,6 +6,8 @@ angular.module("salus-app").controller("loginController", function ($scope, usua
                 $scope.usuario = data;
 
                 if ($scope.usuario.Autenticado) {
+                    autorizacaoApi.Salvar($scope.usuario);
+                    
                     $location.path('/Home');
                 } else {
                     $scope.error = "Usuário ou senha inválidos.";

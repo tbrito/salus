@@ -57,6 +57,7 @@ namespace Web
                 "~/Scripts/services/acessoDocumentoApiService.js",
                 "~/Scripts/services/funcionalidadeApiService.js",
                 "~/Scripts/services/indexacaoApiService.js",
+                "~/Scripts/services/autorizacaoApiService.js",
                 "~/Scripts/services/areaApiService.js",
                 "~/Scripts/services/perfilApiService.js",
                 "~/Scripts/services/tipoDocumentoApiService.js",

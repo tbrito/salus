@@ -337,6 +337,7 @@
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\acessoDocumentoApiService.js" />
+    <Content Include="Scripts\services\autorizacaoApiService.js" />
     <Content Include="Scripts\services\funcionalidadeApiService.js" />
     <Content Include="Scripts\services\chavesApiService.js" />
     <Content Include="Scripts\services\acessoFuncionalidadeApiService.js" />

@@ -10,7 +10,6 @@ namespace Salus.Infra.Logs
     public class Log
     {
         private static Logger _root;
-        private static ILog _frameworkLog;
         private static ILog _applicationLog;
 
         private static Logger Root

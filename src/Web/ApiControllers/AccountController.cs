@@ -2,6 +2,7 @@
 {
     using Salus.Infra.IoC;
     using Salus.Infra.Repositorios;
+    using Salus.Model.Repositorios;
     using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System.Collections.Generic;
@@ -11,11 +12,13 @@
     public class AccountController : ApiController
     {
         private UsuarioRepositorio usuarioRepositorio;
+        private IAcessoFuncionalidadeRepositorio acessoFuncionalidadeRepositorio;
         private HashString hashString;
 
         public AccountController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<UsuarioRepositorio>();
+            this.acessoFuncionalidadeRepositorio = InversionControl.Current.Resolve<IAcessoFuncionalidadeRepositorio>();
             this.hashString = InversionControl.Current.Resolve<HashString>();
         }
 
@@ -42,17 +45,39 @@
 
             if (usuario != null)
             {
+                var funcionalidades = this.FuncionalidadesPermitidas(usuario);
+
                 login = new LoginViewModel
                 {
                     UserName = usuario.Nome,
                     Senha = usuario.Senha,
-                    Autenticado = true
+                    Autenticado = true,
+                    Funcionalidades = funcionalidades
                 };
 
                 FormsAuthentication.SetAuthCookie(usuario.Nome, true);
             }
 
             return login;
+        }
+
+        private List<FuncionalidadeViewModel> FuncionalidadesPermitidas(Salus.Model.Entidades.Usuario usuario)
+        {
+            var acessosPermitidos = this.acessoFuncionalidadeRepositorio.ObterDoUsuario(usuario);
+            var funcionalidades = new List<FuncionalidadeViewModel>();
+
+            foreach (var acesso in acessosPermitidos)
+            {
+                var viewModel = new FuncionalidadeViewModel
+                {
+                    Id = acesso.Funcionalidade.Value,
+                    Nome = acesso.Funcionalidade.DisplayName,
+                    Marcado = true
+                };
+
+                funcionalidades.Add(viewModel);
+            }
+            return funcionalidades;
         }
 
         // PUT api/<controller>/5
