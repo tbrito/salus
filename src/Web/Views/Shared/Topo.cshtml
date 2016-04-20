@@ -29,9 +29,9 @@
                     <span class="sr-only">Split button!</span>
                 </button>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                    <li role="menuitem"><a ng-click="abrirUpload()">Upload</a></li>
-                    <li role="menuitem"><a href="#">Vários Arquivos</a></li>
-                    <li role="menuitem"><a href="#">Pré-Indexar</a></li>
+                    <li role="menuitem"><a ng-click="abrirUpload()" ng-show="usuarioTemPermissao(2)">Upload</a></li>
+                    <li role="menuitem"><a href="#"  ng-show="usuarioTemPermissao(3)">Vários Arquivos</a></li>
+                    <li role="menuitem"><a href="#"  ng-show="usuarioTemPermissao(4)">Pré-Indexar</a></li>
                 </ul>
             </div>
 
@@ -45,14 +45,14 @@
                 </button>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
                     <li role="menuitem"><a ng-click="abrirUsuarios()" ng-show="usuarioTemPermissao(5)">Usuários</a></li>
-                    <li role="menuitem"><a ng-click="abrirPerfis()">Perfis</a></li>
-                    <li role="menuitem"><a ng-click="abrirAreas()">Áreas</a></li>
+                    <li role="menuitem"><a ng-click="abrirPerfis()" ng-show="usuarioTemPermissao(7)">Perfis</a></li>
+                    <li role="menuitem"><a ng-click="abrirAreas()" ng-show="usuarioTemPermissao(6)">Áreas</a></li>
                     <li class="divider"></li>
-                    <li role="menuitem"><a ng-click="abrirGruposDeDocumento()">Grupos de Documento</a></li>
-                    <li role="menuitem"><a ng-click="abrirTiposDeDocumento()">Tipos de documentos</a></li>
+                    <li role="menuitem"><a ng-click="abrirGruposDeDocumento()" ng-show="usuarioTemPermissao(8)">Grupos de Documento</a></li>
+                    <li role="menuitem"><a ng-click="abrirTiposDeDocumento()"  ng-show="usuarioTemPermissao(8)">Tipos de documentos</a></li>
                     <li class="divider"></li>
-                    <li role="menuitem"><a ng-click="abrirSegurancaDocumentos()">Acesso aos documentos</a></li>
-                    <li role="menuitem"><a ng-click="abrirSegurancaFuncionalidades()">Segurança às Funcionalidades</a></li>
+                    <li role="menuitem"><a ng-click="abrirSegurancaDocumentos()" ng-show="usuarioTemPermissao(10)">Acesso aos documentos</a></li>
+                    <li role="menuitem"><a ng-click="abrirSegurancaFuncionalidades()" ng-show="usuarioTemPermissao(9)">Segurança às Funcionalidades</a></li>
                 </ul>
             </div>
 

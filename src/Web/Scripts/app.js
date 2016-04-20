@@ -2,7 +2,8 @@ angular.module("salus-app", [
                     "ngMessages", 
                     "ngRoute", 
                     "ui.bootstrap",
-                    "ngFileUpload"])
+                    "ngFileUpload",
+                    "ngCookies"])
     .config(config);
     
 function config($routeProvider, $locationProvider) {

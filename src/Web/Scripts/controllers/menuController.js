@@ -24,7 +24,6 @@
   $scope.usuario = {};
 
   $scope.start = function () {
-      $scope.usuario = autorizacaoApi.get("usuario_autenticado")
   }
 
   $scope.abrirUpload = function () {
@@ -64,6 +63,12 @@
    };
 
     $scope.usuarioTemPermissao = function(funcionalidadeId){
+        $scope.usuario = autorizacaoApi.obter("usuario_autenticado");
+
+        if ($scope.usuario == undefined) {
+            return false;
+        }
+
         var ok = $scope.usuario.Funcionalidades.filter(function (dado) {
                 return dado.Id == funcionalidadeId;
         });

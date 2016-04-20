@@ -6,7 +6,7 @@ angular.module("salus-app").controller("loginController", function ($scope, usua
                 $scope.usuario = data;
 
                 if ($scope.usuario.Autenticado) {
-                    autorizacaoApi.Salvar($scope.usuario);
+                    autorizacaoApi.salvar($scope.usuario);
                     
                     $location.path('/Home');
                 } else {
