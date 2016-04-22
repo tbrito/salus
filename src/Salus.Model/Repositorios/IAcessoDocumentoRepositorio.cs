@@ -8,5 +8,7 @@ namespace Salus.Model.Repositorios
         IList<AcessoDocumento> ObterPorPapelComAtorId(int papelId, int atorId);
 
         void ApagarAcessosDoAtor(int papelId, int atorId);
+
+        IList<AcessoDocumento> ObterDoUsuario(Usuario usuario);
     }
 }

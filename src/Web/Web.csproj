@@ -241,10 +241,9 @@
     <Compile Include="Controllers\ChaveConfigController.cs" />
     <Compile Include="Controllers\GrupoDocumentoConfigController.cs" />
     <Compile Include="Controllers\AreaConfigController.cs" />
-    <Compile Include="Filters\AtributeBase.cs" />
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
-    <Compile Include="Filters\RegistraNaTrilhaAttribute.cs" />
+    <Compile Include="Filters\PodeAcessarDocumentoAttribute.cs" />
     <Compile Include="ApiControllers\WorkflowController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
