@@ -1,7 +1,6 @@
 ﻿using Quartz;
-using Salus.Infra.Logs;
+using Salus.Infra.IoC;
 using Salus.Model.Search;
-using SharpArch.NHibernate;
 
 namespace SearchIndexingService
 {
@@ -9,21 +8,14 @@ namespace SearchIndexingService
     {
         private IIndexQueueProcess indexQueueProcess;
 
+        public IndexarJob()
+        {
+            this.indexQueueProcess = InversionControl.Current.Resolve<IIndexQueueProcess>();
+        }
+
         public void Execute(IJobExecutionContext context)
         {
-            using (var transaction = NHibernateSession.Current.Transaction)
-            {
-                try
-                {
-                    this.indexQueueProcess.Execute();
-                    transaction.Commit();
-                }
-                catch (System.Exception exception)
-                {
-                    transaction.Rollback();
-                    Log.App.Error("Erro ao tentar indexar documentos. ", exception);
-                }
-            }
+            this.indexQueueProcess.Execute();
         }
     }
 }

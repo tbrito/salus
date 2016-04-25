@@ -220,6 +220,7 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201604251711_AdicionarCpfStatusSearchNoDocumento.cs" />
     <Compile Include="Migrations\201604231602_CriaConfiguracao.cs" />
     <Compile Include="Migrations\201604190115_CriaAcessoDocumento.cs" />
     <Compile Include="Migrations\201604131918_CriaAcessoFuncionalidade.cs" />
@@ -229,8 +230,8 @@
     <Compile Include="Migrations\201603301829_AdicionarAtivoNaChave.cs" />
     <Compile Include="Migrations\201603291705_CriaTrilha.cs" />
     <Compile Include="Migrations\201603240211_AdicionarFiletypeMongoStorage.cs" />
-    <Compile Include="Migrations\201603231214_CriaChavesDoTipo.cs" />
-    <Compile Include="Migrations\201603231159_CriaTipoDocumentos.cs" />
+    <Compile Include="Seeds\201604251835_CriaConfiguracoes.cs" />
+    <Compile Include="Seeds\201603231214_CriaChavesDoTipo.cs" />
     <Compile Include="Migrations\201603211513_CriaWorkflow.cs" />
     <Compile Include="Migrations\201603181225_CriaIndexacao.cs" />
     <Compile Include="Migrations\201603181119_CriaChaves.cs" />
@@ -238,7 +239,7 @@
     <Compile Include="Migrations\201603171759_AdicionarUsuarioNoDocumento.cs" />
     <Compile Include="Migrations\201603141819_CriaStorage.cs" />
     <Compile Include="Migrations\201603061926_CriaDocumento.cs" />
-    <Compile Include="Migrations\201602121709_CriaUserAdmin.cs" />
+    <Compile Include="Seeds\201602121709_CriaUserAdmin.cs" />
     <Compile Include="Migrations\201602120910_CriaPerfil.cs" />
     <Compile Include="Migrations\201602120907_CriaArea.cs" />
     <Compile Include="Migrations\201602010856_CriaUsuario.cs" />
@@ -250,7 +251,7 @@
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
     <Compile Include="Repositorios\AreaRepositorio.cs" />
     <Compile Include="Repositorios\IDatabaseBoot.cs" />
-    <Compile Include="Repositorios\ConfiguracaolRepositorio.cs" />
+    <Compile Include="Repositorios\ConfiguracaoRepositorio.cs" />
     <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
@@ -270,8 +271,10 @@
     <Compile Include="Search\LuceneIndexerSession.cs" />
     <Compile Include="Search\IndexEngine.cs" />
     <Compile Include="Search\TextQuery.cs" />
+    <Compile Include="Seeds\RepositorioExtensions.cs" />
     <Compile Include="Storages\MongoStorage.cs" />
     <Compile Include="Transformations\OpenOfficeTransformer.cs" />
+    <Compile Include="Util\EnumConvention.cs" />
     <Compile Include="Util\EnumerationType.cs" />
     <Compile Include="Util\EnumerationTypeConvention.cs" />
     <Compile Include="WebUI\SessaoDoUsuario.cs" />

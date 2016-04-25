@@ -1,9 +1,11 @@
 ﻿namespace Salus.Infra.Search.Indexing
 {
+    using Logs;
+    using Model.Entidades;
     using Model.Repositorios;
     using Model.Search;
     using Model.Servicos;
-    using System;
+    using SharpArch.NHibernate;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -19,8 +21,8 @@
 
         public IndexQueueProcess(
             IDocumentoRepositorio documentoRepositorio,
-            IConfiguracoesDaAplicacao configuracoesDaAplicacao, 
-            LuceneIndexerSession indexerSession, 
+            IConfiguracoesDaAplicacao configuracoesDaAplicacao,
+            LuceneIndexerSession indexerSession,
             IndexQueueProcessBatch indexQueueProcessBatch)
         {
             this.documentoRepositorio = documentoRepositorio;
@@ -31,64 +33,45 @@
 
         public void Execute()
         {
-            SearchSettings searchSettings;
-            IList<DossierKeySettings> dossierKeysSettings;
+            IList<Documento> contents;
 
-            searchSettings = this.configuracoesDaAplicacao.Obter();
-            dossierKeysSettings = this.dossierKeySettingsRepository.FetchIndexingKeys();
-            
-            this.ProcessQueue(searchSettings, dossierKeysSettings);
-
-            using (var session = this.indexerSession.Begin(searchSettings.Path))
-            {
-                session.Current.Optimize();
-            }
-
-            this.LogResume();
-        }
-        
-        private void ProcessQueue(
-            SearchSettings searchSettings, 
-            IList<DossierKeySettings> dossierKeysSettings)
-        {
-            Log.Application.InfoFormat("Indexando conteudos na fila");
-            IList<Content> contents;
-            
             do
             {
-                using (this.unitOfWork.Begin())
-                {
-                    contents = this.documentoRepositorio.FetchAllSearchToIndex(80);
-                }
+                contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
 
                 if (contents.Count == 0)
                 {
-                    Log.Application.InfoFormat("Não há conteúdos pendentes para indexação");
+                    Log.App.InfoFormat("Não há documentos pendentes para indexação");
                     return;
                 }
 
-                Log.Application.InfoFormat(
-                    "Indexando conteudos de {0} a {1}", 
-                    contents[0].Id, 
+                Log.App.InfoFormat(
+                    "Indexando documentos de {0} a {1}",
+                    contents[0].Id,
                     contents.Last().Id);
 
-                var contentsBatch = contents.DividirEmLotes(8);
-
-                using (var session = this.indexerSession.Begin(searchSettings.Path))
+                using (var session = this.indexerSession
+                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
                 {
-                    Parallel.ForEach(contentsBatch, Paralelizar.Em(8), batch =>
+                    Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = Aplicacao.Nucleos }, batch =>
                     {
-                        using (this.unitOfWork.Begin())
+                        using (var transaction = NHibernateSession.Current.Transaction)
                         {
-                            this.Increment(this.indexQueueProcessBatch
-                                .Execute(batch, searchSettings, dossierKeysSettings));
+                            try
+                            {
+                                this.Increment(this.indexQueueProcessBatch.Execute(batch));
+
+                                transaction.Commit();
+                            }
+                            catch (System.Exception exception)
+                            {
+                                transaction.Rollback();
+                                Log.App.Error("Erro ao tentar indexar documentos. ", exception);
+                            }
                         }
                     });
-
-                    session.Current.Commit();
                 }
-            }
-            while (contents.Count > 0);
+            } while (contents.Count > 0);
         }
 
         private void Increment(int indexed)

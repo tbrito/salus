@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Salus.Model.Entidades
 {
@@ -15,5 +16,9 @@ namespace Salus.Model.Entidades
         public virtual TipoDocumento TipoDocumento { get; set; }
 
         public virtual string CpfCnpj { get; set; }
+
+        public virtual SearchStatus SearchStatus { get; set; }
+
+        public virtual IList<Indexacao> Indexacao { get; set; }
     }
 }

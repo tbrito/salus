@@ -6,5 +6,11 @@
 
     public class IndexacaoRepositorio : Repositorio<Indexacao>, IIndexacaoRepositorio
     {
+        public IList<Indexacao> ObterPorDocumento(Documento documento)
+        {
+            return this.Sessao.QueryOver<Indexacao>()
+                .Where(x => x.Documento.Id == documento.Id)
+                .List();
+        }
     }
 }

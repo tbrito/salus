@@ -2,9 +2,9 @@
 {
     public interface IConfiguracoesDaAplicacao
     {
-        int MaximoResultadoPorPagina { get; set; }
+        int MaximoResultadoPorPagina { get; }
 
-        int ResultadoMaximoConsulta { get; set; }
+        int ResultadoMaximoConsulta { get; }
 
         string CaminhoIndicePesquisa();
     }

@@ -4,6 +4,7 @@
     using IoC;
     using Repositorios;
     using System;
+
     public class Aplicacao
     {
         public static string Caminho
@@ -11,6 +12,18 @@
             get
             {
                 return AppDomain.CurrentDomain.BaseDirectory;
+            }
+        }
+
+        public static int Nucleos
+        {
+            get
+            {
+#if DEBUG
+                return 1;
+#else
+                return 1;
+#endif
             }
         }
 

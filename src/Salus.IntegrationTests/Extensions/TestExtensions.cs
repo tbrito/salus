@@ -1,8 +1,5 @@
-﻿using Salus.Infra.ConnectionInfra;
-using Salus.Model.Entidades;
+﻿using Salus.Model.Entidades;
 using SharpArch.NHibernate;
-using System;
-using System.IO;
 
 namespace Salus.IntegrationTests.Extensions
 {

@@ -1,7 +1,8 @@
 namespace Salus.Model.Search
 {
+    using Entidades;
     using System;
-    
+
     public class ContentToIndex : Entidade
     {
         public string Indexes;

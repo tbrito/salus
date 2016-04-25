@@ -1,9 +1,13 @@
-﻿using Quartz;
+﻿using FluentNHibernate.Cfg;
+using Quartz;
 using Quartz.Impl;
 using Salus.Infra;
 using Salus.Infra.ConnectionInfra;
+using Salus.Infra.Migrations;
+using Salus.Infra.Util;
 using SharpArch.NHibernate;
 using System;
+using System.Configuration;
 using System.IO;
 using System.ServiceProcess;
 
@@ -18,6 +22,23 @@ namespace SearchIndexingService
         {
             Aplicacao.Boot();
 
+            InicializaBancoDeDados();
+
+            if (!Environment.UserInteractive)
+            {
+                using (var service = new ServiceRunner())
+                {
+                    ServiceBase.Run(service);
+                }
+            }
+            else
+            {
+                Start(args);
+            }
+        }
+
+        private static void InicializaBancoDeDados()
+        {
             string[] mappings = new string[]
             {
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
@@ -33,17 +54,18 @@ namespace SearchIndexingService
                     null, null, null, null, BancoDeDados.Configuration());
             });
 
-            if (!Environment.UserInteractive)
-            {
-                using (var service = new ServiceRunner())
-                {
-                    ServiceBase.Run(service);
-                }
-            }
-            else
-            {
-                Start(args);
-            }
+            var fluentConfiguration = Fluently.Configure()
+               .Database(BancoDeDados.Configuration())
+               .Mappings(m =>
+               {
+                   m.FluentMappings.Conventions.Add<EnumConvention>();
+                   m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
+               });
+
+            var migrator = new Migrator(
+              ConfigurationManager.AppSettings["Database.ConnectionString"]);
+
+            migrator.Migrate(runner => runner.MigrateUp());
         }
 
         public static void Start(string[] args)

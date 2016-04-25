@@ -4,7 +4,7 @@
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
 
-    public class ConfiguracaolRepositorio : Repositorio<Configuracao>, IConfiguracaoRepositorio
+    public class ConfiguracaoRepositorio : Repositorio<Configuracao>, IConfiguracaoRepositorio
     {
         public Configuracao ObterPorChave(string chave)
         {

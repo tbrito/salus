@@ -1,7 +1,8 @@
-namespace Salus.Infra.Migrations
+namespace Salus.Infra.Seeds
 {
     using FluentMigrator;
     using Model.Servicos;
+
     [Migration(201602121709)]
     public class CriaUserAdmin : Migration
     {

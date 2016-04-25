@@ -6,7 +6,7 @@ namespace Salus.Infra.Search
     using Lucene.Net.Store;
     using Logs;
 
-    public class LuceneIndexerSession
+    public class LuceneIndexerSession : IDisposable
     {
         private static FSDirectory directory;
         private static IndexWriter writer;

@@ -69,6 +69,7 @@ namespace Web.Modules
                .Database(BancoDeDados.Configuration())
                .Mappings(m =>
                {
+                   m.FluentMappings.Conventions.Add<EnumConvention>();
                    m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
                });
         }
