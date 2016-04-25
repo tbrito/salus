@@ -34,12 +34,9 @@
             SearchSettings searchSettings;
             IList<DossierKeySettings> dossierKeysSettings;
 
-            using (this.unitOfWork.Begin())
-            {
-                searchSettings = this.configuracoesDaAplicacao.Obter();
-                dossierKeysSettings = this.dossierKeySettingsRepository.FetchIndexingKeys();
-            }
-
+            searchSettings = this.configuracoesDaAplicacao.Obter();
+            dossierKeysSettings = this.dossierKeySettingsRepository.FetchIndexingKeys();
+            
             this.ProcessQueue(searchSettings, dossierKeysSettings);
 
             using (var session = this.indexerSession.Begin(searchSettings.Path))

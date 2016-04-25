@@ -1,8 +1,7 @@
 namespace Salus.Model.Search
 {
     using System;
-    using Veros.Framework.Modelo;
-
+    
     public class ContentToIndex : Entidade
     {
         public string Indexes;

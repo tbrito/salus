@@ -2,5 +2,6 @@
 {
     public interface IIndexQueueProcess
     {
+        void Execute();
     }
 }

@@ -7,6 +7,7 @@ namespace Salus.Infra.Logs
     using log4net.Layout;
     using log4net.Repository.Hierarchy;
     using log4net.Config;
+
     public class Log
     {
         private static Logger _root;
