@@ -13,5 +13,7 @@ namespace Salus.Model.Entidades
         public virtual Usuario Usuario { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
+
+        public virtual string CpfCnpj { get; set; }
     }
 }

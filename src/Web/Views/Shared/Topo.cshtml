@@ -44,6 +44,8 @@
                     <span class="sr-only">Split button!</span>
                 </button>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                    <li role="menuitem"><a ng-click="abrirEdicaoPerfil()">Meu Perfil</a></li>
+                    <li class="divider"></li>
                     <li role="menuitem"><a ng-click="abrirUsuarios()" ng-show="usuarioTemPermissao(5)">Usuários</a></li>
                     <li role="menuitem"><a ng-click="abrirPerfis()" ng-show="usuarioTemPermissao(7)">Perfis</a></li>
                     <li role="menuitem"><a ng-click="abrirAreas()" ng-show="usuarioTemPermissao(6)">Áreas</a></li>
@@ -53,6 +55,8 @@
                     <li class="divider"></li>
                     <li role="menuitem"><a ng-click="abrirSegurancaDocumentos()" ng-show="usuarioTemPermissao(10)">Acesso aos documentos</a></li>
                     <li role="menuitem"><a ng-click="abrirSegurancaFuncionalidades()" ng-show="usuarioTemPermissao(9)">Segurança às Funcionalidades</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a ng-click="abrirConfiguracoesDaAplicacao()" ng-show="usuarioTemPermissao(11)">Configuracoes da Aplicacao</a></li>
                 </ul>
             </div>
 

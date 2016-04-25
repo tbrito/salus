@@ -50,5 +50,10 @@ namespace Salus.Model.Servicos
 
             return false;
         }
+
+        public int[] ObterConteudosAutorizados(int[] contentsWithTextId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

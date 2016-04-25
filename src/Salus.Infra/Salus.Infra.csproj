@@ -42,12 +42,60 @@
       <HintPath>..\..\lib\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\lib\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\lib\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\lib\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\lib\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Analyzers">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Analyzers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Core">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.FastVectorHighlighter">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.FastVectorHighlighter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Highlighter">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Highlighter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Memory">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Queries">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Queries.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Regex">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Regex.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SimpleFacetedSearch">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SimpleFacetedSearch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Snowball">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.Snowball.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\..\lib\Lucene.Net.Contrib.3.0.3\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
@@ -148,6 +196,7 @@
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
     <Compile Include="ConnectionManagement\BancoDeDados.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ForTests\IClearDatabase.cs" />
     <Compile Include="IoC\Dependencias.cs" />
     <Compile Include="IoC\IInversionControl.cs" />
@@ -160,6 +209,7 @@
     <Compile Include="Logs\LogConfiguration.cs" />
     <Compile Include="Mappings\AcessoDocumentoMap.cs" />
     <Compile Include="Mappings\AcessoFuncionalidadeMap.cs" />
+    <Compile Include="Mappings\ConfiguracaoMap.cs" />
     <Compile Include="Mappings\TrilhaMap.cs" />
     <Compile Include="Mappings\ChaveMap.cs" />
     <Compile Include="Mappings\IndexacaoMap.cs" />
@@ -170,6 +220,7 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
+    <Compile Include="Migrations\201604231602_CriaConfiguracao.cs" />
     <Compile Include="Migrations\201604190115_CriaAcessoDocumento.cs" />
     <Compile Include="Migrations\201604131918_CriaAcessoFuncionalidade.cs" />
     <Compile Include="Migrations\201604042156_AdicionarAvatarNoUsuario.cs" />
@@ -199,6 +250,7 @@
     <Compile Include="Repositorios\ChaveRepositorio.cs" />
     <Compile Include="Repositorios\AreaRepositorio.cs" />
     <Compile Include="Repositorios\IDatabaseBoot.cs" />
+    <Compile Include="Repositorios\ConfiguracaolRepositorio.cs" />
     <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
@@ -208,6 +260,16 @@
     <Compile Include="Repositorios\DocumentoRepositorio.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
+    <Compile Include="Search\Analyzers\BrazilianAnalyzerCustom.cs" />
+    <Compile Include="Search\Analyzers\BrazilianStemFilterCustom.cs" />
+    <Compile Include="Search\Analyzers\BrazilianStemmer.cs" />
+    <Compile Include="Search\Indexing\IndexQueueProcess.cs" />
+    <Compile Include="Search\Indexing\IndexQueueProcessBatch.cs" />
+    <Compile Include="Search\SearchEngine.cs" />
+    <Compile Include="Search\LuceneEngineBase.cs" />
+    <Compile Include="Search\LuceneIndexerSession.cs" />
+    <Compile Include="Search\IndexEngine.cs" />
+    <Compile Include="Search\TextQuery.cs" />
     <Compile Include="Storages\MongoStorage.cs" />
     <Compile Include="Transformations\OpenOfficeTransformer.cs" />
     <Compile Include="Util\EnumerationType.cs" />

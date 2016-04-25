@@ -14,6 +14,7 @@ namespace Salus.Model.Entidades
         public static readonly Funcionalidade ConfiguracaoTipoDocumento = new Funcionalidade(8, "Configuração de Tipos de Documentos");
         public static readonly Funcionalidade ConfiguracaoAcessoFuncionalidades = new Funcionalidade(9, "Acesso às Funcionalidades");
         public static readonly Funcionalidade ConfiguracaoAcessoDocumentos = new Funcionalidade(10, "Acesso à documentos");
+        public static readonly Funcionalidade ConfiguracoesDaAplicacao = new Funcionalidade(10, "Configurações da Aplicaçao");
 
         private Funcionalidade(int value, string displayName) : base(value, displayName)
         {

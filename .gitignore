@@ -19,3 +19,5 @@
 /src/TestResults
 /src/Web/Logs
 /src/Web/storage-temp
+/src/SearchIndexingService/obj
+/src/SearchIndexingService/bin

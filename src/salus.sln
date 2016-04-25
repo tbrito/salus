@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salus.IntegrationTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salus.UnitTests", "Salus.UnitTests\Salus.UnitTests.csproj", "{013F6D66-5690-49A8-AF02-F3AD30092930}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchIndexingService", "SearchIndexingService\SearchIndexingService.csproj", "{AB34DDCB-F812-480E-9072-8BE6858DFAB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{013F6D66-5690-49A8-AF02-F3AD30092930}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{013F6D66-5690-49A8-AF02-F3AD30092930}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{013F6D66-5690-49A8-AF02-F3AD30092930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
