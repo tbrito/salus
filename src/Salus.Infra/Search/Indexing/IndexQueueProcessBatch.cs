@@ -6,7 +6,6 @@
     using Model.Search;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public class IndexQueueProcessBatch
     {
@@ -38,9 +37,9 @@
         {
             try
             {
-                var indexacao = this.indexacaoRepositorio.ObterPorDocumento(content);
-                this.indexContentSearchEngineService.Index(content, indexacao);
+                this.indexContentSearchEngineService.Index(content, content.Indexacao);
                 this.documentoRepositorio.AlterStatus(content.Id, SearchStatus.Indexed);
+                Log.App.Info("Documento indexado com sucesso #" + content.Id);
 
                 return SearchStatus.Indexed;
             }

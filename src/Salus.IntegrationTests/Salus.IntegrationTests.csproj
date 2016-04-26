@@ -164,6 +164,7 @@
     <Compile Include="Boot\ClearDatabase.cs" />
     <Compile Include="Boot\DatabaseBoot.cs" />
     <Compile Include="Boot\RegistrarDependencias.cs" />
+    <Compile Include="DataAccess\UnidadeDeTrabalhoTest.cs" />
     <Compile Include="Extensions\TestExtensions.cs" />
     <Compile Include="Repositorios\AcessoDocumentoRepositorioTest.cs" />
     <Compile Include="Repositorios\AcessoFuncionalidadeRepositorioTest.cs" />

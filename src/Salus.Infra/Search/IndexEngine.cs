@@ -8,7 +8,8 @@
     using System.Collections.Generic;
     using Salus.Infra.Logs;
     using Model.Search;
-
+    using System.Linq;
+    using Model;
     public class IndexEngine : LuceneEngineBase, IIndexEngine
     {
         private readonly LuceneIndexerSession luceneSession;
@@ -70,9 +71,26 @@
 
         private Field GetCpfCnpj(Documento content)
         {
+            string valorCpf = content.CpfCnpj;
+
+            if (string.IsNullOrEmpty(valorCpf))
+            {
+                var cpf = content.Indexacao.FirstOrDefault(x => x.Chave.TipoDado == TipoDado.CpfCnpj);
+
+                if (cpf == null)
+                {
+                    valorCpf = "999999999";
+                }
+                else
+                {
+                    valorCpf = cpf.Valor;
+                }
+
+            }
+
             return new Field(
                 "cpfCnpj",
-                content.CpfCnpj,
+                valorCpf,
                 Field.Store.YES,
                 Field.Index.ANALYZED);
         }

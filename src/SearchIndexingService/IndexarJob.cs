@@ -4,6 +4,7 @@ using Salus.Model.Search;
 
 namespace SearchIndexingService
 {
+    [DisallowConcurrentExecution]
     public class IndexarJob : IJob
     {
         private IIndexQueueProcess indexQueueProcess;

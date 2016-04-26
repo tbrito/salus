@@ -1,5 +1,6 @@
 ﻿namespace Salus.Infra.Search.Indexing
 {
+    using DataAccess;
     using Logs;
     using Model.Entidades;
     using Model.Repositorios;
@@ -17,16 +18,19 @@
         private readonly IConfiguracoesDaAplicacao configuracoesDaAplicacao;
         private readonly LuceneIndexerSession indexerSession;
         private readonly IndexQueueProcessBatch indexQueueProcessBatch;
+        private readonly IUnidadeDeTrabalho unidadeDeTrabalho;
         private int contentsIndexed;
 
         public IndexQueueProcess(
             IDocumentoRepositorio documentoRepositorio,
             IConfiguracoesDaAplicacao configuracoesDaAplicacao,
+            IUnidadeDeTrabalho unidadeDeTrabalho,
             LuceneIndexerSession indexerSession,
             IndexQueueProcessBatch indexQueueProcessBatch)
         {
             this.documentoRepositorio = documentoRepositorio;
             this.configuracoesDaAplicacao = configuracoesDaAplicacao;
+            this.unidadeDeTrabalho = unidadeDeTrabalho;
             this.indexerSession = indexerSession;
             this.indexQueueProcessBatch = indexQueueProcessBatch;
         }
@@ -37,7 +41,10 @@
 
             do
             {
-                contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
+                using (this.unidadeDeTrabalho.Iniciar())
+                {
+                    contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
+                }
 
                 if (contents.Count == 0)
                 {
@@ -55,17 +62,16 @@
                 {
                     Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = Aplicacao.Nucleos }, batch =>
                     {
-                        using (var transaction = NHibernateSession.Current.Transaction)
+                        using (var transacao = this.unidadeDeTrabalho.Iniciar())
                         {
                             try
                             {
                                 this.Increment(this.indexQueueProcessBatch.Execute(batch));
-
-                                transaction.Commit();
+                                transacao.Commit();
                             }
                             catch (System.Exception exception)
                             {
-                                transaction.Rollback();
+                                transacao.RollBack();
                                 Log.App.Error("Erro ao tentar indexar documentos. ", exception);
                             }
                         }

@@ -34,8 +34,11 @@ namespace Salus.Infra.Logs
             Root.Repository.ResetConfiguration();
             
             var fileAppender = BuildFileAppender();
+            var consoleAppender = BuildConsoleAppender();
+
             var applicationLogger = GetApplicationLogger();
             applicationLogger.AddAppender(fileAppender);
+            applicationLogger.AddAppender(consoleAppender);
 
             Root.Repository.Configured = true;
             BasicConfigurator.Configure(Root.Repository);
@@ -59,7 +62,21 @@ namespace Salus.Infra.Logs
 
             return fileAppender;
         }
-        
+
+        private static ConsoleAppender BuildConsoleAppender()
+        {
+            var consoleAppender = new ConsoleAppender
+            {
+                Name = "ConsoleAppender",
+                Layout = new PatternLayout("[%date][%-5thread][%-5level][%message] %newline"),
+                Threshold = Level.Debug
+            };
+
+            consoleAppender.ActivateOptions();
+
+            return consoleAppender;
+        }
+
         private static Logger GetApplicationLogger()
         {
             return (Logger)Root.Repository.GetLogger("App");
