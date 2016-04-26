@@ -5,10 +5,10 @@
             <a class="navbar-brand visible-xs" href="#">S</a>
 
             <form class="navbar-form pull-left" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                <div class="input-group" ng-controller="pesquisaController">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="parametro.Texto">
+                    <div class="input-group-btn" >
+                        <button type="submit" class="btn btn-default" ng-click="pesquisar(parametro)"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </div>
             </form>

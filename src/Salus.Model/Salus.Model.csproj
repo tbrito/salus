@@ -92,8 +92,8 @@
     <Compile Include="Search\IIndexQueueProcess.cs" />
     <Compile Include="Search\ISearchEngine.cs" />
     <Compile Include="Search\Paging.cs" />
-    <Compile Include="Search\SearchContentResult.cs" />
-    <Compile Include="Search\SearchResults.cs" />
+    <Compile Include="Search\ResultadoPesquisaDocumento.cs" />
+    <Compile Include="Search\ResultadosPesquisa.cs" />
     <Compile Include="Search\SearchService.cs" />
     <Compile Include="Servicos\AutorizaVisualizacaoDocumento.cs" />
     <Compile Include="Servicos\ConfiguracoesDaAplicacao.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="Servicos\WorkflowServico.cs" />
     <Compile Include="UI\AcessoDocumentoViewModel.cs" />
     <Compile Include="UI\AcessoViewModel.cs" />
+    <Compile Include="UI\PesquisaViewModel.cs" />
     <Compile Include="UI\TiposPermitidosViewModel.cs" />
     <Compile Include="UI\FuncionalidadeViewModel.cs" />
     <Compile Include="UI\WorkflowViewModel.cs" />

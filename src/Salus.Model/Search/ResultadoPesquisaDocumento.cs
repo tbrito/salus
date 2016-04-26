@@ -3,20 +3,20 @@
     using Entidades;
     using System.Collections.Generic;
 
-    public class SearchContentResult
+    public class ResultadoPesquisaDocumento
     {
         private readonly IList<Documento> documentos;
 
-        public SearchContentResult(
-            SearchResults searchResults, 
+        public ResultadoPesquisaDocumento(
+            ResultadosPesquisa searchResults, 
             IList<Documento> documentos,
             IList<int> allContentsIdsFound,
             ISearchEngine searchEngine)
         {
             this.documentos = documentos;
             this.SearchEngine = searchEngine;
-            this.AllContentsIdsFound = allContentsIdsFound;
-            this.SearchResults = searchResults;
+            this.TodosOsDocumentosIdsEncontrados = allContentsIdsFound;
+            this.ResultadoPesquisa = searchResults;
         }
 
         public ISearchEngine SearchEngine
@@ -25,18 +25,18 @@
             private set;
         }
 
-        public SearchResults SearchResults
+        public ResultadosPesquisa ResultadoPesquisa
         {
             get;
             private set;
         }
 
-        public IList<Documento> Documento
+        public IList<Documento> Documentos
         {
             get { return this.documentos; }
         }
 
-        public IList<int> AllContentsIdsFound
+        public IList<int> TodosOsDocumentosIdsEncontrados
         {
             get;
             private set;

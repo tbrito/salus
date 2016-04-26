@@ -1,14 +1,9 @@
-﻿using FluentNHibernate.Cfg;
-using Quartz;
+﻿using Quartz;
 using Quartz.Impl;
 using Salus.Infra;
-using Salus.Infra.ConnectionInfra;
 using Salus.Infra.Migrations;
-using Salus.Infra.Util;
-using SharpArch.NHibernate;
 using System;
 using System.Configuration;
-using System.IO;
 using System.ServiceProcess;
 
 namespace SearchIndexingService

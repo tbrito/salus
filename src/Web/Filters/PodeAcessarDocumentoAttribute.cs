@@ -25,7 +25,7 @@ namespace Web.Filters
             var acessos = this.acessoDocumentoRepositorio.ObterDoUsuario(this.sessaoDoUsuario.UsuarioAtual);
             var documento = this.documentoRepositorio.ObterPorId(Convert.ToInt32(documentoId));
 
-            var podeAcessar = this.autorizaVisualizacaoDocumento.Executar(acessos, documento);
+            var podeAcessar = this.autorizaVisualizacaoDocumento.PossuiAcesso(acessos, documento);
 
             if (podeAcessar == false)
             {

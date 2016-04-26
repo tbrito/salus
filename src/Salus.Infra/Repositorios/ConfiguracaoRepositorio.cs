@@ -1,6 +1,5 @@
 ﻿namespace Salus.Infra.Repositorios
 {
-    using System;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
 

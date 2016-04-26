@@ -27,7 +27,13 @@ namespace Salus.UnitTests.Servicos
         public void ProprietarioDoDocumentoTemAcessoAoDocumento()
         {
             var usuarioRepositorio = MockRepository.GenerateStub<ISessaoDoUsuario>();
-            var autorizacao = new AutorizaVisualizacaoDocumento(usuarioRepositorio);
+            var acessoDocumentoRepositorio = MockRepository.GenerateStub<IAcessoDocumentoRepositorio>();
+            var documentoRepositorio = MockRepository.GenerateStub<IDocumentoRepositorio>();
+
+            var autorizacao = new AutorizaVisualizacaoDocumento(
+                usuarioRepositorio,
+                acessoDocumentoRepositorio,
+                documentoRepositorio);
 
             usuarioRepositorio.Stub(x => x.UsuarioAtual).Return(tiago);
 
@@ -38,7 +44,7 @@ namespace Salus.UnitTests.Servicos
                 Usuario = tiago
             };
 
-            var podeAcessar = autorizacao.Executar(acessos, documento);
+            var podeAcessar = autorizacao.PossuiAcesso(acessos, documento);
 
             Assert.AreEqual(podeAcessar, true);
         }

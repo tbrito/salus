@@ -1,0 +1,11 @@
+﻿@using Salus.Model.UI
+@model PesquisaViewModel
+
+<div class="modal-content" ng-controller="pesquisaController" ng-init="procurar({ Texto: @this.Model.Texto})">
+
+    <div ng-repeat="documento in resultadoPesquisa.Documentos">
+        <div>
+            {{documento.Assunto}}
+        </div>
+    </div>
+</div>

@@ -21,6 +21,7 @@ namespace Salus.Infra.Repositorios
         {
             return this.Sessao.QueryOver<Documento>()
                 .Fetch(x => x.TipoDocumento).Eager
+                .Fetch(x => x.TipoDocumento.Parent).Eager
                 .Fetch(x => x.Usuario).Eager
                 .Fetch(x => x.Indexacao).Eager
                 .WhereRestrictionOn(x => x.Id).IsIn(currentPageIds)

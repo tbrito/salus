@@ -22,7 +22,7 @@
 #if DEBUG
                 return 1;
 #else
-                return 1;
+                return Environment.ProcessorCount;
 #endif
             }
         }

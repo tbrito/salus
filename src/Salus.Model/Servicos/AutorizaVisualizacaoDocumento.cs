@@ -7,14 +7,21 @@ namespace Salus.Model.Servicos
 {
     public class AutorizaVisualizacaoDocumento
     {
+        private IAcessoDocumentoRepositorio acessoDocumentoRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
+        private IDocumentoRepositorio documentoRepositorio;
 
-        public AutorizaVisualizacaoDocumento(ISessaoDoUsuario sessaoDoUsuario)
+        public AutorizaVisualizacaoDocumento(
+            ISessaoDoUsuario sessaoDoUsuario,
+            IAcessoDocumentoRepositorio acessoDocumentoRepositorio,
+            IDocumentoRepositorio documentoRepositorio)
         {
             this.sessaoDoUsuario = sessaoDoUsuario;
+            this.acessoDocumentoRepositorio = acessoDocumentoRepositorio;
+            this.documentoRepositorio = documentoRepositorio;
         }
 
-        public bool Executar(IList<AcessoDocumento> acessos, Documento documento)
+        public bool PossuiAcesso(IList<AcessoDocumento> acessos, Documento documento)
         {
             ////pode acessar o documento se foi o próprio usuario quem o criou
             if (documento.Usuario == this.sessaoDoUsuario.UsuarioAtual)
@@ -53,7 +60,21 @@ namespace Salus.Model.Servicos
 
         public int[] ObterConteudosAutorizados(int[] contentsWithTextId)
         {
-            throw new NotImplementedException();
+            var acessos = this.acessoDocumentoRepositorio.ObterDoUsuario(this.sessaoDoUsuario.UsuarioAtual);
+
+            var documentosIds = new List<int>();
+
+            foreach (var documentoId in contentsWithTextId)
+            {
+                var documento = this.documentoRepositorio.ObterPorId(documentoId);
+
+                if (this.PossuiAcesso(acessos, documento))
+                {
+                    documentosIds.Add(documentoId);
+                } 
+            }
+
+            return documentosIds.ToArray();
         }
     }
 }

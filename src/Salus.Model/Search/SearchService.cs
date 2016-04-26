@@ -26,7 +26,7 @@
             this.documentoRepositorio = contentRepository;
         }
 
-        public SearchContentResult SearchContent(
+        public ResultadoPesquisaDocumento SearchContent(
             string text, 
             int page, 
             string startDate = null, 
@@ -46,18 +46,18 @@
                 .ObterConteudosAutorizados(contentsWithTextId);
             
             //// obtem apenas os contents do paginamento atual
-            var result = new SearchResults(
+            var result = new ResultadosPesquisa(
                 documentosIds,
                 this.configuracoesDaAplicacao.MaximoResultadoPorPagina, 
                 page,
                 documentosIds.Length);
 
-            var currentPageIds = result.GetContentsOfPage(page).ToArray();
+            var currentPageIds = result.ObterDocumentosDaPagina(page).ToArray();
 
             var fetchedContents = this.documentoRepositorio
                 .ObterPorIdsComTipoDocumentoEIndexacoes(currentPageIds);
             
-            return new SearchContentResult(result, fetchedContents, documentosIds, this.searchEngine);
+            return new ResultadoPesquisaDocumento(result, fetchedContents, documentosIds, this.searchEngine);
         }
     }
 }

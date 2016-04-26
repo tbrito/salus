@@ -85,9 +85,13 @@ function config($routeProvider, $locationProvider) {
             controller: 'acessoDocumentoController',
             templateUrl: 'AcessoDocumentoConfig/Index'
         })
+        .when('/PesquisaView/Resultado/:termo', {
+            controller: 'pesquisaController',
+            templateUrl: function (params) { return 'Pesquisa/Resultado/' + params.termo; }
+        })
         .when('/View/:documentoId', {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }
         })
-        .otherwise({ redirectTo: '/Login' });
+        .otherwise({ redirectTo: '/Home' });
 }
