@@ -10,11 +10,13 @@
     {
         private ISessaoDoUsuario sessaoDoUsuario;
         private IIndexacaoRepositorio indexacaoRepositorio;
+        private IDocumentoRepositorio documentoRepositorio;
 
         public IndexacaoController()
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.indexacaoRepositorio = InversionControl.Current.Resolve<IIndexacaoRepositorio>();
+            this.documentoRepositorio = InversionControl.Current.Resolve<IDocumentoRepositorio>();
         }
         
         // GET api/<controller>/5
@@ -26,15 +28,20 @@
         [HttpPost]
         public void Salvar([FromBody]IEnumerable<IndexacaoViewModel> indexacaoModel)
         {
+            int documentoId = 0;
+
             foreach (var index in indexacaoModel)
             {
                 var indexacao = new Indexacao();
                 indexacao.Chave = new Chave { Id = index.CampoId };
                 indexacao.Documento = new Documento { Id = index.DocumentoId };
                 indexacao.Valor = index.Valor;
+                documentoId = index.DocumentoId;
 
                 this.indexacaoRepositorio.Salvar(indexacao);
             }
+            
+            this.documentoRepositorio.AlterStatus(documentoId, SearchStatus.ToIndex);
         }
 
         // PUT api/<controller>/5

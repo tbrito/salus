@@ -44,7 +44,6 @@ namespace Web.Modules
             }
             finally
             {
-                transaction.Dispose();
             }
         }
 
@@ -57,8 +56,6 @@ namespace Web.Modules
 
             NHibernateInitializer.Instance().InitializeNHibernateOnce(() =>
             {
-                NHibernateSession.Reset();
-
                 NHibernateSession.Init(
                     this.webSessionStorage,
                     mappings,

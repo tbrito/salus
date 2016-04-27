@@ -1,68 +1,86 @@
-﻿angular.module('salus-app').controller('menuControler', function ($scope, $log, $location, autorizacaoApi) {
-  $scope.items = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
+﻿angular.module('salus-app').controller('menuControler', function ($scope, $log, $location, autorizacaoApi, usuarioApi) {
+    $scope.items = [
+      'The first choice!',
+      'And another choice for you.',
+      'but wait! A third!'
+    ];
 
-  $scope.status = {
-    isopen: false
-  };
+    $scope.status = {
+        isopen: false
+    };
 
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
+    $scope.toggled = function (open) {
+        $log.log('Dropdown is now: ', open);
+    };
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
+    $scope.toggleDropdown = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
 
-  $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-  
-  $scope.usuario = {};
+    $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 
-  $scope.start = function () {
-  }
+    $scope.usuario = {};
 
-  $scope.abrirUpload = function () {
-    $location.path('/Upload');
-  };
+    $scope.start = function () {
+    }
 
-  $scope.abrirHome = function () {
-      $location.path('/Home');
-  };
+    $scope.abrirUpload = function () {
+        $location.path('/Upload');
+    };
 
-  $scope.abrirTiposDeDocumento = function () {
-      $location.path('/TipoDocumentoConfig');
-  };
+    $scope.abrirHome = function () {
+        $location.path('/Home');
+    };
 
-   $scope.abrirGruposDeDocumento = function () {
-      $location.path('/GrupoDocumentoConfig');
-  };
+    $scope.abrirTiposDeDocumento = function () {
+        $location.path('/TipoDocumentoConfig');
+    };
 
-   $scope.abrirAreas = function () {
-       $location.path('/AreaConfig');
-   };
+    $scope.abrirGruposDeDocumento = function () {
+        $location.path('/GrupoDocumentoConfig');
+    };
 
-   $scope.abrirUsuarios = function () {
-       $location.path('/UsuarioConfig');
-   };
+    $scope.abrirAreas = function () {
+        $location.path('/AreaConfig');
+    };
 
-   $scope.abrirPerfis = function () {
-       $location.path('/PerfilConfig');
-   };
+    $scope.abrirUsuarios = function () {
+        $location.path('/UsuarioConfig');
+    };
 
-   $scope.abrirSegurancaDocumentos = function () {
-       $location.path('/AcessoDocumento');
-   };
+    $scope.abrirPerfis = function () {
+        $location.path('/PerfilConfig');
+    };
 
-   $scope.abrirSegurancaFuncionalidades = function () {
-       $location.path('/AcessoFuncionalidade');
-   };
+    $scope.abrirSegurancaDocumentos = function () {
+        $location.path('/AcessoDocumento');
+    };
 
-    $scope.usuarioTemPermissao = function(funcionalidadeId){
+    $scope.abrirSegurancaFuncionalidades = function () {
+        $location.path('/AcessoFuncionalidade');
+    };
+
+    $scope.abrirConfiguracoesDaAplicacao = function () {
+        $location.path('/Configuracoes');
+    };
+
+    $scope.abrirEdicaoPerfil = function () {
+        $location.path('/MeuPerfil/Editar');
+    };
+
+    $scope.sair = function () {
+        usuarioApi.logout()
+            .success(function (data) {
+                $location.path('/Login');
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao tentar sair do sistema" + data;
+            });
+    };
+
+    $scope.usuarioTemPermissao = function (funcionalidadeId) {
         $scope.usuario = autorizacaoApi.obter("usuario_autenticado");
 
         if ($scope.usuario == undefined) {
@@ -70,7 +88,7 @@
         }
 
         var ok = $scope.usuario.Funcionalidades.filter(function (dado) {
-                return dado.Id == funcionalidadeId;
+            return dado.Id == funcionalidadeId;
         });
 
         return ok.length > 0;

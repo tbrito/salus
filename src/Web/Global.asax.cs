@@ -21,14 +21,14 @@
 
         protected void Application_Start()
         {
+            Aplicacao.Boot(Server.MapPath("bin"));
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Aplicacao.Boot(Server.MapPath("bin"));
-
+            
             Log.Initialize();
             Log.App.Info("Aplicacao Iniciada");
 

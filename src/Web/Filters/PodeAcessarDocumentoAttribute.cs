@@ -18,7 +18,10 @@ namespace Web.Filters
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.acessoDocumentoRepositorio = InversionControl.Current.Resolve<IAcessoDocumentoRepositorio>();
+            this.documentoRepositorio = InversionControl.Current.Resolve<IDocumentoRepositorio>();
+            this.autorizaVisualizacaoDocumento = InversionControl.Current.Resolve<AutorizaVisualizacaoDocumento>();
         }
+
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             var documentoId = filterContext.HttpContext.Request.Url.Segments[2];

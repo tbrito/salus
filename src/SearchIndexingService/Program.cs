@@ -1,6 +1,7 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using Salus.Infra;
+using Salus.Infra.Logs;
 using Salus.Infra.Migrations;
 using System;
 using System.Configuration;
@@ -16,6 +17,8 @@ namespace SearchIndexingService
         public static void Main(string[] args)
         {
             Aplicacao.Boot();
+            Log.Initialize();
+            Log.App.Info("Aplicacao Iniciada");
 
             InicializaBancoDeDados();
 

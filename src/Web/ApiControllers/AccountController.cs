@@ -1,11 +1,16 @@
 ﻿namespace Web.ApiControllers
 {
+    using Salus.Infra;
     using Salus.Infra.IoC;
+    using Salus.Infra.Logs;
     using Salus.Infra.Repositorios;
+    using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using Salus.Model.Servicos;
     using Salus.Model.UI;
+    using System;
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Http;
     using System.Web.Security;
 
@@ -14,12 +19,14 @@
         private UsuarioRepositorio usuarioRepositorio;
         private IAcessoFuncionalidadeRepositorio acessoFuncionalidadeRepositorio;
         private HashString hashString;
+        private StorageServico storageServico;
 
         public AccountController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<UsuarioRepositorio>();
             this.acessoFuncionalidadeRepositorio = InversionControl.Current.Resolve<IAcessoFuncionalidadeRepositorio>();
             this.hashString = InversionControl.Current.Resolve<HashString>();
+            this.storageServico = InversionControl.Current.Resolve<StorageServico>();
         }
 
         // GET api/<controller>
@@ -34,6 +41,13 @@
             return "value";
         }
 
+        [HttpGet]
+        public IHttpActionResult Logout(int id)
+        {
+            FormsAuthentication.SignOut();
+            return Ok(new { Mensagem = "Ok" });
+        }
+
         // POST api/<controller>
         public LoginViewModel Post([FromBody]LoginViewModel value)
         {
@@ -42,21 +56,65 @@
 
             var login = new LoginViewModel();
             login.Autenticado = false;
-
+            
             if (usuario != null)
             {
-                var funcionalidades = this.FuncionalidadesPermitidas(usuario);
-
-                login = new LoginViewModel
-                {
-                    UserName = usuario.Nome,
-                    Senha = usuario.Senha,
-                    Autenticado = true,
-                    Funcionalidades = funcionalidades
-                };
-
-                FormsAuthentication.SetAuthCookie(usuario.Nome, true);
+                login = this.ObterUsuarioModel(usuario);
+                this.CriarTicketDeAutenticacao(usuario, login);
             }
+
+            return login;
+        }
+
+        private void CriarTicketDeAutenticacao(
+            Usuario usuario, 
+            LoginViewModel login)
+        {
+            FormsAuthentication.SetAuthCookie(usuario.Nome, true);
+
+            FormsAuthentication.Initialize();
+
+            var ticket = new FormsAuthenticationTicket(
+                1,
+                login.UserName,
+                DateTime.Now,
+                DateTime.Now.AddMinutes(30),
+                false,
+                login.UserName,
+                FormsAuthentication.FormsCookiePath);
+
+            HttpContext.Current.Response.Cookies.Add(
+                new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket)));
+        }
+
+        private LoginViewModel ObterUsuarioModel(Usuario usuario)
+        {
+            LoginViewModel login;
+
+            var funcionalidades = this.FuncionalidadesPermitidas(usuario);
+            var relativo = string.Empty;
+
+            try
+            {
+                var imagem = this.storageServico.Obter(usuario.Id.ToString());
+
+                relativo = imagem
+                    .Replace(Aplicacao.Caminho, string.Empty)
+                    .Replace(@"\", "/");
+            }
+            catch (Exception)
+            {
+                Log.App.Info("Usuario Sem Avatar");
+            }
+
+            login = new LoginViewModel
+            {
+                UserName = usuario.Nome,
+                Senha = usuario.Senha,
+                Autenticado = true,
+                Funcionalidades = funcionalidades,
+                Avatar = relativo
+            };
 
             return login;
         }

@@ -1,4 +1,4 @@
-angular.module("salus-app").controller('perfilConfigController', function ($scope, $location, perfilApi) {
+angular.module("salus-app").controller('perfilConfigController', function ($scope, $location, perfilApi, Upload, $timeout) {
 
     $scope.perfis = [];
     
@@ -43,6 +43,39 @@ angular.module("salus-app").controller('perfilConfigController', function ($scop
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao salvar o perfil " + data;
             });
+    }
+
+    $scope.salvarEdicaoPerfil = function (file, perfil) {
+
+        perfilApi.salvarSenha(perfil)
+            .success(function (data) {
+                $scope.mensagem = "Perfil Atualizado com Sucesso";
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao salvar o perfil " + data;
+            });
+
+        if (file == undefined) {
+            return;
+        }
+
+        file.name = file;
+
+        file.upload = Upload.upload({
+            url: 'api/Arquivos/AddFoto',
+            data: { file: file },
+        });
+
+        file.upload.then(function (response) {
+            $timeout(function () {
+                file.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0)
+                $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
     }
 
     $scope.excluir = function (grupodocumentoid) {

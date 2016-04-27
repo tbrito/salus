@@ -152,6 +152,51 @@
             }
         }
 
+        public async Task<IHttpActionResult> AddFoto()
+        {
+            if (!Request.Content.IsMimeMultipartContent("form-data"))
+            {
+                return BadRequest("Tipo não suportado");
+            }
+            try
+            {
+                var pastaTrabalho = Path.Combine(
+                    ContextoWeb.Caminho,
+                    "Uploads",
+                    this.sessaoDoUsuario.UsuarioAtual.Id.ToString());
+
+                var provider = new CustomMultipartFormDataStreamProvider(pastaTrabalho);
+
+                if (Directory.Exists(pastaTrabalho) == false)
+                {
+                    Directory.CreateDirectory(pastaTrabalho);
+                }
+
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                var arquivos =
+                  provider.FileData
+                    .Select(file => new FileInfo(file.LocalFileName))
+                    .Select(fileInfo => new FileViewModel
+                    {
+                        Name = fileInfo.Name,
+                        Created = fileInfo.CreationTime,
+                        Modified = fileInfo.LastWriteTime,
+                        Size = fileInfo.Length / 1024,
+                        Path = fileInfo.FullName
+                    }).ToList();
+                
+                this.salvarConteudoServico.SalvarFoto(arquivos);
+
+                return Ok(new { Message = "Documentos enviados com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.GetBaseException().Message);
+            }
+        }
+
+
         /// <summary>
         ///   Check if file exists on disk
         /// </summary>

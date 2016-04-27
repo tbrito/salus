@@ -1,13 +1,12 @@
 ﻿namespace Web.Controllers
 {
     using System.Web.Mvc;
-    
-    public class LoginController : Controller
+
+    public class NaoAutorizadoController : Controller
     {
-        // GET: Login
         public ActionResult Index()
         {
-            return PartialView();
+            return View();
         }
     }
 }

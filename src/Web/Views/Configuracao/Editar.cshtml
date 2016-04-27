@@ -1,0 +1,24 @@
+﻿@using Salus.Model.Entidades
+@model Configuracao
+
+<div class="modal-content" ng-controller="configuracaoController" ng-init="carregarParaEdicao(@this.Model.Id)">
+    <h2>{{configuracao.Chave}}</h2>
+    
+    <form name="configuracaoEditForm">
+        <input type="hidden" ng-model="configuracao.Id" />
+
+        <div class="control-group">
+            <label>Chave</label>
+            <input type="text" class="form-control" ng-model="configuracao.Valor" />
+
+            <label>Valor</label>
+            <input type="text" class="form-control" ng-model="configuracao.Chave" />
+
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(configuracao)">Salvar</button>
+            <button class="btn btn-primary" ng-click="inicio()">Todas as configurações</button>
+        </div>
+    </form>
+</div>

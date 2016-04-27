@@ -41,6 +41,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'perfilConfigController',
             templateUrl: function (params) { return 'PerfilConfig/Editar/' + params.perfilId; }
         })
+        .when('/MeuPerfil/Editar', {
+            controller: 'perfilConfigController',
+            templateUrl: 'EditarPerfil/Index'
+        })
         .when('/AreaConfig', {
             controller: 'areaConfigController',
             templateUrl: 'AreaConfig/Index'
@@ -85,6 +89,10 @@ function config($routeProvider, $locationProvider) {
             controller: 'acessoDocumentoController',
             templateUrl: 'AcessoDocumentoConfig/Index'
         })
+        .when('/Configuracoes', {
+            controller: 'viewController',
+            templateUrl: 'Configuracao/Index'
+        })
         .when('/PesquisaView/Resultado/:termo', {
             controller: 'pesquisaController',
             templateUrl: function (params) { return 'Pesquisa/Resultado/' + params.termo; }
@@ -93,5 +101,5 @@ function config($routeProvider, $locationProvider) {
             controller: 'viewController',
             templateUrl: function (params) { return 'View/' + params.documentoId; }
         })
-        .otherwise({ redirectTo: '/Home' });
+        .otherwise({ redirectTo: '/Login' });
 }

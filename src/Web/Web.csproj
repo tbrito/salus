@@ -227,6 +227,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\ConfiguracaoAppController.cs" />
     <Compile Include="ApiControllers\PesquisaEngineController.cs" />
     <Compile Include="ApiControllers\AcessoDocumentoController.cs" />
     <Compile Include="ApiControllers\AcessoFuncionalidadeController.cs" />
@@ -237,6 +238,9 @@
     <Compile Include="ApiControllers\AreaController.cs" />
     <Compile Include="Controllers\AcessoDocumentoConfigController.cs" />
     <Compile Include="Controllers\AcessoFuncionalidadeConfigController.cs" />
+    <Compile Include="Controllers\EditarPerfilController.cs" />
+    <Compile Include="Controllers\ConfiguracaoController.cs" />
+    <Compile Include="Controllers\NaoAutorizadoController.cs" />
     <Compile Include="Controllers\PesquisaController.cs" />
     <Compile Include="Controllers\PerfilConfigController.cs" />
     <Compile Include="Controllers\UsuarioConfigController.cs" />
@@ -298,6 +302,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
+    <Content Include="Scripts\controllers\configuracaoController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
     <Content Include="Scripts\controllers\usuarioConfigController.js" />
@@ -343,6 +348,7 @@
     <Content Include="Scripts\services\funcionalidadeApiService.js" />
     <Content Include="Scripts\services\chavesApiService.js" />
     <Content Include="Scripts\services\acessoFuncionalidadeApiService.js" />
+    <Content Include="Scripts\services\configuracaoApiService.js" />
     <Content Include="Scripts\services\pesquisaApiService.js" />
     <Content Include="Scripts\services\perfilApiService.js" />
     <Content Include="Scripts\services\grupoDocumentoApiService.js" />
@@ -405,6 +411,10 @@
     <Content Include="Views\AcessoFuncionalidadeConfig\Index.cshtml" />
     <Content Include="Views\AcessoDocumentoConfig\Index.cshtml" />
     <Content Include="Views\Pesquisa\Resultado.cshtml" />
+    <Content Include="Views\EditarPerfil\Index.cshtml" />
+    <Content Include="Views\Configuracao\Editar.cshtml" />
+    <Content Include="Views\Configuracao\Index.cshtml" />
+    <Content Include="Views\NaoAutorizado\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

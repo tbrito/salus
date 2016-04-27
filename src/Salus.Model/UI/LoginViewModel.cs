@@ -11,5 +11,7 @@ namespace Salus.Model.UI
         public bool Autenticado { get; set; }
 
         public IList<FuncionalidadeViewModel> Funcionalidades { get; set; }
+
+        public string Avatar { get; set; }
     }
 }

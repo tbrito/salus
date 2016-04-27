@@ -1,0 +1,30 @@
+﻿<div class="modal-content" ng-controller="perfilConfigController" ng-init="carregarFormulario()">
+    <div>Editar Perfil</div>
+
+    {{mensagem}}
+
+    <div class="control-group">
+        <input type="password" class="form-control" name="assunto" ng-model="perfil.SenhaAtual" size="150">
+        <input type="password" class="form-control" name="assunto" ng-model="perfil.NovaSenha" size="150">
+        <input type="password" class="form-control" name="assunto" ng-model="perfil.ConfirmarNovaSenha" size="150">
+
+        <form name="myForm" class="form-horizontal">
+            <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
+                   accept="*/*" ngf-max-size="100MB" ngf-model-invalid="errorFiles">
+
+            <i ng-show="myForm.file.$error.maxSize">
+                Arquivo muito grande
+                {{errorFiles[0].size / 1000000|number:1}}MB: max 100M
+            </i>
+
+            <span ng-show="myForm.file.$valid">
+                {{picFile.name}}
+            </span>
+
+            <div class="control-group">
+                <button class="btn btn-primary" name="novoTipo" ng-click="salvarEdicaoPerfil(picFile, perfil)">Salvar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
