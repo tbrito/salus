@@ -2,6 +2,7 @@
 {
     using ForTests;
     using IoC;
+    using Logs;
     using Repositorios;
     using System;
 
@@ -29,10 +30,7 @@
 
         public static void Boot(string caminhoAssemblies = "")
         {
-            ////ControllerBuilder.Current
-            ////   .SetControllerFactory(new StructureMapControllerFactory());
- 
-            Dependencias.Registrar(caminhoAssemblies);
+             Dependencias.Registrar(caminhoAssemblies);
             
             var bootsToDatabase = InversionControl.Current.GetAllInstances<IDatabaseBoot>();
             var clearsToDatabase = InversionControl.Current.GetAllInstances<IClearDatabase>();
@@ -46,6 +44,9 @@
             {
                 clearDatabase.Execute();
             }
+
+            Log.Initialize();
+            Log.App.Info("Aplicacao Iniciada");
         }
     }
 }

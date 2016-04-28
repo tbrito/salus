@@ -12,6 +12,10 @@ namespace Salus.Infra.Migrations
                .WithColumn("papel_id").AsInt32()
                .WithColumn("autor_id").AsInt32()
                .WithColumn("funcionalidade_id").AsInt32();
+
+            Create.Index("idx_accfunc_1").OnTable("acessofuncionalidade").OnColumn("papel_id");
+            Create.Index("idx_accfunc_2").OnTable("acessofuncionalidade").OnColumn("autor_id");
+            Create.Index("idx_accfunc_3").OnTable("acessofuncionalidade").OnColumn("funcionalidade_id");
         }
 
         public override void Down()

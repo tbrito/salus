@@ -87,6 +87,11 @@
             return false;
         }
 
+        if ($scope.usuario.Nome = 'admin')
+        {
+            return true;
+        }
+
         var ok = $scope.usuario.Funcionalidades.filter(function (dado) {
             return dado.Id == funcionalidadeId;
         });

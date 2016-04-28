@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salus.UnitTests", "Salus.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchIndexingService", "SearchIndexingService\SearchIndexingService.csproj", "{AB34DDCB-F812-480E-9072-8BE6858DFAB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalusCmd", "SalusCmd\SalusCmd.csproj", "{DB3BFFC5-137F-4DC2-9BC5-AA049CB4132E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB34DDCB-F812-480E-9072-8BE6858DFAB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB3BFFC5-137F-4DC2-9BC5-AA049CB4132E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB3BFFC5-137F-4DC2-9BC5-AA049CB4132E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB3BFFC5-137F-4DC2-9BC5-AA049CB4132E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB3BFFC5-137F-4DC2-9BC5-AA049CB4132E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

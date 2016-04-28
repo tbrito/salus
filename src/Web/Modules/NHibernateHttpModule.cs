@@ -27,7 +27,7 @@ namespace Web.Modules
 
         private void EndRequest(object sender, EventArgs e)
         {
-            var transaction = NHibernateSession.Current.Transaction;
+            var transaction = NHibernateSession.Current.BeginTransaction();
 
             try
             {

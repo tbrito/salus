@@ -7,8 +7,8 @@ namespace Salus.Model.Servicos
 {
     public class DocumentoServico
     {
-        private IDocumentoRepositorio documentoRepositorio;
-        private ISessaoDoUsuario sessaoDoUsuario;
+        private readonly IDocumentoRepositorio documentoRepositorio;
+        private readonly ISessaoDoUsuario sessaoDoUsuario;
 
         public DocumentoServico(
             IDocumentoRepositorio documentoRepositorio,

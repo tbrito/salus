@@ -12,6 +12,9 @@ namespace Salus.Infra.Migrations
                .WithColumn("criadoem").AsDateTime()
                .WithColumn("assunto").AsAnsiString(1024)
                .WithColumn("tamanho").AsInt64();
+
+            Create.Index("idx_documento_1").OnTable("documento").OnColumn("criadoem");
+            Create.Index("idx_documento_2").OnTable("documento").OnColumn("assunto");
         }
 
         public override void Down()

@@ -14,6 +14,11 @@ namespace Salus.Infra.Migrations
                .WithColumn("tipo").AsInt32()
                .WithColumn("recurso").AsAnsiString(1024)
                .WithColumn("user_id").AsInt32();
+
+            Create.Index("idx_trilha_1").OnTable("trilha").OnColumn("data");
+            Create.Index("idx_trilha_2").OnTable("trilha").OnColumn("tipo");
+            Create.Index("idx_trilha_3").OnTable("trilha").OnColumn("user_id");
+            Create.Index("idx_trilha_4").OnTable("trilha").OnColumn("recurso");
         }
 
         public override void Down()

@@ -20,11 +20,11 @@
 
     public class ArquivosController : ApiController
     {
-        private ISessaoDoUsuario sessaoDoUsuario;
-        private SalvarConteudoServico salvarConteudoServico;
-        private StorageServico storageServico;
-        private IMongoStorage mongoStorage;
-        private OpenOfficeTransformer openOfficeTransformer;
+        private readonly ISessaoDoUsuario sessaoDoUsuario;
+        private readonly SalvarConteudoServico salvarConteudoServico;
+        private readonly StorageServico storageServico;
+        private readonly IMongoStorage mongoStorage;
+        private readonly OpenOfficeTransformer openOfficeTransformer;
 
         public ArquivosController()
         {
@@ -41,7 +41,7 @@
             var caminho = string.Empty;
             var caminhoPdf = string.Empty;
 
-            caminho = this.storageServico.Obter(id.ToString());
+            caminho = this.storageServico.Obter("[documento]" + id.ToString());
 
             if (Path.GetExtension(caminho).ToLower() == ".pdf")
             {
@@ -105,7 +105,8 @@
             }
         }
 
-        public async Task<IHttpActionResult> Add()
+        [HttpPost]
+        public async Task<IHttpActionResult> Add(int id)
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -190,7 +191,7 @@
                         Path = fileInfo.FullName
                     }).ToList();
                 
-                this.salvarConteudoServico.SalvarFoto(arquivos, usuarioId);
+                this.salvarConteudoServico.SalvarFoto(arquivos, "[usuario]" + usuarioId);
 
                 return Ok(new { Message = "Documentos enviados com sucesso" });
             }

@@ -11,6 +11,9 @@ namespace Salus.Infra.Migrations
                .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                .WithColumn("mongoid").AsAnsiString(1024)
                .WithColumn("salusid").AsAnsiString(1024);
+
+            Create.Index("idx_gridstorage_1").OnTable("gridstorage").OnColumn("mongoid");
+            Create.Index("idx_gridstorage_2").OnTable("gridstorage").OnColumn("salusid");
         }
 
         public override void Down()

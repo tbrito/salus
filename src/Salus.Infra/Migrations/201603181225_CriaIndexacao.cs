@@ -12,6 +12,10 @@ namespace Salus.Infra.Migrations
                .WithColumn("chave_id").AsInt32()
                .WithColumn("documento_id").AsInt32()
                .WithColumn("valor").AsAnsiString(2000);
+
+            Create.Index("idx_indexacao_1").OnTable("indexacao").OnColumn("chave_id");
+            Create.Index("idx_indexacao_2").OnTable("indexacao").OnColumn("documento_id");
+            Create.Index("idx_indexacao_3").OnTable("indexacao").OnColumn("valor");
         }
 
         public override void Down()

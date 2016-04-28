@@ -4,7 +4,7 @@ namespace Salus.Infra.Seeds
     using Model;
     using Model.Entidades;
 
-    [Migration(201604251835)]
+    [Migration(301604251835)]
     public class CriaConfiguracoes : Migration
     {
         public override void Up()

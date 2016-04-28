@@ -5,8 +5,8 @@
 
     public class WorkflowServico
     {
-        private ISessaoDoUsuario sessaoDoUsuario;
-        private IWorkflowRepositorio workflowRepositorio;
+        private readonly ISessaoDoUsuario sessaoDoUsuario;
+        private readonly IWorkflowRepositorio workflowRepositorio;
 
         public WorkflowServico(
             ISessaoDoUsuario sessaoDoUsuario,

@@ -5,7 +5,6 @@
     using Salus.Infra.Migrations;
     using System;
     using System.Configuration;
-    using System.Linq;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -21,21 +20,13 @@
 
         protected void Application_Start()
         {
-            Aplicacao.Boot(Server.MapPath("bin"));
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
-            Log.Initialize();
-            Log.App.Info("Aplicacao Iniciada");
 
-            var migrator = new Migrator(
-                ConfigurationManager.AppSettings["Database.ConnectionString"]);
-
-            migrator.Migrate(runner => runner.MigrateUp());
+            Aplicacao.Boot(Server.MapPath("bin"));
         }
 
         protected void Application_Error(object sender, EventArgs e)

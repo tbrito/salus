@@ -28,6 +28,7 @@
         {
             return this.Sessao.QueryOver<Usuario>()
                 .Fetch(x => x.Area).Eager
+                .Fetch(x => x.Area.Parent).Eager
                 .Fetch(x => x.Perfil).Eager
                 .OrderBy(x => x.Nome).Asc
                 .List();

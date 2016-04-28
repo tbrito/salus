@@ -17,6 +17,11 @@ namespace Salus.Infra.Migrations
                .WithColumn("mensagem").AsAnsiString(2000)
                .WithColumn("status").AsInt32()
                .WithColumn("lido").AsBoolean();
+
+            Create.Index("idx_workflow_1").OnTable("workflow").OnColumn("criadoem");
+            Create.Index("idx_workflow_2").OnTable("workflow").OnColumn("de");
+            Create.Index("idx_workflow_3").OnTable("workflow").OnColumn("para");
+            Create.Index("idx_workflow_4").OnTable("workflow").OnColumn("documento_id");
         }
 
         public override void Down()

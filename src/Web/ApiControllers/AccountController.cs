@@ -71,18 +71,21 @@
             LoginViewModel login)
         {
             FormsAuthentication.SetAuthCookie(usuario.Nome, true);
-            
-            var ticket = new FormsAuthenticationTicket(
-                1,
-                login.UserName,
-                DateTime.Now,
-                DateTime.Now.AddMinutes(30),
-                false,
-                login.UserName,
-                FormsAuthentication.FormsCookiePath);
 
-            HttpContext.Current.Response.Cookies.Add(
-                new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket)));
+            var coockie = FormsAuthentication.GetAuthCookie(usuario.Nome, true);
+            coockie.Expires = DateTime.Now.AddMinutes(30);
+            var decriptedCoockie = FormsAuthentication.Decrypt(coockie.Value);
+
+            var ticket = new FormsAuthenticationTicket(
+                decriptedCoockie.Version,
+                decriptedCoockie.Name,
+                decriptedCoockie.IssueDate,
+                coockie.Expires,
+                true,
+                decriptedCoockie.UserData);
+
+            coockie.Value = FormsAuthentication.Encrypt(ticket);
+            HttpContext.Current.Response.Cookies.Add(coockie);
         }
 
         private LoginViewModel ObterUsuarioModel(Usuario usuario)
@@ -94,7 +97,7 @@
 
             try
             {
-                var imagem = this.storageServico.Obter(usuario.Id.ToString());
+                var imagem = this.storageServico.Obter("[usuario]" + usuario.Id.ToString());
 
                 relativo = imagem
                     .Replace(Aplicacao.Caminho, string.Empty)

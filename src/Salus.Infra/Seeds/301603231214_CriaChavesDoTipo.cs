@@ -4,7 +4,7 @@ namespace Salus.Infra.Seeds
     using Model;
     using Model.Entidades;
 
-    [Migration(201603231214)]
+    [Migration(301603231214)]
     public class CriaChavesDoTipo : Migration
     {
         private TipoDocumento administrativo;

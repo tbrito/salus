@@ -2,9 +2,7 @@
 using Quartz.Impl;
 using Salus.Infra;
 using Salus.Infra.Logs;
-using Salus.Infra.Migrations;
 using System;
-using System.Configuration;
 using System.ServiceProcess;
 
 namespace SearchIndexingService
@@ -20,8 +18,6 @@ namespace SearchIndexingService
             Log.Initialize();
             Log.App.Info("Aplicacao Iniciada");
 
-            InicializaBancoDeDados();
-
             if (!Environment.UserInteractive)
             {
                 using (var service = new ServiceRunner())
@@ -34,15 +30,7 @@ namespace SearchIndexingService
                 Start(args);
             }
         }
-
-        private static void InicializaBancoDeDados()
-        {
-            var migrator = new Migrator(
-              ConfigurationManager.AppSettings["Database.ConnectionString"]);
-
-            migrator.Migrate(runner => runner.MigrateUp());
-        }
-
+        
         public static void Start(string[] args)
         {
             scheduler = StdSchedulerFactory.GetDefaultScheduler();

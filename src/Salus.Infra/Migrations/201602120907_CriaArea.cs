@@ -10,6 +10,8 @@ namespace Salus.Infra.Migrations
             Create.Table("area")
                 .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                 .WithColumn("nome").AsAnsiString();
+
+            Create.Index("idx_area_1").OnTable("area").OnColumn("nome");
         }
 
         public override void Down()

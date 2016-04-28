@@ -27,7 +27,7 @@
 
         private Usuario ObterUsuarioLogado()
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            if (HttpContext.Current.User.Identity != null && HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 var nomeUsuario = HttpContext.Current.User.Identity.Name;
                 var usuario = this.usuarioRepositorio.ProcurarPorNome(nomeUsuario);
@@ -39,6 +39,8 @@
 
                 return usuario;
             }
+
+            FormsAuthentication.SignOut();
 
             return null;
         }

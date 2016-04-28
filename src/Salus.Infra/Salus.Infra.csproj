@@ -234,8 +234,8 @@
     <Compile Include="Migrations\201603301829_AdicionarAtivoNaChave.cs" />
     <Compile Include="Migrations\201603291705_CriaTrilha.cs" />
     <Compile Include="Migrations\201603240211_AdicionarFiletypeMongoStorage.cs" />
-    <Compile Include="Seeds\201604251835_CriaConfiguracoes.cs" />
-    <Compile Include="Seeds\201603231214_CriaChavesDoTipo.cs" />
+    <Compile Include="Seeds\301604251835_CriaConfiguracoes.cs" />
+    <Compile Include="Seeds\301603231214_CriaChavesDoTipo.cs" />
     <Compile Include="Migrations\201603211513_CriaWorkflow.cs" />
     <Compile Include="Migrations\201603181225_CriaIndexacao.cs" />
     <Compile Include="Migrations\201603181119_CriaChaves.cs" />
@@ -243,7 +243,7 @@
     <Compile Include="Migrations\201603171759_AdicionarUsuarioNoDocumento.cs" />
     <Compile Include="Migrations\201603141819_CriaStorage.cs" />
     <Compile Include="Migrations\201603061926_CriaDocumento.cs" />
-    <Compile Include="Seeds\201602121709_CriaUserAdmin.cs" />
+    <Compile Include="Seeds\301602121709_CriaUserAdmin.cs" />
     <Compile Include="Migrations\201602120910_CriaPerfil.cs" />
     <Compile Include="Migrations\201602120907_CriaArea.cs" />
     <Compile Include="Migrations\201602010856_CriaUsuario.cs" />

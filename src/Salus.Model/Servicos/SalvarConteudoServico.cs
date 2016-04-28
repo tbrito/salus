@@ -6,9 +6,9 @@
 
     public class SalvarConteudoServico
     {
-        private DocumentoServico documentoServico;
-        private StorageServico storageServico;
-        private WorkflowServico workflowServico;
+        private readonly DocumentoServico documentoServico;
+        private readonly StorageServico storageServico;
+        private readonly WorkflowServico workflowServico;
         
         public SalvarConteudoServico(
             DocumentoServico documentoServico, 
@@ -27,7 +27,7 @@
             foreach (var arquivo in arquivos)
             {
                 var documento = this.documentoServico.CriaNovo(arquivo);
-                this.storageServico.Adicionar(arquivo.Path, documento.Id.ToString());
+                this.storageServico.Adicionar(arquivo.Path, "[documento]" + documento.Id.ToString());
                 this.workflowServico.Iniciar(documento);
 
                 documentos.Add(documento);

@@ -6,7 +6,7 @@ angular.module("salus-app")
             file.name = file;
 
             file.upload = Upload.upload({
-                url: 'api/Arquivos/Add',
+                url: 'api/Arquivos/Add/0',
                 data: { file: file, assunto: $scope.assunto },
             });
 
