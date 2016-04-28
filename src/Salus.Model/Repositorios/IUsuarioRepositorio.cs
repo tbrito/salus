@@ -14,5 +14,7 @@ namespace Salus.Model.Repositorios
         Usuario ObterPorIdComParents(int id);
 
         void MarcarComoInativo(int id);
+
+        void SalvarSenha(int id, string novaSenha);
     }
 }

@@ -64,7 +64,8 @@
 
             <div class="btn-group">
                 <a class="header-nav-link name tooltipped tooltipped-sw" href="/tbrito" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar">
-                    <img class="avatar" height="30"  ng-src="{{usuario.Avatar}}" width="30">
+                    <img class="avatar" height="30"  ng-src="{{usuario.Avatar}}" ng-show="usuario.Avatar != ''" width="30">
+                    <span class="glyphicon glyphicon-user" height="50" width="50" aria-hidden="true" ng-show="usuario.Avatar == ''"></span>
                     <span class="dropdown-caret"></span>
                 </a>
             </div>

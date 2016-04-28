@@ -152,7 +152,8 @@
             }
         }
 
-        public async Task<IHttpActionResult> AddFoto()
+        [HttpPost]
+        public async Task<IHttpActionResult> AddFoto(int id)
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -160,10 +161,13 @@
             }
             try
             {
+                var usuario = this.sessaoDoUsuario.UsuarioAtual;
+                var usuarioId = usuario.Id.ToString();
+
                 var pastaTrabalho = Path.Combine(
                     ContextoWeb.Caminho,
                     "Uploads",
-                    this.sessaoDoUsuario.UsuarioAtual.Id.ToString());
+                    usuario.Id.ToString());
 
                 var provider = new CustomMultipartFormDataStreamProvider(pastaTrabalho);
 
@@ -186,7 +190,7 @@
                         Path = fileInfo.FullName
                     }).ToList();
                 
-                this.salvarConteudoServico.SalvarFoto(arquivos);
+                this.salvarConteudoServico.SalvarFoto(arquivos, usuarioId);
 
                 return Ok(new { Message = "Documentos enviados com sucesso" });
             }

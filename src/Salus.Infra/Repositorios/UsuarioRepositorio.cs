@@ -46,5 +46,14 @@
                 .Where(x => x.Nome == nomeUsuario)
                 .SingleOrDefault();
         }
+
+        public void SalvarSenha(int id, string novaSenha)
+        {
+            this.Sessao
+              .CreateQuery("update Usuario set senha = :novaSenha where Id = :id")
+              .SetParameter("id", id)
+              .SetParameter("novaSenha", novaSenha)
+              .ExecuteUpdate();
+        }
     }
 }

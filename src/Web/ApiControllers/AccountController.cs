@@ -71,9 +71,7 @@
             LoginViewModel login)
         {
             FormsAuthentication.SetAuthCookie(usuario.Nome, true);
-
-            FormsAuthentication.Initialize();
-
+            
             var ticket = new FormsAuthenticationTicket(
                 1,
                 login.UserName,
@@ -104,6 +102,7 @@
             }
             catch (Exception)
             {
+                relativo = string.Empty;
                 Log.App.Info("Usuario Sem Avatar");
             }
 

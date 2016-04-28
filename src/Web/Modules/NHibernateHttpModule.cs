@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using Salus.Infra.ConnectionInfra;
+using Salus.Infra.DataAccess;
 using Salus.Infra.Logs;
 using Salus.Infra.Util;
 using SharpArch.NHibernate;
@@ -12,8 +13,7 @@ namespace Web.Modules
 {
     public class NHibernateHttpModule : IHttpModule
     {
-        private WebSessionStorage webSessionStorage;
-
+        
         public void Dispose()
         {
             throw new NotImplementedException();
@@ -21,7 +21,6 @@ namespace Web.Modules
 
         public void Init(HttpApplication context)
         {
-            this.webSessionStorage = new WebSessionStorage(context);
             context.BeginRequest += this.BeginRequest;
             context.EndRequest += this.EndRequest;
         }
@@ -57,7 +56,7 @@ namespace Web.Modules
             NHibernateInitializer.Instance().InitializeNHibernateOnce(() =>
             {
                 NHibernateSession.Init(
-                    this.webSessionStorage,
+                    new ThreadSessionStorage(),
                     mappings,
                     null, null, null, null, BancoDeDados.Configuration());
             });

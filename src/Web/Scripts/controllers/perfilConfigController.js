@@ -1,7 +1,9 @@
-angular.module("salus-app").controller('perfilConfigController', function ($scope, $location, perfilApi, Upload, $timeout) {
+angular.module("salus-app").controller('perfilConfigController',
+    ['$scope', 'Upload', '$timeout', '$location', 'perfilApi', function ($scope, Upload, $timeout, $location, perfilApi) {
 
     $scope.perfis = [];
-    
+    $scope.perfil = {};
+
     $scope.adicionar = function () {
         $location.path('/PerfilConfig/Editar/' + 0);
     }
@@ -62,7 +64,7 @@ angular.module("salus-app").controller('perfilConfigController', function ($scop
         file.name = file;
 
         file.upload = Upload.upload({
-            url: 'api/Arquivos/AddFoto',
+            url: 'api/Arquivos/AddFoto/0',
             data: { file: file },
         });
 
@@ -91,4 +93,4 @@ angular.module("salus-app").controller('perfilConfigController', function ($scop
     $scope.inicio = function () {
         $location.path('/PerfilConfig');
     }
-});
+}]);
