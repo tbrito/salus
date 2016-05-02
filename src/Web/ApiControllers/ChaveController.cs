@@ -54,7 +54,7 @@
 
             chave.Nome = chaveViewModel.Nome;
             chave.Obrigatorio = chaveViewModel.Obrigatorio;
-            chave.TipoDado = (TipoDado)chaveViewModel.TipoDado;
+            chave.TipoDado = TipoDado.FromInt32(chaveViewModel.TipoDado);
             chave.Mascara = chaveViewModel.Mascara;
             chave.Ativo = chaveViewModel.Ativo;
             chave.ItensLista = chaveViewModel.ItensLista;

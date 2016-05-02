@@ -1,6 +1,6 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
-    using Framework.Modelo;
+    using Salus.Model.Entidades;
 
     public class KeyDefDto : Entidade
     {
@@ -17,6 +17,12 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
         }
 
         public string Descricao
+        {
+            get;
+            set;
+        }
+
+        public int TipoDadoId
         {
             get;
             set;

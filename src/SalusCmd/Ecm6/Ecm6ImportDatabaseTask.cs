@@ -33,8 +33,7 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6
 
             new BulkTipoDocumentoImport().Execute("Importando tipodocumento");
             
-            var systemKeys = new SystemKeysImport().Execute("Importando system keys");
-            new BulkKeyImport(systemKeys).Execute("Importando keys");
+            new BulkChaveImport().Execute("Importando chaves");
 
             ////new BulkProfileImport().Execute("Importando profiles");
             ////new BulkAreaImport().Execute("Importando areas");
