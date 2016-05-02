@@ -4,6 +4,7 @@ using FluentNHibernate.Cfg.Db;
 using System.Configuration;
 using NHibernate;
 using SharpArch.NHibernate;
+using System;
 
 namespace Salus.Infra.ConnectionInfra
 {
@@ -33,6 +34,11 @@ namespace Salus.Infra.ConnectionInfra
         public static void AdicionarMapeamento(Assembly assembly)
         {
             mapeamentos.Add(assembly);
+        }
+
+        public static string ObterConnectionStringEcmAntigo()
+        {
+            return ConfigurationManager.AppSettings["Import.ConnectionString"];
         }
 
         public static IEnumerable<Assembly> ObterMapeamentos()

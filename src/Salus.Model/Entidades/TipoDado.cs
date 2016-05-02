@@ -7,6 +7,7 @@
         Inteiro = 2,
         Moeda = 3,
         Lista = 4,
-        CpfCnpj = 5
+        CpfCnpj = 5,
+        Area = 6,
     }
 }
