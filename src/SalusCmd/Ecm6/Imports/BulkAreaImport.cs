@@ -1,11 +1,11 @@
-﻿namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+﻿namespace SalusCmd.Ecm6.Imports
 {
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using Dapper;
-    using Veros.Ecm.Model.Entities;
-    using Veros.Framework;
+    using Salus.Model.Entidades;
+    using Salus.Infra.Extensions;
 
     internal class BulkAreaImport : BulkImport<AreaDto, Area>
     {
@@ -15,13 +15,13 @@
         {
             get
             {
-                return "areas";
+                return "area";
             }
         }
 
         protected override IEnumerable<int> GetExists(IDbConnection conn)
         {
-            return conn.Query<int>("select id from areas");
+            return conn.Query<int>("select id from area");
         }
 
         protected override IEnumerable<AreaDto> GetDtos(IDbConnection connEcm6)
@@ -43,42 +43,29 @@ order by
 
         protected override DataTable CreateDataTable()
         {
-            var dt = new DataTable("areas");
+            var dt = new DataTable("area");
             dt.Columns.Add(new DataColumn("id", typeof(int)));
-            dt.Columns.Add(new DataColumn("group_id", typeof(int)));
+            dt.Columns.Add(new DataColumn("nome"));
             dt.Columns.Add(new DataColumn("parent_id", typeof(int)));
-            dt.Columns.Add(new DataColumn("is_restricted_view", typeof(bool)));
-            dt.Columns.Add(new DataColumn("abbreviation"));
-
-            this.dtgroups = new DataTable("groups");
-            this.dtgroups.Columns.Add(new DataColumn("id", typeof(int)));
-            this.dtgroups.Columns.Add(new DataColumn("name"));
+            dt.Columns.Add(new DataColumn("segura", typeof(bool)));
+            dt.Columns.Add(new DataColumn("abreviacao"));
+            dt.Columns.Add(new DataColumn("ativo", typeof(bool)));
 
             foreach (var entity in this.entities)
             {
                 var row = dt.NewRow();
 
                 row["id"] = entity.Id;
-                row["group_id"] = entity.Id;
+                row["nome"] = entity.Nome;
                 row["parent_id"] = this.GetId(entity.Parent);
-                row["is_restricted_view"] = entity.IsRestrictedView;
-                row["abbreviation"] = entity.Abbreviation;
+                row["segura"] = entity.Segura;
+                row["abreviacao"] = entity.Abreviacao;
+                row["ativo"] = true;
 
                 dt.Rows.Add(row);
-
-                var rowgroups = this.dtgroups.NewRow();
-                rowgroups["id"] = entity.Id;
-                rowgroups["name"] = entity.Nome;
-
-                this.dtgroups.Rows.Add(rowgroups);
             }
 
             return dt;
-        }
-
-        protected override void AfterExecute()
-        {
-            this.BulkCopy(this.dtgroups, "groups");
         }
 
         protected override Area ConvertDtoToEntity(AreaDto dto)
@@ -87,9 +74,9 @@ order by
             {
                 Id = dto.Id,
                 Parent = this.entities.FirstOrDefault(x => x.Id == dto.Parent.ToInt()),
-                Nome = dto.Descricao.ToPascalCase(),
-                IsRestrictedView = dto.Restricted == "S",
-                Abbreviation = dto.Abrev.ToPascalCase()
+                Nome = ConvertString.ToPascalCase(dto.Descricao),
+                Segura = dto.Restricted == "S",
+                Abreviacao = ConvertString.ToPascalCase(dto.Abrev)
             };
         }
     }

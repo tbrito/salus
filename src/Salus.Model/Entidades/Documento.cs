@@ -7,7 +7,7 @@ namespace Salus.Model.Entidades
     {
         public virtual string Assunto { get; set; }
 
-        public virtual DateTime DataCriacao { get; set; }
+        public virtual DateTime? DataCriacao { get; set; }
 
         public virtual long Tamanho { get; set; }
 
@@ -20,5 +20,7 @@ namespace Salus.Model.Entidades
         public virtual SearchStatus SearchStatus { get; set; }
 
         public virtual IList<Indexacao> Indexacao { get; set; }
+
+        public virtual bool EhPreIndexacao { get; set; }
     }
 }

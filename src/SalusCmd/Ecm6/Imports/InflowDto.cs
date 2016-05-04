@@ -1,7 +1,7 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
+    using Salus.Model.Entidades;
     using System;
-    using Framework.Modelo;
 
     public class InflowDto : Entidade
     {

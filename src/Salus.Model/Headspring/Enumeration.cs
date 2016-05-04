@@ -118,7 +118,7 @@ namespace Headspring
         {
             result = GetAll().FirstOrDefault(predicate);
             return result != null;
-        }
+       } 
 
         private static TEnumeration Parse(object value, string description, Func<TEnumeration, bool> predicate)
         {

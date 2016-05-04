@@ -9,9 +9,11 @@ namespace Salus.Infra.Migrations
         {
             Alter.Table("documento").AddColumn("cpfcnpj").AsAnsiString(30).Nullable();
             Alter.Table("documento").AddColumn("search_status").AsInt32().Nullable();
+            Alter.Table("documento").AddColumn("eh_preindexado").AsBoolean().Nullable();
 
             Create.Index("idx_documento_5").OnTable("documento").OnColumn("cpfcnpj");
             Create.Index("idx_documento_6").OnTable("documento").OnColumn("search_status");
+            Create.Index("idx_documento_7").OnTable("documento").OnColumn("eh_preindexado");
         }
 
         public override void Down()

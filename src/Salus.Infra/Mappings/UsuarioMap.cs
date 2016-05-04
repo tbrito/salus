@@ -9,7 +9,8 @@
         {
             this.Table("usuario");
             this.Id(x => x.Id).Column("id").GeneratedBy.Identity();
-            this.Map(x => x.Nome, "nome");
+            this.Map(x => x.Login, "nome");
+            this.Map(x => x.Nome, "nome_completo");
             this.Map(x => x.Email, "email");
             this.Map(x => x.Senha, "senha");
             this.Map(x => x.Expira, "expira");

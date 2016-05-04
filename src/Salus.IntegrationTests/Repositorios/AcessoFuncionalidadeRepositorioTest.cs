@@ -137,7 +137,7 @@
 
             var tiago = new Usuario
             {
-                Nome = "tbrito",
+                Login = "tbrito",
                 Area = departamentoPessoal,
                 Perfil = administrador,
                 Senha = "pwd",

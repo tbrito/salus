@@ -10,6 +10,7 @@
     using Model.Search;
     using System.Linq;
     using Model;
+
     public class IndexEngine : LuceneEngineBase, IIndexEngine
     {
         private readonly LuceneIndexerSession luceneSession;
@@ -30,7 +31,7 @@
             }
             catch (Exception exception)
             {
-                Log.App.Error("Erro ao indexar conteudo #" + Documento.Id, exception);
+                Log.App.Error("Erro ao indexar documento #" + Documento.Id, exception);
 
                 return SearchStatus.TryIndexAgain;
             }
@@ -38,9 +39,9 @@
             return SearchStatus.Indexed;
         }
 
-        public void DeleteContentIfExist(int contentId)
+        public void DeleteContentIfExist(int documentoId)
         {
-            this.luceneSession.Current.DeleteDocuments(new Term("contentId", contentId.ToString()));
+            this.luceneSession.Current.DeleteDocuments(new Term("documentoId", documentoId.ToString()));
         }
 
         private void AddDocument(Documento documento, IList<Indexacao> indexacao)
@@ -147,10 +148,12 @@
                 Field.Index.NOT_ANALYZED);
         }
 
-        private Field GetDataCriacao(Documento content)
+        private Field GetDataCriacao(Documento documento)
         {
+            var data = (DateTime)documento.DataCriacao;
+
             var dateValue = DateTools.DateToString(
-                content.DataCriacao,
+                data,
                 DateTools.Resolution.DAY);
 
             return new Field(

@@ -1,6 +1,4 @@
-using Salus.Model.Entidades;
-
-namespace Veros.Ecm.Model.Entities.Import
+namespace Salus.Model.Entidades.Import
 {
     public abstract class Ecm6ToEcm8 : Entidade
     {

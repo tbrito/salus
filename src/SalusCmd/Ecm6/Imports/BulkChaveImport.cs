@@ -67,7 +67,7 @@ order by
 
                 row["id"] = entity.Id;
                 row["tipodocumento_id"] = this.GetId(entity.TipoDocumento);
-                row["tipodado"] = entity.TipoDado;
+                row["tipodado"] = entity.TipoDado.Value;
                 row["obrigatorio"] = entity.Obrigatorio;
                 row["nome"] = entity.Nome;
                 row["ativo"] = entity.Ativo;

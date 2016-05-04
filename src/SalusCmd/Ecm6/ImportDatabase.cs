@@ -52,11 +52,6 @@
 
         private static string GetConnectionString(string connectionString)
         {
-            if (connectionString.StartsWith("Cripto"))
-            {
-                return new SimplerAes().Decode(connectionString.Remove(0, 6));
-            }
-
             return connectionString;
         }
     }

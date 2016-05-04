@@ -27,7 +27,7 @@
             return new Usuario
             {
                 Email = "tiago.sousa.brito@gmail.com",
-                Nome = "tbrito",
+                Login = "tbrito",
                 Senha = "pwd123",
                 Area = departamentoPessoal,
                 Perfil = administrador

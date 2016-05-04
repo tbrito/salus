@@ -10,6 +10,7 @@ namespace Salus.Infra.Migrations
             Create.Table("usuario")
                 .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
                 .WithColumn("nome").AsAnsiString()
+                .WithColumn("nome_completo").AsAnsiString()
                 .WithColumn("email").AsAnsiString()
                 .WithColumn("senha").AsAnsiString()
                 .WithColumn("area_id").AsInt32().Nullable()

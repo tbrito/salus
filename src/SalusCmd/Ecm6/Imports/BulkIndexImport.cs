@@ -1,14 +1,13 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
     using System.Collections.Generic;
     using System.Data;
-    using Model.Entities;
-    using Veros.Ecm.DataAccess.Tarefas.SystemKeys;
     using Dapper;
-    using Veros.Ecm.Model.Enums;
-    using Veros.Framework;
+    using Salus.Model.Entidades;
+    using Salus.Infra.Extensions;
+    using Salus.Model;
 
-    public class BulkIndexImport : BulkImport<KeysDto, Index>
+    public class BulkIndexImport : BulkImport<KeysDto, Indexacao>
     {
         private Dictionary<int, int> keys;
 
@@ -16,11 +15,11 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
         {
             get
             {
-                return "indexes";
+                return "indexacao";
             }
         }
 
-        protected override Index ConvertDtoToEntity(KeysDto dto)
+        protected override Indexacao ConvertDtoToEntity(KeysDto dto)
         {
             var value = dto.Descricao;
             var keyId = dto.KeyDefCode.ToInt();
@@ -28,24 +27,24 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
             if (this.keys.ContainsKey(keyId))
             {
                 var type = this.keys[keyId];
-                if (type == KeyType.CpfCnpj.ToInt())
+                if (type == TipoDado.CpfCnpj.Value)
                 {
                     value = value.RemoveCaracteresEspeciais();
                 }
             }
             
-            return new Index
+            return new Indexacao
             {
                 Id = dto.Id,
-                Content = new File { Id = dto.DocCode.ToInt() },
-                Key = new Key { Id = dto.KeyDefCode.ToInt() },
-                Value = value
+                Documento = new Documento { Id = dto.DocCode.ToInt() },
+                Chave = new Chave { Id = dto.KeyDefCode.ToInt() },
+                Valor = value,
             };
         }
 
         protected override IEnumerable<int> GetExists(IDbConnection conn)
         {
-            return conn.Query<int>("select id from indexes");
+            return conn.Query<int>("select id from indexacao");
         }
 
         protected override IEnumerable<KeysDto> GetDtos(IDbConnection connEcm6)
@@ -56,17 +55,16 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
 
                 const string SelectKeys = @"
 select 
-    keys.id, 
-    system_keys.type 
+    Id, 
+    TipoDado
 from 
-    keys
-inner join system_keys on (system_keys.id = keys.system_key_id)";
+    chaves";
 
                 var keysType = conn.Query<KeyWithSystemKey>(SelectKeys);
 
                 foreach (var keyType in keysType)
                 {
-                    this.keys.Add(keyType.Id, keyType.Type);
+                    this.keys.Add(keyType.Id, keyType.TipoDado);
                 }
             });
 
@@ -86,20 +84,20 @@ order by
 
         protected override DataTable CreateDataTable()
         {
-            var dt = new DataTable("indexes");
+            var dt = new DataTable("indexacao");
             dt.Columns.Add(new DataColumn("id", typeof(int)));
-            dt.Columns.Add(new DataColumn("content_id", typeof(int)));
-            dt.Columns.Add(new DataColumn("key_id", typeof(int)));
-            dt.Columns.Add(new DataColumn("value"));
+            dt.Columns.Add(new DataColumn("documento_id", typeof(int)));
+            dt.Columns.Add(new DataColumn("chave_id", typeof(int)));
+            dt.Columns.Add(new DataColumn("valor"));
 
             foreach (var entity in this.entities)
             {
                 var row = dt.NewRow();
 
                 row["id"] = entity.Id;
-                row["content_id"] = this.GetId(entity.Content);
-                row["key_id"] = this.GetId(entity.Key);
-                row["value"] = entity.Value;
+                row["documento_id"] = this.GetId(entity.Documento);
+                row["chave_id"] = this.GetId(entity.Chave);
+                row["valor"] = entity.Valor;
 
                 dt.Rows.Add(row);
             }
@@ -115,7 +113,7 @@ order by
                 set;
             }
 
-            public byte Type
+            public int TipoDado
             {
                 get;
                 set;

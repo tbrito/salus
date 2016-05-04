@@ -1,4 +1,4 @@
-﻿namespace Veros.Ecm.Model.Entities.Import
+﻿namespace Salus.Model.Entidades.Import
 {
     /// <summary>
     /// Entidade temporária para migração da indexação dos documentos pre-indexados

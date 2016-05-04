@@ -54,10 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\AcessoDocumento.cs" />
+    <Compile Include="Entidades\Import\Ecm6PreDoc.cs" />
+    <Compile Include="Entidades\Import\Ecm6PreIndexIndexes.cs" />
+    <Compile Include="Entidades\VersaoDocumento.cs" />
     <Compile Include="Entidades\Funcionalidade.cs" />
     <Compile Include="Entidades\AcessoFuncionalidade.cs" />
     <Compile Include="Entidades\Atividade.cs" />
     <Compile Include="Entidades\Chave.cs" />
+    <Compile Include="Entidades\Import\Ecm6AccessDoc.cs" />
     <Compile Include="Entidades\Import\Ecm6GroupDoc.cs" />
     <Compile Include="Entidades\Import\Ecm6ToEcm8.cs" />
     <Compile Include="Entidades\Indexacao.cs" />

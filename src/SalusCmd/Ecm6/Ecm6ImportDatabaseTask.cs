@@ -32,29 +32,26 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6
             Log.App.InfoFormat("Importação iniciada");
 
             new BulkTipoDocumentoImport().Execute("Importando tipodocumento");
-            
+
             new BulkChaveImport().Execute("Importando chaves");
 
-            ////new BulkProfileImport().Execute("Importando profiles");
-            ////new BulkAreaImport().Execute("Importando areas");
+            new BulkPerfilImport().Execute("Importando perfis");
+            new BulkAreaImport().Execute("Importando areas");
 
-            ////new BulkUserImport().Execute("Importando users");
-            ////new BulkGroupMemberImport().Execute("Importando group members");
-            ////new ProfileCategoriesImport().Execute("Importando profile x category");
+            new BulkUsuarioImport().Execute("Importando usuarios");
 
-            ////new BulkFileImport().Execute("Importando docs");
-            ////new BulkDossierImport().Execute("Importando dossiers");
+            new PerfilTipoDocumentoImport().Execute("Importando perfil x tipodocumento");
 
-            ////new BulkFileVersionImport().Execute("Importando docs versions");
+            new BulkDocumentoImport().Execute("Importando docs");
 
-            ////new BulkIndexImport().Execute("Importando indexes");
-            ////new BulkShareImport().Execute("Importando shares");
+            new BulkVersaoDocumentoImport().Execute("Importando versao do documento");
 
-            ////var preIndexes = new PreIndexFileImport().Execute("Importando preindex");
-            ////new PreIndexIndexesImport(preIndexes).Execute("Importando chaves de preindex");
+            new BulkIndexImport().Execute("Importando indexacao");
+            new BulkWorkflowImport().Execute("Importando workflow");
 
-            ////new BulkPurgesImport().Execute("Importando dados expurgo");
-
+            var documentosPreindexados = new DocumentoPreindexadoImport().Execute("Importando preindexados");
+            new PreIndexIndexesImport(documentosPreindexados).Execute("Importando chaves de preindex");
+            
             Log.App.Info("Importação finalizada");
         }
     }

@@ -14,7 +14,7 @@
         {
             var tiago = new Usuario
             {
-                Nome = "tiago",
+                Login = "tiago",
                 Email = "tiago.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();
@@ -33,7 +33,7 @@
         {
             var tiago = new Usuario
             {
-                Nome = "tiago",
+                Login = "tiago",
                 Email = "tiago.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();
@@ -61,7 +61,7 @@
         {
             var tiago = new Usuario
             {
-                Nome = "tiago",
+                Login = "tiago",
                 Email = "tiago.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();
@@ -107,7 +107,7 @@
         {
             var tiago = new Usuario
             {
-                Nome = "tiago",
+                Login = "tiago",
                 Email = "tiago.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();

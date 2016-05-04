@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using Veros.Ecm.DataAccess.Tarefas.Ecm6;
 
 namespace SalusCmd
@@ -23,14 +22,14 @@ namespace SalusCmd
         public static void Main(string[] args)
         {
             Aplicacao.Boot();
-            
+
             ////comandos.Add(
             ////   "key generate",
             ////   () => InversionControl.Current.Resolve<GenerateKeyTask>());
 
-            ////comandos.Add(
-            ////   "ecmold import",
-            ////   () => InversionControl.Current.Resolve<Ecm6ImportDatabaseTask>());
+            comandos.Add(
+               "salus import",
+               () => InversionControl.Current.Resolve<Ecm6ImportDatabaseTask>());
 
             ////comandos.Add(
             ////    "ecmold import storage",

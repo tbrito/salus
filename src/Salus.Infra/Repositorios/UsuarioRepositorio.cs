@@ -30,21 +30,21 @@
                 .Fetch(x => x.Area).Eager
                 .Fetch(x => x.Area.Parent).Eager
                 .Fetch(x => x.Perfil).Eager
-                .OrderBy(x => x.Nome).Asc
+                .OrderBy(x => x.Login).Asc
                 .List();
         }
 
         public Usuario Procurar(string userName, string senha)
         {
             return this.Sessao.QueryOver<Usuario>()
-                .Where(x => x.Nome == userName && x.Senha == senha)
+                .Where(x => x.Login == userName && x.Senha == senha)
                 .SingleOrDefault();
         }
 
         public Usuario ProcurarPorNome(string nomeUsuario)
         {
             return this.Sessao.QueryOver<Usuario>()
-                .Where(x => x.Nome == nomeUsuario)
+                .Where(x => x.Login == nomeUsuario)
                 .SingleOrDefault();
         }
 

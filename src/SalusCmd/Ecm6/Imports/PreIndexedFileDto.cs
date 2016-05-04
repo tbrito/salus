@@ -1,4 +1,4 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
     using System;
 

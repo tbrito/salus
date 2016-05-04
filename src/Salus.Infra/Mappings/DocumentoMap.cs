@@ -14,6 +14,7 @@
             this.Map(x => x.Tamanho, "tamanho");
             this.Map(x => x.CpfCnpj, "cpfcnpj");
             this.Map(x => x.SearchStatus, "search_status").Nullable();
+            this.Map(x => x.EhPreIndexacao, "eh_preindexado").Nullable();
             this.References(x => x.Usuario, "user_id").Nullable();
             this.References(x => x.TipoDocumento, "tipodocumento_id").Nullable();
 

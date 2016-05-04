@@ -1,33 +1,32 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
     using System.Collections.Generic;
     using System.Data;
     using Dapper;
-    using Model.Entities;
-    using Veros.Framework;
+    using Salus.Model.Entidades;
 
-    public class BulkProfileImport : BulkImport<UserGroupDto, Profile>
+    public class BulkPerfilImport : BulkImport<UserGroupDto, Perfil>
     {
         protected override string TableName
         {
             get
             {
-                return "profiles";
+                return "perfil";
             }
         }
 
-        protected override Profile ConvertDtoToEntity(UserGroupDto dto)
+        protected override Perfil ConvertDtoToEntity(UserGroupDto dto)
         {
-            return new Profile
+            return new Perfil
             {
                 Id = dto.Id,
-                Name = dto.Name.ToPascalCase()
+                Nome = ConvertString.ToPascalCase(dto.Name)
             };
         }
 
         protected override IEnumerable<int> GetExists(IDbConnection conn)
         {
-            return conn.Query<int>("select id from profiles");
+            return conn.Query<int>("select id from perfil");
         }
 
         protected override IEnumerable<UserGroupDto> GetDtos(IDbConnection connEcm6)
@@ -46,16 +45,18 @@ where
 
         protected override DataTable CreateDataTable()
         {
-            var dt = new DataTable("profiles");
+            var dt = new DataTable("perfil");
             dt.Columns.Add(new DataColumn("id", typeof(int)));
-            dt.Columns.Add(new DataColumn("name"));
+            dt.Columns.Add(new DataColumn("nome"));
+            dt.Columns.Add(new DataColumn("ativo", typeof(bool)));
 
             foreach (var entity in this.entities)
             {
                 var row = dt.NewRow();
 
                 row["id"] = entity.Id;
-                row["name"] = entity.Name;
+                row["nome"] = entity.Nome;
+                row["ativo"] = false;
 
                 dt.Rows.Add(row);
             }

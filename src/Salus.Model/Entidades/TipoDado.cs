@@ -10,8 +10,9 @@ namespace Salus.Model
         public static readonly TipoDado Data = new TipoDado(3, "Data");
         public static readonly TipoDado Lista = new TipoDado(8, "Lista");
         public static readonly TipoDado Mascara = new TipoDado(9, "Regex");
-        public static readonly TipoDado MesAno = new TipoDado(32, "Mes Ano");
         public static readonly TipoDado CpfCnpj = new TipoDado(17, "Cpf / Cnpj");
+        public static readonly TipoDado AnoReferencia = new TipoDado(15, "Ano Referencia");
+        public static readonly TipoDado MesAno = new TipoDado(32, "Mes Ano");
         public static readonly TipoDado Area = new TipoDado(18, "Area");
         
         private TipoDado(int value, string displayName) : base(value, displayName)

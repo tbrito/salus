@@ -70,9 +70,9 @@
             Usuario usuario, 
             LoginViewModel login)
         {
-            FormsAuthentication.SetAuthCookie(usuario.Nome, true);
+            FormsAuthentication.SetAuthCookie(usuario.Login, true);
 
-            var coockie = FormsAuthentication.GetAuthCookie(usuario.Nome, true);
+            var coockie = FormsAuthentication.GetAuthCookie(usuario.Login, true);
             coockie.Expires = DateTime.Now.AddMinutes(30);
             var decriptedCoockie = FormsAuthentication.Decrypt(coockie.Value);
 
@@ -111,7 +111,7 @@
 
             login = new LoginViewModel
             {
-                UserName = usuario.Nome,
+                UserName = usuario.Login,
                 Senha = usuario.Senha,
                 Autenticado = true,
                 Funcionalidades = funcionalidades,

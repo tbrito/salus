@@ -10,7 +10,7 @@ namespace Salus.Model.UI
     public class WorkflowViewModel
     {
         public int Id { get; set; }
-        public virtual DateTime CriadoEm { get; set; }
+        public virtual DateTime? CriadoEm { get; set; }
         public virtual DateTime? FinalizadoEm { get; set; }
         public virtual dynamic De { get; set; }
         public virtual dynamic Documento { get; set; }

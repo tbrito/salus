@@ -29,7 +29,8 @@ namespace Salus.Infra.Seeds
                 Area = ccb,
                 Perfil = administrador,
                 Senha = new HashString().Do("pwd123"),
-                Nome = "admin",
+                Login = "admin",
+                Nome = "Administrador do sistema",
                 Email = "admin@ccb.com",
                 Ativo = true,
                 Expira = false

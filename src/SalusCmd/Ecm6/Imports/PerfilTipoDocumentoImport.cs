@@ -1,13 +1,13 @@
-﻿namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+﻿namespace SalusCmd.Ecm6.Imports
 {
     using System.Collections.Generic;
-    using Model.Entities.Import;
     using NHibernate;
-    using Veros.Data.Hibernate;
-    using Veros.Ecm.Model.Entities;
-    using Veros.Framework;
+    using Salus.Model.Entidades;
+    using Salus.Model.Entidades.Import;
+    using Salus.Infra.Repositorios;
+    using Salus.Infra.Extensions;
 
-    internal class ProfileCategoriesImport : ImportBase<ProfileCategory>
+    internal class PerfilTipoDocumentoImport : ImportBase<AcessoDocumento>
     {
         public override string SqlEcm6
         {
@@ -17,7 +17,7 @@
             }
         }
 
-        public override IList<ProfileCategory> GetEntities(IStatelessSession session)
+        public override IList<AcessoDocumento> GetEntities(IStatelessSession session)
         {
             const string Sql = @"
 select
@@ -28,7 +28,7 @@ from
 where
     access_doc.usr_code = profiles.usr_code";
 
-            var profileCategories = new List<ProfileCategory>();
+            var profileCategories = new List<AcessoDocumento>();
 
             var dtos = session
                 .CreateSQLQuery(Sql)
@@ -39,23 +39,24 @@ where
 
             foreach (var dto in dtos)
             {
-                profileCategories.Add(new ProfileCategory
+                profileCategories.Add(new AcessoDocumento
                 {
                     Id = i++,
-                    Category = this.Create<Category>(dto.Category),
-                    Profile = this.Create<Profile>(dto.UsrCode)
+                    TipoDocumento = this.Create<TipoDocumento>(dto.Category),
+                    AtorId = dto.UsrCode.ToInt(),
+                    Papel = Papel.Pefil
                 });
             }
 
             return profileCategories; 
         }
 
-        public override bool ShouldImport(ProfileCategory entity)
+        public override bool ShouldImport(AcessoDocumento entity)
         {
             return this.CheckIfExist<Ecm6AccessDoc>(entity);
         }
 
-        public override void AfterImport(int oldId, ProfileCategory entity, ISession session)
+        public override void AfterImport(int oldId, AcessoDocumento entity, ISession session)
         {
             session.Save(new Ecm6AccessDoc()
             {

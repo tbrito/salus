@@ -4,7 +4,7 @@ namespace Salus.Model.Entidades
 {
     public class Workflow : Entidade
     {
-        public virtual DateTime CriadoEm { get; set; }
+        public virtual DateTime? CriadoEm { get; set; }
         public virtual DateTime? FinalizadoEm { get; set; }
         public virtual Usuario De { get; set; }
         public virtual Documento Documento { get; set; }

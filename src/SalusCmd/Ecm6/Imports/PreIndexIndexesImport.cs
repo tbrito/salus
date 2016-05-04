@@ -1,17 +1,17 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
+namespace SalusCmd.Ecm6.Imports
 {
     using System.Collections.Generic;
-    using Model.Entities.Import;
     using NHibernate;
-    using Veros.Data.Hibernate;
-    using Veros.Ecm.Model.Entities;
-    using Veros.Framework;
+    using Salus.Model.Entidades;
+    using Salus.Infra.Repositorios;
+    using Salus.Infra.Extensions;
+    using Salus.Model.Entidades.Import;
 
-    public class PreIndexIndexesImport : ImportBase<Index>
+    public class PreIndexIndexesImport : ImportBase<Indexacao>
     {
-        private readonly Dictionary<int, PreIndexed> preIndexeds;
+        private readonly Dictionary<int, Documento> preIndexeds;
 
-        public PreIndexIndexesImport(Dictionary<int, PreIndexed> preIndexeds)
+        public PreIndexIndexesImport(Dictionary<int, Documento> preIndexeds)
         {
             this.preIndexeds = preIndexeds;
         }
@@ -24,7 +24,7 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
             }
         }
 
-        public override IList<Index> GetEntities(IStatelessSession session)
+        public override IList<Indexacao> GetEntities(IStatelessSession session)
         {
             const string Sql = @"
 select
@@ -38,7 +38,7 @@ where
 	predoc_code in 
         (select predoc_code from predoc where predoc_processed = 'N')";
 
-            var indexes = new List<Index>();
+            var indexes = new List<Indexacao>();
 
             var dtos = session
                 .CreateSQLQuery(Sql)
@@ -49,26 +49,26 @@ where
             {
                 var content = this.preIndexeds.GetById(dto.DocCode.ToInt());
 
-                indexes.Add(new Index
+                indexes.Add(new Indexacao
                 {
                     Id = dto.Code.ToInt(),
-                    Content = content,
-                    Key = this.Create<Key>(dto.KeyDefCode),
-                    Value = dto.Descricao
+                    Documento = content,
+                    Chave = this.Create<Chave>(dto.KeyDefCode),
+                    Valor = dto.Descricao
                 });
             }
 
             return indexes;
         }
 
-        public override bool ShouldImport(Index entity)
+        public override bool ShouldImport(Indexacao entity)
         {
             return this.CheckIfExist<Ecm6PreIndexIndexes>(entity);
         }
 
-        public override void AfterImport(int oldId, Index entity, ISession session)
+        public override void AfterImport(int oldId, Indexacao entity, ISession session)
         {
-            session.Save(new Ecm6DocVersionado
+            session.Save(new Ecm6PreIndexIndexes
             {
                 Ecm6Id = oldId,
                 Ecm8Id = entity.Id

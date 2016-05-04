@@ -214,6 +214,10 @@
     <Compile Include="Mappings\AcessoDocumentoMap.cs" />
     <Compile Include="Mappings\AcessoFuncionalidadeMap.cs" />
     <Compile Include="Mappings\ConfiguracaoMap.cs" />
+    <Compile Include="Mappings\Ecm6PreIndexMap.cs" />
+    <Compile Include="Mappings\Ecm6PreDocMap.cs" />
+    <Compile Include="Mappings\VersaoDocumentoMap.cs" />
+    <Compile Include="Mappings\Ecm6AccessDocMap.cs" />
     <Compile Include="Mappings\TrilhaMap.cs" />
     <Compile Include="Mappings\ChaveMap.cs" />
     <Compile Include="Mappings\IndexacaoMap.cs" />
@@ -224,8 +228,12 @@
     <Compile Include="Mappings\AreaMap.cs" />
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
-    <Compile Include="Migrations\201604251711_AdicionarCpfStatusSearchNoDocumento.cs" />
     <Compile Include="Migrations\201604231602_CriaConfiguracao.cs" />
+    <Compile Include="Migrations\201604251711_AdicionarCpfStatusSearchNoDocumento.cs" />
+    <Compile Include="Migrations\201605041608_CriaEcm6PreIndexes.cs" />
+    <Compile Include="Migrations\201605041545_CriaEcm6PreDoc.cs" />
+    <Compile Include="Migrations\201605041441_CriaVersaoDocumento.cs" />
+    <Compile Include="Migrations\201605041216_CriaEcm6AccessDoc.cs" />
     <Compile Include="Migrations\201604190115_CriaAcessoDocumento.cs" />
     <Compile Include="Migrations\201604131918_CriaAcessoFuncionalidade.cs" />
     <Compile Include="Migrations\201604042156_AdicionarAvatarNoUsuario.cs" />
@@ -234,6 +242,7 @@
     <Compile Include="Migrations\201603301829_AdicionarAtivoNaChave.cs" />
     <Compile Include="Migrations\201603291705_CriaTrilha.cs" />
     <Compile Include="Migrations\201603240211_AdicionarFiletypeMongoStorage.cs" />
+    <Compile Include="Repositorios\CustomResultTransformer.cs" />
     <Compile Include="Seeds\301604251835_CriaConfiguracoes.cs" />
     <Compile Include="Seeds\301603231214_CriaChavesDoTipo.cs" />
     <Compile Include="Migrations\201603211513_CriaWorkflow.cs" />

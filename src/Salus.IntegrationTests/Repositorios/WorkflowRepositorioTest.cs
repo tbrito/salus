@@ -14,14 +14,14 @@
         {
             var tiago = new Usuario
             {
-                Nome = "tiago",
+                Login = "tiago",
                 Email = "tiago.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();
 
             var flavia = new Usuario
             {
-                Nome = "flavia",
+                Login = "flavia",
                 Email = "flavia.sousa@gmail",
                 Senha = "pwd"
             }.Persistir();

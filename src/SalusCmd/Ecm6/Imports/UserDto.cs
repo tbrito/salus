@@ -1,7 +1,7 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
-{
-    using Framework.Modelo;
+using Salus.Model.Entidades;
 
+namespace SalusCmd.Ecm6.Imports
+{
     public class UserDto : Entidade
     {
         public string Name
@@ -29,6 +29,12 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6.Imports
         }
 
         public string Profile
+        {
+            get;
+            set;
+        }
+
+        public string Area
         {
             get;
             set;
