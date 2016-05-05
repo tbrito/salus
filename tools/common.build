@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 
-    <property name="nant.settings.currentframework" value="net-4.0" />
+    <property name="nant.settings.currentframework" value="net-4.5.2" />
     <property name="nant.verbosity" overwrite="false" value="false" />
 
     <property name="current.dir" value="${project::get-base-directory()}"/>
@@ -21,10 +21,6 @@
     <property name="report.dir" value="${build.dir}\report"/>
 	<property name="temp.dir" value="${build.dir}\temp"/>
 	<property name="buildtools.dir" value="${tools.dir}"/>
-	
-	<!-- vb -->
-	<property name="source.vb.dir" value="vb\APP" />
-	<property name="binary.vb.dir" value="${root.dir}\build\binaryvb" />
 	
 	<!-- default values -->
     <property name="env" value="development" overwrite="false" />
@@ -48,7 +44,6 @@
 	<include buildfile="${buildtools.dir}\compile.build" />
 	<include buildfile="${buildtools.dir}\test.build" />
 	<include buildfile="${buildtools.dir}\package.build" />
-	<include buildfile="${buildtools.dir}\statistic.build" />
 	<include buildfile="${buildtools.dir}\nuget.build" />
 	<include buildfile="${buildtools.dir}\task.build" />
 	<include buildfile="${buildtools.dir}\setup.build" />
@@ -65,7 +60,6 @@
 	<target name="integration" depends="test" />
 	<target name="release" depends="package" />
 	<target name="releasestable" depends="test, package" />
-	<target name="night" depends="statistic" />
 	
 	<echo message="------------------------------------------------" />
     <echo message="Build trabalhando na pasta ${current.dir}" />	

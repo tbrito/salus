@@ -152,8 +152,8 @@
 	
 	<target name="setup.build">
 
-		<copy file="${buildtools.dir}\m2.bat" tofile="${root.dir}\m2.bat" />	
-		<copy file="${buildtools.dir}\log.bat" tofile="${root.dir}\log.bat" />	
+		<!--copy file="${buildtools.dir}\m2.bat" tofile="${root.dir}\m2.bat" />	
+		<copy file="${buildtools.dir}\log.bat" tofile="${root.dir}\log.bat" /-->	
 
 	</target>
 	

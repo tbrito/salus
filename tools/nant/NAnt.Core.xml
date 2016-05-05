@@ -5287,6 +5287,135 @@
             previously executed. The default is <see langword="true" />.
             </summary>
         </member>
+        <member name="T:NAnt.Core.Tasks.ChooseTask">
+            <summary>
+              <para>
+              Executes an alternate set of task or type definition depending on
+              conditions that are individually set on each group.
+              </para>
+            </summary>
+            <remarks>
+              <para>
+              The <see cref="T:NAnt.Core.Tasks.ChooseTask"/> selects one among a number of possible
+              alternatives. It consists of a sequence of <c>&lt;when&gt;</c> elements
+              followed by an optional <c>&lt;otherwise&gt;</c> element.
+              </para>
+              <para>
+              Each <c>&lt;when&gt;</c> element has a single attribute, test, which 
+              specifies an expression. The content of the <c>&lt;when&gt;</c> and 
+              <c>&lt;otherwise&gt;</c> elements is a set of nested tasks.
+              </para>
+              <para>
+              The content of the first, and only the first, <c>&lt;when&gt;</c>
+              element whose test is <see langword="true"/> is executed. If no 
+              <c>&lt;when&gt;</c> element is <see langword="true"/>, the 
+              content of the <c>&lt;otherwise&gt;</c> element is executed.
+              If no <c>&lt;when&gt;</c> element is <see langword="true"/>, and no
+              <c>&lt;otherwise&gt;</c> element is present, nothing is done.
+              </para>
+            </remarks>
+            <example>
+              <para>
+              Execute alternate set of tasks depending on the configuration being
+              built.
+              </para>
+              <code>
+                <![CDATA[
+            <choose>
+                <when test="${build.config == 'Debug'}">
+                    <!-- compile app in debug configuration -->
+                    ...
+                </when>
+                <when test="${build.config == 'Release'}">
+                    <!-- compile app in release configuration -->
+                    ...
+                </when>
+                <otherwise>
+                    <fail>Build configuration '${build.config}' is not supported!</fail>
+                </otherwise>
+            </choose>
+                ]]>
+              </code>
+            </example>
+            <example>
+              <para>
+              Define a <c>sources</c> patternset holding an alternate set of patterns
+              depending on the configuration being built.
+              </para>
+              <code>
+                <![CDATA[
+            <choose>
+                <when test="${build.config == 'Debug'}">
+                    <patternset id="sources">
+                        <include name="**/*.cs" />
+                    </patternset>
+                </when>
+                <when test="${build.config == 'Release'}">
+                    <patternset id="sources">
+                        <include name="**/*.cs" />
+                        <exclude name="**/Instrumentation/*.cs" />
+                    </patternset>
+                </when>
+                <otherwise>
+                    <fail>Build configuration '${build.config}' is not supported!</fail>
+                </otherwise>
+            </choose>
+                ]]>
+              </code>
+            </example>
+        </member>
+        <member name="M:NAnt.Core.Tasks.ChooseTask.AddCondition(NAnt.Core.Tasks.ChooseTask.When)">
+            <summary>
+            One or more alternative sets of tasks to execute.
+            </summary>
+            <param name="when">The set of tasks to add.</param>
+        </member>
+        <member name="M:NAnt.Core.Tasks.ChooseTask.AddFallback(NAnt.Core.ElementContainer)">
+            <summary>
+            The set of tasks to execute if none of the <see cref="T:NAnt.Core.Tasks.ChooseTask.When"/>
+            elements are <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:NAnt.Core.Tasks.ChooseTask.IsFallbackDefined">
+            <summary>
+            Gets a value indicating whether a fallback element is defined.
+            </summary>
+            <value>
+            <see langword="true" /> if a fallback element is defined; otherwise,
+            <see langword="false" />.
+            </value>
+        </member>
+        <member name="T:NAnt.Core.Tasks.ChooseTask.When">
+            <summary>
+            Groups a set of tasks to execute when a condition is met.
+            </summary>
+        </member>
+        <member name="T:NAnt.Core.ElementContainer">
+            <summary>
+            Executes embedded tasks/elements in the order in which they are defined.
+            </summary>
+        </member>
+        <member name="M:NAnt.Core.ElementContainer.ExecuteChildTasks">
+            <summary>
+            Creates and executes the embedded (child XML nodes) elements.
+            </summary>
+        </member>
+        <member name="P:NAnt.Core.ElementContainer.CustomXmlProcessing">
+            <summary>
+            Gets a value indicating whether the element is performing additional
+            processing using the <see cref="T:System.Xml.XmlNode"/> that was use to 
+            initialize the element.
+            </summary>
+            <value>
+            <see langword="true"/>, as a <see cref="T:NAnt.Core.ElementContainer"/> is
+            responsable for creating tasks from the nested build elements.
+            </value>
+        </member>
+        <member name="P:NAnt.Core.Tasks.ChooseTask.When.Test">
+            <summary>
+            Used to test arbitrary boolean expression.
+            </summary>
+        </member>
         <member name="T:NAnt.Core.Tasks.CopyTask">
             <summary>
             Copies a file, a directory, or set of files to a new file or directory.
@@ -8683,6 +8812,201 @@
             <summary>
             Used to select files that should be touched.
             </summary>
+        </member>
+        <member name="T:NAnt.Core.Tasks.TryCatchTask">
+            <summary>
+            Executes a set of tasks, and optionally catches a build exception to
+            allow recovery or rollback steps to be taken, or to define some steps
+            to be taken regardless if the tasks succeed or fail, or both.
+            </summary>
+            <remarks>
+              <para>
+              The tasks defined in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.TryBlock"/>&gt;</c> block
+              will be executed in turn, as they normally would in a target.
+              </para>
+              <para>
+              If a <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c> block is defined, the 
+              tasks in that block will be executed in turn only if one of the tasks 
+              in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.TryBlock"/>&gt;</c> block fails. This 
+              failure will then be suppressed by the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c>
+              block.
+              </para>
+              <para>
+              The message associated with the failure can also be caught in a
+              property for use within the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c>
+              block.  The original contents of the property will be restored upon 
+              exiting the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c> block.
+              </para>
+              <para>
+              If a <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.FinallyBlock"/>&gt;</c> block is defined, the 
+              tasks in that block will be executed after the tasks in both the 
+              <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.TryBlock"/>&gt;</c> and <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c>
+              blocks have been executed, regardless of whether any task fails in 
+              either block.
+              </para>
+            </remarks>
+            <example>
+              <code>
+                <![CDATA[
+            <trycatch>
+                <try>
+                    <echo message="In try" />
+                    <fail message="Failing!" />
+                </try>
+                <catch>
+                    <echo message="In catch" />
+                </catch>
+                <finally>
+                    <echo message="Finally done" />
+                </finally>
+            </trycatch>
+                ]]>
+              </code>
+              <para>
+              The output of this example will be:
+              </para>
+              <code>
+            In try
+            In catch
+            Finally done
+              </code>
+              <para>
+              The failure in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.TryBlock"/>&gt;</c> block will 
+              not cause the build to fail.
+              </para>
+            </example>
+            <example>
+              <code>
+                <![CDATA[
+            <trycatch>
+                <try>
+                    <echo message="In try" />
+                    <fail message="Just because..." />
+                </try>
+                <catch property="failure">
+                    <echo message="Caught failure: ${failure}" />
+                    <fail message="Bad catch" />
+                </catch>
+                <finally>
+                    <echo message="Finally done" />
+                </finally>
+            </trycatch>
+                ]]>
+              </code>
+              <para>
+              The output of this example will be:
+              </para>
+              <code>
+            In try
+            Caught failure: Just because...
+            Finally done
+            Build failed: Bad catch
+              </code>
+              <para>
+              Like the above, the failure in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.TryBlock"/>&gt;</c>
+              block does not cause the build to fail.  The failure in the 
+              <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c> block does, however.
+              Note that the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.FinallyBlock"/>&gt;</c> block is 
+              executed even though the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c>
+              block failed.
+              </para>
+            </example>
+            <example>
+              <code>
+                <![CDATA[
+            <trycatch>
+                <try>
+                    <echo message="In try" />
+                    <fail message="yet again" />
+                </try>
+                <catch property="failure">
+                    <echo message="Caught failure ${failure}" />
+                    <fail message="Bad catch" />
+                </catch>
+                <finally>
+                    <echo message="Finally done ${failure}" />
+                </finally>
+            </trycatch>
+                ]]>
+              </code>
+              <para>
+              The output of this example will be:
+              </para>
+              <code>
+            In try
+            Caught failure yet again
+            Build failed: Property 'failure' has not been set.
+              </code>
+              <para>
+              The <see cref="T:NAnt.Core.Tasks.EchoTask"/> in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.FinallyBlock"/>&gt;</c>
+              block failed because the "failure" property was not defined 
+              after exiting the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c> block.  
+              Note that the failure in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.FinallyBlock"/>&gt;</c> 
+              block has eclipsed the failure in the <c>&lt;<see cref="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock"/>&gt;</c>
+              block.
+              </para>
+            </example>
+            <example>
+              <code>
+                <![CDATA[
+            <trycatch>
+                <try>
+                    <property name="temp.file" value="${path::get-temp-file-name()}" />
+                    <do-stuff to="${temp.file}" />
+                    <fail message="Oops..." />
+                </try>
+                <finally>
+                    <echo message="Cleaning up..." />
+                    <if test="${property::exists('temp.file')}">
+                        <delete file="${temp.file}" />
+                    </if>
+                </finally>
+            </trycatch>
+                ]]>
+              </code>
+              <para>
+              A more concrete example, that will always clean up the generated
+              temporary file after it has been created.
+              </para>
+            </example>
+        </member>
+        <member name="P:NAnt.Core.Tasks.TryCatchTask.TryBlock">
+            <summary>
+            The tasks in this block will be executed as a normal part of
+            the build script.
+            </summary>
+        </member>
+        <member name="P:NAnt.Core.Tasks.TryCatchTask.CatchBlock">
+            <summary>
+            The tasks in this block will be executed if any task in the try
+            block fails.
+            </summary>
+        </member>
+        <member name="P:NAnt.Core.Tasks.TryCatchTask.FinallyBlock">
+            <summary>
+            The tasks in this block will always be executed, regardless of
+            what happens in the try and catch blocks.
+            </summary>
+            <remarks>
+            Note that any failure in any of the tasks in this block will
+            prevent any subsequent tasks from executing.
+            </remarks>
+        </member>
+        <member name="P:NAnt.Core.Tasks.TryCatchTask.CatchElement.Property">
+            <summary>
+            Defines the name of the property to save the message describing
+            the failure that has been caught.
+            </summary>
+            <remarks>
+            <para>
+            The failure message is only available in the context of the catch
+            block.  If you wish to preserve the message, you will need to save
+            it into another property.
+            </para>
+            <para>
+            Readonly properties cannot be overridden by this mechanism.
+            </para>
+            </remarks>
         </member>
         <member name="T:NAnt.Core.Tasks.TStampTask">
             <summary>
