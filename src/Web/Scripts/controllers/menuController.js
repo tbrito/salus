@@ -87,7 +87,7 @@
             return false;
         }
 
-        if ($scope.usuario.Nome = 'admin')
+        if ($scope.usuario.Login = 'admin')
         {
             return true;
         }

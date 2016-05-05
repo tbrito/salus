@@ -52,7 +52,7 @@
         public LoginViewModel Post([FromBody]LoginViewModel value)
         {
             var senha = this.hashString.Do(value.Senha);
-            var usuario = this.usuarioRepositorio.Procurar(value.UserName, senha);
+            var usuario = this.usuarioRepositorio.Procurar(value.Login, senha);
 
             var login = new LoginViewModel();
             login.Autenticado = false;
@@ -111,7 +111,8 @@
 
             login = new LoginViewModel
             {
-                UserName = usuario.Login,
+                Login = usuario.Login,
+                Nome = usuario.Nome,
                 Senha = usuario.Senha,
                 Autenticado = true,
                 Funcionalidades = funcionalidades,

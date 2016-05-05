@@ -47,11 +47,6 @@
             {
                 Log.App.Error("Erro ao indexar documento " + content.Id, exception);
 
-                if (content.SearchStatus == SearchStatus.TryIndexAgain)
-                {
-                    return SearchStatus.CantIndex;
-                }
-
                 return SearchStatus.TryIndexAgain;
             }
         }

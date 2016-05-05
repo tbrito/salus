@@ -41,10 +41,7 @@
 
             do
             {
-                using (this.unidadeDeTrabalho.Iniciar())
-                {
-                    contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
-                }
+                contents = this.documentoRepositorio.ObterTodosParaIndexar(120);
 
                 if (contents.Count == 0)
                 {
@@ -60,24 +57,21 @@
                 using (var session = this.indexerSession
                     .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
                 {
-                    Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = Aplicacao.Nucleos }, batch =>
+                    Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, batch =>
                     {
-                        using (var transacao = this.unidadeDeTrabalho.Iniciar())
-                        {
-                            try
-                            {
-                                this.Increment(this.indexQueueProcessBatch.Execute(batch));
-                                transacao.Commit();
-                            }
-                            catch (System.Exception exception)
-                            {
-                                transacao.RollBack();
-                                Log.App.Error("Erro ao tentar indexar documentos. ", exception);
-                            }
-                        }
+                        ////UnidadeDeTrabalho.Boot();
+                        this.Increment(this.indexQueueProcessBatch.Execute(batch));
                     });
+
+                    session.Current.Commit();
                 }
             } while (contents.Count > 0);
+
+            using (var session = this.indexerSession
+                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
+            {
+                session.Current.Optimize();
+            }
         }
 
         private void Increment(int indexed)

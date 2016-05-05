@@ -7,6 +7,7 @@ namespace Salus.Infra.Logs
     using log4net.Layout;
     using log4net.Repository.Hierarchy;
     using log4net.Config;
+    using System;
 
     public class Log
     {
@@ -35,15 +36,15 @@ namespace Salus.Infra.Logs
             
             var fileAppender = BuildFileAppender();
             var consoleAppender = BuildConsoleAppender();
-
+        
             var applicationLogger = GetApplicationLogger();
             applicationLogger.AddAppender(fileAppender);
             applicationLogger.AddAppender(consoleAppender);
-
+            
             Root.Repository.Configured = true;
             BasicConfigurator.Configure(Root.Repository);
         }
-
+        
         private static RollingFileAppender BuildFileAppender()
         {
             var fileAppender = new RollingFileAppender
@@ -51,7 +52,7 @@ namespace Salus.Infra.Logs
                 Name = "FileAppender",
                 AppendToFile = true,
                 File = Path.Combine("Logs", Aplicacao.Nome + ".log"),
-                Layout = new PatternLayout("[%date][%-5thread][%-5level][%message] %newline"),
+                Layout = new PatternLayout("[%date][%-5thread][%-5level] %message %newline"),
                 Threshold = Level.Info,
                 RollingStyle = RollingFileAppender.RollingMode.Date,
                 StaticLogFileName = true,
@@ -59,6 +60,18 @@ namespace Salus.Infra.Logs
             };
 
             fileAppender.ActivateOptions();
+
+            var hierarquia = (Hierarchy)LogManager.GetRepository();
+
+            Logger loggerNH = hierarquia.GetLogger("NHibernate.SQL") as Logger;
+            loggerNH.Level = Level.Error;
+            loggerNH.AddAppender(fileAppender);
+
+            loggerNH = hierarquia.GetLogger("NHibernate") as Logger;
+            loggerNH.Level = Level.Error;
+            loggerNH.AddAppender(fileAppender);
+
+            hierarquia.Configured = true;
 
             return fileAppender;
         }
@@ -68,12 +81,23 @@ namespace Salus.Infra.Logs
             var consoleAppender = new ConsoleAppender
             {
                 Name = "ConsoleAppender",
-                Layout = new PatternLayout("[%date][%-5thread][%-5level][%message] %newline"),
-                Threshold = Level.Debug
+                Layout = new PatternLayout("[%date][%-5thread][%-5level] %message %newline"),
+                Threshold = Level.Info
             };
 
             consoleAppender.ActivateOptions();
 
+            var hierarquia = (Hierarchy)LogManager.GetRepository();
+
+            Logger loggerNH = hierarquia.GetLogger("NHibernate.SQL") as Logger;
+            loggerNH.Level = Level.Error;
+            loggerNH.AddAppender(consoleAppender);
+
+            loggerNH = hierarquia.GetLogger("NHibernate") as Logger;
+            loggerNH.Level = Level.Error;
+            loggerNH.AddAppender(consoleAppender);
+
+            hierarquia.Configured = true;
             return consoleAppender;
         }
 

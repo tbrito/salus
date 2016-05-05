@@ -332,6 +332,12 @@
     <Content Include="Scripts\lib\angular\angular-route.js" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\ui-bootstrap-tpls-1.2.1.min.js" />
+    <Content Include="Scripts\lib\snap\angular-snap-only.css" />
+    <Content Include="Scripts\lib\snap\angular-snap-only.min.css" />
+    <Content Include="Scripts\lib\snap\angular-snap.css" />
+    <Content Include="Scripts\lib\snap\angular-snap.js" />
+    <Content Include="Scripts\lib\snap\angular-snap.min.css" />
+    <Content Include="Scripts\lib\snap\angular-snap.min.js" />
     <Content Include="Scripts\lib\snap\snap.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ng-file-upload-all.js" />

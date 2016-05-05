@@ -33,7 +33,8 @@ namespace Salus.Model.Servicos
             }
 
             usuario.Ativo = usuarioViewModel.Ativo;
-            usuario.Login = usuarioViewModel.Nome;
+            usuario.Login = usuarioViewModel.Login;
+            usuario.Nome = usuarioViewModel.Nome;
             usuario.Email = usuarioViewModel.Email;
             usuario.Expira = usuarioViewModel.Expira;
 

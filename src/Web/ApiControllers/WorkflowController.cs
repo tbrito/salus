@@ -1,6 +1,7 @@
 ﻿namespace Web.ApiControllers
 {
     using Salus.Infra.IoC;
+    using Salus.Infra.Logs;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using Salus.Model.UI;
@@ -25,6 +26,8 @@
         {
             var workflow = this.workflowRepositorio
                 .ObterCaixaEntrada(this.sessaoDoUsuario.UsuarioAtual);
+
+            Log.App.Info("Documentos da Caixa de entrada" + workflow.Count);
 
             var fluxos = new List<WorkflowViewModel>();
 

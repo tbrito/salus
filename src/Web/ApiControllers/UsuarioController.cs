@@ -37,7 +37,8 @@
                     Email = usuario.Email,
                     Expira = usuario.Expira,
                     ExpiraEm = usuario.ExpiraEm,
-                    Nome = usuario.Login,
+                    Nome = usuario.Nome,
+                    Login = usuario.Login,
                     Senha = usuario.Senha,
                     Area = usuario.Area,
                     Perfil = usuario.Perfil

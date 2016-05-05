@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Salus.Model.Entidades;
 using Salus.Model.Repositorios;
 using NHibernate.Transform;
+using System.Linq;
 
 namespace Salus.Infra.Repositorios
 {
@@ -35,8 +36,10 @@ namespace Salus.Infra.Repositorios
                 .Fetch(x => x.TipoDocumento).Eager
                 .Fetch(x => x.Usuario).Eager
                 .Fetch(x => x.Indexacao).Eager
+                .Fetch(x => x.Indexacao.First().Chave).Eager
                 .Where(x => x.SearchStatus == SearchStatus.ToIndex)
                 .TransformUsing(Transformers.DistinctRootEntity)
+                .Take(quantidade)
                 .List();
         }
     }

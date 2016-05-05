@@ -1,11 +1,11 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6
+namespace SalusCmd.Tarefas.Ecm6
 {
     using Salus.Infra.Logs;
     using System;
     using System.Configuration;
     using System.IO;
 
-    public class Ecm6ImportStorageTask : ITarefaM2
+    public class Ecm6ImportStorageTask : ITarefa
     {
         private readonly IContentStorageRepository contentStorage = IoC.Current.Resolve<IContentStorageRepository>();
         private readonly IUnitOfWork unitOfWork = IoC.Current.Resolve<IUnitOfWork>();

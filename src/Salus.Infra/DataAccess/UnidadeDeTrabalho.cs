@@ -37,14 +37,12 @@ namespace Salus.Infra.DataAccess
                 Log.App.DebugFormat(
                     "Session {0}: disposing",
                     NHibernateSession.Current.GetHashCode());
-
-                ////NHibernateSession.Current.Transaction.Dispose();
-                ////NHibernateSession.Current.Dispose();
             }
         }
 
-        public IUnidadeDeTrabalho Iniciar()
+        public static void Boot()
         {
+            ////NHibernateSession.CloseAllSessions();
             string[] mappings = new string[]
             {
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
@@ -65,7 +63,10 @@ namespace Salus.Infra.DataAccess
                    m.FluentMappings.Conventions.Add<EnumConvention>();
                    m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
                });
+        }
 
+        public IUnidadeDeTrabalho Iniciar()
+        {
             NHibernateSession.Current.BeginTransaction();
 
             return this;

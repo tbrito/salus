@@ -4,7 +4,7 @@ namespace Salus.Model.UI
 {
     public class LoginViewModel
     {
-        public string UserName { get; set; }
+        public string Nome { get; set; }
 
         public string Senha { get; set; }
 
@@ -13,5 +13,7 @@ namespace Salus.Model.UI
         public IList<FuncionalidadeViewModel> Funcionalidades { get; set; }
 
         public string Avatar { get; set; }
+
+        public string Login { get; set; }
     }
 }

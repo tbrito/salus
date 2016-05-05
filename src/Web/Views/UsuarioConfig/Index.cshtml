@@ -5,10 +5,11 @@
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Usuário</button>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" style="height:560px;overflow:auto">
         <table ng-show="usuarios.length > 0" class="table">
             <thead>
                 <tr>
+                    <th>Login</th>
                     <th>Nome</th>
                     <th>Área</th>
                     <th>Perfil</th>
@@ -17,6 +18,7 @@
                 </tr>
             </thead>
             <tr ng-class="{'item-inativo': usuario.Ativo == false}" ng-repeat="usuario in usuarios">
+                <td>{{usuario.Login}}</td>
                 <td>{{usuario.Nome}}</td>
                 <td>{{usuario.Area.Nome}}</td>
                 <td>{{usuario.Perfil.Nome}}</td>

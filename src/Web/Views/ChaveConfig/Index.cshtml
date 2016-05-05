@@ -8,7 +8,7 @@
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar(@this.Model.TipoDocumentoId, '@this.Model.TipoDocumentoNome')">Nova chave</button>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" style="overflow:auto">
         <table ng-show="chaves.length > 0" class="table">
             <thead>
                 <tr>

@@ -2,38 +2,69 @@
 using SharpArch.NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Salus.Infra.DataAccess
 {
     public class ThreadSessionStorage : ISessionStorage
     {
-        [ThreadStatic]
-        private static ISession _session;
-        public ISession Session
+        private readonly ThreadSafeDictionary<string, SimpleSessionStorage> 
+            perThreadSessionStorage = new ThreadSafeDictionary<string, SimpleSessionStorage>();
+
+        #region IUnitOfWorkSessionStorage Members
+
+        public IEnumerable<ISession> GetAllSessions()
         {
-            get
-            {
-                return _session;
-            }
-            set
-            {
-                _session = value;
-            }
+            return GetSimpleSessionStorageForThread().GetAllSessions();
         }
 
         public ISession GetSessionForKey(string factoryKey)
         {
-            return Session;
+            return GetSimpleSessionStorageForThread().GetSessionForKey(factoryKey);
         }
 
         public void SetSessionForKey(string factoryKey, ISession session)
         {
-            Session = session;
+            GetSimpleSessionStorageForThread().SetSessionForKey(factoryKey, session);
         }
 
-        public IEnumerable<ISession> GetAllSessions()
+        public void EndUnitOfWork(bool closeSessions)
         {
-            return new List<ISession>() { Session };
+            if (closeSessions)
+            {
+                NHibernateSession.CloseAllSessions();
+                perThreadSessionStorage.Remove(GetCurrentThreadName());
+            }
+            else {
+                foreach (ISession session in GetAllSessions())
+                {
+                    session.Clear();
+                }
+            }
+        }
+
+        #endregion
+
+        private SimpleSessionStorage GetSimpleSessionStorageForThread()
+        {
+            string currentThreadName = GetCurrentThreadName();
+            SimpleSessionStorage sessionStorage;
+            if (!perThreadSessionStorage.TryGetValue(currentThreadName, out sessionStorage))
+            {
+                sessionStorage = new SimpleSessionStorage();
+                perThreadSessionStorage.Add(currentThreadName, sessionStorage);
+            }
+
+            return sessionStorage;
+        }
+
+        private string GetCurrentThreadName()
+        {
+            if (Thread.CurrentThread.Name == null)
+            {
+                Thread.CurrentThread.Name = Guid.NewGuid().ToString();
+            }
+            return Thread.CurrentThread.Name;
         }
     }
 }

@@ -76,15 +76,22 @@
 
             if (string.IsNullOrEmpty(valorCpf))
             {
-                var cpf = content.Indexacao.FirstOrDefault(x => x.Chave.TipoDado == TipoDado.CpfCnpj);
+                try
+                {
+                    var cpf = content.Indexacao.FirstOrDefault(x => x.Chave.TipoDado == TipoDado.CpfCnpj);
 
-                if (cpf == null)
+                    if (cpf == null)
+                    {
+                        valorCpf = "999999999";
+                    }
+                    else
+                    {
+                        valorCpf = cpf.Valor;
+                    }
+                }
+                catch (Exception)
                 {
                     valorCpf = "999999999";
-                }
-                else
-                {
-                    valorCpf = cpf.Valor;
                 }
 
             }
