@@ -2,19 +2,17 @@ namespace SalusCmd.Ecm6
 {
     using Salus.Infra.Logs;
     using System;
-
+    using System.Diagnostics;
     public class Measure : IDisposable
     {
         private string message;
         private TimeSpan medicao;
-
-        public Measure()
-        {
-        }
-
+        private Stopwatch sw;
+        
         public Measure(string message)
         {
-            this.medicao = new TimeSpan();
+            this.sw = new Stopwatch();
+            this.sw.Start();
             this.message = message;
             Log.App.InfoFormat(message);
         }
@@ -27,13 +25,15 @@ namespace SalusCmd.Ecm6
         public void Start(string message)
         {
             this.message = message;
-            this.medicao = new TimeSpan();
+            this.sw = new Stopwatch();
+            this.sw.Start();
             Log.App.InfoFormat("[Medindo]: {0}", this.message);
         }
 
         public void Stop()
         {
-            Log.App.InfoFormat("[Medindo]: {0} terminou em {1}s", this.message, this.medicao.Seconds);
+            this.sw.Stop();
+            Log.App.InfoFormat("[Medindo]: {0} terminou em {1}s", this.message, this.sw.Elapsed.Seconds);
             this.message = string.Empty;
         }
     }

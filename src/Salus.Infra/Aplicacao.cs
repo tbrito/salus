@@ -5,6 +5,7 @@
     using Logs;
     using Repositorios;
     using System;
+    using System.Reflection;
 
     public class Aplicacao
     {
@@ -13,6 +14,14 @@
             get
             {
                 return AppDomain.CurrentDomain.BaseDirectory;
+            }
+        }
+
+        public static string Nome
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Name;
             }
         }
 

@@ -50,9 +50,9 @@ namespace Salus.Infra.Logs
             {
                 Name = "FileAppender",
                 AppendToFile = true,
-                File = Path.Combine("Logs", "Web.log"),
+                File = Path.Combine("Logs", Aplicacao.Nome + ".log"),
                 Layout = new PatternLayout("[%date][%-5thread][%-5level][%message] %newline"),
-                Threshold = Level.Debug,
+                Threshold = Level.Info,
                 RollingStyle = RollingFileAppender.RollingMode.Date,
                 StaticLogFileName = true,
                 MaxSizeRollBackups = 3
