@@ -422,6 +422,7 @@
     <Content Include="Views\Configuracao\Editar.cshtml" />
     <Content Include="Views\Configuracao\Index.cshtml" />
     <Content Include="Views\NaoAutorizado\Index.cshtml" />
+    <Content Include="Views\Login\Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

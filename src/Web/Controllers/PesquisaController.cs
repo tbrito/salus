@@ -9,11 +9,7 @@
         [UrlRoute("Pesquisa/Resultado/{termo}")]
         public ActionResult Resultado(string termo)
         {
-            var pesquisaViewModel = new PesquisaViewModel
-            {
-                Texto = termo
-            };
-
+            var pesquisaViewModel = new PesquisaViewModel { Texto = termo };
             return PartialView(pesquisaViewModel);
         }
     }

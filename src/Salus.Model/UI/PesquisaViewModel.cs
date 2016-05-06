@@ -2,6 +2,6 @@
 {
     public class PesquisaViewModel
     {
-        public string Texto { get; set; }
+        public dynamic Texto { get; set; }
     }
 }

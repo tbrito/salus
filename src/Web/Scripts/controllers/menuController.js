@@ -24,6 +24,7 @@
     $scope.usuario = {};
 
     $scope.start = function () {
+        $scope.usuario = autorizacaoApi.obter("usuario_autenticado");
     }
 
     $scope.abrirUpload = function () {
@@ -73,6 +74,8 @@
     $scope.sair = function () {
         usuarioApi.logout()
             .success(function (data) {
+                autorizacaoApi.remover("usuario_autenticado");
+                $scope.start();
                 $location.path('/Login');
             })
             .error(function (data) {

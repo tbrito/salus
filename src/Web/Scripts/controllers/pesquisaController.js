@@ -1,10 +1,13 @@
 angular.module("salus-app").controller("pesquisaController", function ($scope, $location, pesquisaApi) {
-    $scope.pesquisar = function (parametro) {
-        $location.path('/PesquisaView/Resultado/' + parametro.Texto);
+    $scope.palavra;
+
+    $scope.pesquisar = function (termo) {
+        $scope.palavra = termo;
+        $location.path('/PesquisaView/Resultado/' +termo);
     };
 
-    $scope.procurar = function (parametro) {
-        pesquisaApi.pesquisar(parametro)
+    $scope.procurar = function (texto) {
+        pesquisaApi.pesquisar($scope.palavra)
             .success(function (data) {
                 $scope.resultadoPesquisa = data;
             })

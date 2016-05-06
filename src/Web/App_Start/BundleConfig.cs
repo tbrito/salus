@@ -37,41 +37,7 @@ namespace Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/controllers/homeController.js",
-                "~/Scripts/controllers/uploadController.js",
-                "~/Scripts/controllers/categorizacaoController.js",
-                "~/Scripts/controllers/acessoFuncionalidadeController.js",
-                "~/Scripts/controllers/acessoDocumentoController.js",
-                "~/Scripts/controllers/areaConfigController.js",
-                "~/Scripts/controllers/configuracaoController.js",
-                "~/Scripts/controllers/tipoDocumentoConfigController.js",
-                "~/Scripts/controllers/perfilConfigController.js",
-                "~/Scripts/controllers/usuarioConfigController.js",
-                "~/Scripts/controllers/grupoDocumentoConfigController.js",
-                "~/Scripts/controllers/chaveConfigController.js",
-                "~/Scripts/controllers/pesquisaController.js",
-                "~/Scripts/controllers/loginController.js",
-                "~/Scripts/controllers/menuController.js",
-                "~/Scripts/controllers/viewController.js",
-                "~/Scripts/services/acessoFuncionalidadeApiService.js",
-                "~/Scripts/services/acessoDocumentoApiService.js",
-                "~/Scripts/services/funcionalidadeApiService.js",
-                "~/Scripts/services/indexacaoApiService.js",
-                "~/Scripts/services/autorizacaoApiService.js",
-                "~/Scripts/services/configuracaoApiService.js",
-                "~/Scripts/services/areaApiService.js",
-                "~/Scripts/services/pesquisaApiService.js",
-                "~/Scripts/services/perfilApiService.js",
-                "~/Scripts/services/tipoDocumentoApiService.js",
-                "~/Scripts/services/grupoDocumentoApiService.js",
-                "~/Scripts/services/chavesApiService.js",
-                "~/Scripts/services/usuarioApiService.js",
-                "~/Scripts/services/workflowApiService.js",
-                "~/Scripts/services/storageApiService.js",
-                "~/Scripts/services/atividadeApiService.js"));
-
+            
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css"));

@@ -6,9 +6,14 @@ angular.module("salus-app").factory("autorizacaoApi", function ($cookieStore) {
     var _getObter = function (usuario) {
         return $cookieStore.get("usuario_autenticado");
     };
+
+    var _remover = function (usuario) {
+        return $cookieStore.remove("usuario_autenticado");
+    };
     
     return {
         salvar: _putSalvar,
-        obter: _getObter
+        obter: _getObter,
+        remover: _remover,
     };
 });
