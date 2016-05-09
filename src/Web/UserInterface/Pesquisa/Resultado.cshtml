@@ -1,0 +1,17 @@
+﻿@model PesquisaViewModel
+
+<div class="modal-content" ng-controller="pesquisaController" ng-init="procurarTermo(@this.Model.Texto)">
+
+    <div ng-show="resultadoPesquisa.Documentos == 0">
+        Não há itens para o texto pesquisado
+    </div>
+
+    <div ng-repeat="documento in resultadoPesquisa.Documentos" ng-show="resultadoPesquisa.Documentos > 0" class="list-group" style="overflow:auto">
+        <div class="list-group-item">
+            <h4 class="list-group-item-heading"><a ng-click="abrirDocumento(documento.Id)">{{documento.Assunto}}</a></h4>
+            <div ng-repeat="index in documento.Indexacao">
+                <p class="list-group-item-text">{{index.Chave.Nome}} - {{index.Valor}}</p>
+            </div>
+        </div>
+    </div>
+</div>

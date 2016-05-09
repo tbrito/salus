@@ -1,5 +1,6 @@
 angular.module("salus-app").controller('perfilConfigController',
-    ['$scope', 'Upload', '$timeout', '$location', 'perfilApi', function ($scope, Upload, $timeout, $location, perfilApi) {
+    ['$scope', 'Upload', '$timeout', '$location', 'perfilApi', '$routeParams',
+        function ($scope, Upload, $timeout, $location, perfilApi, $routeParams) {
 
     $scope.perfis = [];
     $scope.perfil = {};
@@ -23,9 +24,9 @@ angular.module("salus-app").controller('perfilConfigController',
         $location.path('/PerfilConfig/Editar/' + perfilId);
     }
     
-    $scope.carregarParaEdicao = function (perfilId) {
-        $scope.perfil = {};
-
+    $scope.carregarParaEdicao = function () {
+        var perfilId = $routeParams.perfilId;
+       
         if (perfilId != 0) {
             perfilApi.getPerfil(perfilId)
                 .success(function (data) {

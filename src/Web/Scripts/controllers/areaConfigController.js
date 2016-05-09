@@ -1,4 +1,5 @@
-angular.module("salus-app").controller('areaConfigController', function ($scope, $location, areaApi) {
+angular.module("salus-app").controller('areaConfigController',
+    function ($scope, $location, areaApi, $routeParams) {
 
     $scope.areas = [];
     
@@ -21,7 +22,9 @@ angular.module("salus-app").controller('areaConfigController', function ($scope,
         $location.path('/AreaConfig/Editar/' + areaid);
     }
     
-    $scope.carregarParaEdicao = function (areaid) {
+    $scope.carregarParaEdicao = function () {
+        var areaid = $routeParams.areaId;
+
         if (areaid == 0) {
             $scope.area = {};
             

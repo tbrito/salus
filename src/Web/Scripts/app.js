@@ -8,19 +8,19 @@ angular.module("salus-app", [
     .config(config);
     
 function config($routeProvider, $locationProvider) {
-    var viewBase = 'views/';
+    var viewBase = '/UserInterface/';
     $routeProvider
         .when('/Home', {
             controller: 'homeController',
-            templateUrl: 'Home/Me',
+            templateUrl: viewBase + 'Home/Me.cshtml',
         })
         .when('/Login', {
             controller: 'loginController',
-            templateUrl: 'Login/Index'
+            templateUrl: viewBase + 'Login/Index.cshtml'
         })
         .when('/Upload', {
             controller: 'uploadController',
-            templateUrl: 'Documento/Novo'
+            templateUrl: viewBase + 'Documento/Novo.cshtml'
         })
         .when('/Categorizar/:documentoId', {
             controller: 'categorizacaoController',
@@ -28,51 +28,51 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/UsuarioConfig', {
             controller: 'usuarioConfigController',
-            templateUrl: 'UsuarioConfig/Index'
+            templateUrl: viewBase + 'UsuarioConfig/Index'
         })
         .when('/UsuarioConfig/Editar/:usuarioId', {
             controller: 'usuarioConfigController',
-            templateUrl: function (params) { return 'UsuarioConfig/Editar/' + params.usuarioId; }
+            templateUrl: viewBase + 'UsuarioConfig/Editar.cshtml'
         })
          .when('/PerfilConfig', {
              controller: 'perfilConfigController',
-             templateUrl: 'PerfilConfig/Index'
+             templateUrl: viewBase + 'PerfilConfig/Index'
          })
         .when('/PerfilConfig/Editar/:perfilId', {
             controller: 'perfilConfigController',
-            templateUrl: function (params) { return 'PerfilConfig/Editar/' + params.perfilId; }
+            templateUrl: viewBase + 'PerfilConfig/Editar.cshtml'
         })
         .when('/MeuPerfil/Editar', {
             controller: 'perfilConfigController',
-            templateUrl: 'EditarPerfil/Index'
+            templateUrl: viewBase + 'EditarPerfil/Index'
         })
         .when('/AreaConfig', {
             controller: 'areaConfigController',
-            templateUrl: 'AreaConfig/Index'
+            templateUrl: viewBase + 'AreaConfig/Index'
         })
         .when('/AreaConfig/Editar/:areaId', {
             controller: 'areaConfigController',
-            templateUrl: function (params) { return 'AreaConfig/Editar/' + params.areaId; }
+            templateUrl: viewBase + 'AreaConfig/Editar.cshtml'
         })
         .when('/GrupoDocumentoConfig', {
             controller: 'grupoDocumentoConfigController',
-            templateUrl: 'GrupoDocumentoConfig/Index'
+            templateUrl: viewBase + 'GrupoDocumentoConfig/Index.cshtml'
         })
-        .when('/GrupoDocumentoConfig/Editar/:tipodocumentoId', {
+        .when('/GrupoDocumentoConfig/Editar/:grupodocumentoId', {
             controller: 'grupoDocumentoConfigController',
-            templateUrl: function (params) { return 'GrupoDocumentoConfig/Editar/' + params.tipodocumentoId; }
+            templateUrl: viewBase + 'GrupoDocumentoConfig/Editar.cshtml'
         })
         .when('/TipoDocumentoConfig', {
             controller: 'tipoDocumentoConfigController',
-            templateUrl: 'TipoDocumentoConfig/Index'
+            templateUrl: viewBase + 'TipoDocumentoConfig/Index'
         })
         .when('/TipoDocumentoConfig/Editar/:tipodocumentoId', {
             controller: 'tipoDocumentoConfigController',
-            templateUrl: function (params) { return 'TipoDocumentoConfig/Editar/' + params.tipodocumentoId; }
+            templateUrl: viewBase + 'TipoDocumentoConfig/Editar.cshtml'
         })
         .when('/ChaveConfig/:tipodocumentoId', {
             controller: 'chaveConfigController',
-            templateUrl: function (params) { return 'ChaveConfig/' + params.tipodocumentoId; }
+            templateUrl: viewBase + 'ChaveConfig/Index.cshtml'
         })
         .when('/ChaveConfig/Editar/:chaveid', {
             controller: 'chaveConfigController',
@@ -84,11 +84,11 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/AcessoFuncionalidade', {
             controller: 'acessoFuncionalidadeController',
-            templateUrl: 'AcessoFuncionalidadeConfig/Index'
+            templateUrl: viewBase + 'AcessoFuncionalidadeConfig/Index.cshtml'
         })
         .when('/AcessoDocumento', {
             controller: 'acessoDocumentoController',
-            templateUrl: 'AcessoDocumentoConfig/Index'
+            templateUrl: viewBase + 'AcessoDocumentoConfig/Index.cshtml'
         })
         .when('/Configuracoes', {
             controller: 'viewController',

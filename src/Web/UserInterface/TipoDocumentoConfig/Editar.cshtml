@@ -1,0 +1,30 @@
+﻿<div class="modal-content" ng-controller="tipoDocumentoConfigController" ng-init="carregarParaEdicao()">
+    <h2>{{tipoDocumento.Nome}}</h2>
+    
+    <form name="tipoDocumentoEditForm">
+        <input type="hidden" ng-model="tipoDocumento.Id" />
+
+        <div class="control-group" ng-show="tipoDocumento.EhPasta == false">
+            <label>Grupo de documento</label>
+            <select class="form-control"
+                    ng-model="tipoDocumento.Parent.Id"
+                    ng-options="pasta.Id as pasta.Nome for pasta in tipoDocumento.pastas">
+                <option value="">Selecione um agrupador</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" ng-model="tipoDocumento.Nome" />
+
+            <label>Está Ativo?</label>
+            <input type="checkbox" class="form-control" ng-model="tipoDocumento.Ativo" />
+        </div>
+
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(tipoDocumento)">Salvar</button>
+            <button class="btn btn-primary" ng-click="verChaves(tipoDocumento)">Chaves</button>
+            <button class="btn btn-primary" ng-click="inicio()">Tipos de documentos</button>
+        </div>
+    </form>
+</div>

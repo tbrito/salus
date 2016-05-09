@@ -236,17 +236,6 @@
     <Compile Include="ApiControllers\UsuarioController.cs" />
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
     <Compile Include="ApiControllers\AreaController.cs" />
-    <Compile Include="Controllers\AcessoDocumentoConfigController.cs" />
-    <Compile Include="Controllers\AcessoFuncionalidadeConfigController.cs" />
-    <Compile Include="Controllers\EditarPerfilController.cs" />
-    <Compile Include="Controllers\ConfiguracaoController.cs" />
-    <Compile Include="Controllers\NaoAutorizadoController.cs" />
-    <Compile Include="Controllers\PesquisaController.cs" />
-    <Compile Include="Controllers\PerfilConfigController.cs" />
-    <Compile Include="Controllers\UsuarioConfigController.cs" />
-    <Compile Include="Controllers\ChaveConfigController.cs" />
-    <Compile Include="Controllers\GrupoDocumentoConfigController.cs" />
-    <Compile Include="Controllers\AreaConfigController.cs" />
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
     <Compile Include="Filters\PodeAcessarDocumentoAttribute.cs" />
@@ -260,13 +249,7 @@
     <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="App_Start\ContextoWeb.cs" />
     <Compile Include="ApiControllers\ArquivosController.cs" />
-    <Compile Include="Controllers\TipoDocumentoConfigController.cs" />
-    <Compile Include="Controllers\ViewController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\CategorizarController.cs" />
     <Compile Include="ApiControllers\TipoDocumentoController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Extensions\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Extensions\RouteCollectionExtensions.cs" />
     <Compile Include="Extensions\RouteExtensions.cs" />
@@ -303,6 +286,7 @@
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
     <Content Include="Scripts\controllers\configuracaoController.js" />
+    <Content Include="Scripts\controllers\resultadoPesquisaController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
     <Content Include="Scripts\controllers\usuarioConfigController.js" />
@@ -374,15 +358,7 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <None Include="UserInterface\Login\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -392,37 +368,40 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Home\Me.cshtml" />
-    <Content Include="Views\Shared\Topo.cshtml" />
-    <Content Include="Views\Shared\TopoStart.cshtml" />
-    <Content Include="Views\Documento\Novo.cshtml" />
-    <Content Include="Views\Categorizar\Index.cshtml" />
-    <Content Include="Views\View\Index.cshtml" />
-    <Content Include="Views\TipoDocumentoConfig\Index.cshtml" />
     <Content Include="settings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\AreaConfig\Editar.cshtml" />
-    <Content Include="Views\ChaveConfig\Index.cshtml" />
-    <Content Include="Views\ChaveConfig\Editar.cshtml" />
-    <Content Include="Views\GrupoDocumentoConfig\Editar.cshtml" />
-    <Content Include="Views\GrupoDocumentoConfig\Index.cshtml" />
-    <Content Include="Views\TipoDocumentoConfig\Editar.cshtml" />
-    <Content Include="Views\AreaConfig\Index.cshtml" />
-    <Content Include="Views\UsuarioConfig\Editar.cshtml" />
-    <Content Include="Views\UsuarioConfig\Index.cshtml" />
-    <Content Include="Views\PerfilConfig\Editar.cshtml" />
-    <Content Include="Views\PerfilConfig\Index.cshtml" />
-    <Content Include="Views\AcessoFuncionalidadeConfig\Index.cshtml" />
-    <Content Include="Views\AcessoDocumentoConfig\Index.cshtml" />
-    <Content Include="Views\Pesquisa\Resultado.cshtml" />
-    <Content Include="Views\EditarPerfil\Index.cshtml" />
-    <Content Include="Views\Configuracao\Editar.cshtml" />
-    <Content Include="Views\Configuracao\Index.cshtml" />
-    <Content Include="Views\NaoAutorizado\Index.cshtml" />
-    <Content Include="Views\Login\Scripts.cshtml" />
+    <Content Include="index.html" />
+    <Content Include="UserInterface\AcessoDocumentoConfig\Index.cshtml" />
+    <Content Include="UserInterface\AcessoFuncionalidadeConfig\Index.cshtml" />
+    <Content Include="UserInterface\AreaConfig\Editar.cshtml" />
+    <Content Include="UserInterface\AreaConfig\Index.cshtml" />
+    <Content Include="UserInterface\Categorizar\Index.cshtml" />
+    <Content Include="UserInterface\ChaveConfig\Editar.cshtml" />
+    <Content Include="UserInterface\ChaveConfig\Index.cshtml" />
+    <Content Include="UserInterface\Configuracao\Editar.cshtml" />
+    <Content Include="UserInterface\Configuracao\Index.cshtml" />
+    <Content Include="UserInterface\Documento\Novo.cshtml" />
+    <Content Include="UserInterface\EditarPerfil\Index.cshtml" />
+    <Content Include="UserInterface\GrupoDocumentoConfig\Editar.cshtml" />
+    <Content Include="UserInterface\GrupoDocumentoConfig\Index.cshtml" />
+    <Content Include="UserInterface\Home\Index.cshtml" />
+    <Content Include="UserInterface\Home\Me.cshtml" />
+    <Content Include="UserInterface\NaoAutorizado\Index.cshtml" />
+    <Content Include="UserInterface\PerfilConfig\Editar.cshtml" />
+    <Content Include="UserInterface\PerfilConfig\Index.cshtml" />
+    <Content Include="UserInterface\Pesquisa\Resultado.cshtml" />
+    <Content Include="UserInterface\Shared\_LoginPartial.cshtml" />
+    <Content Include="UserInterface\Shared\Error.cshtml" />
+    <Content Include="UserInterface\Shared\Lockout.cshtml" />
+    <Content Include="UserInterface\Shared\Topo.cshtml" />
+    <Content Include="UserInterface\Shared\TopoStart.cshtml" />
+    <Content Include="UserInterface\TipoDocumentoConfig\Editar.cshtml" />
+    <Content Include="UserInterface\TipoDocumentoConfig\Index.cshtml" />
+    <Content Include="UserInterface\UsuarioConfig\Editar.cshtml" />
+    <Content Include="UserInterface\UsuarioConfig\Index.cshtml" />
+    <Content Include="UserInterface\View\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

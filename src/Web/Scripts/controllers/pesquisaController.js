@@ -1,13 +1,16 @@
-angular.module("salus-app").controller("pesquisaController", function ($scope, $location, pesquisaApi) {
-    $scope.palavra;
+angular.module("salus-app").controller("pesquisaController", function ($scope, $location, $routeParams, pesquisaApi) {
+    
+    $scope.palavra = '';
 
     $scope.pesquisar = function (termo) {
         $scope.palavra = termo;
-        $location.path('/PesquisaView/Resultado/' +termo);
+        $location.path('/PesquisaView/Resultado/' + termo);
     };
 
-    $scope.procurar = function (texto) {
-        pesquisaApi.pesquisar($scope.palavra)
+    $scope.procurarTermo = function (texto) {
+        console.log($scope.parent.palavra);
+
+        pesquisaApi.pesquisar(texto)
             .success(function (data) {
                 $scope.resultadoPesquisa = data;
             })
@@ -16,7 +19,7 @@ angular.module("salus-app").controller("pesquisaController", function ($scope, $
             });
     };
 
-    $scope.abrirDocumento = function (documentoId){
+    $scope.abrirDocumento = function (documentoId) {
         $location.path('/View/' + documentoId);
     };
 });

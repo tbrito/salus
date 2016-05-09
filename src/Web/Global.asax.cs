@@ -2,14 +2,12 @@
 {
     using Salus.Infra;
     using Salus.Infra.Logs;
-    using Salus.Infra.Migrations;
     using System;
-    using System.Configuration;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
-    using System.Web.Routing;
+
     public class MvcApplication : HttpApplication
     {
         public override void Init()
@@ -23,8 +21,8 @@
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ////RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Aplicacao.Boot(Server.MapPath("bin"));
         }

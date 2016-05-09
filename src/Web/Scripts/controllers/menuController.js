@@ -21,10 +21,15 @@
 
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 
-    $scope.usuario = {};
+    $scope.usuario = { Autenticado: false };
 
     $scope.start = function () {
         $scope.usuario = autorizacaoApi.obter("usuario_autenticado");
+
+        if ($scope.usuario == undefined)
+        {
+            $scope.usuario = { Autenticado: false };
+        }
     }
 
     $scope.abrirUpload = function () {

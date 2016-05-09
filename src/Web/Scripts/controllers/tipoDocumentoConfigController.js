@@ -1,4 +1,5 @@
-angular.module("salus-app").controller('tipoDocumentoConfigController', function ($scope, $location, tipoDocumentoApi) {
+angular.module("salus-app").controller('tipoDocumentoConfigController',
+    function ($scope, $location, tipoDocumentoApi, $routeParams) {
 
     $scope.tiposDeDocumento = [];
     
@@ -23,7 +24,9 @@ angular.module("salus-app").controller('tipoDocumentoConfigController', function
         $location.path('/TipoDocumentoConfig/Editar/' + tipoDocumentoId);
     }
     
-    $scope.carregarParaEdicao = function (tipoDocumentoId) {
+    $scope.carregarParaEdicao = function () {
+        var tipoDocumentoId = $routeParams.tipodocumentoId;
+
         if (tipoDocumentoId == 0) {
             $scope.tipoDocumento = {};
             $scope.tipoDocumento.EhPasta = false;
@@ -60,6 +63,10 @@ angular.module("salus-app").controller('tipoDocumentoConfigController', function
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
             });
+    }
+
+    $scope.verChaves= function (tipoDocumento) {
+        $location.path('/ChaveConfig/' + tipoDocumento.id);
     }
 
     $scope.excluir = function (tipodocumentoid) {

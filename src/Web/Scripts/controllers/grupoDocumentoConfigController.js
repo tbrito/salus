@@ -1,4 +1,5 @@
-angular.module("salus-app").controller('grupoDocumentoConfigController', function ($scope, $location, grupoDocumentoApi) {
+angular.module("salus-app").controller('grupoDocumentoConfigController',
+    function ($scope, $location, grupoDocumentoApi, $routeParams) {
 
     $scope.gruposDocumentos = [];
     
@@ -21,8 +22,8 @@ angular.module("salus-app").controller('grupoDocumentoConfigController', functio
         $location.path('/GrupoDocumentoConfig/Editar/' + grupoDocumentoId);
     }
     
-    $scope.carregarParaEdicao = function (grupoDocumentoId) {
-        $scope.grupoDocumento = {};
+    $scope.carregarParaEdicao = function () {
+        var grupoDocumentoId = $routeParams.grupodocumentoId;
 
         if (grupoDocumentoId != 0) {
             grupoDocumentoApi.getTipoDocumento(grupoDocumentoId)

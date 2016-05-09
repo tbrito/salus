@@ -1,4 +1,5 @@
-angular.module("salus-app").controller('usuarioConfigController', function ($scope, $location, areaApi, perfilApi, usuarioApi) {
+angular.module("salus-app").controller('usuarioConfigController',
+        function ($scope, $location, areaApi, perfilApi, usuarioApi, $routeParams) {
 
     $scope.usuarios = [];
     $scope.areas = [];
@@ -23,7 +24,8 @@ angular.module("salus-app").controller('usuarioConfigController', function ($sco
         $location.path('/UsuarioConfig/Editar/' + usuarioid);
     }
     
-    $scope.carregarParaEdicao = function (usuarioid) {
+    $scope.carregarParaEdicao = function () {
+        var usuarioid = $routeParams.usuarioId;
         if (usuarioid == 0) {
             $scope.usuario = { Id: 0 };
             

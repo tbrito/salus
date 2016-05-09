@@ -6,7 +6,7 @@
     using Repositorios;
     using System;
     using System.Reflection;
-
+    using System.Web.Compilation;
     public class Aplicacao
     {
         public static string Caminho
@@ -21,7 +21,27 @@
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Name;
+                var assembly = Assembly.GetEntryAssembly();
+
+                if (assembly == null)
+                {
+                    try
+                    {
+                        var webAssembly = BuildManager.GetGlobalAsaxType().BaseType;
+
+                        if (webAssembly != null)
+                        {
+                            return webAssembly.Assembly.GetName().Name;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    return AppDomain.CurrentDomain.FriendlyName.Replace(" ", "_").Replace(":", "_");
+                }
+
+                return assembly.GetName().Name;
             }
         }
 
@@ -39,8 +59,8 @@
 
         public static void Boot(string caminhoAssemblies = "")
         {
-             Dependencias.Registrar(caminhoAssemblies);
-            
+            Dependencias.Registrar(caminhoAssemblies);
+
             var bootsToDatabase = InversionControl.Current.GetAllInstances<IDatabaseBoot>();
             var clearsToDatabase = InversionControl.Current.GetAllInstances<IClearDatabase>();
 

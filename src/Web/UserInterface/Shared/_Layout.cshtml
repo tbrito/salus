@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="salus-app">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/Scripts/lib/snap/angular-snap.css" />
+
+    <script src="~/Scripts/lib/snap/snap.js"></script>
+    <script src="~/Scripts/lib/angular/angular.js"></script>
+    <script src="~/Scripts/lib/angular/angular-route.js"></script>
+    <script src="~/Scripts/lib/angular/angular-messages.js"></script>
+    <script src="~/Scripts/lib/angular/angular-cookies.js"></script>
+    <script src="~/Scripts/lib/angular/ui-bootstrap-tpls-1.2.1.min.js"></script>
+    <script src="~/Scripts/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+    <script src="~/Scripts/ng-file-upload.min.js"></script>
+    <script src="~/Scripts/lib/snap/angular-snap.js"></script>
+
+    <script src="~/Scripts/app.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("javascript", required: false)
+</head>
+
+<body>
+    <div ng-controller="menuControler" ng-init="start()">
+        <div ng-if="usuario.Autenticado">
+            @Html.Partial("~/Views/Shared/Topo.cshtml")
+        </div>
+        <div ng-if="usuario.Autenticado==false">
+            @Html.Partial("~/Views/Shared/TopoStart.cshtml")
+        </div>
+
+        <div ng-if="usuario.Autenticado==undefined">
+            @Html.Partial("~/Views/Shared/TopoStart.cshtml")
+        </div>
+    </div>
+    <div class="container body-content">
+        <div ng-view></div>
+        <hr />
+
+    </div>
+
+    <div class="site-footer">
+        <p>&copy; @DateTime.Now.Year - Salus</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
