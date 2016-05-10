@@ -140,6 +140,7 @@
     <Compile Include="ServiceRunner.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="StructureMapJobFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

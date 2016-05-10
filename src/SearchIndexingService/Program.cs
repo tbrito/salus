@@ -3,6 +3,7 @@ using Quartz.Impl;
 using Salus.Infra;
 using Salus.Infra.Logs;
 using System;
+using System.Collections.Specialized;
 using System.ServiceProcess;
 
 namespace SearchIndexingService
@@ -33,16 +34,22 @@ namespace SearchIndexingService
         
         public static void Start(string[] args)
         {
-            scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            var propriedade = new NameValueCollection
+            {
+                { "quartz.threadPool.threadCount", "1" }
+            };
+
+            scheduler = new StdSchedulerFactory(propriedade).GetScheduler();
+            scheduler.JobFactory = new StructureMapJobFactory();
 
             scheduler.Start();
 
             IJobDetail job = JobBuilder.Create<IndexarJob>()
-                .WithIdentity("job1", "group1")
+                .WithIdentity("indexarJob", "indexarGroup")
                 .Build();
 
             ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
+                .WithIdentity("triggerIndexarJob", "indexarGroup")
                 .StartNow()
                 .WithSimpleSchedule(x => x
                     .WithIntervalInSeconds(30)

@@ -22,7 +22,8 @@ namespace SalusCmd.Ecm6.Imports
 
             documento.Id = dto.Id;
             documento.DataCriacao = dto.Date;
-
+            documento.TipoDocumento = this.Create<TipoDocumento>(dto.GroupDocCode);
+            
             if (string.IsNullOrEmpty(dto.Usr) == false)
             {
                 documento.Usuario = this.Create<Usuario>(dto.Usr);

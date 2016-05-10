@@ -34,10 +34,10 @@ namespace Salus.Model.Servicos
             {
                 return false;
             }
-            
+
             foreach (var acesso in acessos)
             {
-                if (acesso.TipoDocumento == documento.TipoDocumento)
+                if (acesso.TipoDocumento.Id == documento.TipoDocumento.Id)
                 {
                     if (this.sessaoDoUsuario.UsuarioAtual.Area.Segura)
                     {
@@ -66,7 +66,7 @@ namespace Salus.Model.Servicos
 
             foreach (var documentoId in contentsWithTextId)
             {
-                var documento = this.documentoRepositorio.ObterPorId(documentoId);
+                var documento = this.documentoRepositorio.ObterPorIdComTipoDocumento(documentoId);
 
                 if (this.PossuiAcesso(acessos, documento))
                 {

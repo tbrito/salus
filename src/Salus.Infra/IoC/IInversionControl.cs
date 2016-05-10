@@ -7,6 +7,8 @@ namespace Salus.Infra.IoC
     {
         T Resolve<T>();
 
+        object Resolve(Type type);
+
         void RegistrarDependencias(string caminhoAssemblies);
 
         object GetInstance(Type controllerType);

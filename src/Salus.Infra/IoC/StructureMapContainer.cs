@@ -50,5 +50,10 @@ namespace Salus.Infra.IoC
         {
             return this.container.GetInstance<T>();
         }
+
+        public object Resolve(Type type)
+        {
+            return this.GetInstance(type);
+        }
     }
 }

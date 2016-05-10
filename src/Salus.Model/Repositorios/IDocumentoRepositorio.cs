@@ -10,5 +10,7 @@ namespace Salus.Model.Repositorios
         void AlterStatus(int id, SearchStatus searchStatus);
 
         IList<Documento> ObterTodosParaIndexar(int quantidade);
+
+        Documento ObterPorIdComTipoDocumento(int documentoId);
     }
 }
