@@ -39,8 +39,8 @@
     <script src="Scripts/controllers/usuarioConfigController.js"></script>
     <script src="Scripts/controllers/grupoDocumentoConfigController.js"></script>
     <script src="Scripts/controllers/chaveConfigController.js"></script>
-    <script src="Scripts/controllers/pesquisaController.js"></script>
     <script src="Scripts/controllers/menuController.js"></script>
+    <script src="Scripts/controllers/pesquisaController.js"></script>
     <script src="Scripts/controllers/viewController.js"></script>
 
     <script src="Scripts/services/acessoFuncionalidadeApiService.js"></script>
@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <div ng-controller="menuControler" ng-init="start()">
+    <div ng-controller="menuControler" ng-open="start()">
         <div ng-if="usuario.Autenticado">
             <div ng-include="'UserInterface/Shared/Topo.cshtml'"></div>
         </div>

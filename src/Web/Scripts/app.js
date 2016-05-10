@@ -96,20 +96,7 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/PesquisaView/Resultado/:termo', {
             controller: 'pesquisaController',
-            templateUrl: viewBase + 'Pesquisa/Resultado.cshtml',
-            resolve: {
-                resultadoPesquisa: function (pesquisaApi, $routeParams) {
-                    pesquisaApi.pesquisar($routeParams.termo)
-                        .success(function (data) {
-                            return data;
-                        })
-                        .error(function (data) {
-                            return data;
-                        });
-
-                    return {};
-                }
-            }
+            templateUrl: viewBase + 'Pesquisa/Resultado.cshtml'
         })
         .when('/View/:documentoId', {
             controller: 'viewController',

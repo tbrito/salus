@@ -1,7 +1,5 @@
-﻿<div class="modal-content" ng-controller="pesquisaController">
+﻿<div class="modal-content" ng-controller="pesquisaController" ng-init="procurar()">
    
-    {{resultadoPesquisa}}
-
     <div ng-show="resultadoPesquisa.Documentos == 0">
         Não há itens para o texto pesquisado
     </div>
