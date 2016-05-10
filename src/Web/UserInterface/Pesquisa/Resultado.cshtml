@@ -1,6 +1,6 @@
-﻿@model PesquisaViewModel
-
-<div class="modal-content" ng-controller="pesquisaController" ng-init="procurarTermo(@this.Model.Texto)">
+﻿<div class="modal-content" ng-controller="pesquisaController">
+   
+    {{resultadoPesquisa}}
 
     <div ng-show="resultadoPesquisa.Documentos == 0">
         Não há itens para o texto pesquisado

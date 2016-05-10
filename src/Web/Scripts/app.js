@@ -24,11 +24,11 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/Categorizar/:documentoId', {
             controller: 'categorizacaoController',
-            templateUrl: function (params) { return 'Categorizar/' + params.documentoId; }
+            templateUrl: viewBase + 'Categorizar/Index.cshtml'
         })
         .when('/UsuarioConfig', {
             controller: 'usuarioConfigController',
-            templateUrl: viewBase + 'UsuarioConfig/Index'
+            templateUrl: viewBase + 'UsuarioConfig/Index.cshtml'
         })
         .when('/UsuarioConfig/Editar/:usuarioId', {
             controller: 'usuarioConfigController',
@@ -64,7 +64,7 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/TipoDocumentoConfig', {
             controller: 'tipoDocumentoConfigController',
-            templateUrl: viewBase + 'TipoDocumentoConfig/Index'
+            templateUrl: viewBase + 'TipoDocumentoConfig/Index.cshtml'
         })
         .when('/TipoDocumentoConfig/Editar/:tipodocumentoId', {
             controller: 'tipoDocumentoConfigController',
@@ -76,11 +76,11 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/ChaveConfig/Editar/:chaveid', {
             controller: 'chaveConfigController',
-            templateUrl: function (params) { return 'ChaveConfig/Editar/' + params.chaveid; }
+            templateUrl: viewBase + 'ChaveConfig/Editar.cshtml'
         })
         .when('/ChaveConfig/Adicionar/:tipodocumentoId', {
             controller: 'chaveConfigController',
-            templateUrl: function (params) { return 'ChaveConfig/Adicionar/' + params.tipodocumentoId; }
+            templateUrl: viewBase + 'ChaveConfig/Adicionar.cshtml'
         })
         .when('/AcessoFuncionalidade', {
             controller: 'acessoFuncionalidadeController',
@@ -92,15 +92,28 @@ function config($routeProvider, $locationProvider) {
         })
         .when('/Configuracoes', {
             controller: 'viewController',
-            templateUrl: 'Configuracao/Index'
+            templateUrl: viewBase + 'Configuracao/Index.cshtml'
         })
         .when('/PesquisaView/Resultado/:termo', {
             controller: 'pesquisaController',
-            templateUrl: function (params) { return 'Pesquisa/Resultado/' + params.termo; }
+            templateUrl: viewBase + 'Pesquisa/Resultado.cshtml',
+            resolve: {
+                resultadoPesquisa: function (pesquisaApi, $routeParams) {
+                    pesquisaApi.pesquisar($routeParams.termo)
+                        .success(function (data) {
+                            return data;
+                        })
+                        .error(function (data) {
+                            return data;
+                        });
+
+                    return {};
+                }
+            }
         })
         .when('/View/:documentoId', {
             controller: 'viewController',
-            templateUrl: function (params) { return 'View/' + params.documentoId; }
+            templateUrl: viewBase + 'View/Index.cshtml'
         })
         .otherwise({ redirectTo: '/Login' });
 }

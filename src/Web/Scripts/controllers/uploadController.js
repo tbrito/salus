@@ -1,5 +1,6 @@
 angular.module("salus-app")
-    .controller('uploadController', ['$scope', 'Upload', '$timeout', '$location', function ($scope, Upload, $timeout, $location) {
+    .controller('uploadController', ['$scope', 'Upload', '$timeout', '$location',
+        function ($scope, Upload, $timeout, $location) {
 
         $scope.uploadPic = function (file) {
 

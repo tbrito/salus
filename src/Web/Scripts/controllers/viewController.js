@@ -1,10 +1,10 @@
-angular.module("salus-app").controller('viewController', function ($scope, $location, storageApi) {
+angular.module("salus-app").controller('viewController', function ($scope, $location, storageApi, $routeParams) {
 
     $scope.indexacao = [];
     $scope.chaves = [];
 
-    $scope.abrir = function (documentoId) {
-        $scope.documentoId = documentoId;
+    $scope.abrir = function () {
+        var documentoId = $routeParams.documentoId;
 
         storageApi.getDocumento(documentoId)
            .success(function (data) {

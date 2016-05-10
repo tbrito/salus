@@ -286,7 +286,6 @@
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
     <Content Include="Scripts\controllers\configuracaoController.js" />
-    <Content Include="Scripts\controllers\resultadoPesquisaController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
     <Content Include="Scripts\controllers\usuarioConfigController.js" />
