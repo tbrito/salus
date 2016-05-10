@@ -35,6 +35,7 @@ namespace Salus.Infra.Repositorios
                 .Fetch(x => x.TipoDocumento.Parent).Eager
                 .Fetch(x => x.Usuario).Eager
                 .Fetch(x => x.Indexacao).Eager
+                .Fetch(x => x.Indexacao.First().Chave).Eager
                 .WhereRestrictionOn(x => x.Id).IsIn(currentPageIds)
                 .TransformUsing(Transformers.DistinctRootEntity)
                 .List();

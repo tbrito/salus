@@ -9,6 +9,7 @@
         public IList<Indexacao> ObterPorDocumento(Documento documento)
         {
             return this.Sessao.QueryOver<Indexacao>()
+                .Fetch(x => x.Chave).Eager
                 .Where(x => x.Documento.Id == documento.Id)
                 .List();
         }

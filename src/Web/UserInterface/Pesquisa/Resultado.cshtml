@@ -1,14 +1,13 @@
 ﻿<div class="modal-content" ng-controller="pesquisaController" ng-init="procurar()">
-   
-    <div ng-show="resultadoPesquisa.Documentos == 0">
+    <div ng-show="resultadoPesquisa.Documentos.length == 0">
         Não há itens para o texto pesquisado
     </div>
 
-    <div ng-repeat="documento in resultadoPesquisa.Documentos" ng-show="resultadoPesquisa.Documentos > 0" class="list-group" style="overflow:auto">
-        <div class="list-group-item">
-            <h4 class="list-group-item-heading"><a ng-click="abrirDocumento(documento.Id)">{{documento.Assunto}}</a></h4>
-            <div ng-repeat="index in documento.Indexacao">
-                <p class="list-group-item-text">{{index.Chave.Nome}} - {{index.Valor}}</p>
+    <div ng-show="resultadoPesquisa.Documentos.length > 0" style="height:560px; overflow:auto">
+        <div ng-repeat="documento in resultadoPesquisa.Documentos" class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading"><a ng-click="abrirDocumento(documento.Id)">{{documento.Id}} - {{documento.Assunto}}</a></h4>
+                <span ng-repeat="index in documento.Indexacao"><b>{{index.Chave.Nome}}:</b> {{index.Valor}} </span>
             </div>
         </div>
     </div>

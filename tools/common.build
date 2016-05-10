@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 
-    <property name="nant.settings.currentframework" value="net-4.5.2" />
+    <property name="nant.settings.currentframework" value="net-4.0" />
     <property name="nant.verbosity" overwrite="false" value="false" />
 
     <property name="current.dir" value="${project::get-base-directory()}"/>

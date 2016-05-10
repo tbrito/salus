@@ -25,6 +25,13 @@
             return "value";
         }
 
+        [HttpGet]
+        public IEnumerable<Indexacao> PorDocumento(int id)
+        {
+            var indexacao = this.indexacaoRepositorio.ObterPorDocumento(new Documento { Id = id });
+            return indexacao;
+        }
+
         [HttpPost]
         public void Salvar([FromBody]IEnumerable<IndexacaoViewModel> indexacaoModel)
         {
