@@ -42,7 +42,8 @@ namespace Veros.Ecm.DataAccess.Tarefas.Ecm6
 
             new PerfilTipoDocumentoImport().Execute("Importando perfil x tipodocumento");
 
-            new BulkDocumentoImport().Execute("Importando docs");
+            new BulkDocumentoImport().Execute("Importando documentos");
+            new BulkDocumentoIndiceImport().Execute("Importando indices");
 
             new BulkVersaoDocumentoImport().Execute("Importando versao do documento");
 

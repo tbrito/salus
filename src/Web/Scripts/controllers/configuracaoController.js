@@ -1,9 +1,22 @@
-angular.module("salus-app").controller('configuracaoController', function ($scope, $location, configuracaoApi) {
+angular.module("salus-app").controller('configuracaoController',
+    function ($scope, $location, configuracaoApi, $routeParams) {
 
-    $scope.configuracoes = [];
-    
     $scope.adicionar = function () {
         $location.path('/Configuracao/Editar/' + 0);
+    }
+
+    $scope.carregarParaEdicao = function () {
+        var configuracaoId = $routeParams.id;
+
+        if (configuracaoId != 0) {
+            configuracaoApi.getConfiguracao(configuracaoId)
+                .success(function (data) {
+                    $scope.configuracao = data;
+                })
+                .error(function (data) {
+                    $scope.error = "Ops! Algo aconteceu ao adicionar/editar as configuracoes do sistema" + data;
+                });
+        }
     }
 
     $scope.carregarFormulario = function () {
@@ -16,7 +29,7 @@ angular.module("salus-app").controller('configuracaoController', function ($scop
             });
     }
 
-    $scope.editarConfiracao = function (configuracaoId) {
+    $scope.editarConfiguracao = function (configuracaoId) {
         $location.path('/Configuracao/Editar/' + configuracaoId);
     }
     

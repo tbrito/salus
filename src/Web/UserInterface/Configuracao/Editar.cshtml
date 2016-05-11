@@ -1,7 +1,4 @@
-﻿@using Salus.Model.Entidades
-@model Configuracao
-
-<div class="modal-content" ng-controller="configuracaoController" ng-init="carregarParaEdicao(@this.Model.Id)">
+﻿<div class="modal-content" ng-controller="configuracaoController" ng-init="carregarParaEdicao()">
     <h2>{{configuracao.Chave}}</h2>
     
     <form name="configuracaoEditForm">

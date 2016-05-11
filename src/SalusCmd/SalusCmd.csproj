@@ -131,6 +131,7 @@
     <Compile Include="Ecm6\Imports\AccessDocDto.cs" />
     <Compile Include="Ecm6\Imports\AreaDto.cs" />
     <Compile Include="Ecm6\Imports\BulkAreaImport.cs" />
+    <Compile Include="Ecm6\Imports\BulkDocumentoIndiceImport.cs" />
     <Compile Include="Ecm6\Imports\BulkDocumentoImport.cs" />
     <Compile Include="Ecm6\Imports\BulkIndexImport.cs" />
     <Compile Include="Ecm6\Imports\BulkWorkflowImport.cs" />

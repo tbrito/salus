@@ -6,20 +6,18 @@
     </div>
 
     <div class="control-group">
-        <table ng-show="configuracaoes.length > 0" class="table">
+        <table ng-show="configuracoes.length > 0" class="table">
             <thead>
                 <tr>
                     <th>Chave</th>
                     <th>Valor</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
-            <tr ng-class="{'item-inativo': configuracao.Ativo == false}"  ng-repeat="configuracao in configuracoes">
+            <tr ng-repeat="configuracao in configuracoes">
                 <td>{{configuracao.Chave}}</td>
                 <td>{{configuracao.Valor}}</td>
                 <td><a ng-click="editarConfiguracao(configuracao.Id)">Editar</a></td>
-                <td><a ng-click="excluir(configuracao.Id)">Desativar</a></td>
             </tr>
         </table>
     </div>

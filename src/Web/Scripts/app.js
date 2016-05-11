@@ -91,8 +91,12 @@ function config($routeProvider, $locationProvider) {
             templateUrl: viewBase + 'AcessoDocumentoConfig/Index.cshtml'
         })
         .when('/Configuracoes', {
-            controller: 'viewController',
+            controller: 'configuracaoController',
             templateUrl: viewBase + 'Configuracao/Index.cshtml'
+        })
+        .when('/Configuracoes/Editar/:id', {
+            controller: 'configuracaoController',
+            templateUrl: viewBase + 'Configuracao/Editar.cshtml'
         })
         .when('/PesquisaView/Resultado/:termo', {
             controller: 'pesquisaController',

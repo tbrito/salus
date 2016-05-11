@@ -51,7 +51,7 @@
             luceneDocument.Add(this.GetContentIdField(documento));
             luceneDocument.Add(this.GetIndexacaoField(indexacao));
             luceneDocument.Add(this.GetCpfCnpj(documento));
-
+        
             if (documento.TipoDocumento != null)
             {
                 luceneDocument.Add(this.GetTipoDocumento(documento));
@@ -69,7 +69,7 @@
 
             this.luceneSession.Current.AddDocument(luceneDocument);
         }
-
+        
         private Field GetCpfCnpj(Documento content)
         {
             string valorCpf = content.CpfCnpj;

@@ -62,6 +62,14 @@ textarea {
     color: gray
 }
 
+.salusicon-indice {
+   content:url('Images/ic_action_collection.png');
+}​
+
+ .salusicon-documento {
+   content:url('Images/ic_action_view_as_list.png');
+}​
+
 .site-footer {
     clear: both;
     position: fixed;

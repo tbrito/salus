@@ -7,7 +7,7 @@ namespace SalusCmd.Ecm6.Imports
     using Salus.Model.Entidades;
     using System.Linq;
 
-    public class BulkDocumentoImport : BulkImport<FileDto, Documento>
+    public class BulkDocumentoIndiceImport : BulkImport<FileDto, Documento>
     {
         protected override string TableName
         {
@@ -51,7 +51,6 @@ namespace SalusCmd.Ecm6.Imports
 
             DapperHelper.UsingConnection(conn => {
                 var tipoDocumento = conn.Query<string>("select nome from tipodocumento where id = " + groupDocCode);
-
                 if (tipoDocumento.Count() > 0)
                 {
                     tipoDocumentoNome = tipoDocumento.ElementAt(0);
@@ -80,7 +79,7 @@ select
 from 
 	doc
 where
-	doc_filetype <> '-IDX-'
+	doc_filetype = '-IDX-'
 order by
     doc_code";
 
@@ -97,7 +96,8 @@ order by
             dt.Columns.Add(new DataColumn("criadoem", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("tamanho"));
             dt.Columns.Add(new DataColumn("search_status", typeof(int)));
-            
+            dt.Columns.Add(new DataColumn("eh_indice", typeof(bool)));
+
             foreach (var entity in this.entities)
             {
                 var row = dt.NewRow();
@@ -109,7 +109,8 @@ order by
                 row["criadoem"] = this.GetDate(entity.DataCriacao);
                 row["tamanho"] = entity.Tamanho;
                 row["search_status"] = 0;
-                
+                row["eh_indice"] = true;
+
                 dt.Rows.Add(row);
             }
 

@@ -9,6 +9,7 @@ namespace SalusCmd.Ecm6.Imports
     using SharpArch.NHibernate;
     using Salus.Model.Entidades.Import;
     using Salus.Infra.Repositorios;
+
     public abstract class ImportBase<TEntity> 
         where TEntity : Entidade
     {
@@ -52,7 +53,7 @@ namespace SalusCmd.Ecm6.Imports
             });
 
             Log.App.DebugFormat("Encontrado {0} registros", entities.Count);
-            Log.App.DebugFormat("Importando registros no ecm 8...");
+            Log.App.DebugFormat("Importando registros no Salus...");
 
             foreach (var entity in entities)
             {
