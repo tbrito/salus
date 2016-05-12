@@ -10,5 +10,7 @@ namespace Salus.Model.Repositorios
         Area ObterPorIdComParents(int id);
 
         void MarcarComoInativo(int id);
+
+        void Reativar(int id);
     }
 }

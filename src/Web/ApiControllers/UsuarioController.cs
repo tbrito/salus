@@ -63,8 +63,10 @@
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Ativar(int id, [FromBody]string value)
         {
+            this.usuarioRepositorio.Reativar(id);
         }
 
         [HttpDelete]

@@ -70,17 +70,17 @@ function config($routeProvider, $locationProvider) {
             controller: 'tipoDocumentoConfigController',
             templateUrl: viewBase + 'TipoDocumentoConfig/Editar.cshtml'
         })
-        .when('/ChaveConfig/:tipodocumentoId', {
+        .when('/ChaveConfig/TodosDoTipo/:tipodocumentoid/:tipodocumentonome', {
             controller: 'chaveConfigController',
             templateUrl: viewBase + 'ChaveConfig/Index.cshtml'
         })
-        .when('/ChaveConfig/Editar/:chaveid', {
+        .when('/ChaveConfig/Alterar/:chaveid', {
             controller: 'chaveConfigController',
-            templateUrl: viewBase + 'ChaveConfig/Editar.cshtml'
+            templateUrl: viewBase + 'ChaveConfig/Alterar.cshtml'
         })
-        .when('/ChaveConfig/Adicionar/:tipodocumentoId', {
+        .when('/ChaveConfig/Adicionar/:tipodocumentoid/:tipodocumentonome', {
             controller: 'chaveConfigController',
-            templateUrl: viewBase + 'ChaveConfig/Adicionar.cshtml'
+            templateUrl: viewBase + 'ChaveConfig/Alterar.cshtml'
         })
         .when('/AcessoFuncionalidade', {
             controller: 'acessoFuncionalidadeController',

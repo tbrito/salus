@@ -13,5 +13,13 @@
               .SetInt32("id", id)
               .ExecuteUpdate();
         }
+
+        public void Reativar(int id)
+        {
+            this.Sessao
+              .CreateQuery("update Perfil set Ativo = true where Id = :id")
+              .SetInt32("id", id)
+              .ExecuteUpdate();
+        }
     }
 }

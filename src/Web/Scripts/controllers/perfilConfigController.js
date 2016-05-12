@@ -81,13 +81,23 @@ angular.module("salus-app").controller('perfilConfigController',
         });
     }
 
-    $scope.excluir = function (grupodocumentoid) {
-        grupoDocumentoApi.excluir(grupoDocumentid)
+    $scope.excluir = function (perfil) {
+        perfilApi.excluir(perfil)
             .success(function (data) {
-                $location.path('/GrupoDocumentoConfig');
+                perfil.Ativo = false;
             })
             .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
+                $scope.error = "Ops! Algo aconteceu ao desativar perfil";
+            });
+    }
+
+     $scope.ativar = function (perfil) {
+        perfilApi.ativar(perfil)
+            .success(function (data) {
+                perfil.Ativo = true;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao ativar o perfil";
             });
     }
 

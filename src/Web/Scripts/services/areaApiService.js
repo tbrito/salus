@@ -11,8 +11,12 @@ angular.module("salus-app").factory("areaApi", function ($http) {
         return $http.post("api/Area/Salvar/", area);
     };
 
-    var _excluir = function (areaid) {
-        return $http.delete("api/Area/Excluir/" + areaid);
+    var _excluir = function (area) {
+        return $http.delete("api/Area/Excluir/" + area.Id);
+    };
+
+    var _ativar = function (area) {
+        return $http.put("api/Area/Ativar/" + area.Id);
     };
     
     return {
@@ -20,5 +24,6 @@ angular.module("salus-app").factory("areaApi", function ($http) {
         getArea: _getArea,
         salvar: _salvar,
         excluir: _excluir,
+        ativar: _ativar,
     };
 });

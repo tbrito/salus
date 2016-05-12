@@ -1,15 +1,14 @@
 ﻿<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarFormularioDeChaves()">
-    <h3>Chaves do Tipo de Documento - {{tipoDocumentoNome}}</h3>
+    <h3>Configurações > Tipo de Documento > Chaves - {{tipoDocumentoNome}}</h3>
 
     <div class="control-group">
-        <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Nova chave</button>
+        <button class="btn btn-primary" name="novoTipo" ng-click="adicionarChave(tipodocumentoId, tipoDocumentoNome)">Nova chave</button>
     </div>
 
     <div class="control-group" style="overflow:auto">
-        <table ng-show="chaves.length > 0" class="table">
+        <table ng-show="chaves.length > 0" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Ativo</th>
                     <th>Nome</th>
                     <th>Obrigatorio</th>
                     <th>Tipo de Dado</th>
@@ -18,12 +17,11 @@
                 </tr>
             </thead>
             <tr ng-class="{'item-inativo': chave.Ativo == false}" ng-repeat="chave in chaves">
-                <td><input type="checkbox" ng-model="chave.Ativo" /></td>
                 <td>{{chave.Nome}}</td>
-                <td>{{chave.Obrigatorio}}</td>
-                <td>{{chave.TipoDado}}</td>
-                <td><a ng-click="editarChave(chave.Id, tipodocumentoId)">Editar</a></td>
-                <td><a ng-click="excluir(chave.Id)">Desativar</a></td>
+                <td><span ng-class="{'salusicon-checked': chave.Obrigatorio == true}"></span></td>
+                <td>{{chave.TipoDado.DisplayName}}</td>
+                <td><a ng-click="editarChave(chave)">Editar</a></td>
+                <td><a ng-click="excluir(chave)">Desativar</a></td>
             </tr>
         </table>
     </div>

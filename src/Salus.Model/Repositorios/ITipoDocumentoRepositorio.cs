@@ -12,5 +12,7 @@ namespace Salus.Model.Repositorios
         TipoDocumento ObterPorIdComParents(int id);
 
         void MarcarComoInativo(int id);
+
+        void Ativar(int id);
     }
 }

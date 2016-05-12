@@ -37,10 +37,12 @@
             </select>
         </div>
 
-        <div ng-repeat="tipoDocumento in acessoDocumento.TiposDocumentos">
-            <div class="form-control">
-                <input type="checkbox" ng-model="acessoDocumento.TiposDocumentos[$index].Marcado"/>
-                <Label>{{tipoDocumento.Nome}}</Label>
+        <div style="height:530px; overflow:auto">
+            <div ng-repeat="tipoDocumento in acessoDocumento.TiposDocumentos">
+                <div class="form-control">
+                    <input type="checkbox" ng-model="acessoDocumento.TiposDocumentos[$index].Marcado" />
+                    <Label>{{tipoDocumento.Nome}}</Label>
+                </div>
             </div>
         </div>
     </div>

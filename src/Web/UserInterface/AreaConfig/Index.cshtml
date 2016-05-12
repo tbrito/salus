@@ -6,7 +6,7 @@
     </div>
 
     <div class="control-group"  style="height:560px; overflow:auto">
-        <table ng-show="areas.length > 0" class="table">
+        <table ng-show="areas.length > 0" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -19,9 +19,12 @@
             <tr ng-class="{'item-inativo': area.Ativo == false}" ng-repeat="area in areas">
                 <td>{{area.Nome}}</td>
                 <td>{{area.Abreviacao}}</td>
-                <td>{{area.Segura}}</td>
+                <td><span ng-class="{'salusicon-cadeado': area.Segura == true}"></span></td>
                 <td><a ng-click="editarArea(area.Id)">Editar</a></td>
-                <td><a ng-click="excluir(Area.Id)">Desativar</a></td>
+                <td>
+                    <a ng-if="area.Ativo" ng-click="excluir(area)">Desativar</a>
+                    <a ng-if="area.Ativo==false" ng-click="ativar(area)">Ativar</a>
+                </td>
             </tr>
         </table>
     </div>

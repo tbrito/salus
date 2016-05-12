@@ -1,5 +1,6 @@
 ﻿namespace Salus.Infra.Repositorios
 {
+    using System;
     using System.Collections.Generic;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
@@ -27,6 +28,14 @@
             return this.Sessao.QueryOver<Area>()
                 .Fetch(x => x.Parent).Eager
                 .List();
+        }
+
+        public void Reativar(int id)
+        {
+            this.Sessao
+              .CreateQuery("update Area set Ativo = true where Id = :id")
+              .SetInt32("id", id)
+              .ExecuteUpdate();
         }
     }
 }

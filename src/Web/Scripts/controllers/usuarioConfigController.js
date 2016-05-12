@@ -73,10 +73,20 @@ angular.module("salus-app").controller('usuarioConfigController',
             });
     }
 
-    $scope.excluir = function (usuarioid) {
-        usarioApi.excluir(usuarioid)
+    $scope.excluir = function (usuario) {
+        usuarioApi.excluir(usuario)
             .success(function (data) {
-                $location.path('/UsuarioConfig');
+                usuario.Ativo = false;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao inativar o usuario" + data;
+            });
+    }
+
+    $scope.ativar = function (usuario) {
+        usuarioApi.ativar(usuario)
+            .success(function (data) {
+                usuario.Ativo = true;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao inativar o usuario" + data;

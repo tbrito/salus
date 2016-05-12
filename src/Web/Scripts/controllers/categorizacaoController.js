@@ -1,10 +1,11 @@
-angular.module("salus-app").controller('categorizacaoController', function ($scope, $location, indexacaoApi, tipoDocumentoApi, chavesApi) {
+angular.module("salus-app").controller('categorizacaoController', 
+    function ($scope, $location, indexacaoApi, tipoDocumentoApi, chavesApi, $routeParams) {
 
     $scope.indexacao = [];
     $scope.chaves = [];
 
-    $scope.carregarFormulario = function (documentoId) {
-        $scope.documentoId = documentoId;
+    $scope.carregarFormulario = function () {
+        $scope.documentoId = $routeParams.documentoId;
 
         tipoDocumentoApi.getTiposDeDocumentos()
             .success(function (data) {

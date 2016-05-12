@@ -16,5 +16,7 @@ namespace Salus.Model.Repositorios
         void MarcarComoInativo(int id);
 
         void SalvarSenha(int id, string novaSenha);
+
+        void Reativar(int id);
     }
 }

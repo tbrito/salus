@@ -18,8 +18,6 @@ namespace SearchIndexingService
 
         public void Execute(IJobExecutionContext context)
         {
-            NHibernateSession.CloseAllSessions();
-            UnidadeDeTrabalho.Boot();
             this.indexQueueProcess.Execute();
         }
     }

@@ -7,6 +7,14 @@
 
     public class TipoDocumentoRepositorio : Repositorio<TipoDocumento>, ITipoDocumentoRepositorio
     {
+        public void Ativar(int id)
+        {
+            this.Sessao
+              .CreateQuery("update TipoDocumento set Ativo = true where Id = :id")
+              .SetInt32("id", id)
+              .ExecuteUpdate();
+        }
+
         public void MarcarComoInativo(int id)
         {
             this.Sessao

@@ -1,12 +1,12 @@
 ﻿<div class="modal-content" ng-controller="configuracaoController" ng-init="carregarFormulario()">
-    <div>Configurações de Sistema</div>
+    <div>Configurações > Configurações de Sistema</div>
 
     <div class="control-group">
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Nova Configuracao</button>
     </div>
 
     <div class="control-group">
-        <table ng-show="configuracoes.length > 0" class="table">
+        <table ng-show="configuracoes.length > 0" class="table table-striped">
             <thead>
                 <tr>
                     <th>Chave</th>

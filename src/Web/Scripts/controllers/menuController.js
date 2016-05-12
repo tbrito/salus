@@ -95,7 +95,7 @@
             return false;
         }
 
-        if ($scope.usuario.Login = 'admin')
+        if ($scope.usuario.Login == 'admin')
         {
             return true;
         }

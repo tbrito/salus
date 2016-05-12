@@ -48,6 +48,14 @@
                 .SingleOrDefault();
         }
 
+        public void Reativar(int id)
+        {
+            this.Sessao
+              .CreateQuery("update Usuario set Ativo = true where Id = :id")
+              .SetInt32("id", id)
+              .ExecuteUpdate();
+        }
+
         public void SalvarSenha(int id, string novaSenha)
         {
             this.Sessao

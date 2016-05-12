@@ -19,8 +19,12 @@ angular.module("salus-app").factory("usuarioApi", function ($http) {
         return $http.post("api/Usuario/Salvar/", usuario);
     };
 
-    var _excluir = function (usuarioid) {
-        return $http.delete("api/Usuario/Excluir/" + usuarioid);
+    var _excluir = function (usuario) {
+        return $http.delete("api/Usuario/Excluir/" + usuario.Id);
+    };
+
+    var _ativar = function (usuario) {
+        return $http.put("api/Usuario/Ativar/" + usuario.Id);
     };
 
     return {
@@ -30,5 +34,6 @@ angular.module("salus-app").factory("usuarioApi", function ($http) {
         salvar: _salvar,
         logout: _logout,
         excluir: _excluir,
+        ativar: _ativar,
     };
 });

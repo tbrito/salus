@@ -62,6 +62,14 @@ textarea {
     color: gray
 }
 
+.salusicon-cadeado {
+   content:url('Images/ic_action_secure.png');
+}​
+
+.salusicon-checked {
+   content:url('Images/ic_action_accept.png');
+}​
+
 .salusicon-indice {
    content:url('Images/ic_action_collection.png');
 }​

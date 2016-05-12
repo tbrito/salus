@@ -1,82 +1,87 @@
-angular.module("salus-app").controller('chaveConfigController', function ($scope, $location, chavesApi) {
+angular.module("salus-app").controller('chaveConfigController',
+    function ($scope, $location, chavesApi, $routeParams) {
 
-    $scope.chaves = [];
-    $scope.chave = {};
+        $scope.tiposDeDado = [
+            { nome: "Texto", id: 0 },
+            { nome: "Inteiro", id: 1 },
+            { nome: "Real", id: 2 },
+            { nome: "Data", id: 3 },
+            { nome: "Lista", id: 8 },
+            { nome: "Regex", id: 9 },
+            { nome: "Cpf Cnpj", id: 17 },
+            { nome: "Ano Referencia", id: 15 },
+            { nome: "Mes Ano", id: 32 },
+            { nome: "Area", id: 18 }
+        ];
 
-    $scope.tiposDeDado = [
-        { nome: "Texto", id: 0 },
-        { nome: "Mascara", id: 1 },
-        { nome: "Inteiro", id: 2 },
-        { nome: "Moeda", id: 3 },
-        { nome: "Lista", id: 4 },
-        { nome: "CpfCnpj", id: 5 }
-    ]
-
-    $scope.adicionar = function (tipoDocumentoId, tipodocumentonome) {
-        $scope.chave.tipodocumentoId = tipoDocumentoId;
-        $scope.tipoDocumentoNome = tipodocumentonome;
-        $location.path('/ChaveConfig/Adicionar/' + tipoDocumentoId);
-    }
-
-    $scope.carregarFormularioDeChaves = function (tipodocumentoid, tipodocumentonome) {
-        chavesApi.getChavesDoTipo(tipodocumentoid)
-            .success(function (data) {
-                $scope.chaves = data;
-                $scope.chave.tipodocumentoId = tipodocumentoid;
-                $scope.tipoDocumentoNome = tipodocumentonome;
-            })
-            .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao obter as chaves";
-            });
-    }
-
-    $scope.editarChave = function (chaveid) {
-        $location.path('/ChaveConfig/Editar/' + chaveid);
-    }
-
-    $scope.configurarCampos = function () {
-        if ($scope.chave.tipoDado == 4) {
-            $scope.chave.ehLista = true;
-        } else {
-            $scope.chave.ehLista = false;
+        $scope.adicionarChave = function (tipodocumentoId, nome) {
+            $location.path('/ChaveConfig/Adicionar/' + tipodocumentoId + '/' + nome);
         }
-    }
 
-    $scope.carregarChaveParaEdicao = function (chaveid, tipodocumentoId) {
-        $scope.chave.tipodocumentoId = tipodocumentoId;
+        $scope.carregarFormularioDeChaves = function () {
+            $scope.tipodocumentoId = $routeParams.tipodocumentoid;
+            $scope.tipoDocumentoNome = $routeParams.tipodocumentonome;
 
-        if (chaveid != 0) {
-            chavesApi.getChave(chaveid)
+            chavesApi.getChavesDoTipo($scope.tipodocumentoId)
                 .success(function (data) {
-                    $scope.chave = data;
+                    $scope.chaves = data;
                 })
                 .error(function (data) {
-                    $scope.error = "Ops! Algo aconteceu ao obter a chave";
+                    $scope.error = "Ops! Algo aconteceu ao obter as chaves";
                 });
         }
-    }
 
-    $scope.salvar = function (chave) {
-        chavesApi.salvar(chave)
-            .success(function (data) {
-                $location.path('/ChaveConfig/' + $scope.chave.tipodocumentoId);
-            })
-            .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao salvar as chaves do tipo do documento";
-            });
-    }
+        $scope.editarChave = function (chave) {
+            $location.path('/ChaveConfig/Alterar/' + chave.Id);
+        }
 
-    $scope.excluir = function (chaveid) {
-        chavesApi.excluir(chaveid)
-            .success(function (data) {
-                $location.path('/ChaveConfig/' + $scope.chave.tipodocumentoId);
-            })
-            .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao obter as chaves do tipo do documento";
-            });
-    }
+        $scope.configurarCampos = function (chave) {
+            if (chave.TipoDado == 8) {
+                chave.EhLista = true;
+            } else {
+                chave.EhLista = false;
+            }
+        }
 
-    $scope.inicio = function () {
-        $location.path('/TipoDocumentoConfig');
-    }
-});
+        $scope.carregarChaveParaEdicao = function () {
+            var chaveid = $routeParams.chaveid;
+            $scope.tipodocumentoId = $routeParams.tipodocumentoid;
+            $scope.tipoDocumentoNome = $routeParams.tipodocumentonome;
+
+            if (chaveid != 0) {
+                chavesApi.getChave(chaveid)
+                    .success(function (data) {
+                        $scope.chave = data;
+                    })
+                    .error(function (data) {
+                        $scope.error = "Ops! Algo aconteceu ao obter a chave";
+                    });
+            }
+        }
+
+        $scope.salvar = function (chave) {
+            chave.TipoDocumentoId = $scope.tipodocumentoId;
+
+            chavesApi.salvar(chave)
+                .success(function (data) {
+                    $location.path('/ChaveConfig/TodosDoTipo/' + $scope.chave.TipoDocumentoId + '/' + $scope.chave.Nome);
+                })
+                .error(function (data) {
+                    $scope.error = "Ops! Algo aconteceu ao salvar as chaves do tipo do documento";
+                });
+        }
+
+        $scope.excluir = function (chave) {
+            chavesApi.excluir(chave)
+                .success(function (data) {
+                    $location.path('/ChaveConfig/' + chave.Id);
+                })
+                .error(function (data) {
+                    $scope.error = "Ops! Algo aconteceu ao obter as chaves do tipo do documento";
+                });
+        }
+
+        $scope.inicio = function () {
+            $location.path('/TipoDocumentoConfig');
+        }
+    });

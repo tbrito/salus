@@ -38,7 +38,7 @@
         }
 
         [HttpPost]
-        public void Salvar([FromBody]ChaveViewModel chaveViewModel)
+        public Chave Salvar([FromBody]ChaveViewModel chaveViewModel)
         {
             Chave chave = null;
 
@@ -60,6 +60,8 @@
             chave.ItensLista = chaveViewModel.ItensLista;
             
             this.chaveRepositorio.Salvar(chave);
+            
+            return chave;
         }
 
         // PUT api/<controller>/5

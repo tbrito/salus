@@ -45,7 +45,7 @@ angular.module("salus-app").controller('tipoDocumentoConfigController',
                     tipoDocumentoApi.getTiposDeDocumentos()
                         .success(function (data) {
                             $scope.tipoDocumento.pastas = data.filter(function (dado) {
-                                return dado.ehPasta == true;
+                                return dado.EhPasta == true;
                             });
                         });
                 })
@@ -58,21 +58,31 @@ angular.module("salus-app").controller('tipoDocumentoConfigController',
     $scope.salvar = function (tipoDocumento) {
         tipoDocumentoApi.salvar(tipoDocumento)
             .success(function (data) {
-                $location.path('/ChaveConfig/' + tipoDocumento.id);
+                $location.path('/ChaveConfig/TodosDoTipo/' + tipoDocumento.Id + '/' + tipoDocumento.Nome);
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
             });
     }
 
-    $scope.verChaves= function (tipoDocumento) {
-        $location.path('/ChaveConfig/' + tipoDocumento.id);
+    $scope.verChaves = function (tipoDocumento) {
+        $location.path('/ChaveConfig/TodosDoTipo/' + tipoDocumento.Id + '/' + tipoDocumento.Nome);
     }
 
-    $scope.excluir = function (tipodocumentoid) {
-        tipoDocumentoApi.excluir(tipoDocumentid)
+    $scope.excluir = function (tipodocumento) {
+        tipoDocumentoApi.excluir(tipodocumento)
             .success(function (data) {
-                $location.path('/TipoDocumentoConfig');
+                tipodocumento.Ativo = false;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
+            });
+    }
+
+    $scope.ativar = function (tipodocumento) {
+        tipoDocumentoApi.ativar(tipodocumento)
+            .success(function (data) {
+                tipodocumento.Ativo = true;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";

@@ -8,14 +8,14 @@
     using System.Collections.Generic;
     using System.Web.Http;
 
-    public class PerfilController : ApiController
+    public class EdicaoPessoalController : ApiController
     {
         private IPerfilRepositorio perfilRepositorio;
         private IUsuarioRepositorio usuarioRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
         private HashString hashString;
 
-        public PerfilController()
+        public EdicaoPessoalController()
         {
             this.perfilRepositorio = InversionControl.Current.Resolve<IPerfilRepositorio>();
             this.usuarioRepositorio = InversionControl.Current.Resolve<IUsuarioRepositorio>();
@@ -36,32 +36,27 @@
             var perfil = this.perfilRepositorio.ObterPorId(id);
             return perfil;
         }
-
-        [HttpPost]
-        public void Salvar([FromBody]Perfil perfil)
-        {
-            Perfil perfilMontado = null;
-
-            if (perfil.Id == 0)
-            {
-                perfilMontado = new Perfil();
-            }
-            else
-            {
-                perfilMontado = this.perfilRepositorio.ObterPorId(perfil.Id);
-            }
-
-            perfilMontado.Ativo = perfil.Ativo;
-            perfilMontado.Nome = perfil.Nome;
-
-            this.perfilRepositorio.Salvar(perfilMontado);
-        }
         
-        // PUT api/<controller>/5
-        [HttpPut]
-        public void Ativar(int id, [FromBody]string value)
+        [HttpPost]
+        public string SalvarSenha([FromBody]EditarPerfilViewModel editarPerfil)
         {
-            this.perfilRepositorio.Reativar(id);
+            if (string.IsNullOrEmpty(editarPerfil.NovaSenha))
+            {
+                return string.Empty;
+            }
+
+            var novaSenha = this.hashString.Do(editarPerfil.NovaSenha);
+
+           this.usuarioRepositorio.SalvarSenha(
+                this.sessaoDoUsuario.UsuarioAtual.Id,
+                novaSenha);
+
+            return "ok";
+        }
+
+        // PUT api/<controller>/5
+        public void Put(int id, [FromBody]string value)
+        {
         }
 
         [HttpDelete]

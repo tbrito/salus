@@ -1,12 +1,12 @@
 ﻿<div class="modal-content" ng-controller="tipoDocumentoConfigController" ng-init="carregarFormulario()">
-    <div>Tipos de Documentos</div>
+    <div>Configurações > Tipos de Documentos</div>
 
     <div class="control-group">
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Tipo de Documento</button>
     </div>
 
     <div class="control-group" style="height:560px; overflow:auto">
-        <table ng-show="tiposDeDocumento.length > 0" class="table">
+        <table ng-show="tiposDeDocumento.length > 0" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -19,7 +19,10 @@
                 <td>{{tipoDocumento.Nome}}</td>
                 <td>{{tipoDocumento.Parent.Nome}}</td>
                 <td><a ng-click="editarTipoDocumento(tipoDocumento.Id)">Editar</a></td>
-                <td><a ng-click="excluir(tipoDocumento.Id)">Desativar</a></td>
+                <td>
+                    <a ng-if="tipoDocumento.Ativo" ng-click="excluir(tipoDocumento)">Desativar</a>
+                    <a ng-if="tipoDocumento.Ativo==false" ng-click="ativar(tipoDocumento)">Ativar</a>    
+                </td>
             </tr>
         </table>
     </div>

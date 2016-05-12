@@ -1,7 +1,9 @@
 ﻿using Quartz;
 using Quartz.Impl;
 using Salus.Infra;
+using Salus.Infra.DataAccess;
 using Salus.Infra.Logs;
+using SharpArch.NHibernate;
 using System;
 using System.Collections.Specialized;
 using System.ServiceProcess;
@@ -17,6 +19,10 @@ namespace SearchIndexingService
         {
             Aplicacao.Boot();
             Log.Initialize();
+
+            NHibernateSession.CloseAllSessions();
+            UnidadeDeTrabalho.Boot();
+
             Log.App.Info("Aplicacao Iniciada");
 
             if (!Environment.UserInteractive)
@@ -52,7 +58,7 @@ namespace SearchIndexingService
                 .WithIdentity("triggerIndexarJob", "indexarGroup")
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(30)
+                    .WithIntervalInSeconds(5)
                     .RepeatForever()
                     .WithMisfireHandlingInstructionIgnoreMisfires())
                 .Build();

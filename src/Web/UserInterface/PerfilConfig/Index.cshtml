@@ -1,12 +1,12 @@
 ﻿<div class="modal-content" ng-controller="perfilConfigController" ng-init="carregarFormulario()">
-    <div>Perfis de Usuários</div>
+    <div>Configurações > Perfis de Usuários</div>
 
     <div class="control-group">
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Perfil</button>
     </div>
 
     <div class="control-group"  style="height:560px; overflow:auto">
-        <table ng-show="perfis.length > 0" class="table">
+        <table ng-show="perfis.length > 0" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -17,7 +17,10 @@
             <tr ng-class="{'item-inativo': perfil.Ativo == false}"  ng-repeat="perfil in perfis">
                 <td>{{perfil.Nome}}</td>
                 <td><a ng-click="editarPerfil(perfil.Id)">Editar</a></td>
-                <td><a ng-click="excluir(perfil.Id)">Desativar</a></td>
+                <td>
+                    <a ng-if="perfil.Ativo" ng-click="excluir(perfil)">Desativar</a>
+                    <a ng-if="perfil.Ativo==false" ng-click="ativar(perfil)">Ativar</a>
+                </td>
             </tr>
         </table>
     </div>

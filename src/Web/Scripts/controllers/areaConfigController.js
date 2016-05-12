@@ -58,10 +58,21 @@ angular.module("salus-app").controller('areaConfigController',
             });
     }
 
-    $scope.excluir = function (areaid) {
-        areaApi.excluir(areaid)
+    $scope.excluir = function (area) {
+        areaApi.excluir(area)
             .success(function (data) {
+                area.Ativo = false;
                 $location.path('/AreaConfig');
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
+            });
+    }
+
+     $scope.ativar = function (area) {
+        areaApi.ativar(area)
+            .success(function (data) {
+                area.Ativo = true;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";

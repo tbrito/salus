@@ -11,8 +11,12 @@ angular.module("salus-app").factory("grupoDocumentoApi", function ($http) {
         return $http.post("api/GrupoDocumento/Salvar/", tipoDocumento);
     };
 
-    var _excluir = function (tipoDocumentoid) {
-        return $http.delete("api/GrupoDocumento/Excluir/" + tipoDocumentoid);
+    var _excluir = function (tipoDocumento) {
+        return $http.delete("api/GrupoDocumento/Excluir/" + tipoDocumento.Id);
+    };
+
+    var _ativar = function (tipoDocumento) {
+        return $http.put("api/GrupoDocumento/Ativar/" + tipoDocumento.Id);
     };
     
     return {
@@ -20,5 +24,6 @@ angular.module("salus-app").factory("grupoDocumentoApi", function ($http) {
         getTipoDocumento: _getTipoDocumento,
         salvar: _salvar,
         excluir: _excluir,
+        ativar: _ativar
     };
 });

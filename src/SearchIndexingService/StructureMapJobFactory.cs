@@ -22,7 +22,6 @@ namespace SearchIndexingService
 
         public void ReturnJob(IJob job)
         {
-            throw new NotImplementedException();
         }
     }
 }

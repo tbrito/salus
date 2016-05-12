@@ -39,39 +39,39 @@
         {
             IList<Documento> contents;
 
-            do
+            contents = this.documentoRepositorio.ObterTodosParaIndexar(120);
+
+            if (contents.Count == 0)
             {
-                contents = this.documentoRepositorio.ObterTodosParaIndexar(120);
+                Log.App.InfoFormat("Não há documentos pendentes para indexação");
+                return;
+            }
 
-                if (contents.Count == 0)
+            Log.App.InfoFormat(
+                "Indexando documentos de {0} a {1}",
+                contents[0].Id,
+                contents.Last().Id);
+
+            using (var session = this.indexerSession
+                .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
+            {
+                Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, batch =>
                 {
-                    Log.App.InfoFormat("Não há documentos pendentes para indexação");
-                    return;
-                }
+                    Log.App.Info("indexado documento #" + batch.Id);
 
-                Log.App.InfoFormat(
-                    "Indexando documentos de {0} a {1}",
-                    contents[0].Id,
-                    contents.Last().Id);
+                    this.Increment(this.indexQueueProcessBatch.Execute(batch));
+                });
 
-                using (var session = this.indexerSession
-                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
-                {
-                    Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, batch =>
-                    {
-                        ////UnidadeDeTrabalho.Boot();
-                        this.Increment(this.indexQueueProcessBatch.Execute(batch));
-                    });
-
-                    session.Current.Commit();
-                }
-            } while (contents.Count > 0);
-
+                session.Current.Commit();
+            }
+            
             using (var session = this.indexerSession
                     .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
             {
                 session.Current.Optimize();
             }
+
+            Log.App.Info("documentos indexados com sucesso");
         }
 
         private void Increment(int indexed)

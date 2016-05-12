@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\ConfiguracaoAppController.cs" />
+    <Compile Include="ApiControllers\EdicaoPessoalController.cs" />
     <Compile Include="ApiControllers\PesquisaEngineController.cs" />
     <Compile Include="ApiControllers\AcessoDocumentoController.cs" />
     <Compile Include="ApiControllers\AcessoFuncionalidadeController.cs" />
@@ -270,7 +271,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\background.jpg" />
+    <Content Include="Content\Images\ic_action_accept.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\ic_action_collection.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\ic_action_secure.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\ic_action_view_as_list.png">
@@ -383,7 +390,7 @@
     <Content Include="UserInterface\AreaConfig\Editar.cshtml" />
     <Content Include="UserInterface\AreaConfig\Index.cshtml" />
     <Content Include="UserInterface\Categorizar\Index.cshtml" />
-    <Content Include="UserInterface\ChaveConfig\Editar.cshtml" />
+    <Content Include="UserInterface\ChaveConfig\Alterar.cshtml" />
     <Content Include="UserInterface\ChaveConfig\Index.cshtml" />
     <Content Include="UserInterface\Configuracao\Editar.cshtml" />
     <Content Include="UserInterface\Configuracao\Index.cshtml" />

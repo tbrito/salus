@@ -37,10 +37,12 @@
             </select>
         </div>
 
-        <div ng-repeat="funcionalidade in acessoFuncionalidade.Funcionalidades">
-            <div class="form-control">
-                <input type="checkbox" ng-model="acessoFuncionalidade.Funcionalidades[$index].Marcado"/>
-                <Label>{{funcionalidade.Nome}}</Label>
+        <div style="height:530px; overflow:auto">
+            <div ng-repeat="funcionalidade in acessoFuncionalidade.Funcionalidades">
+                <div class="form-control">
+                    <input type="checkbox" ng-model="acessoFuncionalidade.Funcionalidades[$index].Marcado" />
+                    <Label>{{funcionalidade.Nome}}</Label>
+                </div>
             </div>
         </div>
     </div>

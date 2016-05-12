@@ -77,9 +77,10 @@
             this.areaRepositorio.Salvar(area);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Ativar(int id, [FromBody]string value)
         {
+            this.areaRepositorio.Reativar(id);
         }
 
         [HttpDelete]

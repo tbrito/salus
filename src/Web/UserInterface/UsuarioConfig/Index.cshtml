@@ -1,12 +1,12 @@
 ﻿<div class="modal-content" ng-controller="usuarioConfigController" ng-init="carregarFormulario()">
-    <div>Usuários</div>
+    <div>Configurações > Usuários</div>
 
     <div class="control-group">
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Usuário</button>
     </div>
 
     <div class="control-group" style="height:560px;overflow:auto">
-        <table ng-show="usuarios.length > 0" class="table">
+        <table ng-show="usuarios.length > 0" class="table table-striped">
             <thead>
                 <tr>
                     <th>Login</th>
@@ -23,7 +23,10 @@
                 <td>{{usuario.Area.Nome}}</td>
                 <td>{{usuario.Perfil.Nome}}</td>
                 <td><a ng-click="editarUsuario(usuario.Id)">Editar</a></td>
-                <td><a ng-click="excluir(usuario.Id)">Inativar</a></td>
+                <td>
+                    <a ng-if="usuario.Ativo" ng-click="excluir(usuario)">Desativar</a>
+                    <a ng-if="usuario.Ativo==false" ng-click="ativar(usuario)">Ativar</a>
+                </td>
             </tr>
         </table>
     </div>

@@ -46,10 +46,20 @@ angular.module("salus-app").controller('grupoDocumentoConfigController',
             });
     }
 
-    $scope.excluir = function (grupodocumentoid) {
-        grupoDocumentoApi.excluir(grupoDocumentid)
+    $scope.excluir = function (grupodocumento) {
+        grupoDocumentoApi.excluir(grupodocumento)
             .success(function (data) {
-                $location.path('/GrupoDocumentoConfig');
+                grupodocumento.Ativo = false;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
+            });
+    }
+
+    $scope.ativar = function (grupodocumento) {
+        grupoDocumentoApi.ativar(grupodocumento)
+            .success(function (data) {
+                grupodocumento.Ativo = true;
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
