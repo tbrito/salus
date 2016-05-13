@@ -4,7 +4,7 @@
     {{mensagem}}
 
     <div class="control-group">
-        <form name="myForm" class="form-horizontal">
+        <form name="form" class="form-horizontal">
             <div class="control-group">
                 <label>Senha Atual</label>
                 <input type="password" class="form-control" name="assunto" ng-model="perfil.SenhaAtual" size="150">
@@ -19,12 +19,12 @@
                 <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
                        accept="*/*" ngf-max-size="100MB" ngf-model-invalid="errorFiles">
 
-                <i ng-show="myForm.file.$error.maxSize">
+                <i ng-show="form.file.$error.maxSize">
                     Arquivo muito grande
                     {{errorFiles[0].size / 1000000|number:1}}MB: max 100M
                 </i>
 
-                <span ng-show="myForm.file.$valid">
+                <span ng-show="form.file.$valid">
                     {{picFile.name}}
                 </span>
 

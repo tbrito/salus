@@ -78,6 +78,15 @@ textarea {
    content:url('Images/ic_action_view_as_list.png');
 }​
 
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
+}
+
 .site-footer {
     clear: both;
     position: fixed;

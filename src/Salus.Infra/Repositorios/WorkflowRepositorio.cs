@@ -12,7 +12,7 @@
             return this.Sessao.QueryOver<Workflow>()
                 .Fetch(x => x.Para).Eager
                 .Fetch(x => x.Documento).Eager
-                .Where(x => x.Para == usuarioAtual)
+                .Where(x => x.Para == usuarioAtual && x.Status != WorkflowStatus.Finalizado)
                 .OrderBy(x => x.CriadoEm).Desc
                 .TransformUsing(Transformers.DistinctRootEntity)
                 .List();

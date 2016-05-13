@@ -63,48 +63,6 @@
             return Ok(new { urlDocumento = "/" + relativo });
         }
 
-        /// <summary>
-        ///   Delete photo
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        [HttpDelete]
-        public async Task<IHttpActionResult> Delete(string fileName)
-        {
-            if (!FileExists(fileName))
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                var filePath = Directory.GetFiles(string.Empty, fileName)
-                  .FirstOrDefault();
-
-                await Task.Factory.StartNew(() =>
-                {
-                    if (filePath != null)
-                        File.Delete(filePath);
-                });
-
-                var result = new PhotoActionResult
-                {
-                    Successful = true,
-                    Message = fileName + "deleted successfully"
-                };
-                return Ok(new { message = result.Message });
-            }
-            catch (Exception ex)
-            {
-                var result = new PhotoActionResult
-                {
-                    Successful = false,
-                    Message = "error deleting fileName " + ex.GetBaseException().Message
-                };
-                return BadRequest(result.Message);
-            }
-        }
-
         [HttpPost]
         public async Task<IHttpActionResult> Add(int id)
         {
@@ -120,7 +78,7 @@
                     this.sessaoDoUsuario.UsuarioAtual.Id.ToString());
 
                 var provider = new CustomMultipartFormDataStreamProvider(pastaTrabalho);
-                
+
                 if (Directory.Exists(pastaTrabalho) == false)
                 {
                     Directory.CreateDirectory(pastaTrabalho);
@@ -130,16 +88,15 @@
 
                 var arquivos =
                   provider.FileData
-                    .Select(file => new FileInfo(file.LocalFileName))
-                    .Select(fileInfo => new FileViewModel
+                    .Select(file => new FileViewModel
                     {
-                        Name = fileInfo.Name,
-                        Created = fileInfo.CreationTime,
-                        Modified = fileInfo.LastWriteTime,
-                        Size = fileInfo.Length / 1024,
-                        Path = fileInfo.FullName,
+                        Name = Path.GetFileNameWithoutExtension(file.LocalFileName),
+                        Created = DateTime.Now,
+                        Path = file.LocalFileName,
                         Subject = provider.FormData["assunto"]
                     }).ToList();
+
+                Request.Content.Dispose();
 
                 IList<Documento> documentos = new List<Documento>();
 
@@ -154,7 +111,7 @@
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> AddFoto(int id)
+        public IHttpActionResult AddFoto(int id)
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -177,7 +134,7 @@
                     Directory.CreateDirectory(pastaTrabalho);
                 }
 
-                await Request.Content.ReadAsMultipartAsync(provider);
+                Request.Content.ReadAsMultipartAsync(provider);
 
                 var arquivos =
                   provider.FileData

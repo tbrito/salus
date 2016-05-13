@@ -271,6 +271,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\background.jpg" />
+    <Content Include="Content\Images\document-broken.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\ic_action_accept.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -283,7 +286,10 @@
     <Content Include="Content\Images\ic_action_view_as_list.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\roboto.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -295,6 +301,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\fonte1.woff2" />
+    <Content Include="fonts\fonte2.woff2" />
+    <Content Include="fonts\robot-draft1.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />

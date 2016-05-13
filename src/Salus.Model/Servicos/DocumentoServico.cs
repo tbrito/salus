@@ -22,9 +22,9 @@ namespace Salus.Model.Servicos
         {
             var documento = new Documento();
 
-            documento.DataCriacao = arquivo.Created;
-            documento.Assunto = arquivo.Subject;
-            documento.Tamanho = arquivo.Size;
+            documento.DataCriacao = DateTime.Now;
+            documento.Assunto = "(Sem Assunto)";
+            documento.Tamanho = 0;
             documento.Usuario = this.sessaoDoUsuario.UsuarioAtual;
 
             this.documentoRepositorio.Salvar(documento);

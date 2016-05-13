@@ -17,10 +17,10 @@
             this.searchService = InversionControl.Current.Resolve<SearchService>();
         }
 
-        public ResultadoPesquisaDocumento Post([FromBody]PesquisaViewModel viewModel)
+        public IHttpActionResult Post([FromBody]PesquisaViewModel viewModel)
         {
             var resultado = this.searchService.SearchContent(viewModel.Texto, 1);
-            return resultado;
+            return Ok(resultado);
         }
         
         // PUT api/<controller>/5
