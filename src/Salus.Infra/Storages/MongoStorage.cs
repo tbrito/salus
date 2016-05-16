@@ -32,7 +32,7 @@
         {
             this.gridFs.Delete(ObjectId.Parse(objectId));
         }
-
+        
         public string Obter(string objectId, string tipoArquivo)
         {
             var diretorioConteudo = Path.Combine(Aplicacao.Caminho, "storage-temp", objectId);

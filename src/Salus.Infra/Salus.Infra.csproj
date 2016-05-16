@@ -215,6 +215,7 @@
     <Compile Include="Mappings\AcessoDocumentoMap.cs" />
     <Compile Include="Mappings\AcessoFuncionalidadeMap.cs" />
     <Compile Include="Mappings\ConfiguracaoMap.cs" />
+    <Compile Include="Mappings\Ecm6DocVersionadoMap.cs" />
     <Compile Include="Mappings\Ecm6PreIndexMap.cs" />
     <Compile Include="Mappings\Ecm6PreDocMap.cs" />
     <Compile Include="Mappings\VersaoDocumentoMap.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Mappings\UsuarioMap.cs" />
     <Compile Include="Migrations\201604231602_CriaConfiguracao.cs" />
     <Compile Include="Migrations\201604251711_AdicionarCpfStatusSearchNoDocumento.cs" />
+    <Compile Include="Migrations\201605161915_CriaEcm6DocVersionado.cs" />
     <Compile Include="Migrations\201605041608_CriaEcm6PreIndexes.cs" />
     <Compile Include="Migrations\201605041545_CriaEcm6PreDoc.cs" />
     <Compile Include="Migrations\201605041441_CriaVersaoDocumento.cs" />

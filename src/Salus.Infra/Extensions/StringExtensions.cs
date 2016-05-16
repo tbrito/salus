@@ -30,5 +30,12 @@ namespace Salus.Infra.Extensions
 
             return inteiro;
         }
+
+        public static bool IsInt(this string text)
+        {
+            int inteiro = 0;
+
+            return int.TryParse(text, out inteiro);
+        }
     }
 }

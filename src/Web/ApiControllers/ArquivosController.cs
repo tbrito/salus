@@ -15,6 +15,7 @@
     using System.IO;
     using System.Linq;
     using System.Net.Http;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http;
 
@@ -72,6 +73,8 @@
             }
             try
             {
+                SynchronizationContext originalContext = SynchronizationContext.Current;
+
                 var pastaTrabalho = Path.Combine(
                     ContextoWeb.Caminho,
                     "Uploads",
@@ -95,12 +98,14 @@
                         Path = file.LocalFileName,
                         Subject = provider.FormData["assunto"]
                     }).ToList();
-
-                Request.Content.Dispose();
-
+                
                 IList<Documento> documentos = new List<Documento>();
 
-                documentos = this.salvarConteudoServico.Executar(arquivos);
+                originalContext.Post(
+                    delegate {
+                        documentos = this.salvarConteudoServico.Executar(arquivos);}, null);
+
+                Request.Content.Dispose();
 
                 return Ok(new { Message = "Documentos enviados com sucesso", Documentos = documentos });
             }
@@ -111,7 +116,7 @@
         }
 
         [HttpPost]
-        public IHttpActionResult AddFoto(int id)
+        public async Task<IHttpActionResult> AddFoto(int id)
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -119,6 +124,8 @@
             }
             try
             {
+                SynchronizationContext originalContext = SynchronizationContext.Current;
+
                 var usuario = this.sessaoDoUsuario.UsuarioAtual;
                 var usuarioId = usuario.Id.ToString();
 
@@ -134,7 +141,7 @@
                     Directory.CreateDirectory(pastaTrabalho);
                 }
 
-                Request.Content.ReadAsMultipartAsync(provider);
+                await Request.Content.ReadAsMultipartAsync(provider);
 
                 var arquivos =
                   provider.FileData
@@ -147,8 +154,13 @@
                         Size = fileInfo.Length / 1024,
                         Path = fileInfo.FullName
                     }).ToList();
-                
-                this.salvarConteudoServico.SalvarFoto(arquivos, "[usuario]" + usuarioId);
+
+                originalContext.Post(
+                    delegate {
+                        this.salvarConteudoServico.SalvarFoto(arquivos, "[usuario]" + usuarioId);
+                    }, null);
+
+                Request.Content.Dispose();
 
                 return Ok(new { Message = "Documentos enviados com sucesso" });
             }

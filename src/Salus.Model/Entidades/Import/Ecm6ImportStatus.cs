@@ -1,4 +1,4 @@
-﻿namespace Veros.Ecm.Model.Entities.Import
+﻿namespace Salus.Model.Entidades.Import
 {
     public enum Ecm6ImportStatus
     {

@@ -7,7 +7,7 @@
     using System.Web.Security;
     using Model.Repositorios;
     using IoC;
-
+    using System.Threading;
     public class SessaoDoUsuario : ISessaoDoUsuario
     {
         private IUsuarioRepositorio usuarioRepositorio;

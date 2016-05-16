@@ -49,7 +49,7 @@
 
             return sessionFactorySingleton;
         }
-
+        
         private static string GetConnectionString(string connectionString)
         {
             return connectionString;

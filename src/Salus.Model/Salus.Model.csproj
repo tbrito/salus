@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\AcessoDocumento.cs" />
+    <Compile Include="Entidades\Import\Ecm6DocVersionado.cs" />
+    <Compile Include="Entidades\Import\Ecm6ImportStatus.cs" />
     <Compile Include="Entidades\Import\Ecm6PreDoc.cs" />
     <Compile Include="Entidades\Import\Ecm6PreIndexIndexes.cs" />
     <Compile Include="Entidades\VersaoDocumento.cs" />

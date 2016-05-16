@@ -16,29 +16,82 @@
                 <ng-form name="categorizacaoFieldForm">
                     <label>{{ chave.Nome }}</label>
                     
-                    {{indexacao[$index].campoId = chave.Id}}
-                    {{indexacao[$index].documentoId = documentoId}}
+                    <hidden>
+                        {{indexacao[$index].campoId = chave.Id}}
+                        {{indexacao[$index].documentoId = documentoId}}
+                    </hidden>
 
-                    <input 
-                           type="text" 
-                           class="form-control" 
-                           name="index_{{$index}}" 
-                           ng-model="indexacao[$index].Valor"
-                           ng-required="chave.Obrigatorio"
-                           ng-show="chave.TipoDado != 4"
-                           ng-pattern="chave.Mascara"
-                           placeholder="Informe o {{chave.Nome}}">
+                    <ng-switch on="chave.TipoDado.Value">
+                        <input type="text"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 32"
+                               ng-pattern="^(((0[123456789]|10|11|12)([/])(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))$"
+                               placeholder="Informe o {{chave.Nome}}">
 
-                    <select 
-                            class="form-control" 
-                            name="index_{{$index}}" 
-                            ng-required="chave.obrigatorio"
-                            ng-model="indexacao[$index].Valor" 
-                            ng-show="chave.TipoDado == 4"
-                            ng-options="linha for linha in chave.Lista">
-                        <option value="">Selecione um valor</option>
-                    </select>
-                    <p class="help-block" ng-show="categorizacaoFieldForm.index_{{$index}}.$invalid">Valor Inválido</p>
+                        <input type="text"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 17"
+                               ng-pattern="^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$"
+                               placeholder="Informe o {{chave.Nome}}">
+
+                        <input type="number"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 1"
+                               placeholder="Informe o {{chave.Nome}}">
+
+                        <input type="date"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 3"
+                               placeholder="Informe a {{chave.Nome}}">
+
+                        <input type="date"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 9"
+                               placeholder="Informe o {{chave.Nome}}">
+
+                        <input type="text"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-when="chave.TipoDado.Value == 2"
+                               placeholder="Informe o {{chave.Nome}}">
+
+                        <select class="form-control"
+                                name="index_{{$index}}"
+                                ng-required="chave.obrigatorio"
+                                ng-model="indexacao[$index].Valor"
+                                ng-switch-when="chave.TipoDado.Value == 8"
+                                ng-options="linha for linha in chave.Lista">
+                            <option value="">Selecione um valor</option>
+                        </select>
+                        
+                        <input type="text"
+                               class="form-control"
+                               name="index_{{$index}}"
+                               ng-model="indexacao[$index].Valor"
+                               ng-required="chave.Obrigatorio"
+                               ng-switch-default
+                               placeholder="Informe o {{chave.Nome}}">
+
+                        <p class="help-block" ng-show="categorizacaoFieldForm.index_{{$index}}.$invalid">Valor Inválido</p>
+
+                    </ng-switch>
                 </ng-form>
             </div>
 

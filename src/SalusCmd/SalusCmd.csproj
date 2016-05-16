@@ -49,6 +49,10 @@
       <HintPath>..\..\lib\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ftp">
+      <HintPath>..\..\lib\Ftp.dll.2.0.15314.1407\lib\Net45\Ftp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\lib\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
@@ -126,6 +130,7 @@
     <Compile Include="Ecm6\ConvertString.cs" />
     <Compile Include="Ecm6\DapperHelper.cs" />
     <Compile Include="Ecm6\Ecm6ImportDatabaseTask.cs" />
+    <Compile Include="Ecm6\Ecm6ImportStorageTask.cs" />
     <Compile Include="Ecm6\Extensions.cs" />
     <Compile Include="Ecm6\ImportDatabase.cs" />
     <Compile Include="Ecm6\Imports\AccessDocDto.cs" />

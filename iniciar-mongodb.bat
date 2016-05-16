@@ -1,2 +1,2 @@
-mongod --dbpath "D:\Codigo Fonte\Salus-Storage"
+mongo localhost:10003
 rem mongod --dbpath "D:\HomeOffice\mongodb"

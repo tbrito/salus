@@ -1,23 +1,33 @@
+using Limilabs.FTP.Client;
+using Salus.Infra.Extensions;
+using Salus.Infra.IoC;
+using Salus.Infra.Logs;
+using Salus.Infra.Repositorios;
+using Salus.Model;
+using Salus.Model.Entidades;
+using Salus.Model.Entidades.Import;
+using Salus.Model.Repositorios;
+using SalusCmd.Ecm6;
+using SharpArch.NHibernate;
+using System;
+using System.Configuration;
+using System.IO;
+
 namespace SalusCmd.Tarefas.Ecm6
 {
-    using Salus.Infra.Logs;
-    using System;
-    using System.Configuration;
-    using System.IO;
-
+    
     public class Ecm6ImportStorageTask : ITarefa
     {
-        private readonly IContentStorageRepository contentStorage = IoC.Current.Resolve<IContentStorageRepository>();
-        private readonly IUnitOfWork unitOfWork = IoC.Current.Resolve<IUnitOfWork>();
-        private readonly IContentFileRepository contentFileRepository = IoC.Current.Resolve<IContentFileRepository>();
+        private readonly IMongoStorage mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
+        private readonly IStorageRepositorio storageRepositorio = InversionControl.Current.Resolve<IStorageRepositorio>();
         private int filesMoved;
-        private Ftp2 ftpClient;
+        private Ftp ftpClient;
         
         public string TextoDeAjuda
         {
             get
             {
-                return "Importa storage do ecm6";
+                return "Importa storage do ged6";
             }
         }
 
@@ -25,7 +35,7 @@ namespace SalusCmd.Tarefas.Ecm6
         {
             get
             {
-                return "ecm6 import storage";
+                return "import storage";
             }
         }
 
@@ -34,17 +44,15 @@ namespace SalusCmd.Tarefas.Ecm6
             var now = DateTime.Now;
             var tempPath = this.GetImportTempPath();
 
-            Directories.CreateIfNotExist(tempPath);
+            Directory.CreateDirectory(tempPath);
 
-            Log.App.InfoFormat("Convertendo storage do ecm 6 para o ecm 8");
+            Log.App.InfoFormat("Convertendo storage do ged 6 para o salus");
             Log.App.InfoFormat("Pasta temporária: " + tempPath);
             Log.App.InfoFormat("Aguarde a execução até o fim. Não interrompa.");
 
             this.ftpClient = this.BuildFtpClient();
-
-            this.ftpClient.Connect();
-
-            var rootpath = this.ftpClient.Root;
+            
+            var rootpath = this.ftpClient.GetCurrentFolder();
 
             Log.App.InfoFormat(
                 "Caminho do repositório antigo: {0}",
@@ -58,9 +66,9 @@ namespace SalusCmd.Tarefas.Ecm6
                 this.filesMoved);
         }
 
-        private Ftp2 BuildFtpClient()
+        private Ftp BuildFtpClient()
         {
-            Ftp2 ftp = null;
+            Ftp ftp = null;
 
             ImportDatabase.Using(session =>
             {
@@ -77,19 +85,13 @@ from system";
                     .SetResultTransformer(CustomResultTransformer<FtpSettings>.Do())
                     .UniqueResult<FtpSettings>();
 
-                ftp = new Ftp2(
-                    ftpSettings.Host,
-                    ftpSettings.Port,
-                    ftpSettings.FtpUser,
-                    ftpSettings.Password,
-                    ftpSettings.RootPath);
+                ftp = new Ftp();
 
-                ////ftp = new Ftp2(
-                ////    "192.168.10.69",
-                ////    21,
-                ////    "anonymous",
-                ////    "anonymous",
-                ////    "/");
+                ftp.Connect(ftpSettings.Host, ftpSettings.Port);
+                ftp.Login(ftpSettings.FtpUser, ftpSettings.Password);
+
+                ////ftp.Connect("192.168.10.69", 21);
+                ////ftp.Login("anonymous", "anonymous");
             });
 
             return ftp;
@@ -121,22 +123,22 @@ from system";
         /// <param name="directoryBase">Diretório base</param>
         private void ProcessDocumentDirectory(string directoryBase)
         {
-            foreach (var directory in this.ftpClient.GetDirectories(directoryBase))
+            foreach (var directory in this.ftpClient.GetList(directoryBase))
             {
-                this.ProcessDirectory(directory);
+                if (directory.IsFolder)
+                {
+                    this.ProcessDirectory(directory.Name);
+                }
                 ////this.ProcessDirectory(directoryBase + directory + "/");
             }
 
             Log.App.InfoFormat("Diretório é de documentos");
 
-            foreach (var file in this.ftpClient.GetFiles(directoryBase))
+            foreach (var file in this.ftpClient.GetList(directoryBase))
             {
-                if (Path.GetFileNameWithoutExtension(file).IsInt())
+                if (Path.GetFileNameWithoutExtension(file.Name).IsInt())
                 {
-                    using (this.unitOfWork.Begin())
-                    {
-                        this.ImportEcm6DocumentFile(directoryBase, file);
-                    }
+                    this.ImportEcm6DocumentFile(directoryBase, file.Name);
                 }
             }
         }
@@ -144,10 +146,13 @@ from system";
         private void ImportEcm6DocumentFile(string directoryBase, string file)
         {
             var docId = Path.GetFileNameWithoutExtension(file).ToInt();
-            
-            if (this.contentFileRepository.ExistsByKey(docId.ToString()))
+
+            var documento = this.storageRepositorio
+                .ObterPorSalusId("[documento]" + docId.ToString());
+
+            if (documento != null)
             {
-                Log.Application.Info("{0} já foi migrado");
+                Log.App.Info("{0} já foi migrado");
                 return;
             }
 
@@ -160,7 +165,7 @@ from system";
         /// <param name="directoryBase">Diretório base</param>
         private void ProcessVersioningDirectory(string directoryBase)
         {
-            Log.Application.InfoFormat("Diretório é de versionamento");
+            Log.App.InfoFormat("Diretório é de versionamento");
 
             foreach (var directory in Directory.GetDirectories(directoryBase))
             {
@@ -182,7 +187,7 @@ from system";
         /// <param name="directoryBase">Diretório base</param>
         private void ProcessRptDirectory(string directoryBase)
         {
-            Log.Application.InfoFormat("Diretório é de modelos");
+            Log.App.InfoFormat("Diretório é de modelos");
 
             foreach (var file in Directory.GetFiles(directoryBase))
             {
@@ -209,18 +214,15 @@ from system";
                     .UniqueResult<VsDoc>();
             });
 
-            using (this.unitOfWork.Begin())
+            var ecm6DocVersionado = this.GetEcm6VersionedDocument(documentKey);
+
+            if (ecm6DocVersionado == null)
             {
-                var ecm6DocVersionado = this.GetEcm6VersionedDocument(documentKey);
-
-                if (ecm6DocVersionado == null)
-                {
-                    Log.Application.ErrorFormat("Documento ecm6  #{0} não foi importado", vsdoc.DocCode);
-                    return;
-                }
-
-                this.ImportEcm6VersionedDocumentFile(ecm6DocVersionado, file, vsdoc);
+                Log.App.ErrorFormat("Documento ecm6  #{0} não foi importado", vsdoc.DocCode);
+                return;
             }
+
+            this.ImportEcm6VersionedDocumentFile(ecm6DocVersionado, file, vsdoc);
         }
 
         private void ImportEcm6VersionedDocumentFile(Ecm6DocVersionado ecm6DocVersionado, string file, VsDoc vsdoc)
@@ -243,7 +245,7 @@ from system";
             }
             catch (Exception exception)
             {
-                Log.Application.Error("Erro ao enviar arquivo para o repositório", exception);
+                Log.App.Error("Erro ao enviar arquivo para o repositório", exception);
                 ecm6DocVersionado.ImportStatus = Ecm6ImportStatus.NotImported;
                 this.UpdateImportStatus(ecm6DocVersionado);
             }
@@ -251,36 +253,31 @@ from system";
 
         private void SendFileToContent(string directory, string file, int ecm8Id)
         {
-            Log.Application.InfoFormat("Movendo " + file);
+            Log.App.InfoFormat("Movendo " + file);
             var downloadedFromFtp = Path.Combine(this.GetImportTempPath(), Path.GetFileName(file));
 
-            this.ftpClient.DownloadFile(file, downloadedFromFtp);
-            ////this.ftpClient.DownloadFile(directory + file, downloadedFromFtp);
+            this.ftpClient.Download(downloadedFromFtp, file);
 
             try
             {
-                using (var stream = new Veros.Framework.IO.Stream())
-                {
-                    stream.FromFile(downloadedFromFtp);
-                    this.contentStorage.SaveOrUpdate(ecm8Id.ToString(), stream);
+                    this.mongoStorage.AdicionarOuAtualizar(file);
                     this.filesMoved++;
-                }                
             }
             catch (Exception ex)
             {
-                Log.Application.ErrorFormat(ex, "Erro ao importar {0}", downloadedFromFtp);
+                Log.App.ErrorFormat("Erro ao importar {0}", downloadedFromFtp, ex);
             }
 
             try
             {
-                System.IO.File.Delete(downloadedFromFtp);
+                File.Delete(downloadedFromFtp);
             }
             catch (Exception ex)
             {
-                Log.Application.ErrorFormat(ex, "Erro ao apagar {0}", file);
+                Log.App.ErrorFormat("Erro ao apagar {0}", file, ex);
             }
 
-            Log.Application.InfoFormat("Arquivo {0} migrado", file);
+            Log.App.InfoFormat("Arquivo {0} migrado", file);
         }
 
         private string GetImportTempPath()
@@ -297,16 +294,15 @@ from system";
 
         private void UpdateImportStatus<T>(T entidade) where T : Entidade
         {
-            this.unitOfWork.Current.CurrentSession.SaveOrUpdate(entidade);
+            NHibernateSession.Current.SaveOrUpdate(entidade);
         }
 
         private Ecm6DocVersionado GetEcm6VersionedDocument(int ecm6DocVersion)
         {
             Ecm6DocVersionado ecm6Docs;
 
-            ecm6Docs = this.unitOfWork
+            ecm6Docs = NHibernateSession
                 .Current
-                .CurrentSession
                 .CreateSQLQuery("select id Id, ecm6_id Ecm6Id, ecm8_id Ecm8Id, import_status ImportStatus from ecm6_docversionado where ecm6_id = :ecm6Id")
                 .SetInt32("ecm6Id", ecm6DocVersion)
                 .SetResultTransformer(CustomResultTransformer<Ecm6DocVersionado>.Do())
