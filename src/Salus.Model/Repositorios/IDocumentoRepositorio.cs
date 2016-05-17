@@ -12,5 +12,7 @@ namespace Salus.Model.Repositorios
         IList<Documento> ObterTodosParaIndexar(int quantidade);
 
         Documento ObterPorIdComTipoDocumento(int documentoId);
+
+        IList<Documento> ObterPreIndexados();
     }
 }

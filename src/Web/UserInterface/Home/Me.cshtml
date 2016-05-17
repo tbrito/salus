@@ -2,6 +2,9 @@
 
     <div  style="width: 98%; height: 530px; overflow-y: scroll;">
         <div>Minha Caixa</div>
+        <div ng-show="fluxos.length == 0">
+            Sem documentos na caixa
+        </div>
         <table ng-show="fluxos.length > 0" class="table">
             <thead>
                 <tr>
@@ -21,24 +24,4 @@
             </tr>
         </table>
     </div>
-    <div>
-        <div>Últimas Atividades</div>
-        <table ng-show="atividades.length > 0" class="table">
-            <thead>
-                <tr>
-                    <th>Por</th>
-                    <th>Ação</th>
-                    <th>Registro</th>
-                    <th>Em</th>
-                </tr>
-            </thead>
-            <tr ng-repeat="atividade in atividades">
-                <td>{{atividade.UsuarioNome}}</td>
-                <td>{{atividade.Acao}}</td>
-                <td>{{atividade.DocumentoId}}</td>
-                <td>{{atividade.Hora}}</td>
-            </tr>
-        </table>
-    </div>
-
 </div>

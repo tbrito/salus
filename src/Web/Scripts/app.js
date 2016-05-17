@@ -22,6 +22,18 @@ function config($routeProvider, $locationProvider) {
             controller: 'uploadController',
             templateUrl: viewBase + 'Documento/Novo.cshtml'
         })
+        .when('/Preindexacao', {
+            controller: 'preIndexacaoController',
+            templateUrl: viewBase + 'Preindexacao/Index.cshtml'
+        })
+        .when('/Preindexacao/Adicionar', {
+            controller: 'preIndexacaoController',
+            templateUrl: viewBase + 'Preindexacao/Adicionar.cshtml'
+        })
+        .when('/Preindexacao/Imprimir/:documentoId', {
+            controller: 'preIndexacaoController',
+            templateUrl: viewBase + 'Preindexacao/Imprimir.cshtml'
+        })
         .when('/Categorizar/:documentoId', {
             controller: 'categorizacaoController',
             templateUrl: viewBase + 'Categorizar/Index.cshtml'

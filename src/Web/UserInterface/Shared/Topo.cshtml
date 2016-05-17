@@ -31,8 +31,7 @@
                 </button>
                 <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
                     <li role="menuitem"><a ng-click="abrirUpload()" ng-show="usuarioTemPermissao(2)">Upload</a></li>
-                    <li role="menuitem"><a href="#" ng-show="usuarioTemPermissao(3)">Vários Arquivos</a></li>
-                    <li role="menuitem"><a href="#" ng-show="usuarioTemPermissao(4)">Pré-Indexar</a></li>
+                    <li role="menuitem"><a ng-click="abrirPreIndexacao()" ng-show="usuarioTemPermissao(4)">Pré-Indexação</a></li>
                 </ul>
             </div>
 

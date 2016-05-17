@@ -1,0 +1,29 @@
+﻿<div class="modal-content" ng-controller="preIndexacaoController" ng-init="carregarFormulario()">
+    <div>Novo Documento > Pre-Indexação</div>
+
+    <div class="control-group">
+        <button class="btn btn-primary" ng-click="adicionar()">Novo Documento</button>
+    </div>
+
+    <div class="control-group" style="height:560px;overflow:auto">
+        <table ng-show="documentos.length > 0" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Criado em</th>
+                    <th>Tipo de Documento</th>
+                    <th>Visualizar</th>
+                    <th>Imprimir</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="documento in documentos">
+                <td>{{documento.Id}}</td>
+                <td>{{documento.DataCriacao}}</td>
+                <td>{{documento.TipoDocumento.Nome}}</td>
+                <td><a ng-click="visualizarDocumento(documento)">Visualizar</a></td>
+                <td><a ng-click="imprimirDocumento(documento)">Imprimir</a></td>
+                <td><a ng-click="excluirDocumento(documento)">Excluir</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

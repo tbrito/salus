@@ -36,6 +36,10 @@
         $location.path('/Upload');
     };
 
+    $scope.abrirPreIndexacao = function () {
+        $location.path('/Preindexacao');
+    };
+
     $scope.abrirHome = function () {
         $location.path('/Home');
     };

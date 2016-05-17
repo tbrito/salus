@@ -234,6 +234,7 @@
     <Compile Include="ApiControllers\AcessoFuncionalidadeController.cs" />
     <Compile Include="ApiControllers\FuncionalidadeController.cs" />
     <Compile Include="ApiControllers\PerfilController.cs" />
+    <Compile Include="ApiControllers\PreindexacaoController.cs" />
     <Compile Include="ApiControllers\UsuarioController.cs" />
     <Compile Include="ApiControllers\GrupoDocumentoController.cs" />
     <Compile Include="ApiControllers\AreaController.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Scripts\controllers\configuracaoController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
+    <Content Include="Scripts\controllers\preIndexacaoController.js" />
     <Content Include="Scripts\controllers\usuarioConfigController.js" />
     <Content Include="Scripts\controllers\chaveConfigController.js" />
     <Content Include="Scripts\controllers\grupoDocumentoConfigController.js" />
@@ -367,6 +369,7 @@
     <Content Include="Scripts\services\areaApiService.js" />
     <Content Include="Scripts\services\tipoDocumentoApiService.js" />
     <Content Include="Scripts\services\storageApiService.js" />
+    <Content Include="Scripts\services\preIndexacaoApiService.js" />
     <Content Include="Scripts\services\workflowApiService.js" />
     <Content Include="Scripts\services\authenticationService.js" />
     <Content Include="Scripts\services\atividadeApiService.js" />
@@ -423,6 +426,7 @@
     <Content Include="UserInterface\UsuarioConfig\Editar.cshtml" />
     <Content Include="UserInterface\UsuarioConfig\Index.cshtml" />
     <Content Include="UserInterface\View\Index.cshtml" />
+    <Content Include="UserInterface\Preindexacao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

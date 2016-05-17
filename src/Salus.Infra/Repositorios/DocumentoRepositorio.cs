@@ -42,6 +42,17 @@ namespace Salus.Infra.Repositorios
                 .List();
         }
 
+        public IList<Documento> ObterPreIndexados()
+        {
+            return this.Sessao.QueryOver<Documento>()
+                .Where(x => x.EhPreIndexacao == true)
+                .Fetch(x => x.TipoDocumento).Eager
+                .Fetch(x => x.TipoDocumento.Parent).Eager
+                .Fetch(x => x.Usuario).Eager
+                .TransformUsing(Transformers.DistinctRootEntity)
+                .List();
+        }
+
         public IList<Documento> ObterTodosParaIndexar(int quantidade)
         {
             return this.Sessao.QueryOver<Documento>()
