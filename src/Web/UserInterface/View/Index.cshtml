@@ -10,7 +10,7 @@
             </div>
         </snap-drawer>
 
-        <snap-drawer style="top:300px; height: 300px">
+        <snap-drawer style="top:310px; height: 200px">
             <div class="panel panel-default">
                 <div class="panel-heading">Versões</div>
                 <div class="panel-body"  ng-repeat="versao in versoes">
@@ -23,7 +23,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Compartilhamento</div>
                 <div class="panel-body" ng-repeat="fluxo in workflow">
-                    <span><b>{{fluxo.De}}:</b> {{fluxo.para}}</span>
+                    <span><b>{{fluxo.De.Nome}}:</b> {{fluxo.Para.Nome}}</span>
                 </div>
             </div>
         </snap-drawer>
@@ -40,7 +40,7 @@
                 <div class="panel panel-danger">
                     {{error}}
                 </div>
-                <img src="~/Content/Images/document-broken.png">
+                <center><img src="~/Content/Images/document-broken.png"></center>
             </div>
         </div>
     </div>

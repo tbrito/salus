@@ -6,5 +6,7 @@
     public interface IWorkflowRepositorio : IRepositorio<Workflow>
     {
         IList<Workflow> ObterCaixaEntrada(Usuario usuarioAtual);
+
+        IList<Workflow> ObterDoDocumento(int id);
     }
 }

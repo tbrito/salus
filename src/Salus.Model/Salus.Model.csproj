@@ -95,6 +95,7 @@
     <Compile Include="Repositorios\ISessaoDoUsuario.cs" />
     <Compile Include="Repositorios\IRepositorio.cs" />
     <Compile Include="Repositorios\IStorageRepositorio.cs" />
+    <Compile Include="Repositorios\IVersaoDocumentoRepositorio.cs" />
     <Compile Include="Search\ContentToIndex.cs" />
     <Compile Include="Search\IIndexEngine.cs" />
     <Compile Include="Search\IIndexQueueProcess.cs" />

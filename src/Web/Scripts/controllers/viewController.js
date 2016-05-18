@@ -1,5 +1,5 @@
 angular.module("salus-app").controller('viewController', 
-    function ($scope, $location, storageApi, $routeParams, indexacaoApi) {
+    function ($scope, $location, storageApi, $routeParams, indexacaoApi, versaoDocumentoApi, workflowApi) {
 
     $scope.indexacao = [];
     $scope.chaves = [];
@@ -22,5 +22,21 @@ angular.module("salus-app").controller('viewController',
            .error(function (data) {
                $scope.error = "Ops! Algo aconteceu ao obter indexacao do documento";
            });
+
+        versaoDocumentoApi.getPorDocumento($scope.documentoId)
+            .success(function (data) {
+                $scope.versoes = data
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter as versões do documento";
+            });
+
+        workflowApi.getPorDocumento($scope.documentoId)
+            .success(function (data) {
+                $scope.workflow = data
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter as versões do documento";
+            });
     }
 });

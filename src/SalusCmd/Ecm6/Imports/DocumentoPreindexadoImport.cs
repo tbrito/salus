@@ -57,6 +57,7 @@ where
                     documento.Usuario = this.Create<Usuario>("1");
                 }
 
+                documento.TipoDocumento = this.Create<TipoDocumento>(preIndexedFileDto.GroupDocCode);
                 documento.SearchStatus = SearchStatus.DontIndex;
                 documento.EhPreIndexacao = true;
                 documento.Assunto = "(sem assunto)";

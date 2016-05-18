@@ -12,15 +12,16 @@
                     <th>Documento</th>
                     <th>Criado em</th>
                     <th>Tipo de Documento</th>
-                    <th>Visualizar</th>
-                    <th>Imprimir</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tr ng-repeat="documento in documentos">
                 <td>{{documento.Id}}</td>
                 <td>{{documento.DataCriacao}}</td>
                 <td>{{documento.TipoDocumento.Nome}}</td>
-                <td><a ng-click="visualizarDocumento(documento)">Visualizar</a></td>
+                <td><a ng-click="editarDocumento(documento)">Editar</a></td>
                 <td><a ng-click="imprimirDocumento(documento)">Imprimir</a></td>
                 <td><a ng-click="excluirDocumento(documento)">Excluir</a></td>
             </tr>

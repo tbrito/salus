@@ -27,7 +27,38 @@
             var workflow = this.workflowRepositorio
                 .ObterCaixaEntrada(this.sessaoDoUsuario.UsuarioAtual);
 
-            Log.App.Info("Documentos da Caixa de entrada" + workflow.Count);
+            Log.App.Info("Documentos da Caixa de entrada:: " + workflow.Count);
+
+            var fluxos = new List<WorkflowViewModel>();
+
+            foreach (var fluxo in workflow)
+            {
+                var viewModel = new WorkflowViewModel
+                {
+                    Id = fluxo.Id,
+                    CriadoEm = fluxo.CriadoEm,
+                    De = fluxo.De,
+                    Documento = fluxo.Documento,
+                    FinalizadoEm = fluxo.FinalizadoEm,
+                    Lido = fluxo.Lido,
+                    Mensagem = fluxo.Mensagem,
+                    Para = fluxo.Para,
+                    Status = fluxo.Status
+                };
+
+                fluxos.Add(viewModel);
+            }
+
+            return fluxos as IEnumerable<WorkflowViewModel>;
+        }
+
+        [HttpGet]
+        public IEnumerable<WorkflowViewModel> PorDocumento(int id)
+        {
+            var workflow = this.workflowRepositorio
+                .ObterDoDocumento(id);
+
+            Log.App.Info("Fluxos do documento:: " + workflow.Count);
 
             var fluxos = new List<WorkflowViewModel>();
 

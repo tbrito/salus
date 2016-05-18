@@ -267,6 +267,7 @@
     <Compile Include="Repositorios\ConfiguracaoRepositorio.cs" />
     <Compile Include="Repositorios\PerfilRepositorio.cs" />
     <Compile Include="Repositorios\TrilhaRepositorio.cs" />
+    <Compile Include="Repositorios\VersaoDocumentoRepositorio.cs" />
     <Compile Include="Repositorios\WorkflowRepositorio.cs" />
     <Compile Include="Repositorios\IndexacaoRepositorio.cs" />
     <Compile Include="Repositorios\TipoDocumentoRepositorio.cs" />

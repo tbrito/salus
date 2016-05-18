@@ -56,7 +56,7 @@ namespace Salus.Infra.Repositorios
                 .List();
         }
 
-        public IList<Documento> ObterPreIndexados()
+        public IList<Documento> ObterPreIndexadosPorUsuario(Usuario usuario)
         {
             return this.Sessao.QueryOver<Documento>()
                 .Where(x => x.EhPreIndexacao == true)

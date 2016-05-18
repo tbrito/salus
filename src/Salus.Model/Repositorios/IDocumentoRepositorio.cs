@@ -13,7 +13,7 @@ namespace Salus.Model.Repositorios
 
         Documento ObterPorIdComTipoDocumento(int documentoId);
 
-        IList<Documento> ObterPreIndexados();
+        IList<Documento> ObterPreIndexadosPorUsuario(Usuario usuario);
 
         Documento ObterPorIdComTipoDocumentoEIndexacoes(int id);
     }

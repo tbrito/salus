@@ -5,10 +5,15 @@ angular.module("salus-app", [
                     "ngFileUpload",
                     "ngCookies",
                     "snap",
-                    "ngBarcode"])
-    .config(config);
+                    "ngBarcode",
+                    "chieffancypants.loadingBar", 
+                    "ngAnimate"])
+    .config(routeConfig)
+    .config(function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = true;
+    });
     
-function config($routeProvider, $locationProvider) {
+function routeConfig($routeProvider, $locationProvider) {
     var viewBase = '/UserInterface/';
     $routeProvider
         .when('/Home', {

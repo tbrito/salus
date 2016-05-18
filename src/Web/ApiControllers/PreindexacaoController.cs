@@ -23,7 +23,7 @@
         public IEnumerable<Documento> Get()
         {
             var documentos = this.documentoRepositorio
-                .ObterPreIndexados();
+                .ObterPreIndexadosPorUsuario(this.sessaoDoUsuario.UsuarioAtual);
             
             return documentos as IEnumerable<Documento>;
         }

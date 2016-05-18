@@ -1,18 +1,17 @@
 angular.module("salus-app").controller('preIndexacaoController',
         function ($scope, $location, preIndexacaoApi, $routeParams) {
 
-    $scope.colorBackground = [255, 255, 255];
-
-    var hex = '#03A9F4';
     var rgb = {
         r: 0,
         g: 0,
         b: 0
     };
 
-    $scope.colorBarcode = function () {
+    $scope.colorBarcode =  function getBarcodeColor() {
         return [rgb.r, rgb.g, rgb.b];
     }
+
+    $scope.colorBackground = [255, 255, 255];
 
     $scope.adicionar = function () {
         $location.path('/Preindexacao/Adicionar');
@@ -29,7 +28,7 @@ angular.module("salus-app").controller('preIndexacaoController',
             });
     }
 
-    $scope.visualizarDocumento = function (documento) {
+    $scope.editarDocumento = function (documento) {
         $location.path('/View/' + documento.Id);
     }
     
@@ -49,8 +48,6 @@ angular.module("salus-app").controller('preIndexacaoController',
                 $scope.error = "Ops! Algo aconteceu ao obter o documento";
             });
     }
- 
-
     
     $scope.salvar = function (documento) {
         preIndexacaoApi.salvar(documento)
