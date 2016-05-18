@@ -28,6 +28,20 @@ namespace Salus.Infra.Repositorios
                 .SingleOrDefault();
         }
 
+        public Documento ObterPorIdComTipoDocumentoEIndexacoes(int id)
+        {
+            return this.Sessao.QueryOver<Documento>()
+               .Fetch(x => x.TipoDocumento).Eager
+               .Fetch(x => x.TipoDocumento.Parent).Eager
+               .Fetch(x => x.Indexacao).Eager
+               .Fetch(x => x.Indexacao.First().Chave).Eager
+               .Fetch(x => x.Usuario).Eager
+               .Where(x => x.Id == id)
+               .OrderBy(x => x.EhIndice).Desc
+               .TransformUsing(Transformers.DistinctRootEntity)
+               .SingleOrDefault();
+        }
+
         public IList<Documento> ObterPorIdsComTipoDocumentoEIndexacoes(int[] currentPageIds)
         {
             return this.Sessao.QueryOver<Documento>()

@@ -1,0 +1,45 @@
+﻿<div class="paragraph" ng-controller="preIndexacaoController" ng-init="carregarParaEdicao()">
+
+    <table align="center" border="0" style="width: 400px;margin-top: 100px;">
+        <tr>
+            <td style="text-align:left">
+                    <span style="font-weight: bold;">Tipo de Documento: </span>
+                    <Label>{{documento.TipoDocumento.Nome}}<</Label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="PreIndex" align="center" class="list" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Chave</th>
+                            <th>Descrição</th>
+                        </tr>
+                    <thead>
+                    <tbody ng-repeat="index in documento.Indexacao">
+                            <tr>
+                                <td>{{index.Chave.Nome}}</td>
+                                <td>{{index.Valor}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div style="text-align: center; margin-top: 100px; width: 100%">
+        <center><div id="barcode" style="text-align: center"></div></center>
+        {{documento.Id}}
+    </div>
+
+    <ng-barcode ng-barcode-input="{{barcode}}"
+                ng-barcode-code="code39"
+                ng-barcode-color="{{colorBarcode()}}"
+                ng-barcode-background="{{colorBackground}}"
+                style="">
+    </ng-barcode>
+    
+    <div style="margin-top: 100px; ">
+        Inserido Por: {{documento.Usuario.Nome}} em {{documento.DataCriacao}}
+    </div>
+</div>

@@ -339,6 +339,8 @@
     <Content Include="Scripts\lib\angular\angular-route.js" />
     <Content Include="Scripts\lib\angular\angular.js" />
     <Content Include="Scripts\lib\angular\ui-bootstrap-tpls-1.2.1.min.js" />
+    <Content Include="Scripts\lib\barcode\ng-barcode.js" />
+    <Content Include="Scripts\lib\barcode\ng-barcode.min.js" />
     <Content Include="Scripts\lib\snap\angular-snap-only.css" />
     <Content Include="Scripts\lib\snap\angular-snap-only.min.css" />
     <Content Include="Scripts\lib\snap\angular-snap.css" />
@@ -427,6 +429,7 @@
     <Content Include="UserInterface\UsuarioConfig\Index.cshtml" />
     <Content Include="UserInterface\View\Index.cshtml" />
     <Content Include="UserInterface\Preindexacao\Index.cshtml" />
+    <Content Include="UserInterface\Preindexacao\Imprimir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

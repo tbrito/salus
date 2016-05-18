@@ -27,7 +27,16 @@
             
             return documentos as IEnumerable<Documento>;
         }
-        
+
+        [HttpGet]
+        public Documento ObterPorId(int id)
+        {
+            var documento = this.documentoRepositorio
+                .ObterPorIdComTipoDocumentoEIndexacoes(id);
+
+            return documento;
+        }
+
         [HttpPost]
         public void Salvar([FromBody]UsuarioViewModel usuarioViewModel)
         {

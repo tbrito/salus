@@ -1,6 +1,10 @@
 angular.module("salus-app").factory("preIndexacaoApi", function ($http) {
-    var _getDocumentosPendentes = function (usuarioid) {
+    var _getDocumentosPendentes = function () {
         return $http.get("api/Preindexacao");
+    };
+
+    var _getPorId = function (documentoId) {
+        return $http.get("api/Preindexacao/ObterPorId/" + documentoId);
     };
 
     var _salvar = function (documento) {
@@ -13,6 +17,7 @@ angular.module("salus-app").factory("preIndexacaoApi", function ($http) {
 
     return {
         getDocumentosPendentes: _getDocumentosPendentes,
+        getPorId: _getPorId,
         salvar: _salvar,
         excluir: _excluir
     };

@@ -4,7 +4,8 @@ angular.module("salus-app", [
                     "ui.bootstrap",
                     "ngFileUpload",
                     "ngCookies",
-                    "snap"])
+                    "snap",
+                    "ngBarcode"])
     .config(config);
     
 function config($routeProvider, $locationProvider) {
