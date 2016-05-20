@@ -118,6 +118,7 @@
     <Compile Include="Entidades\Storage.cs" />
     <Compile Include="Servicos\StorageServico.cs" />
     <Compile Include="Entidades\Workflow.cs" />
+    <Compile Include="Servicos\VersaoDocumentoServico.cs" />
     <Compile Include="Servicos\WorkflowServico.cs" />
     <Compile Include="UI\AcessoDocumentoViewModel.cs" />
     <Compile Include="UI\AcessoViewModel.cs" />

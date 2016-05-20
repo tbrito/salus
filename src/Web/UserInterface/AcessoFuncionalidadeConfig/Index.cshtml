@@ -3,7 +3,7 @@
 
     {{error}}
     {{sucesso}}
-    <div class="control-group">
+    <div class="control-group"  style="height:550px;width:100%; overflow:scroll">
 
         <div class="input-group input-group-lg">
             <input type="radio" ng-model="acessoFuncionalidade.PapelId" value=1 ng-click="carregarPerfis()"> Perfil
@@ -37,7 +37,7 @@
             </select>
         </div>
 
-        <div style="height:530px; overflow:auto">
+        <div>
             <div ng-repeat="funcionalidade in acessoFuncionalidade.Funcionalidades">
                 <div class="form-control">
                     <input type="checkbox" ng-model="acessoFuncionalidade.Funcionalidades[$index].Marcado" />
@@ -45,8 +45,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <button class="btn btn-primary" ng-click="salvar(acessoFuncionalidade)">Salvar</button>
+        <div>
+            <button class="btn btn-primary" ng-click="salvar(acessoFuncionalidade)">Salvar</button>
+        </div>
     </div>
 </div>

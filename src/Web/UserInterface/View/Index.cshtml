@@ -1,41 +1,60 @@
 ﻿<div ng-controller="viewController" ng-init="abrir()" snap-toggle>
-
-    <snap-drawers snap-toggle>
-        <snap-drawer style="top:50px; height:300px">
+    <snap-drawers style="width:20px">
+        <!--Painel de indexacao-->
+        <snap-drawer style="top:50px; height:300px" >
             <div class="panel panel-default">
-                <div class="panel-heading">Indexacao</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;Indexacao</div>
                 <div class="panel-body" ng-repeat="index in indexacao">
-                        <span><b>{{index.Chave.Nome}}:</b> {{index.Valor}}</span>
+                    <button id="split-button" ng-click="editarIndexacao(index)" type="button" class="btn btn-danger" style="width:30px; height:30px">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <span><b>{{index.Chave.Nome}}:</b> {{index.Valor}}</span>
+                    <div id="edicao" ng-if="editarChave == true">
+                        <input type="hidden" ng-model="index.Id" />
+                        <input type="text" ng-model="index.Valor"/>
+                        <button ng-click="salvarChave(index)">
+                            <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </snap-drawer>
 
-        <snap-drawer style="top:310px; height: 200px">
+        <!--Painel de versionamento-->
+        <snap-drawer style="top:360px; height: 200px" ng-if="PreIndexado == false">
             <div class="panel panel-default">
-                <div class="panel-heading">Versões</div>
-                <div class="panel-body"  ng-repeat="versao in versoes">
-                    <span><b>{{versao.Versao}}:</b> {{versao.CriadoEm}}</span>
-                </div>
+                <sl-versionamento
+                                versoes ="{{versoes}}"
+                                documentoId="{{documentoId}}"
+                                bloqueado ="{{Bloqueado}}">
+                </sl-versionamento>
             </div>
         </snap-drawer>
 
-        <snap-drawer style="top:450px">
+        <!--Painel de compartilhamento-->
+        <snap-drawer style="top:450px" ng-if="PreIndexado == false">
             <div class="panel panel-default">
-                <div class="panel-heading">Compartilhamento</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-share" aria-hidden="true">&nbsp;Compartilhamento</div>
+                <button id="split-button" ng-click="compartilhar(documentoId)" type="button" class="btn btn-block" style="width:30px; height:30px">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                </button>
                 <div class="panel-body" ng-repeat="fluxo in workflow">
                     <span><b>{{fluxo.De.Nome}}:</b> {{fluxo.Para.Nome}}</span>
                 </div>
             </div>
         </snap-drawer>
     </snap-drawers>
-    <div style="height:600px;width:100%; padding-left:130px">
+    <div style="height:600px;width:100%; padding-left:200px">
         <div class="panel panel-warning">
             <div><b>Documento:</b> {{documentoId}}</div>
         </div>
-        <div ng-show="error==undefined">
+        <div ng-if="error==undefined && PreIndexado == false" >
             <iframe ng-src="{{urlDocumento}}" style="width:100%;height:550px;border:solid;" scrolling="yes"></iframe>
         </div>
-        <div ng-show="error!=undefined">
+        <div ng-if="error==undefined && PreIndexado">
+            <div ng-include="'/UserInterface/Preindexacao/Imprimir.cshtml'"></div>
+        </div>
+        <div ng-if="error!=undefined">
             <div style="width:100%;height:100%;border:1px;overflow:auto">
                 <div class="panel panel-danger">
                     {{error}}

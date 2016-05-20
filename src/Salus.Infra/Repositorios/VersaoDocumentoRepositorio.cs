@@ -4,6 +4,7 @@
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using System.Collections.Generic;
+    using System;
 
     public class VersaoDocumentoRepositorio : Repositorio<VersaoDocumento>, IVersaoDocumentoRepositorio
     {

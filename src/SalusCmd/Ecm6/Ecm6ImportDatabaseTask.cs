@@ -1,4 +1,4 @@
-namespace Veros.Ecm.DataAccess.Tarefas.Ecm6
+namespace SalusCmd.Ecm6
 {
     using Salus.Infra.Logs;
     using SalusCmd;

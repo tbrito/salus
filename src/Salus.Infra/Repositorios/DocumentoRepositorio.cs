@@ -18,6 +18,14 @@ namespace Salus.Infra.Repositorios
              .ExecuteUpdate();
         }
 
+        public void Bloquear(int id)
+        {
+            this.Sessao
+             .CreateQuery("update Documento set Bloqueado = true where Id = :id")
+             .SetParameter("id", id)
+             .ExecuteUpdate();
+        }
+
         public Documento ObterPorIdComTipoDocumento(int documentoId)
         {
             return this.Sessao.QueryOver<Documento>()

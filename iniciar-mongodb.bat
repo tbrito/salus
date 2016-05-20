@@ -1,2 +1,2 @@
-mongo --host localhost --port 27017
-rem mongod --dbpath "D:\HomeOffice\mongodb"
+mkdir D:\salus-storage\data
+mongod --dbpath "D:\salus-storage\data"

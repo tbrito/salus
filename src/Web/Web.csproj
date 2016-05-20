@@ -324,6 +324,7 @@
     <Content Include="Scripts\controllers\categorizacaoController.js" />
     <Content Include="Scripts\controllers\uploadController.js" />
     <Content Include="Scripts\controllers\loginController.js" />
+    <Content Include="Scripts\directives\slVersionamento.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />
@@ -390,6 +391,7 @@
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
     <None Include="UserInterface\Login\Index.cshtml" />
+    <Content Include="UserInterface\Versionamento\_versaoDocumento.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

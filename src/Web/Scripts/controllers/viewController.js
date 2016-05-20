@@ -10,6 +10,8 @@ angular.module("salus-app").controller('viewController',
         storageApi.getDocumento($scope.documentoId)
            .success(function (data) {
                $scope.urlDocumento = data.urlDocumento;
+               $scope.PreIndexado = data.PreIndexado;
+               $scope.Bloqueado = data.Bloqueado;
            })
            .error(function (data) {
                $scope.error = "Imagem nao pode ser encontrada!";
@@ -38,5 +40,42 @@ angular.module("salus-app").controller('viewController',
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as versões do documento";
             });
+    }
+
+    $scope.editarIndexacao = function(index){
+        $scope.editarChave = true;
+    }
+
+    $scope.salvarChave = function (index) {
+        indexacaoApi.postSalvarIndex(index)
+            .success(function (data) {
+                $scope.editarChave = false;
+            })
+    }
+
+    $scope.checkout = function (documentoId) {
+        versaoDocumentoApi.checkout(documentoId)
+            .success(function (data) {
+                $scope.urlDocumentoDownload = data.UrlDocumento;
+            })
+            .error(function (data) {
+                console.log(data);
+            });
+
+    }
+
+    $scope.finalizarCheckout = function () {
+        $scope.finalizarVersionamento = true;
+    }
+
+    $scope.checkin = function (documentoId) {
+        versaoDocumentoApi.checkout(documentoId)
+            .success(function (data) {
+                $scope.urlDocumentoDownload = data.urlDownload;
+            })
+            .error(function (data) {
+                console.log(data);
+            });
+
     }
 });

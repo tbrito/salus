@@ -24,6 +24,7 @@
         private readonly ISessaoDoUsuario sessaoDoUsuario;
         private readonly SalvarConteudoServico salvarConteudoServico;
         private readonly StorageServico storageServico;
+        private readonly IDocumentoRepositorio documentoRepositorio;
         private readonly IMongoStorage mongoStorage;
         private readonly OpenOfficeTransformer openOfficeTransformer;
 
@@ -31,6 +32,7 @@
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
+            this.documentoRepositorio = InversionControl.Current.Resolve<IDocumentoRepositorio>();
             this.storageServico = InversionControl.Current.Resolve<StorageServico>();
             this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
             this.openOfficeTransformer = InversionControl.Current.Resolve<OpenOfficeTransformer>();
@@ -43,6 +45,15 @@
             var caminhoPdf = string.Empty;
 
             caminho = this.storageServico.Obter("[documento]" + id.ToString());
+            var documento = this.documentoRepositorio.ObterPorId(id);
+
+            if (string.IsNullOrEmpty(caminho))
+            {
+                return Ok(new {
+                    urlDocumento = "/Content/Images/document-broken.png",
+                    PreIndexado = documento.EhPreIndexacao,
+                    Bloqueado = true});
+            }
 
             if (Path.GetExtension(caminho).ToLower() == ".pdf")
             {
@@ -61,7 +72,10 @@
                 .Replace(Aplicacao.Caminho, string.Empty)
                 .Replace(@"\", "/");
 
-            return Ok(new { urlDocumento = "/" + relativo });
+            return Ok(new {
+                urlDocumento = "/" + relativo,
+                PreIndexado = documento.EhPreIndexacao,
+                Bloqueado = documento.Bloqueado });
         }
 
         [HttpPost]

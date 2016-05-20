@@ -36,6 +36,11 @@
         {
             var storage = this.storageRepository.ObterPorSalusId(salusId);
 
+            if (storage == null)
+            {
+                return string.Empty;
+            }
+
             var arquivo = this.ArquivoPdfExisteEmCache(storage);
 
             if (File.Exists(arquivo) == false)

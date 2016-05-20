@@ -16,6 +16,7 @@
             this.Map(x => x.SearchStatus, "search_status").Nullable();
             this.Map(x => x.EhPreIndexacao, "eh_preindexado").Nullable();
             this.Map(x => x.EhIndice, "eh_indice").Nullable();
+            this.Map(x => x.Bloqueado, "bloqueado").Nullable();
             this.References(x => x.Usuario, "user_id").Nullable();
             this.References(x => x.TipoDocumento, "tipodocumento_id").Nullable();
 

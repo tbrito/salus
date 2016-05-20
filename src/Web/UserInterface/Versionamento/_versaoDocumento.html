@@ -1,0 +1,30 @@
+﻿<div class="panel-heading">
+    <span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;Versões
+</div>
+
+<div class="panel-body">
+    <button id="split-button" ng-if="bloqueado" ng-click="finalizarCheckout()" type="button" class="btn btn-danger" style="width:30px; height:30px">
+        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+    </button>
+    <div ng-if="finalizarVersionamento">
+        <label>Informações sobre nova versão</label>
+        <input type="text" class="form-control" name="assunto" ng-model="versao.Observacao" size="150">
+
+        <label>Selecione o documento</label>
+        <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
+               accept="*/*" ngf-max-size="100MB" ngf-model-invalid="errorFiles">
+
+        <button id="split-button" ng-click="enviarNovaVersao()" type="button" class="btn btn-default" style="width:30px; height:30px">
+            <span class="glyphicon glyphicon-floppy-save" aria-hidden="true">Enviar nova versao</span>
+        </button>
+    </div>
+    <button id="split-button" ng-if="Bloqueado == false" ng-click="checkout(documentoId)" type="button" class="btn btn-default" style="width:30px; height:30px">
+        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+    </button>
+    <div ng-if="urlDocumentoDownload != undefined">
+        <a href="{{urlDocumentoDownload}}"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true">Baixar</span></a>
+    </div>
+    <div ng-repeat="versao in versoes">
+        <span><b>{{versao.Versao}}:</b> {{versao.CriadoEm}}</span>
+    </div>
+</div>

@@ -7,15 +7,14 @@ using Salus.Model;
 using Salus.Model.Entidades;
 using Salus.Model.Entidades.Import;
 using Salus.Model.Repositorios;
-using SalusCmd.Ecm6;
 using SharpArch.NHibernate;
 using System;
 using System.Configuration;
 using System.IO;
 
-namespace SalusCmd.Tarefas.Ecm6
+namespace SalusCmd.Ecm6
 {
-    
+
     public class Ecm6ImportStorageTask : ITarefa
     {
         private readonly IMongoStorage mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();

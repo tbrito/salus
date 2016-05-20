@@ -231,6 +231,7 @@
     <Compile Include="Mappings\DocumentoMap.cs" />
     <Compile Include="Mappings\UsuarioMap.cs" />
     <Compile Include="Migrations\201604231602_CriaConfiguracao.cs" />
+    <Compile Include="Migrations\201605201451_AdicionarBloqueadoNoDocumento.cs" />
     <Compile Include="Migrations\201604251711_AdicionarCpfStatusSearchNoDocumento.cs" />
     <Compile Include="Migrations\201605161915_CriaEcm6DocVersionado.cs" />
     <Compile Include="Migrations\201605041608_CriaEcm6PreIndexes.cs" />

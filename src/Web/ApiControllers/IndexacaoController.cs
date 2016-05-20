@@ -50,10 +50,13 @@
             
             this.documentoRepositorio.AlterStatus(documentoId, SearchStatus.ToIndex);
         }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        
+        [HttpPut]
+        public void SalvarChave(int id, IndexacaoViewModel indexacaoModel)
         {
+            this.indexacaoRepositorio.AtualizarValor(indexacaoModel.Id, indexacaoModel.Valor);
+
+            this.documentoRepositorio.AlterStatus(indexacaoModel.DocumentoId, SearchStatus.ToIndex);
         }
 
         // DELETE api/<controller>/5
@@ -64,6 +67,7 @@
 
     public class IndexacaoViewModel
     {
+        public int Id { get; set;  }
         public int CampoId { get; set; }
         public int DocumentoId { get; set; }
         public string Valor { get; set; }

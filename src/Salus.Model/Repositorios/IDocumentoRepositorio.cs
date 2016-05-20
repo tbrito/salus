@@ -9,6 +9,8 @@ namespace Salus.Model.Repositorios
 
         void AlterStatus(int id, SearchStatus searchStatus);
 
+        void Bloquear(int id);
+
         IList<Documento> ObterTodosParaIndexar(int quantidade);
 
         Documento ObterPorIdComTipoDocumento(int documentoId);

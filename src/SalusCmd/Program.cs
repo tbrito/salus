@@ -6,12 +6,12 @@ using Salus.Infra.IoC;
 using Salus.Infra.Logs;
 using Salus.Infra.Migrations;
 using Salus.Infra.Util;
+using SalusCmd.Ecm6;
 using SharpArch.NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using Veros.Ecm.DataAccess.Tarefas.Ecm6;
 
 namespace SalusCmd
 {
@@ -28,17 +28,16 @@ namespace SalusCmd
             ////   () => InversionControl.Current.Resolve<GenerateKeyTask>());
 
             comandos.Add(
-               "salus import",
+               "import data",
                () => InversionControl.Current.Resolve<Ecm6ImportDatabaseTask>());
 
-            ////comandos.Add(
-            ////    "ecmold import storage",
-            ////    () => InversionControl.Current.Resolve<StorageEcm6Task>());
+            comandos.Add(
+                "import storage",
+                () => InversionControl.Current.Resolve<Ecm6ImportStorageTask>());
 
             InicializaBancoDeDados();
 
-            var tarefa = InversionControl.Current.Resolve<Ecm6ImportDatabaseTask>();
-            tarefa.Executar();
+            ExecutarTarefa(args);
 
         }
 
