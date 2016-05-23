@@ -1,7 +1,7 @@
-﻿<div ng-controller="viewController" ng-init="abrir()" snap-toggle>
-    <snap-drawers style="width:20px">
-        <!--Painel de indexacao-->
-        <snap-drawer style="top:50px; height:300px" >
+﻿<div ng-controller="viewController" ng-init="abrir()">
+    <!--Painel de indexacao-->
+    <div snap-drawers style="width:50px">
+        <div snap-drawer snap-drawer-left style="top:50px; height:300px;" tapToClose="false">
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;Indexacao</div>
                 <div class="panel-body" ng-repeat="index in indexacao">
@@ -11,28 +11,27 @@
                     <span><b>{{index.Chave.Nome}}:</b> {{index.Valor}}</span>
                     <div id="edicao" ng-if="editarChave == true">
                         <input type="hidden" ng-model="index.Id" />
-                        <input type="text" ng-model="index.Valor"/>
+                        <input type="text" ng-model="index.Valor" />
                         <button ng-click="salvarChave(index)">
                             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>
             </div>
-        </snap-drawer>
+        </div>
 
         <!--Painel de versionamento-->
-        <snap-drawer style="top:360px; height: 200px" ng-if="PreIndexado == false">
-            <div class="panel panel-default">
-                <sl-versionamento
-                                versoes ="{{versoes}}"
-                                documentoId="{{documentoId}}"
-                                bloqueado ="{{Bloqueado}}">
+        <div snap-drawer style="top:360px; height: 200px;" ng-if="PreIndexado == false">
+            <div class="panel panel-default" style="overflow:scroll">
+                <sl-versionamento versoes="{{versoes}}"
+                                  documentoId="{{documentoId}}"
+                                  bloqueado="{{Bloqueado}}">
                 </sl-versionamento>
             </div>
-        </snap-drawer>
+        </div>
 
         <!--Painel de compartilhamento-->
-        <snap-drawer style="top:450px" ng-if="PreIndexado == false">
+        <div snap-drawer style="top:450px;" ng-if="PreIndexado == false">
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-share" aria-hidden="true">&nbsp;Compartilhamento</div>
                 <button id="split-button" ng-click="compartilhar(documentoId)" type="button" class="btn btn-block" style="width:30px; height:30px">
@@ -42,8 +41,9 @@
                     <span><b>{{fluxo.De.Nome}}:</b> {{fluxo.Para.Nome}}</span>
                 </div>
             </div>
-        </snap-drawer>
-    </snap-drawers>
+        </div>
+    </div>
+
     <div style="height:600px;width:100%; padding-left:200px">
         <div class="panel panel-warning">
             <div><b>Documento:</b> {{documentoId}}</div>

@@ -52,30 +52,4 @@ angular.module("salus-app").controller('viewController',
                 $scope.editarChave = false;
             })
     }
-
-    $scope.checkout = function (documentoId) {
-        versaoDocumentoApi.checkout(documentoId)
-            .success(function (data) {
-                $scope.urlDocumentoDownload = data.UrlDocumento;
-            })
-            .error(function (data) {
-                console.log(data);
-            });
-
-    }
-
-    $scope.finalizarCheckout = function () {
-        $scope.finalizarVersionamento = true;
-    }
-
-    $scope.checkin = function (documentoId) {
-        versaoDocumentoApi.checkout(documentoId)
-            .success(function (data) {
-                $scope.urlDocumentoDownload = data.urlDownload;
-            })
-            .error(function (data) {
-                console.log(data);
-            });
-
-    }
 });

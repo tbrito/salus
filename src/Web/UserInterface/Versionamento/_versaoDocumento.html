@@ -3,8 +3,8 @@
 </div>
 
 <div class="panel-body">
-    <button id="split-button" ng-if="bloqueado" ng-click="finalizarCheckout()" type="button" class="btn btn-danger" style="width:30px; height:30px">
-        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+    <button id="split-button" ng-if="bloqueado" ng-click="finalizarCheckout()" type="button" class="btn btn-success" style="width:30px; height:30px; align-content:center">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
     </button>
     <div ng-if="finalizarVersionamento">
         <label>Informações sobre nova versão</label>
@@ -14,11 +14,11 @@
         <input type="file" class="form-control" ngf-select ng-model="picFile" name="file"
                accept="*/*" ngf-max-size="100MB" ngf-model-invalid="errorFiles">
 
-        <button id="split-button" ng-click="enviarNovaVersao()" type="button" class="btn btn-default" style="width:30px; height:30px">
+        <button id="split-button" ng-click="enviarNovaVersao()" type="button" class="btn btn-success" style="width:30px; height:30px; align-content:center">
             <span class="glyphicon glyphicon-floppy-save" aria-hidden="true">Enviar nova versao</span>
         </button>
     </div>
-    <button id="split-button" ng-if="Bloqueado == false" ng-click="checkout(documentoId)" type="button" class="btn btn-default" style="width:30px; height:30px">
+    <button id="split-button" ng-if="Bloqueado == false" ng-click="checkout(documentoId)" type="button" class="btn btn-success" style="width:30px; height:30px">
         <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
     </button>
     <div ng-if="urlDocumentoDownload != undefined">
