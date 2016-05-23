@@ -3,6 +3,7 @@
     using Salus.Model.Entidades;
     using Salus.Model.UI;
     using System.Collections.Generic;
+    using System;
 
     public class SalvarConteudoServico
     {
@@ -43,6 +44,16 @@
                 this.storageServico.Adicionar(
                     arquivo.Path,
                     usuarioId);
+            }
+        }
+
+        public void AdicionarVersao(List<FileViewModel> arquivos, string salusId)
+        {
+            foreach (var arquivo in arquivos)
+            {
+                this.storageServico.Adicionar(
+                    arquivo.Path,
+                    salusId);
             }
         }
     }

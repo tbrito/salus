@@ -40,10 +40,24 @@ angular.module("salus-app").controller('viewController',
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as versões do documento";
             });
-        
-        $scope.snapOpts = {
-            disable: 'right'
-        };
+    }
+
+    $scope.abrirIndexacao = function(){
+        $scope.exibirIndexacao = !$scope.exibirIndexacao;
+        $scope.exibirVersionamento = false;
+        $scope.exibirCompartilhamento = false;
+    }
+
+    $scope.abrirVersionamento = function () {
+        $scope.exibirVersionamento = !$scope.exibirVersionamento;
+        $scope.exibirIndexacao = false;
+        $scope.exibirCompartilhamento = false;
+    }
+
+    $scope.abrirCompartilhamento = function () {
+        $scope.exibirCompartilhamento = !$scope.exibirCompartilhamento;
+        $scope.exibirIndexacao = false;
+        $scope.exibirVersionamento = false;
     }
 
     $scope.editarIndexacao = function(index){

@@ -324,7 +324,7 @@
     <Content Include="Scripts\controllers\categorizacaoController.js" />
     <Content Include="Scripts\controllers\uploadController.js" />
     <Content Include="Scripts\controllers\loginController.js" />
-    <Content Include="Scripts\directives\slVersionamento.js" />
+    <Content Include="Scripts\directives\salusVersionamento.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />

@@ -27,11 +27,13 @@
         private readonly IDocumentoRepositorio documentoRepositorio;
         private readonly IMongoStorage mongoStorage;
         private readonly OpenOfficeTransformer openOfficeTransformer;
+        private readonly IVersaoDocumentoRepositorio versaoDocumentoRepositorio;
 
         public ArquivosController()
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarConteudoServico = InversionControl.Current.Resolve<SalvarConteudoServico>();
+            this.versaoDocumentoRepositorio = InversionControl.Current.Resolve<IVersaoDocumentoRepositorio>();
             this.documentoRepositorio = InversionControl.Current.Resolve<IDocumentoRepositorio>();
             this.storageServico = InversionControl.Current.Resolve<StorageServico>();
             this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
@@ -44,7 +46,18 @@
             var caminho = string.Empty;
             var caminhoPdf = string.Empty;
 
-            caminho = this.storageServico.Obter("[documento]" + id.ToString());
+            var versoes = this.versaoDocumentoRepositorio.ObterDoDocumento(id);
+
+            if (versoes.Count > 0)
+            {
+                var versao = versoes.OrderBy(x => x.CriadoEm).Last().Versao;
+                caminho = this.storageServico.Obter("[documento]" + id.ToString() + "[versao]" + versao);
+            }
+            else
+            {
+                caminho = this.storageServico.Obter("[documento]" + id.ToString());
+            }
+
             var documento = this.documentoRepositorio.ObterPorId(id);
 
             if (string.IsNullOrEmpty(caminho))
@@ -184,6 +197,66 @@
             }
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> AddVersao(int id)
+        {
+            if (!Request.Content.IsMimeMultipartContent("form-data"))
+            {
+                return BadRequest("Tipo não suportado");
+            }
+            try
+            {
+                SynchronizationContext originalContext = SynchronizationContext.Current;
+
+                var usuario = this.sessaoDoUsuario.UsuarioAtual;
+                var usuarioId = usuario.Id.ToString();
+
+                var pastaTrabalho = Path.Combine(
+                    ContextoWeb.Caminho,
+                    "Uploads",
+                    usuario.Id.ToString());
+
+                var provider = new CustomMultipartFormDataStreamProvider(pastaTrabalho);
+
+                if (Directory.Exists(pastaTrabalho) == false)
+                {
+                    Directory.CreateDirectory(pastaTrabalho);
+                }
+
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                var arquivos =
+                  provider.FileData
+                    .Select(file => new FileInfo(file.LocalFileName))
+                    .Select(fileInfo => new FileViewModel
+                    {
+                        Name = fileInfo.Name,
+                        Created = fileInfo.CreationTime,
+                        Modified = fileInfo.LastWriteTime,
+                        Size = fileInfo.Length / 1024,
+                        Path = fileInfo.FullName
+                    }).ToList();
+
+                originalContext.Post(
+                    delegate {
+                        var versoes = this.versaoDocumentoRepositorio.ObterDoDocumento(id);
+                        var versao = versoes
+                            .OrderBy(x => x.CriadoEm)
+                            .Last()
+                            .Versao;
+                        
+                        this.salvarConteudoServico.AdicionarVersao(arquivos, "[documento]" + id + "[versao]" + versao);
+                    }, null);
+
+                Request.Content.Dispose();
+
+                return Ok(new { Message = "Documentos enviados com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.GetBaseException().Message);
+            }
+        }
 
         /// <summary>
         ///   Check if file exists on disk

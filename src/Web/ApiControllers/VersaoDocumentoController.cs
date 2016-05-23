@@ -68,8 +68,12 @@
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public IHttpActionResult Checkin([FromBody]VersaoDocumento value)
         {
+            var versao = this.versaoDocumentoServico.Checkin(value);
+            var versoes = this.versaoDocumentoRepositorio.ObterDoDocumento(value.Documento.Id);
+
+            return Ok(new { VersaoId = versao.Versao, Versoes = versoes });
         }
 
         // PUT api/<controller>/5
