@@ -40,6 +40,10 @@ angular.module("salus-app").controller('viewController',
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as versões do documento";
             });
+        
+        $scope.snapOpts = {
+            disable: 'right'
+        };
     }
 
     $scope.editarIndexacao = function(index){
