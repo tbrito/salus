@@ -58,7 +58,7 @@ namespace SearchIndexingService
                 .WithIdentity("triggerIndexarJob", "indexarGroup")
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(5)
+                    .WithIntervalInSeconds(10)
                     .RepeatForever()
                     .WithMisfireHandlingInstructionIgnoreMisfires())
                 .Build();

@@ -3,23 +3,22 @@
         templateUrl: "/UserInterface/Versionamento/_versaoDocumento.html",
         restrict: 'AE',
         scope: {
-            versionados: '@',
+            versionados: '=' ,
             documentocode: '@',
             bloqueado: '@'
         },
         link: function (scope, element, attrs, ctrl) {
-            scope.versionamentoCtrl = function () {
-                var checkout = function (documentoId) {
-                    versaoDocumentoApi.checkout(documentoId)
-                        .success(function (data) {
-                            $scope.urlDocumentoDownload = data.UrlDocumento;
-                        })
-                        .error(function (data) {
-                            console.log(data);
-                        });
-                }
+            
+            scope.checkout = function (documentoId) {
+                versaoDocumentoApi.checkout(documentoId)
+                    .success(function (data) {
+                        scope.urlDocumentoDownload = data.UrlDocumento;
+                    })
+                    .error(function (data) {
+                        console.log(data);
+                    });
             }
-
+            
             scope.finalizarCheckout = function () {
                 scope.finalizarVersionamento = true;
             }
@@ -27,7 +26,7 @@
             scope.checkin = function (documentoId) {
                 versaoDocumentoApi.checkout(documentoId)
                     .success(function (data) {
-                        $scope.urlDocumentoDownload = data.urlDownload;
+                        scope.urlDocumentoDownload = data.urlDownload;
                     })
                     .error(function (data) {
                         console.log(data);
@@ -38,11 +37,12 @@
                 versao.Documento = { Id: scope.documentocode };
                 versaoDocumentoApi.checkin(versao)
                     .success(function (data) {
-                        $scope.versoes = data.Versoes;
-                        $scope.versaoId = data.VersaoId;
+                        scope.versionados = data.Versoes;
+                        scope.versaoId = data.VersaoId;
+                        scope.bloqueado = false;
                     })
                     .error(function (data) {
-                        $scope.error = "Ops! Algo aconteceu ao versionar documento ";
+                        scope.error = "Ops! Algo aconteceu ao versionar documento ";
                     });
 
                 if (file == undefined) {

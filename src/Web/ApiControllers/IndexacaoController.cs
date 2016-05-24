@@ -1,9 +1,11 @@
 ﻿namespace Web.ApiControllers
 {
     using Salus.Infra.IoC;
+    using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Http;
 
     public class IndexacaoController : ApiController
@@ -30,6 +32,27 @@
         {
             var indexacao = this.indexacaoRepositorio.ObterPorDocumento(new Documento { Id = id });
             return indexacao;
+        }
+
+        [HttpGet]
+        public IHttpActionResult ObterSuc(int id)
+        {
+            var indexacao = this.indexacaoRepositorio.ObterPorDocumento(new Documento { Id = id });
+            var index = indexacao.FirstOrDefault(x => x.Chave.Nome.ToLower().Contains("cpf"));
+
+            if (index == null)
+            {
+                index = indexacao.FirstOrDefault(x => x.Chave.Nome.ToLower().Contains("cnpj"));
+            }
+
+            var suc = id.ToString();
+
+            if (index != null)
+            {
+                suc = index.Valor;
+            }
+
+            return Ok(new { Suc = suc });
         }
 
         [HttpPost]

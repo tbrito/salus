@@ -1,8 +1,6 @@
 ﻿using Quartz;
-using Salus.Infra.DataAccess;
 using Salus.Infra.IoC;
 using Salus.Model.Search;
-using SharpArch.NHibernate;
 
 namespace SearchIndexingService
 {

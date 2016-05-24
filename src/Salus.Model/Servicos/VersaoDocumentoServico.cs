@@ -59,6 +59,8 @@
             };
 
             this.versaoDocumentoRepositorio.Salvar(versao);
+            this.documentoRepositorio.Desbloquear(versaoDocumento.Documento.Id);
+            this.logarAcaoSistema.Execute(TipoTrilha.Criacao, "Nova versão criada para o documento " + versaoDocumento.Documento.Id);
 
             return versao;
         }

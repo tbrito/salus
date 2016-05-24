@@ -42,7 +42,6 @@ namespace Salus.Infra.DataAccess
 
         public static void Boot()
         {
-            ////NHibernateSession.CloseAllSessions();
             string[] mappings = new string[]
             {
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")

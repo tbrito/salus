@@ -11,10 +11,15 @@ angular.module("salus-app").factory("indexacaoApi", function ($http) {
     var _getPorDocumento = function (documentoId) {
         return $http.get("api/Indexacao/PorDocumento/" + documentoId);
     };
+
+    var _getSuc = function (documentoId) {
+        return $http.get("api/Indexacao/ObterSuc/" + documentoId);
+    };
     
     return {
         postSalvarIndexacao: _postSalvarIndexacao,
         postSalvarIndex: _postSalvarIndex,
-        getPorDocumento: _getPorDocumento
+        getPorDocumento: _getPorDocumento,
+        obterSuc: _getSuc
     };
 });

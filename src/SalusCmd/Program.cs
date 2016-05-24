@@ -1,17 +1,9 @@
-﻿using FluentNHibernate.Cfg;
-using Salus.Infra;
-using Salus.Infra.ConnectionInfra;
-using Salus.Infra.DataAccess;
+﻿using Salus.Infra;
 using Salus.Infra.IoC;
 using Salus.Infra.Logs;
-using Salus.Infra.Migrations;
-using Salus.Infra.Util;
 using SalusCmd.Ecm6;
-using SharpArch.NHibernate;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 
 namespace SalusCmd
 {
@@ -23,9 +15,9 @@ namespace SalusCmd
         {
             Aplicacao.Boot();
 
-            ////comandos.Add(
-            ////   "key generate",
-            ////   () => InversionControl.Current.Resolve<GenerateKeyTask>());
+            comandos.Add(
+               "schema update",
+               () => InversionControl.Current.Resolve<SchemaUpdateTask>());
 
             comandos.Add(
                "import data",
@@ -35,10 +27,7 @@ namespace SalusCmd
                 "import storage",
                 () => InversionControl.Current.Resolve<Ecm6ImportStorageTask>());
 
-            InicializaBancoDeDados();
-
             ExecutarTarefa(args);
-
         }
 
         private static void ExecutarTarefa(string[] args)
@@ -53,36 +42,6 @@ namespace SalusCmd
             {
                 Log.App.ErrorFormat("Não foi encontrado tarefa para {0}", argumentos);
             }
-        }
-
-        private static void InicializaBancoDeDados()
-        {
-            string[] mappings = new string[]
-            {
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
-            };
-
-            NHibernateInitializer.Instance().InitializeNHibernateOnce(() =>
-            {
-                NHibernateSession.Init(
-                    new ThreadSessionStorage(),
-                    mappings,
-                    null, null, null, null, BancoDeDados.Configuration());
-            });
-
-            var fluentConfiguration = Fluently.Configure()
-               .Database(BancoDeDados.Configuration())
-               .Mappings(m =>
-               {
-                   m.FluentMappings.Conventions.Add<EnumConvention>();
-                   m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
-               });
-
-
-            var migrator = new Migrator(
-              ConfigurationManager.AppSettings["Database.ConnectionString"]);
-
-            migrator.Migrate(runner => runner.MigrateUp());
         }
     }
 }

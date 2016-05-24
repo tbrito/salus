@@ -12,6 +12,7 @@
         {
             return this.Sessao.QueryOver<VersaoDocumento>()
                 .Where(x => x.Documento.Id == documentoId)
+                .Fetch(x => x.CriadoPor).Eager
                 .OrderBy(x => x.CriadoEm).Desc
                 .TransformUsing(Transformers.DistinctRootEntity)
                 .List();

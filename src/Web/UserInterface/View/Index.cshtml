@@ -22,7 +22,7 @@
     </div>
 
     <!--Painel de indexacao-->
-    <div style="top:50px; height:300px;" ng-if="exibirIndexacao">
+    <div style="top:50px; height:300px; position:absolute;z-index:1 " ng-if="exibirIndexacao">
         <div class="panel panel-default">
             <div class="panel-heading"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>&nbsp;Indexacao</div>
             <div class="panel-body" ng-repeat="index in indexacao">
@@ -42,15 +42,18 @@
     </div>
 
     <!--Painel de versionamento-->
-    <div style="top:50px; height:300px;" ng-if="PreIndexado == false && exibirVersionamento">
-            <salus-versionamento versionados={{versoes}}
+    <div style="top:50px; height:300px;position:absolute;z-index:1" 
+         ng-if="PreIndexado == false && exibirVersionamento">
+        
+            <salus-versionamento versionados="versoes"
                                  documentocode={{documentoId}}
                                  bloqueado={{Bloqueado}}>
             </salus-versionamento>
     </div>
 
     <!--Painel de compartilhamento-->
-    <div style="top:50px; height:300px;" ng-if="PreIndexado == false && exibirCompartilhamento">
+    <div style="top:50px;height:300px;position:absolute;z-index:1" 
+         ng-if="PreIndexado == false && exibirCompartilhamento">
         <div class="panel panel-default">
             <div class="panel-heading"><span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;Compartilhamento</div>
             <button id="split-button" ng-click="compartilhar(documentoId)" type="button" class="btn btn-block" style="width:30px; height:30px">
@@ -62,12 +65,12 @@
         </div>
     </div>
 
-    <div style="height:600px;width:100%;">
+    <div style="height:530px;width:100%;">
         <div class="panel panel-warning" style="margin-bottom:0px">
             <b>Documento:</b> {{documentoId}}
         </div>
         <div ng-if="error==undefined && PreIndexado == false">
-            <iframe ng-src="{{urlDocumento}}" style="width:100%;height:550px;border:solid;background-color:darkgrey" scrolling="yes"></iframe>
+            <iframe ng-src="{{urlDocumento}}" style="width:100%;height:530px;border:solid;background-color:darkgrey" scrolling="yes"></iframe>
         </div>
         <div ng-if="error==undefined && PreIndexado">
             <div ng-include="'/UserInterface/Preindexacao/Imprimir.cshtml'"></div>

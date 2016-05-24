@@ -10,7 +10,8 @@
                 <img src="~/Content/Images/ic_action_view_as_list.png" ng-show="documento.EhIndice == false" style="float:left;margin: 0 15px 0 0;" />
                 
                 <h4 style="font: bold 20px/1.5 Helvetica, Verdana, sans-serif">
-                    <a ng-click="abrirDocumento(documento.Id)">{{documento.Id}} - {{documento.Assunto}}</a>
+                    <a ng-if="documento.EhIndice == false" ng-click="abrirDocumento(documento.Id)">{{documento.Id}} - {{documento.Assunto}}</a>
+                    <a ng-if="documento.EhIndice" ng-click="pesquisarPreindexacao(documento.Id)">{{documento.Id}} - {{documento.Assunto}}</a>
                 </h4>
                 
                 <span

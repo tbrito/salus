@@ -1,7 +1,6 @@
 ﻿namespace Web.ApiControllers
 {
     using Extensions;
-    using Filters;
     using Salus.Infra;
     using Salus.Infra.IoC;
     using Salus.Infra.Transformations;

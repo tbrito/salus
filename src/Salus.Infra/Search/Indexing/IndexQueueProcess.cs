@@ -39,7 +39,7 @@
         {
             IList<Documento> contents;
 
-            contents = this.documentoRepositorio.ObterTodosParaIndexar(120);
+            contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
 
             if (contents.Count == 0)
             {

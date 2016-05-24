@@ -11,6 +11,8 @@ namespace Salus.Model.Repositorios
 
         void Bloquear(int id);
 
+        void Desbloquear(int id);
+
         IList<Documento> ObterTodosParaIndexar(int quantidade);
 
         Documento ObterPorIdComTipoDocumento(int documentoId);

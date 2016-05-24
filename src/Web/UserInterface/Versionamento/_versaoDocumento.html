@@ -1,12 +1,11 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;Versões
+        <span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;&nbsp;Versões
         de {{documentocode}}
     </div>
-    
+
     <div class="panel-body">
-        
-        <button id="split-button" ng-if="bloqueado" ng-click="finalizarCheckout()" type="button" class="btn btn-success" style="width:30px; height:30px; align-content:center">
+        <button id="split-button" ng-show="bloqueado == 'true'" ng-click="finalizarCheckout()" type="button" class="btn btn-success" style="width:30px; height:30px; align-content:center">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </button>
         <div ng-if="finalizarVersionamento">
@@ -21,14 +20,31 @@
                 <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
             </button>
         </div>
-        <button id="split-button" ng-if="bloqueado == false" ng-click="checkout(documentocode)" type="button" class="btn btn-success" style="width:30px; height:30px">
+        <button id="split-button" ng-show="bloqueado == 'false'" ng-click="checkout(documentocode)" type="button" class="btn btn-success" style="width:30px; height:30px">
             <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
         </button>
         <div ng-if="urlDocumentoDownload != undefined">
             <a href="{{urlDocumentoDownload}}"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true">Baixar</span></a>
         </div>
-        <div ng-repeat="vrs in versionados">
-            <span><b>{{vrs.Versao}}:</b> {{vrs.CriadoEm}}</span>
+
+        <div ng-if="versionados.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Versão</th>
+                        <th>Criado em</th>
+                        <th>Criado por</th>
+                        <th>Comentário</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="vrs in versionados">
+                    <td>{{vrs.Versao}}</td>
+                    <td>{{vrs.CriadoEm}}</td>
+                    <td>{{vrs.CriadoPor.Nome}}</td>
+                    <td>{{vrs.Comentario}}</td>
+                </tr>
+            </table>
         </div>
+
     </div>
 </div>
