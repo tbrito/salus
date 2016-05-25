@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Pesquisar" ng-model="termo">
                     <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default" ng-click="pesquisar(termo)"><span class="glyphicon glyphicon-search"></span></button>
+                        <button type="submit" class="btn btn-default" ng-click="pesquisar(termo, 1)"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </div>
             </form>
@@ -54,9 +54,10 @@
                     <li role="menuitem"><a ng-click="abrirTiposDeDocumento()" ng-show="usuarioTemPermissao(8)">Tipos de documentos</a></li>
                     <li class="divider"></li>
                     <li role="menuitem"><a ng-click="abrirSegurancaDocumentos()" ng-show="usuarioTemPermissao(10)">Acesso aos documentos</a></li>
-                    <li role="menuitem"><a ng-click="abrirSegurancaFuncionalidades()" ng-show="usuarioTemPermissao(9)">Segurança às Funcionalidades</a></li>
+                    <li role="menuitem"><a ng-click="abrirSegurancaFuncionalidades()" ng-show="usuarioTemPermissao(9)">Acesso às Funcionalidades</a></li>
                     <li class="divider"></li>
                     <li role="menuitem"><a ng-click="abrirConfiguracoesDaAplicacao()" ng-show="usuarioTemPermissao(11)">Configuracoes da Aplicacao</a></li>
+                    <li role="menuitem"><a ng-click="abrirTrilhaAuditoria()" ng-show="usuarioTemPermissao(12)">Trilha de Auditoria</a></li>
                     <li class="divider"></li>
                     <li role="menuitem"><a ng-click="sair()">Sair</a></li>
                 </ul>

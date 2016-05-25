@@ -1,9 +1,9 @@
 ﻿<div class="modal-content" ng-controller="pesquisaController" ng-init="procurar()">
     <div ng-show="resultadoPesquisa.Documentos.length == 0">
-        Não há itens para o texto pesquisado
+        Não há itens para o texto pesquisado para <b><i>{{palavra}}</i></b>
     </div>
 
-    <div ng-show="resultadoPesquisa.Documentos.length > 0" style="height:560px; overflow:auto">
+    <div ng-show="resultadoPesquisa.Documentos.length > 0" style="height:510px; overflow:auto">
         <div ng-repeat="documento in resultadoPesquisa.Documentos" class="list-group">
             <div style="margin: 0; padding: 0;">
                 <img src="~/Content/Images/ic_action_collection.png" ng-show="documento.EhIndice" style="float:left;margin: 0 15px 0 0;" />
@@ -22,5 +22,18 @@
                
             </div>
         </div>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <center>
+            <nav ng-show="resultadoPesquisa.ResultadoPesquisa.Paging.Pages > 1">
+                <ul class="pagination">
+
+                    <li ng-repeat="i in resultadoPesquisa.ResultadoPesquisa.Paging.PaginasPesquisa">
+                        <a ng-click="pesquisar(palavra, i + 1)">{{i + 1}}</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </center>
     </div>
 </div>

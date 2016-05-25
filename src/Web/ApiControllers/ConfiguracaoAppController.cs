@@ -3,16 +3,19 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using System.Collections.Generic;
     using System.Web.Http;
 
     public class ConfiguracaoAppController : ApiController
     {
         private IConfiguracaoRepositorio configuracaoRepositorio;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public ConfiguracaoAppController()
         {
             this.configuracaoRepositorio = InversionControl.Current.Resolve<IConfiguracaoRepositorio>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         public IEnumerable<Configuracao> Get()
@@ -47,6 +50,11 @@
             configuracaoMontada.Valor = configuracao.Valor;
 
             this.configuracaoRepositorio.Salvar(configuracaoMontada);
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Alteracao,
+                "Manutenção de Configuracao",
+                "Configuração de sistema foi alterada pelo usuario #" + configuracao.Chave);
         }
 
         // PUT api/<controller>/5

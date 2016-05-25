@@ -227,6 +227,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\TrilhaController.cs" />
     <Compile Include="ApiControllers\ConfiguracaoAppController.cs" />
     <Compile Include="ApiControllers\EdicaoPessoalController.cs" />
     <Compile Include="ApiControllers\PesquisaEngineController.cs" />
@@ -309,6 +310,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
+    <Content Include="Scripts\controllers\trilhaController.js" />
     <Content Include="Scripts\controllers\configuracaoController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
     <Content Include="Scripts\controllers\perfilConfigController.js" />
@@ -365,6 +367,7 @@
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\services\acessoDocumentoApiService.js" />
+    <Content Include="Scripts\services\trilhaApiService.js" />
     <Content Include="Scripts\services\versaoDocumentoApiService.js" />
     <Content Include="Scripts\services\autorizacaoApiService.js" />
     <Content Include="Scripts\services\funcionalidadeApiService.js" />
@@ -390,6 +393,7 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
+    <Content Include="UserInterface\Trilha\Index.cshtml" />
     <None Include="UserInterface\Login\Index.cshtml" />
     <Content Include="UserInterface\Versionamento\_versaoDocumento.html" />
     <Content Include="Web.config">

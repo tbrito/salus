@@ -4,6 +4,7 @@
     using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
@@ -13,12 +14,14 @@
         private ISessaoDoUsuario sessaoDoUsuario;
         private IIndexacaoRepositorio indexacaoRepositorio;
         private IDocumentoRepositorio documentoRepositorio;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public IndexacaoController()
         {
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.indexacaoRepositorio = InversionControl.Current.Resolve<IIndexacaoRepositorio>();
             this.documentoRepositorio = InversionControl.Current.Resolve<IDocumentoRepositorio>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
         
         // GET api/<controller>/5
@@ -72,6 +75,11 @@
             }
             
             this.documentoRepositorio.AlterStatus(documentoId, SearchStatus.ToIndex);
+
+            this.logarAcaoSistema.Execute(
+              TipoTrilha.Criacao,
+              "Indexação de Documento",
+              "Documento foi indexado #" + documentoId);
         }
         
         [HttpPut]
@@ -80,6 +88,11 @@
             this.indexacaoRepositorio.AtualizarValor(indexacaoModel.Id, indexacaoModel.Valor);
 
             this.documentoRepositorio.AlterStatus(indexacaoModel.DocumentoId, SearchStatus.ToIndex);
+
+            this.logarAcaoSistema.Execute(
+              TipoTrilha.Alteracao,
+              "Indexação de Documento",
+              "Documento teve indexação alterada Documento: #" + indexacaoModel.DocumentoId);
         }
 
         // DELETE api/<controller>/5

@@ -27,6 +27,7 @@
         private readonly IMongoStorage mongoStorage;
         private readonly OpenOfficeTransformer openOfficeTransformer;
         private readonly IVersaoDocumentoRepositorio versaoDocumentoRepositorio;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public ArquivosController()
         {
@@ -37,6 +38,7 @@
             this.storageServico = InversionControl.Current.Resolve<StorageServico>();
             this.mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
             this.openOfficeTransformer = InversionControl.Current.Resolve<OpenOfficeTransformer>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         [HttpGet]
@@ -83,6 +85,11 @@
             var relativo = caminhoPdf
                 .Replace(Aplicacao.Caminho, string.Empty)
                 .Replace(@"\", "/");
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Acesso,
+                "Acesso ao documento",
+                "Documento foi acessado pelo usuario #" + id);
 
             return Ok(new {
                 urlDocumento = "/" + relativo,
@@ -245,6 +252,12 @@
                             .Versao;
                         
                         this.salvarConteudoServico.AdicionarVersao(arquivos, "[documento]" + id + "[versao]" + versao);
+
+                        this.logarAcaoSistema.Execute(
+                            TipoTrilha.Alteracao,
+                            "Versionamento de documento",
+                            "Nova versão do documento foi criada #" + id + " versao **" + versao);
+
                     }, null);
 
                 Request.Content.Dispose();

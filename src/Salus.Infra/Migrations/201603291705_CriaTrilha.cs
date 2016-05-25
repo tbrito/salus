@@ -9,7 +9,7 @@ namespace Salus.Infra.Migrations
         {
             Create.Table("trilha")
                .WithColumn("id").AsInt32().NotNullable().PrimaryKey().Identity()
-               .WithColumn("data").AsInt32()
+               .WithColumn("data").AsDateTime()
                .WithColumn("descricao").AsAnsiString(512)
                .WithColumn("tipo").AsInt32()
                .WithColumn("recurso").AsAnsiString(1024)

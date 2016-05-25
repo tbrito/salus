@@ -1,8 +1,9 @@
-﻿using Salus.Model.Entidades;
-using Salus.Model.Repositorios;
-using System;
-namespace Salus.Model.Servicos
+﻿namespace Salus.Model.Servicos
 {
+    using Salus.Model.Entidades;
+    using Salus.Model.Repositorios;
+    using System;
+
     public class LogarAcaoDoSistema
     {
         private ISessaoDoUsuario sessaoDoUsuario;
@@ -16,17 +17,26 @@ namespace Salus.Model.Servicos
             this.sessaoDoUsuario = sessaoDoUsuario;
         }
 
-        public void Execute(TipoTrilha tipoTrilha, string mensagem)
+        public void Execute(TipoTrilha tipoTrilha, string titulo, string mensagem)
+        {
+            this.Execute(
+                tipoTrilha,
+                titulo,
+                mensagem,
+                this.sessaoDoUsuario.UsuarioAtual);
+        }
+
+        public void Execute(TipoTrilha tipoTrilha, string titulo, string mensagem, Usuario usuario)
         {
             try
             {
                 var trilha = new Trilha
                 {
                     Data = DateTime.Now,
-                    Descricao = mensagem,
+                    Descricao = titulo,
                     Tipo = tipoTrilha,
-                    Usuario = this.sessaoDoUsuario.UsuarioAtual,
-                    Recurso = "Recurso"
+                    Usuario = usuario,
+                    Recurso = mensagem
                 };
 
                 this.trilhaRepositorio.Salvar(trilha);

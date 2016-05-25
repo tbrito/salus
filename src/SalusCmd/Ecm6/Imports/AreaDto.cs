@@ -1,7 +1,7 @@
-using Salus.Model.Entidades;
-
 namespace SalusCmd.Ecm6.Imports
 {
+    using Salus.Model.Entidades;
+
     public class AreaDto : Entidade
     {
         public string Descricao
@@ -18,7 +18,7 @@ namespace SalusCmd.Ecm6.Imports
 
         public string Restricted
         {
-            get; 
+            get;
             set;
         }
 

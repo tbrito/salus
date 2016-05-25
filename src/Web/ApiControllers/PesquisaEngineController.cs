@@ -19,7 +19,7 @@
 
         public IHttpActionResult Post([FromBody]PesquisaViewModel viewModel)
         {
-            var resultado = this.searchService.SearchContent(viewModel.Texto, 1);
+            var resultado = this.searchService.SearchContent(viewModel.Texto, viewModel.PaginaId);
             return Ok(resultado);
         }
         

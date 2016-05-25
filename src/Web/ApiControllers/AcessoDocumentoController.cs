@@ -3,6 +3,7 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System.Linq;
     using System.Web.Http;
@@ -11,11 +12,13 @@
     {
         private IAcessoDocumentoRepositorio acessoDocumentoRepositorio;
         private ITipoDocumentoRepositorio tipoDocumentoRepositorio;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public AcessoDocumentoController()
         {
             this.acessoDocumentoRepositorio = InversionControl.Current.Resolve<IAcessoDocumentoRepositorio>();
             this.tipoDocumentoRepositorio = InversionControl.Current.Resolve<ITipoDocumentoRepositorio>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         [HttpGet]
@@ -64,6 +67,11 @@
 
                 this.acessoDocumentoRepositorio.Salvar(acesso);
             }
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Alteracao, 
+                "Segurança de Documentos", 
+                "Acesso ao documentos foi alterado para o papelId: " + acessosViewModel.PapelId + " e atorId: " + acessosViewModel.AtorId);
         }
 
         // PUT api/<controller>/5

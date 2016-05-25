@@ -14,6 +14,7 @@
         private IUsuarioRepositorio usuarioRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
         private HashString hashString;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public EdicaoPessoalController()
         {
@@ -21,6 +22,7 @@
             this.usuarioRepositorio = InversionControl.Current.Resolve<IUsuarioRepositorio>();
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.hashString = InversionControl.Current.Resolve<HashString>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         public IEnumerable<Perfil> Get()
@@ -51,6 +53,11 @@
                 this.sessaoDoUsuario.UsuarioAtual.Id,
                 novaSenha);
 
+            this.logarAcaoSistema.Execute(
+               TipoTrilha.Exclusao,
+               "Manutenção de usuario",
+               "Usuario trocou a própria senha usuario.id");
+
             return "ok";
         }
 
@@ -63,6 +70,11 @@
         public void Excluir(int id)
         {
             this.perfilRepositorio.MarcarComoInativo(id);
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Exclusao,
+                "Manutenção de usuario",
+                "Usuario marcado como inativo usuario.id: #" + id);
         }
     }
 }

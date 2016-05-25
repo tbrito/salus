@@ -76,6 +76,10 @@
         $location.path('/Configuracoes');
     };
 
+    $scope.abrirTrilhaAuditoria = function () {
+        $location.path('/Trilha');
+    };
+
     $scope.abrirEdicaoPerfil = function () {
         $location.path('/MeuPerfil/Editar');
     };

@@ -37,9 +37,9 @@ namespace Salus.Infra.Repositorios
         public Documento ObterPorIdComTipoDocumento(int documentoId)
         {
             return this.Sessao.QueryOver<Documento>()
+                .Fetch(x => x.Usuario).Eager
                 .Fetch(x => x.TipoDocumento).Eager
                 .Fetch(x => x.TipoDocumento.Parent).Eager
-                .Fetch(x => x.Usuario).Eager
                 .Where(x => x.Id == documentoId)
                 .SingleOrDefault();
         }

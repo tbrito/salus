@@ -112,11 +112,15 @@ function routeConfig($routeProvider, $locationProvider) {
             controller: 'configuracaoController',
             templateUrl: viewBase + 'Configuracao/Index.cshtml'
         })
+        .when('/Trilha', {
+            controller: 'trilhaController',
+            templateUrl: viewBase + 'Trilha/Index.cshtml'
+        })
         .when('/Configuracoes/Editar/:id', {
             controller: 'configuracaoController',
             templateUrl: viewBase + 'Configuracao/Editar.cshtml'
         })
-        .when('/PesquisaView/Resultado/:termo', {
+        .when('/PesquisaView/Resultado/:termo/:pagina', {
             controller: 'pesquisaController',
             templateUrl: viewBase + 'Pesquisa/Resultado.cshtml'
         })

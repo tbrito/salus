@@ -28,7 +28,8 @@
             this.documentoRepositorio.Bloquear(id);
 
             this.logarAcaoSistema.Execute(
-                TipoTrilha.Alteracao, 
+                TipoTrilha.Alteracao,
+                "Versionamento do documento", 
                 "Documento " + id + " bloquado para versionamento");
         }
 
@@ -60,7 +61,11 @@
 
             this.versaoDocumentoRepositorio.Salvar(versao);
             this.documentoRepositorio.Desbloquear(versaoDocumento.Documento.Id);
-            this.logarAcaoSistema.Execute(TipoTrilha.Criacao, "Nova versão criada para o documento " + versaoDocumento.Documento.Id);
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Criacao,
+                "Versionamento do documento",
+                "Nova versão criada para o documento " + versaoDocumento.Documento.Id);
 
             return versao;
         }

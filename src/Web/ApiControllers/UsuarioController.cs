@@ -13,12 +13,14 @@
         private IUsuarioRepositorio usuarioRepositorio;
         private ISessaoDoUsuario sessaoDoUsuario;
         private SalvarUsuarioServico salvarUsuarioServico;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public UsuarioController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<IUsuarioRepositorio>();
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
             this.salvarUsuarioServico = InversionControl.Current.Resolve<SalvarUsuarioServico>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         public IEnumerable<UsuarioViewModel> Get()
@@ -67,12 +69,22 @@
         public void Ativar(int id, [FromBody]string value)
         {
             this.usuarioRepositorio.Reativar(id);
+
+            this.logarAcaoSistema.Execute(
+                 TipoTrilha.Alteracao,
+                 "Manutenção de Usuario",
+                 "Usuario foi ativado: usuarioId: #" + id);
         }
 
         [HttpDelete]
         public void Excluir(int id)
         {
             this.usuarioRepositorio.MarcarComoInativo(id);
+
+            this.logarAcaoSistema.Execute(
+                 TipoTrilha.Alteracao,
+                 "Manutenção de Usuario",
+                 "Usuario foi inativado: usuarioId: #" + id);
         }
     }
 }

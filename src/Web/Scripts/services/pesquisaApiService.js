@@ -1,6 +1,6 @@
 angular.module("salus-app").factory("pesquisaApi", function ($http) {
-    var _pesquisar = function (pesquisa) {
-        var objeto = { Texto: pesquisa };
+    var _pesquisar = function (pesquisa, pagina) {
+        var objeto = { Texto: pesquisa, PaginaId: pagina };
         return $http.post("api/PesquisaEngine", objeto);
     };
 

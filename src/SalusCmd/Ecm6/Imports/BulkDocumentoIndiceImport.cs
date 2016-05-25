@@ -31,7 +31,7 @@ namespace SalusCmd.Ecm6.Imports
             }
             else
             {
-                documento.Usuario = this.Create<Usuario>("1");
+                documento.Usuario = this.Create<Usuario>("5");
             }
             
             documento.SearchStatus = SearchStatus.DontIndex;

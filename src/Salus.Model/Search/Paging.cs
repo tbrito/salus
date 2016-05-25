@@ -1,7 +1,7 @@
 ﻿namespace Salus.Model.Search
 {
     using System;
-
+    using System.Collections.Generic;
     public class Paging
     {
         public Paging(int resultsPerPage, int actualPage, int total)
@@ -11,7 +11,7 @@
             this.Total = total;
             this.ResultsPerPage = resultsPerPage;
             this.ActualPage = actualPage;
-
+            this.PaginasPesquisa = new List<int>();
             this.CalculateParameters();
         }
 
@@ -50,10 +50,21 @@
             get;
             private set;
         }
+        public List<int> PaginasPesquisa
+        {
+            get;
+            private set;
+        }
 
         private void CalculateParameters()
         {
             this.Pages = (int)Math.Ceiling(this.Total / (double)this.ResultsPerPage);
+
+            for (var i = 0; i < this.Pages; i++)
+            {
+                this.PaginasPesquisa.Add(i);
+            }
+
             this.StartIndex = this.CalculateStartIndex();
             this.EndIndex = Math.Min(this.StartIndex + (this.ResultsPerPage - 1), this.Total - 1);
         }

@@ -130,6 +130,8 @@
     <Compile Include="Ecm6\ConvertString.cs" />
     <Compile Include="Ecm6\DapperHelper.cs" />
     <Compile Include="Ecm6\Ecm6ImportDatabaseTask.cs" />
+    <Compile Include="Ecm6\SalusImportDatabaseTask.cs" />
+    <Compile Include="Ecm6\SalusImportStorageTask.cs" />
     <Compile Include="Ecm6\SchemaUpdateTask.cs" />
     <Compile Include="Ecm6\Ecm6ImportStorageTask.cs" />
     <Compile Include="Ecm6\Extensions.cs" />

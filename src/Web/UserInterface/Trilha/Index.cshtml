@@ -1,0 +1,24 @@
+﻿<div class="modal-content" ng-controller="trilhaController" ng-init="carregarFormulario()">
+    <div>Configurações > Trilha de Auditoria</div>
+
+    <div class="control-group" style="overflow:scroll; height:550px">
+        <table ng-show="trilhas.length > 0" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ocorreu em</th>
+                    <th>Tipo de Trilha</th>
+                    <th>Usuario que fez</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="trilha in trilhas">
+                <td>{{trilha.Data}}</td>
+                <td>{{trilha.Tipo}}</td>
+                <td>{{trilha.Usuario.Nome}}</td>
+                <td>{{trilha.Descricao}}</td>
+                <td>{{trilha.Recurso}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

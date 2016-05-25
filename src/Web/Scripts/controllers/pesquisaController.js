@@ -1,18 +1,21 @@
 angular.module("salus-app").controller("pesquisaController",
      function ($scope, $location, pesquisaApi, indexacaoApi, $routeParams) {
     
-    $scope.pesquisar = function (termo) {
-        $location.path('/PesquisaView/Resultado/' + removerCaracterSpecial(termo));
+    $scope.pesquisar = function (termo, pagina) {
+        $location.path('/PesquisaView/Resultado/' + removerCaracterSpecial(termo) + '/' + pagina);
     };
 
     $scope.procurar = function () {
         var texto = $routeParams.termo;
-
+        var pagina = $routeParams.pagina;
+        
         if (texto == undefined) {
             return;
         }
 
-        pesquisaApi.pesquisar(texto)
+        $scope.palavra = texto;
+
+        pesquisaApi.pesquisar(texto, pagina)
             .success(function (data) {
                 $scope.resultadoPesquisa = data;
             });
@@ -21,7 +24,7 @@ angular.module("salus-app").controller("pesquisaController",
     $scope.pesquisarPreindexacao = function (documentoId) {
         indexacaoApi.obterSuc(documentoId)
             .success(function (data) {
-                pesquisaApi.pesquisar(removerCaracterSpecial(data.Suc))
+                pesquisaApi.pesquisar(removerCaracterSpecial(data.Suc), 1)
                     .success(function (data) {
                         $scope.resultadoPesquisa = data;
                 });

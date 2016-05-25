@@ -21,12 +21,14 @@
         private IAcessoFuncionalidadeRepositorio acessoFuncionalidadeRepositorio;
         private HashString hashString;
         private StorageServico storageServico;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public AccountController()
         {
             this.usuarioRepositorio = InversionControl.Current.Resolve<UsuarioRepositorio>();
             this.acessoFuncionalidadeRepositorio = InversionControl.Current.Resolve<IAcessoFuncionalidadeRepositorio>();
             this.hashString = InversionControl.Current.Resolve<HashString>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
             this.storageServico = InversionControl.Current.Resolve<StorageServico>();
         }
 
@@ -45,6 +47,11 @@
         [HttpGet]
         public IHttpActionResult Logout(int id)
         {
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Alteracao,
+                "Logout",
+                "Saiu do sistema");
+
             FormsAuthentication.SignOut();
             return Ok(new { Mensagem = "Ok" });
         }
@@ -62,6 +69,11 @@
             {
                 login = this.ObterUsuarioModel(usuario);
                 this.CriarTicketDeAutenticacao(usuario, login);
+                this.logarAcaoSistema.Execute(
+                    TipoTrilha.Acesso, 
+                    "Acesso ao Sistema", 
+                    "Acessou o sistema",
+                    usuario);
             }
 
             return login;

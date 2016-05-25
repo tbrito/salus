@@ -3,6 +3,7 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using Salus.Model.UI;
     using System.Linq;
     using System.Web.Http;
@@ -10,10 +11,12 @@
     public class AcessoFuncionalidadeController : ApiController
     {
         private IAcessoFuncionalidadeRepositorio acessoFuncionalidadeRepositorio;
+        private LogarAcaoDoSistema logarAcaoSistema;
 
         public AcessoFuncionalidadeController()
         {
             this.acessoFuncionalidadeRepositorio = InversionControl.Current.Resolve<IAcessoFuncionalidadeRepositorio>();
+            this.logarAcaoSistema = InversionControl.Current.Resolve<LogarAcaoDoSistema>();
         }
 
         [HttpGet]
@@ -60,6 +63,11 @@
 
                 this.acessoFuncionalidadeRepositorio.Salvar(acesso);
             }
+
+            this.logarAcaoSistema.Execute(
+                TipoTrilha.Alteracao,
+                "Segurança de Funcionalidade",
+                "Acesso às funcionalidades foi alterado para o papelId: " + acessosViewModel.PapelId + " e atorId: " + acessosViewModel.AtorId);
         }
 
         // PUT api/<controller>/5
