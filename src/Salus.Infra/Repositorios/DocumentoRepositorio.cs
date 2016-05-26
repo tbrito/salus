@@ -83,17 +83,30 @@ namespace Salus.Infra.Repositorios
                 .List();
         }
 
-        public IList<Documento> ObterTodosParaIndexar(int quantidade)
+        public IList<int> ObterIdsParaIndexar(int quantidade)
+        {
+            return this.Sessao.CreateQuery(
+@"select 
+    Id
+from 
+    Documento
+where
+    SearchStatus = :searchStatus")
+                .SetParameter("searchStatus", SearchStatus.ToIndex)
+                .SetFetchSize(quantidade)
+                .List<int>();
+        }
+
+        public Documento ObterDocumentoParaIndexar(int documentoId)
         {
             return this.Sessao.QueryOver<Documento>()
                 .Fetch(x => x.TipoDocumento).Eager
                 .Fetch(x => x.Usuario).Eager
                 .Fetch(x => x.Indexacao).Eager
                 .Fetch(x => x.Indexacao.First().Chave).Eager
-                .Where(x => x.SearchStatus == SearchStatus.ToIndex)
+                .Where(x => x.Id == documentoId)
                 .TransformUsing(Transformers.DistinctRootEntity)
-                .Take(quantidade)
-                .List();
+                .SingleOrDefault();
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Salus.Infra;
 using Salus.Infra.IoC;
 using Salus.Infra.Logs;
+using SalusCmd.Comandos;
 using SalusCmd.Ecm6;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SalusCmd
 {
@@ -21,22 +23,22 @@ namespace SalusCmd
 
             comandos.Add(
                "import data",
-               () => InversionControl.Current.Resolve<Ecm6ImportDatabaseTask>());
+               () => InversionControl.Current.Resolve<SalusImportDatabaseTask>());
 
             comandos.Add(
                 "import storage",
-                () => InversionControl.Current.Resolve<Ecm6ImportStorageTask>());
-
+                () => InversionControl.Current.Resolve<SalusImportStorageTask>());
+            
             ExecutarTarefa(args);
         }
 
         private static void ExecutarTarefa(string[] args)
         {
-            var argumentos = args.ToString();
+            var argumentos = string.Join(" ", args);
 
-            if (comandos.ContainsKey(argumentos))
+            if (comandos.ContainsKey(argumentos.Trim()))
             {
-                comandos[argumentos]().Executar();
+                comandos[argumentos.Trim()]().Executar();
             }
             else
             {

@@ -28,6 +28,15 @@
         }
 
         [HttpGet]
+        public IEnumerable<TipoDocumento> ParaIndexar(int id = 0)
+        {
+            var tiposDocumentos = this.tipoDocumentoRepositorio
+                .ObterTodosParaIndexar(this.sessaoDoUsuario.UsuarioAtual);
+
+            return tiposDocumentos as IEnumerable<TipoDocumento>;
+        }
+
+        [HttpGet]
         public TipoDocumento ObterPorId(int id)
         {
             var tipoDocumento = this.tipoDocumentoRepositorio.ObterPorIdComParents(id);

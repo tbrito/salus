@@ -1,27 +1,27 @@
-using Limilabs.FTP.Client;
-using Salus.Infra.Extensions;
-using Salus.Infra.IoC;
-using Salus.Infra.Logs;
-using Salus.Infra.Repositorios;
-using Salus.Model;
-using Salus.Model.Entidades;
-using Salus.Model.Entidades.Import;
-using Salus.Model.Repositorios;
-using SharpArch.NHibernate;
-using System;
-using System.Configuration;
-using System.IO;
-
-namespace SalusCmd.Ecm6
+namespace SalusCmd.Comandos
 {
+    using Limilabs.FTP.Client;
+    using Salus.Infra.Extensions;
+    using Salus.Infra.IoC;
+    using Salus.Infra.Logs;
+    using Salus.Infra.Repositorios;
+    using Salus.Model;
+    using Salus.Model.Entidades;
+    using Salus.Model.Entidades.Import;
+    using Salus.Model.Repositorios;
+    using SalusCmd.Ecm6;
+    using SharpArch.NHibernate;
+    using System;
+    using System.Configuration;
+    using System.IO;
 
-    public class Ecm6ImportStorageTask : ITarefa
+    public class SalusImportStorageTask : ITarefa
     {
         private readonly IMongoStorage mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
         private readonly IStorageRepositorio storageRepositorio = InversionControl.Current.Resolve<IStorageRepositorio>();
         private int filesMoved;
         private Ftp ftpClient;
-        
+
         public string TextoDeAjuda
         {
             get
@@ -45,12 +45,12 @@ namespace SalusCmd.Ecm6
 
             Directory.CreateDirectory(tempPath);
 
-            Log.App.InfoFormat("Convertendo storage do ged 6 para o salus");
+            Log.App.InfoFormat("Convertendo storage do ged6 para o salus");
             Log.App.InfoFormat("Pasta temporária: " + tempPath);
             Log.App.InfoFormat("Aguarde a execução até o fim. Não interrompa.");
 
             this.ftpClient = this.BuildFtpClient();
-            
+
             var rootpath = this.ftpClient.GetCurrentFolder();
 
             Log.App.InfoFormat(
@@ -60,7 +60,7 @@ namespace SalusCmd.Ecm6
             this.ProcessDirectory(rootpath);
 
             Log.App.InfoFormat(
-                "Repositório convertido em {0}. {1} arquivos importados",
+                "Storage convertido em {0}. {1} arquivos importados",
                 DateTime.Now.Subtract(now),
                 this.filesMoved);
         }
@@ -259,8 +259,8 @@ from system";
 
             try
             {
-                    this.mongoStorage.AdicionarOuAtualizar(file);
-                    this.filesMoved++;
+                this.mongoStorage.AdicionarOuAtualizar(file);
+                this.filesMoved++;
             }
             catch (Exception ex)
             {
@@ -288,7 +288,7 @@ from system";
                 return Path.GetTempPath();
             }
 
-             return path;
+            return path;
         }
 
         private void UpdateImportStatus<T>(T entidade) where T : Entidade

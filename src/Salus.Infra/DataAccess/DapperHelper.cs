@@ -1,4 +1,4 @@
-namespace SalusCmd.Ecm6
+namespace Salus.Infra.DataAccess
 {
     using Salus.Infra.ConnectionInfra;
     using SharpArch.NHibernate;

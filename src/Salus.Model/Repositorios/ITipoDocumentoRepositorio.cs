@@ -9,6 +9,8 @@ namespace Salus.Model.Repositorios
 
         IList<TipoDocumento> ObterTodosGrupos(Usuario usuarioAtual);
 
+        IList<TipoDocumento> ObterTodosParaIndexar(Usuario usuarioAtual);
+
         TipoDocumento ObterPorIdComParents(int id);
 
         void MarcarComoInativo(int id);

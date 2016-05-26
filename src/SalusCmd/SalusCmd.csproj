@@ -128,12 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ecm6\ConvertString.cs" />
-    <Compile Include="Ecm6\DapperHelper.cs" />
-    <Compile Include="Ecm6\Ecm6ImportDatabaseTask.cs" />
-    <Compile Include="Ecm6\SalusImportDatabaseTask.cs" />
-    <Compile Include="Ecm6\SalusImportStorageTask.cs" />
-    <Compile Include="Ecm6\SchemaUpdateTask.cs" />
-    <Compile Include="Ecm6\Ecm6ImportStorageTask.cs" />
+    <Compile Include="Comandos\SalusImportDatabaseTask.cs" />
+    <Compile Include="Comandos\SalusImportStorageTask.cs" />
+    <Compile Include="Comandos\SchemaUpdateTask.cs" />
     <Compile Include="Ecm6\Extensions.cs" />
     <Compile Include="Ecm6\ImportDatabase.cs" />
     <Compile Include="Ecm6\Imports\AccessDocDto.cs" />

@@ -3,6 +3,7 @@
     using Salus.Infra.IoC;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.UI;
     using System.Collections.Generic;
     using System.Web.Http;
 
@@ -15,11 +16,26 @@
             this.trilhaRepositorio = InversionControl.Current.Resolve<ITrilhaRepositorio>();
         }
 
-        public IEnumerable<Trilha> Get()
+        public IEnumerable<TrilhaViewModel> Get()
         {
             var trilhas = this.trilhaRepositorio.ObterTodosComUsuario();
-           
-            return trilhas as IEnumerable<Trilha>;
+            var trilhasModel = new List<TrilhaViewModel>();
+
+            foreach (var trilha in trilhas)
+            {
+                var model = new TrilhaViewModel
+                {
+                    Data = trilha.Data.ToString("F"),
+                    Descricao = trilha.Descricao,
+                    Recurso = trilha.Recurso,
+                    Tipo = trilha.Tipo.ToString(),
+                    Usuario = trilha.Usuario.Nome
+                };
+
+                trilhasModel.Add(model);
+            }
+
+            return trilhasModel as IEnumerable<TrilhaViewModel>;
         }
         
         // PUT api/<controller>/5

@@ -37,34 +37,33 @@
 
         public void Execute()
         {
-            IList<Documento> contents;
+            IList<int> ids;
 
-            contents = this.documentoRepositorio.ObterTodosParaIndexar(80);
-
-            if (contents.Count == 0)
+            do
             {
-                Log.App.InfoFormat("Não há documentos pendentes para indexação");
-                return;
-            }
+                ids = this.documentoRepositorio.ObterIdsParaIndexar(80);
 
-            Log.App.InfoFormat(
-                "Indexando documentos de {0} a {1}",
-                contents[0].Id,
-                contents.Last().Id);
-
-            using (var session = this.indexerSession
-                .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
-            {
-                Parallel.ForEach(contents, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, batch =>
+                if (ids.Count == 0)
                 {
-                    Log.App.Info("indexado documento #" + batch.Id);
+                    Log.App.InfoFormat("Não há documentos pendentes para indexação");
+                    return;
+                }
 
-                    this.Increment(this.indexQueueProcessBatch.Execute(batch));
-                });
+                using (var session = this.indexerSession
+                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
+                {
+                    Parallel.ForEach(ids, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, documentoId =>
+                    {
+                        Log.App.Info("indexado documento #" + documentoId);
 
-                session.Current.Commit();
+                        this.Increment(this.indexQueueProcessBatch.Execute(documentoId));
+                    });
+
+                    session.Current.Commit();
+                }
             }
-            
+            while (ids.Count > 0);
+
             using (var session = this.indexerSession
                     .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
             {

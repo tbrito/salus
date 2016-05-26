@@ -1,7 +1,7 @@
-using Salus.Model.Entidades;
-
 namespace SalusCmd.Ecm6.Imports
 {
+    using Salus.Model.Entidades;
+
     public class UserDto : Entidade
     {
         public string Name

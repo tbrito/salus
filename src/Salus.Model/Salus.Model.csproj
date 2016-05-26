@@ -126,6 +126,7 @@
     <Compile Include="UI\PesquisaViewModel.cs" />
     <Compile Include="UI\TiposPermitidosViewModel.cs" />
     <Compile Include="UI\FuncionalidadeViewModel.cs" />
+    <Compile Include="UI\TrilhaViewModel.cs" />
     <Compile Include="UI\WorkflowViewModel.cs" />
     <Compile Include="UI\UsuarioViewModel.cs" />
     <Compile Include="UI\AreaViewModel.cs" />

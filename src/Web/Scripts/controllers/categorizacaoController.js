@@ -7,7 +7,7 @@ angular.module("salus-app").controller('categorizacaoController',
     $scope.carregarFormulario = function () {
         $scope.documentoId = $routeParams.documentoId;
 
-        tipoDocumentoApi.getTiposDeDocumentos()
+        tipoDocumentoApi.getTiposDeDocumentosParaIndexar()
             .success(function (data) {
                 $scope.tiposDeDocumento = data;
             })
@@ -25,16 +25,6 @@ angular.module("salus-app").controller('categorizacaoController',
             })
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter as chaves do tipo de documento" + $scope.tipoDocumentoId;
-            });
-    }
-
-    $scope.salvarIndexacao = function () {
-        indexacaoApi.postSalvarIndexacao($scope.indexacao)
-            .success(function (data) {
-                $location.path('/Home');
-            })
-            .error(function (data) {
-                $scope.error = "Ops! Algo aconteceu ao salvar documento " + $scope.documentoId;
             });
     }
 });

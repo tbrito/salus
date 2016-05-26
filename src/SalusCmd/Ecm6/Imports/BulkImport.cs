@@ -8,6 +8,7 @@ namespace SalusCmd.Ecm6.Imports
     using SalusCmd.Ecm6;
     using Salus.Infra.ConnectionInfra;
     using Salus.Infra.Logs;
+    using Salus.Infra.DataAccess;
 
     public abstract class BulkImport<TDto, TEntity> where TDto : Entidade
     {

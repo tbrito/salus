@@ -6,6 +6,7 @@ namespace SalusCmd.Ecm6.Imports
     using Dapper;
     using Salus.Model.Entidades;
     using System.Linq;
+    using Salus.Infra.DataAccess;
 
     public class BulkDocumentoImport : BulkImport<FileDto, Documento>
     {

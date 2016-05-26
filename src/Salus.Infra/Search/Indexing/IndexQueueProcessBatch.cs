@@ -23,10 +23,12 @@
             this.documentoRepositorio = documentoRepositorio;
         }
 
-        public int Execute(Documento documento)
+        public int Execute(int documentoId)
         {
             var indexedItems = 0;
             var newStatuses = new Dictionary<int, SearchStatus>();
+
+            var documento = this.documentoRepositorio.ObterDocumentoParaIndexar(documentoId);
 
             var newStatus = this.IndexContent(documento);
          

@@ -45,5 +45,13 @@
                 .Where(x => x.EhPasta == true)
                 .List();
         }
+
+        public IList<TipoDocumento> ObterTodosParaIndexar(Usuario usuarioAtual)
+        {
+            return this.Sessao.QueryOver<TipoDocumento>()
+                .Fetch(x => x.Parent).Eager
+                .Where(x => x.EhPasta == false)
+                .List();
+        }
     }
 }

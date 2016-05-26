@@ -6,7 +6,7 @@ namespace SalusCmd.Ecm6.Imports
     using Salus.Model.Entidades;
     using Salus.Infra.Extensions;
     using Salus.Model;
-
+    using Salus.Infra.DataAccess;
     public class BulkIndexImport : BulkImport<KeysDto, Indexacao>
     {
         private Dictionary<int, int> keys;

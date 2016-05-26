@@ -197,6 +197,7 @@
     <Compile Include="Aplicacao.cs" />
     <Compile Include="Boot\RegistrarDependencias.cs" />
     <Compile Include="ConnectionManagement\BancoDeDados.cs" />
+    <Compile Include="DataAccess\DapperHelper.cs" />
     <Compile Include="DataAccess\IUnidadeDeTrabalho.cs" />
     <Compile Include="DataAccess\ThreadSafeDictionary.cs" />
     <Compile Include="DataAccess\ThreadSessionStorage.cs" />

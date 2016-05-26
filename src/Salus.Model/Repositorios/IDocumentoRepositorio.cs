@@ -13,12 +13,14 @@ namespace Salus.Model.Repositorios
 
         void Desbloquear(int id);
 
-        IList<Documento> ObterTodosParaIndexar(int quantidade);
+        Documento ObterDocumentoParaIndexar(int quantidade);
 
         Documento ObterPorIdComTipoDocumento(int documentoId);
 
         IList<Documento> ObterPreIndexadosPorUsuario(Usuario usuario);
 
         Documento ObterPorIdComTipoDocumentoEIndexacoes(int id);
+
+        IList<int> ObterIdsParaIndexar(int quantidade);
     }
 }

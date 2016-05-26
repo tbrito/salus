@@ -97,9 +97,9 @@
 
             this.ResetarConexao();
 
-            var documentos = this.repositorio.ObterTodosParaIndexar(1);
+            var documentos = this.repositorio.ObterDocumentoParaIndexar(1);
             
-            Assert.AreEqual(documentos[0].Indexacao.Count, 2);
+            Assert.AreEqual(documentos.Indexacao.Count, 2);
         }
 
         [Test]

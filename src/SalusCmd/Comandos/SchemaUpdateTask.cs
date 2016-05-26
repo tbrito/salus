@@ -1,4 +1,4 @@
-namespace SalusCmd.Ecm6
+namespace SalusCmd.Comandos
 {
     using FluentNHibernate.Cfg;
     using Salus.Infra.ConnectionInfra;
