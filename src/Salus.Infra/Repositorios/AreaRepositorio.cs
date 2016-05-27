@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
-
+    using NHibernate.Transform;
     public class AreaRepositorio : Repositorio<Area>, IAreaRepositorio
     {
         public void MarcarComoInativo(int id)
@@ -27,6 +27,9 @@
         {
             return this.Sessao.QueryOver<Area>()
                 .Fetch(x => x.Parent).Eager
+                .Fetch(x => x.SubAreas).Eager
+                .TransformUsing(Transformers.DistinctRootEntity)
+                .Where(x => x.Parent == null)
                 .List();
         }
 

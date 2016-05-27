@@ -4,7 +4,6 @@ angular.module("salus-app", [
                     "ui.bootstrap",
                     "ngFileUpload",
                     "ngCookies",
-                    "snap",
                     "ngBarcode",
                     "chieffancypants.loadingBar", 
                     "ngAnimate"])

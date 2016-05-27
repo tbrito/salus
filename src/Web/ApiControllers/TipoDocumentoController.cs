@@ -19,7 +19,8 @@
             this.sessaoDoUsuario = InversionControl.Current.Resolve<ISessaoDoUsuario>();
         }
 
-        public IEnumerable<TipoDocumento> Get()
+        [HttpGet]
+        public IEnumerable<TipoDocumento> Todos(int id = 0)
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
                 .ObterTodosClassificaveis(this.sessaoDoUsuario.UsuarioAtual);
@@ -60,7 +61,11 @@
             tipoDocumento.Ativo = tipoDocumentoView.Ativo;
             tipoDocumento.Nome = tipoDocumentoView.Nome;
             tipoDocumento.EhPasta = false;
-            tipoDocumento.Parent = new TipoDocumento { Id = tipoDocumentoView.Parent.Id };
+
+            if (tipoDocumentoView.Parent != null)
+            {
+                tipoDocumento.Parent = new TipoDocumento { Id = tipoDocumentoView.Parent.Id };
+            }
 
             this.tipoDocumentoRepositorio.Salvar(tipoDocumento);
         }

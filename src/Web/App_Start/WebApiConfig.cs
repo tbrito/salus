@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace Web
 {
@@ -27,7 +28,10 @@ namespace Web
             
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            
             ////config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }

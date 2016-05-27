@@ -1,79 +1,106 @@
-﻿<div class="form-group" ng-repeat="chave in chaves">
-    <ng-form name="categorizacaoFieldForm">
+﻿<ng-form name="categorizacaoFieldForm">
+    <div class="form-group" ng-repeat="chave in chaves">
+        <br />
         <label>{{ chave.Nome }}</label>
 
-        <ng-switch on="chave.TipoDado.Value">
-            <input type="text"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 32"
-                   ng-pattern="^(((0[123456789]|10|11|12)([/])(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))$"
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="text"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 32"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe o {{chave.Nome}} [mm/yyyy]" salus-mesano>
 
-            <input type="text"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 17"
-                   ng-pattern="^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$"
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="text"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 17"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               ng-pattern="/^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/"
+               placeholder="Informe o {{chave.Nome}}">
 
-            <input type="number"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 1"
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="number"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 1"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe o {{chave.Nome}}">
 
-            <input type="date"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 3"
-                   placeholder="Informe a {{chave.Nome}}">
+        <select class="form-control"
+                ng-model="indexacao[$index].Valor"
+                ng-required="chave.Obrigatorio"
+                ng-if="chave.TipoDado == 18"
+                ng-options="area.Id as area.Nome for area in areas">
+            <option value="">Selecione a área</option>
+        </select>
 
-            <input type="date"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 9"
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="number"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 15"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe o {{chave.Nome}}">
 
-            <input type="text"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-when="chave.TipoDado.Value == 2"
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="date"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 3"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe a {{chave.Nome}}">
 
-            <select class="form-control"
-                    name="index_{{$index}}"
-                    ng-required="chave.obrigatorio"
-                    ng-model="indexacao[$index].Valor"
-                    ng-switch-when="chave.TipoDado.Value == 8"
-                    ng-options="linha for linha in chave.Lista">
-                <option value="">Selecione um valor</option>
-            </select>
+        <input type="text"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 9"
+               ng-pattern="chave.Mascara"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe o {{chave.Nome}}">
 
-            <input type="text"
-                   class="form-control"
-                   name="index_{{$index}}"
-                   ng-model="indexacao[$index].Valor"
-                   ng-required="chave.Obrigatorio"
-                   ng-switch-default
-                   placeholder="Informe o {{chave.Nome}}">
+        <input type="text"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-if="chave.TipoDado == 2"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               placeholder="Informe o {{chave.Nome}}">
 
-            <p class="help-block" ng-show="categorizacaoFieldForm.index_{{$index}}.$invalid">Valor Inválido</p>
+        <select class="form-control"
+                name="index_{{$index}}"
+                ng-required="chave.obrigatorio"
+                ng-model="indexacao[$index].Valor"
+                ng-if="chave.TipoDado == 8"
+                ng-change="iniciarIndexacao(indexacao[$index], chave)"
+                ng-options="item for item in chave.ItensLista">
+            <option value="">Selecione um valor</option>
+        </select>
 
-        </ng-switch>
-    </ng-form>
-</div>
+        <input type="text"
+               class="form-control"
+               name="index_{{$index}}"
+               ng-model="indexacao[$index].Valor"
+               ng-required="chave.Obrigatorio"
+               ng-change="iniciarIndexacao(indexacao[$index], chave)"
+               ng-if="chave.TipoDado == 0"
+               placeholder="Informe o {{chave.Nome}}">
 
-<button class="btn btn-primary" ng-click="salvarIndexacao()">Salvar</button>
+        <p class="help-block" ng-show="categorizacaoFieldForm.index_{{$index}}.$invalid">Valor Inválido</p>
+    </div>
+    <button class="btn btn-primary"
+            ng-click="salvarIndexacao(indexacao)">
+        Salvar
+    </button>
+
+</ng-form>
+

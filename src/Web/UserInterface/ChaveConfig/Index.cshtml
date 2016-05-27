@@ -19,7 +19,7 @@
             <tr ng-class="{'item-inativo': chave.Ativo == false}" ng-repeat="chave in chaves">
                 <td>{{chave.Nome}}</td>
                 <td><span ng-class="{'salusicon-checked': chave.Obrigatorio == true}"></span></td>
-                <td>{{chave.TipoDado.DisplayName}}</td>
+                <td>{{chave.TipoDado}}</td>
                 <td><a ng-click="editarChave(chave)">Editar</a></td>
                 <td><a ng-click="excluir(chave)">Desativar</a></td>
             </tr>

@@ -15,6 +15,8 @@
             this.Map(x => x.Segura, "segura");
             this.References(x => x.Parent).Column("parent_id");
 
+            this.HasMany(x => x.SubAreas).KeyColumn("parent_id").Cascade.None();
+
             this.DynamicUpdate();
         }
     }

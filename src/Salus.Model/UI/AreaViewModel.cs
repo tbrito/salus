@@ -1,5 +1,6 @@
 ﻿using Salus.Model.Entidades;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Salus.Model.UI
 {
@@ -11,5 +12,6 @@ namespace Salus.Model.UI
         public string Abreviacao { get; set; }
         public bool Segura { get; set; }
         public dynamic Parent { get; set; }
+        public dynamic SubAreas { get; set; }
     }
 }

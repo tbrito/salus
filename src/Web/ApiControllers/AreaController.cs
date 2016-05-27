@@ -37,7 +37,8 @@
                     Ativo = area.Ativo,
                     Nome = area.Nome,
                     Segura = area.Segura,
-                    Parent = area.Parent
+                    Parent = area.Parent,
+                    SubAreas = area.SubAreas
                 };
 
                 areasViewModel.Add(viewModel);

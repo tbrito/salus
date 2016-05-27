@@ -18,10 +18,31 @@
         }
 
         [HttpGet]
-        public IEnumerable<Chave> PorTipoDocumento(int id)
+        public IEnumerable<ChaveViewModel> PorTipoDocumento(int id)
         {
             var chaves = this.chaveRepositorio.ObterPorTipoDocumentoId(id);
-            return chaves as IEnumerable<Chave>;
+
+            var models = new List<ChaveViewModel>();
+
+            foreach (var chave in chaves)
+            {
+                var model = new ChaveViewModel
+                {
+                    Ativo = chave.Ativo,
+                    Id = chave.Id,
+                    ItensLista = chave.ItensLista,
+                    Mascara = chave.Mascara,
+                    Nome = chave.Nome,
+                    Obrigatorio = chave.Obrigatorio,
+                    TipoDado = chave.TipoDado.Value,
+                    TipoDocumentoId = chave.TipoDocumento.Id,
+                    TipoDocumentoNome = chave.TipoDocumento.Nome
+                };
+
+                models.Add(model);
+            }
+
+            return models as IEnumerable<ChaveViewModel>;
         }
 
         [HttpGet]

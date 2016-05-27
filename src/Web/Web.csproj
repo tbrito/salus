@@ -293,6 +293,8 @@
     <Content Include="Content\roboto.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\tree-control-attribute.css" />
+    <Content Include="Content\tree-control.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -326,6 +328,7 @@
     <Content Include="Scripts\controllers\categorizacaoController.js" />
     <Content Include="Scripts\controllers\uploadController.js" />
     <Content Include="Scripts\controllers\loginController.js" />
+    <Content Include="Scripts\directives\salusMesano.js" />
     <Content Include="Scripts\directives\salusIndexacao.js" />
     <Content Include="Scripts\directives\salusVersionamento.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
@@ -349,13 +352,7 @@
     <Content Include="Scripts\lib\barcode\ng-barcode.min.js" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Scripts\lib\progressbar\loading-bar.js" />
-    <Content Include="Scripts\lib\snap\angular-snap-only.css" />
-    <Content Include="Scripts\lib\snap\angular-snap-only.min.css" />
-    <Content Include="Scripts\lib\snap\angular-snap.css" />
-    <Content Include="Scripts\lib\snap\angular-snap.js" />
-    <Content Include="Scripts\lib\snap\angular-snap.min.css" />
-    <Content Include="Scripts\lib\snap\angular-snap.min.js" />
-    <Content Include="Scripts\lib\snap\snap.js" />
+    <Content Include="Scripts\lib\treeview\angular-tree-control.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ng-file-upload-all.js" />
     <Content Include="Scripts\ng-file-upload-all.min.js" />

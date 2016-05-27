@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Salus.Model.Entidades
 {
@@ -16,5 +17,7 @@ namespace Salus.Model.Entidades
         /// Área pode ver apenas os proprios documentos
         /// </summary>
         public virtual bool Segura { get; set; }
+
+        public virtual IList<Area> SubAreas { get; set; }
     }
 }

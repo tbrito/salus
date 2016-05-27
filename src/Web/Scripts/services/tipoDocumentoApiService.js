@@ -1,6 +1,6 @@
 angular.module("salus-app").factory("tipoDocumentoApi", function ($http) {
     var _getTiposDeDocumentos = function () {
-        return $http.get("api/TipoDocumento");
+        return $http.get("api/TipoDocumento/Todos/0");
     };
 
     var _getTiposDeDocumentosParaIndexar = function () {

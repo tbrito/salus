@@ -1,8 +1,5 @@
 angular.module("salus-app").controller('categorizacaoController', 
-    function ($scope, $location, indexacaoApi, tipoDocumentoApi, chavesApi, $routeParams) {
-
-    $scope.indexacao = [];
-    $scope.chaves = [];
+    function ($scope, $location, indexacaoApi, tipoDocumentoApi, chavesApi, areaApi, $routeParams) {
 
     $scope.carregarFormulario = function () {
         $scope.documentoId = $routeParams.documentoId;
@@ -14,6 +11,14 @@ angular.module("salus-app").controller('categorizacaoController',
             .error(function (data) {
                 $scope.error = "Ops! Algo aconteceu ao obter os tipos de documentos";
             });
+
+        areaApi.getAreas()
+            .success(function (data) {
+                $scope.areas = data;
+            })
+            .error(function (data) {
+                $scope.error = "Ops! Algo aconteceu ao obter as areas";
+            })
     }
 
     $scope.selecionarTipo = function () {
