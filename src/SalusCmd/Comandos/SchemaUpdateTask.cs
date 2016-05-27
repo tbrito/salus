@@ -30,28 +30,6 @@ namespace SalusCmd.Comandos
 
         public void Executar(params string[] args)
         {
-            string[] mappings = new string[]
-            {
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Salus.Infra.dll")
-            };
-
-            NHibernateInitializer.Instance().InitializeNHibernateOnce(() =>
-            {
-                NHibernateSession.Init(
-                    new ThreadSessionStorage(),
-                    mappings,
-                    null, null, null, null, BancoDeDados.Configuration());
-            });
-
-            var fluentConfiguration = Fluently.Configure()
-               .Database(BancoDeDados.Configuration())
-               .Mappings(m =>
-               {
-                   m.FluentMappings.Conventions.Add<EnumConvention>();
-                   m.FluentMappings.Conventions.Add<EnumerationTypeConvention>();
-               });
-
-
             var migrator = new Migrator(
               ConfigurationManager.AppSettings["Database.ConnectionString"]);
 

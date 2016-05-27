@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\AcessoDocumento.cs" />
+    <Compile Include="Entidades\ChaveDao.cs" />
+    <Compile Include="Entidades\DocumentoDto.cs" />
     <Compile Include="Entidades\Import\Ecm6DocVersionado.cs" />
     <Compile Include="Entidades\Import\Ecm6ImportStatus.cs" />
     <Compile Include="Entidades\Import\Ecm6PreDoc.cs" />

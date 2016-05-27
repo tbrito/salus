@@ -2,16 +2,15 @@
 {
     using DataAccess;
     using Logs;
-    using Model.Entidades;
     using Model.Repositorios;
     using Model.Search;
     using Model.Servicos;
-    using SharpArch.NHibernate;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-
+    using Dapper;
+    using Model.Entidades;
+    using System.Collections;
     public class IndexQueueProcess : IIndexQueueProcess
     {
         private readonly IDocumentoRepositorio documentoRepositorio;
@@ -37,32 +36,47 @@
 
         public void Execute()
         {
-            IList<int> ids;
+            dynamic ids = default(dynamic);
 
-            do
+            DapperHelper.UsingConnection(conn =>
             {
-                ids = this.documentoRepositorio.ObterIdsParaIndexar(80);
+                var sql =
+@"select 
+    id doc
+from 
+    documento 
+where
+    search_status = 1";
 
-                if (ids.Count == 0)
-                {
-                    Log.App.InfoFormat("Não há documentos pendentes para indexação");
-                    return;
-                }
+                ids = conn.Query(sql);
+            });
 
-                using (var session = this.indexerSession
-                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
-                {
-                    Parallel.ForEach(ids, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, documentoId =>
-                    {
-                        Log.App.Info("indexado documento #" + documentoId);
+            var documentosIds = ((IEnumerable<dynamic>)ids).AsList<dynamic>();
 
-                        this.Increment(this.indexQueueProcessBatch.Execute(documentoId));
-                    });
-
-                    session.Current.Commit();
-                }
+            if (documentosIds.Count == 0)
+            {
+                Log.App.InfoFormat("Não há documentos pendentes para indexação");
+                return;
             }
-            while (ids.Count > 0);
+
+            var count = 0;
+
+            using (var session = this.indexerSession
+                    .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))
+            {
+                Parallel.For(0, documentosIds.Count, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i =>
+                 {
+                     if (count % 1000 == 0)
+                     {
+                         Log.App.Info("Otimizando indices..." + count);
+                         session.Current.Commit();
+                     }
+
+                     this.Increment(this.indexQueueProcessBatch.Execute(documentosIds[i].doc));
+
+                     Interlocked.Increment(ref count);
+                 });
+            }
 
             using (var session = this.indexerSession
                     .Begin(this.configuracoesDaAplicacao.CaminhoIndicePesquisa()))

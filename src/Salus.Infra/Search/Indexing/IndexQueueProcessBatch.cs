@@ -29,9 +29,9 @@
             var newStatuses = new Dictionary<int, SearchStatus>();
 
             var documento = this.documentoRepositorio.ObterDocumentoParaIndexar(documentoId);
-
+            
             var newStatus = this.IndexContent(documento);
-         
+                    
             return indexedItems;
         }
 
@@ -39,8 +39,15 @@
         {
             try
             {
-                this.indexContentSearchEngineService.Index(content, content.Indexacao);
-                this.documentoRepositorio.AlterStatus(content.Id, SearchStatus.Indexed);
+                try
+                {
+                    this.indexContentSearchEngineService.Index(content, content.Indexacao);
+                    this.documentoRepositorio.AlterStatus(content.Id, SearchStatus.Indexed);
+                }
+                catch (Exception ex)
+                {
+                    Log.App.Error(ex);
+                }
                 Log.App.Info("Documento indexado com sucesso #" + content.Id);
 
                 return SearchStatus.Indexed;
