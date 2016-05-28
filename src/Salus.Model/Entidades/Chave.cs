@@ -10,7 +10,7 @@ namespace Salus.Model.Entidades
             {
                 if (string.IsNullOrEmpty(this.ItensLista) == false)
                 {
-                    return this.ItensLista.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                    return this.ItensLista.Split(new[] { Environment.NewLine, "\n" } , StringSplitOptions.RemoveEmptyEntries);
                 }
 
                 return new string[] { "Sem Itens" };

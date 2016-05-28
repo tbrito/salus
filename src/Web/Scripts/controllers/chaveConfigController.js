@@ -14,6 +14,14 @@ angular.module("salus-app").controller('chaveConfigController',
             { nome: "Area", id: 18 }
         ];
 
+        $scope.retornarTipoDado = function (tipoDado) {
+            var tipoDadoSelecionado = $scope.tiposDeDado.filter(function (dado) {
+                return dado.id == tipoDado;
+            })
+
+            return tipoDadoSelecionado[0].nome;
+        }
+
         $scope.adicionarChave = function (tipodocumentoId, nome) {
             $location.path('/ChaveConfig/Adicionar/' + tipodocumentoId + '/' + nome);
         }
@@ -44,9 +52,13 @@ angular.module("salus-app").controller('chaveConfigController',
         }
 
         $scope.carregarChaveParaEdicao = function () {
-            var chaveid = $routeParams.chaveid;
-            $scope.tipodocumentoId = $routeParams.tipodocumentoid;
-            $scope.tipoDocumentoNome = $routeParams.tipodocumentonome;
+            if ($routeParams.chaveid == undefined) {
+                $scope.tipodocumentoId = $routeParams.tipodocumentoid;
+                $scope.tipoDocumentoNome = $routeParams.tipodocumentonome;
+            }
+            else {
+                var chaveid = $routeParams.chaveid;
+            }
 
             if (chaveid != 0) {
                 chavesApi.getChave(chaveid)
@@ -60,11 +72,15 @@ angular.module("salus-app").controller('chaveConfigController',
         }
 
         $scope.salvar = function (chave) {
-            chave.TipoDocumentoId = $scope.tipodocumentoId;
+            if ($scope.tipodocumentoId == undefined) {
+                chave.TipoDocumentoId = chave.TipoDocumento.id
+            } else {
+                chave.TipoDocumentoId = $scope.tipodocumentoId;
+            }
 
             chavesApi.salvar(chave)
                 .success(function (data) {
-                    $location.path('/ChaveConfig/TodosDoTipo/' + $scope.chave.TipoDocumentoId + '/' + $scope.chave.Nome);
+                    $location.path('/ChaveConfig/TodosDoTipo/' + data.TipoDocumentoId + '/' + data.TipoDocumentoNome);
                 })
                 .error(function (data) {
                     $scope.error = "Ops! Algo aconteceu ao salvar as chaves do tipo do documento";

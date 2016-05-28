@@ -45,7 +45,7 @@
         }
 
         [HttpPost]
-        public void Salvar([FromBody]TipoDocumentoViewModel tipoDocumentoView)
+        public TipoDocumentoViewModel Salvar([FromBody]TipoDocumentoViewModel tipoDocumentoView)
         {
             TipoDocumento tipoDocumento = null;
 
@@ -68,6 +68,9 @@
             }
 
             this.tipoDocumentoRepositorio.Salvar(tipoDocumento);
+            tipoDocumentoView.Id = tipoDocumento.Id;
+
+            return tipoDocumentoView;
         }
 
         [HttpPut]

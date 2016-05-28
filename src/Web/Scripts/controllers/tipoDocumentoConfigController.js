@@ -58,6 +58,7 @@ angular.module("salus-app").controller('tipoDocumentoConfigController',
     $scope.salvar = function (tipoDocumento) {
         tipoDocumentoApi.salvar(tipoDocumento)
             .success(function (data) {
+                tipoDocumento.Id = data.Id;
                 $location.path('/ChaveConfig/TodosDoTipo/' + tipoDocumento.Id + '/' + tipoDocumento.Nome);
             })
             .error(function (data) {

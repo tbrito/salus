@@ -1,9 +1,9 @@
 ﻿namespace Salus.UnitTests.Entidades
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using Salus.Model.Entidades;
 
-    [TestClass]
+    [TestFixture]
     public class ChaveTest : TesteDePoco<Chave>
     {
     }
