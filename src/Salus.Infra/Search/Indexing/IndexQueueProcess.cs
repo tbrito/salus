@@ -66,7 +66,7 @@ where
             {
                 Parallel.For(0, documentosIds.Count, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i =>
                  {
-                     if (count % 1000 == 0)
+                     if (count % 5000 == 0)
                      {
                          Log.App.Info("Otimizando indices..." + count);
                          session.Current.Commit();

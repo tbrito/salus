@@ -1,0 +1,26 @@
+﻿<div ng-controller="categorizacaoController" ng-init="carregarFormulario()">
+
+    <form name="categorizacaoForm">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Documento {{tipodocumento.Nome}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="input-group input-group-lg">
+                    <select class="form-control"
+                            ng-model="tipoDocumentoId"
+                            ng-options="tipodocumento.Id as tipodocumento.Nome for tipodocumento in tiposDeDocumento" ng-change="selecionarTipo()">
+                        <option value="">Selecione o tipo do documento</option>
+                    </select>
+                </div>
+
+                <salus-indexacao chaves="chaves"
+                                 areas="areas"
+                                 documentocode={{documentoId}}
+                                 preindex="true"
+                                 tipodocumento={{tipoDocumentoId}}>
+                </salus-indexacao>
+            </div>
+        </div>
+    </form>
+</div>

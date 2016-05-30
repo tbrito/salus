@@ -107,5 +107,6 @@
         public int CampoId { get; set; }
         public int DocumentoId { get; set; }
         public string Valor { get; set; }
+        public int TipoDocumentoId { get; set; }
     }
 }

@@ -75,10 +75,18 @@
         {
             var queryText = "(assunto:* OR indexacao:*)";
 
+            
             if (string.IsNullOrEmpty(text) == false)
             {
                 queryText = string.Format(
                     "(assunto:{0} OR indexacao:{0})", 
+                    text);
+            }
+
+            if (text.IsInt())
+            {
+                queryText = string.Format(
+                    "(documentoId:{0})",
                     text);
             }
 

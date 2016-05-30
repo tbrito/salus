@@ -15,6 +15,12 @@ namespace Salus.Infra.Search
                 return;
             }
 
+            if (text.IsInt())
+            {
+                this.Incremented = text;
+                return;
+            }
+
             var words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (words.Length > 1)

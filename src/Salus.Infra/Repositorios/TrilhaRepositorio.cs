@@ -11,6 +11,7 @@
         {
             return this.Sessao.QueryOver<Trilha>()
                 .Fetch(x => x.Usuario).Eager
+                .OrderBy(x => x.Data).Desc
                 .List();
         }
     }
