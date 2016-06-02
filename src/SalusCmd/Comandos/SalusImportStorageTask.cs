@@ -9,6 +9,7 @@ namespace SalusCmd.Comandos
     using Salus.Model.Entidades;
     using Salus.Model.Entidades.Import;
     using Salus.Model.Repositorios;
+    using Salus.Model.Servicos;
     using SalusCmd.Ecm6;
     using SharpArch.NHibernate;
     using System;
@@ -17,8 +18,8 @@ namespace SalusCmd.Comandos
 
     public class SalusImportStorageTask : ITarefa
     {
-        private readonly IMongoStorage mongoStorage = InversionControl.Current.Resolve<IMongoStorage>();
         private readonly IStorageRepositorio storageRepositorio = InversionControl.Current.Resolve<IStorageRepositorio>();
+        private readonly StorageServico storageServico = InversionControl.Current.Resolve<StorageServico>();
         private int filesMoved;
         private Ftp ftpClient;
 
@@ -86,11 +87,11 @@ from system";
 
                 ftp = new Ftp();
 
-                ftp.Connect(ftpSettings.Host, ftpSettings.Port);
-                ftp.Login(ftpSettings.FtpUser, ftpSettings.Password);
+                ////ftp.Connect(ftpSettings.Host, ftpSettings.Port);
+                ////ftp.Login(ftpSettings.FtpUser, ftpSettings.Password);
 
-                ////ftp.Connect("192.168.10.69", 21);
-                ////ftp.Login("anonymous", "anonymous");
+                ftp.Connect("192.168.10.105", 21);
+                ftp.Login("anonymous", "anonymous");
             });
 
             return ftp;
@@ -122,24 +123,28 @@ from system";
         /// <param name="directoryBase">Diretório base</param>
         private void ProcessDocumentDirectory(string directoryBase)
         {
-            foreach (var directory in this.ftpClient.GetList(directoryBase))
+            foreach (var item in this.ftpClient.GetList(directoryBase))
             {
-                if (directory.IsFolder)
+                if (item.IsFolder)
                 {
-                    this.ProcessDirectory(directory.Name);
+                    this.ProcessDirectory(directoryBase + "/" + item.Name);
+                }
+                else
+                {
+                    if (Path.GetFileNameWithoutExtension(item.Name).IsInt())
+                    {
+                        this.ImportEcm6DocumentFile(directoryBase, item.Name);
+                    }
                 }
                 ////this.ProcessDirectory(directoryBase + directory + "/");
             }
 
-            Log.App.InfoFormat("Diretório é de documentos");
+            ////Log.App.InfoFormat("Diretório é de documentos");
 
-            foreach (var file in this.ftpClient.GetList(directoryBase))
-            {
-                if (Path.GetFileNameWithoutExtension(file.Name).IsInt())
-                {
-                    this.ImportEcm6DocumentFile(directoryBase, file.Name);
-                }
-            }
+            ////foreach (var file in this.ftpClient.GetList(directoryBase))
+            ////{
+                
+            ////}
         }
 
         private void ImportEcm6DocumentFile(string directoryBase, string file)
@@ -250,16 +255,16 @@ from system";
             }
         }
 
-        private void SendFileToContent(string directory, string file, int ecm8Id)
+        private void SendFileToContent(string directory, string file, int salusId)
         {
             Log.App.InfoFormat("Movendo " + file);
             var downloadedFromFtp = Path.Combine(this.GetImportTempPath(), Path.GetFileName(file));
 
-            this.ftpClient.Download(downloadedFromFtp, file);
+            this.ftpClient.Download(directory + "/" + file, downloadedFromFtp);
 
             try
             {
-                this.mongoStorage.AdicionarOuAtualizar(file);
+                this.storageServico.Adicionar(downloadedFromFtp, "[documento]" + salusId);
                 this.filesMoved++;
             }
             catch (Exception ex)

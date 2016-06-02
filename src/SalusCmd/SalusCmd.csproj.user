@@ -4,6 +4,6 @@
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>import data</StartArguments>
+    <StartArguments>import storage</StartArguments>
   </PropertyGroup>
 </Project>
