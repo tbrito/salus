@@ -1,11 +1,9 @@
 namespace SalusCmd.Comandos
 {
-    using Limilabs.FTP.Client;
     using Salus.Infra.Extensions;
     using Salus.Infra.IoC;
     using Salus.Infra.Logs;
     using Salus.Infra.Repositorios;
-    using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Entidades.Import;
     using Salus.Model.Repositorios;
@@ -21,7 +19,7 @@ namespace SalusCmd.Comandos
         private readonly IStorageRepositorio storageRepositorio = InversionControl.Current.Resolve<IStorageRepositorio>();
         private readonly StorageServico storageServico = InversionControl.Current.Resolve<StorageServico>();
         private int filesMoved;
-        private Ftp ftpClient;
+        private Ftp2 ftpClient;
 
         public string TextoDeAjuda
         {
@@ -52,7 +50,7 @@ namespace SalusCmd.Comandos
 
             this.ftpClient = this.BuildFtpClient();
 
-            var rootpath = this.ftpClient.GetCurrentFolder();
+            var rootpath = this.ftpClient.Root;
 
             Log.App.InfoFormat(
                 "Caminho do repositório antigo: {0}",
@@ -66,9 +64,9 @@ namespace SalusCmd.Comandos
                 this.filesMoved);
         }
 
-        private Ftp BuildFtpClient()
+        private Ftp2 BuildFtpClient()
         {
-            Ftp ftp = null;
+            Ftp2 ftp = null;
 
             ImportDatabase.Using(session =>
             {
@@ -85,13 +83,19 @@ from system";
                     .SetResultTransformer(CustomResultTransformer<FtpSettings>.Do())
                     .UniqueResult<FtpSettings>();
 
-                ftp = new Ftp();
+                ////ftp = new Ftp2(
+                ////    ftpSettings.Host, 
+                ////    ftpSettings.Port,
+                ////    ftpSettings.FtpUser, 
+                ////    ftpSettings.Password,
+                ////    ftpSettings.RootPath);
 
-                ////ftp.Connect(ftpSettings.Host, ftpSettings.Port);
-                ////ftp.Login(ftpSettings.FtpUser, ftpSettings.Password);
-
-                ftp.Connect("192.168.10.105", 21);
-                ftp.Login("anonymous", "anonymous");
+                ftp = new Ftp2(
+                    "192.168.10.105", 
+                    21,
+                    "anonymous", 
+                    "anonymous",
+                    "/");
             });
 
             return ftp;
@@ -123,28 +127,20 @@ from system";
         /// <param name="directoryBase">Diretório base</param>
         private void ProcessDocumentDirectory(string directoryBase)
         {
-            foreach (var item in this.ftpClient.GetList(directoryBase))
+            foreach (var item in this.ftpClient.GetDirectories(directoryBase))
             {
-                if (item.IsFolder)
-                {
-                    this.ProcessDirectory(directoryBase + "/" + item.Name);
-                }
-                else
-                {
-                    if (Path.GetFileNameWithoutExtension(item.Name).IsInt())
-                    {
-                        this.ImportEcm6DocumentFile(directoryBase, item.Name);
-                    }
-                }
-                ////this.ProcessDirectory(directoryBase + directory + "/");
+                this.ProcessDirectory(item);
             }
 
-            ////Log.App.InfoFormat("Diretório é de documentos");
+            Log.App.InfoFormat("Diretório é de documentos");
 
-            ////foreach (var file in this.ftpClient.GetList(directoryBase))
-            ////{
-                
-            ////}
+            foreach (var file in this.ftpClient.GetFiles(directoryBase))
+            {
+                if (Path.GetFileNameWithoutExtension(file).IsInt())
+                {
+                    this.ImportEcm6DocumentFile(directoryBase, file);
+                }
+            }
         }
 
         private void ImportEcm6DocumentFile(string directoryBase, string file)
@@ -260,7 +256,7 @@ from system";
             Log.App.InfoFormat("Movendo " + file);
             var downloadedFromFtp = Path.Combine(this.GetImportTempPath(), Path.GetFileName(file));
 
-            this.ftpClient.Download(directory + "/" + file, downloadedFromFtp);
+            this.ftpClient.DownloadFile(directory + "/" + file, downloadedFromFtp);
 
             try
             {
