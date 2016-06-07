@@ -6,7 +6,8 @@
     using MongoDB.Bson;
     using MongoDB.Driver.GridFS;
     using System.Configuration;
-
+    using System;
+    using Logs;
     public class MongoStorage : IMongoStorage
     {
         public GridFSBucket gridFs;
@@ -43,11 +44,15 @@
                 diretorioConteudo,
                 objectId + "." + tipoArquivo);
 
+            var inicioMongo = DateTime.Now;
             var streamToDownloadTo = new FileStream(fileFullPath, FileMode.Create);
             this.gridFs.DownloadToStream(ObjectId.Parse(objectId), streamToDownloadTo);
 
             streamToDownloadTo.Close();
-            
+            var fimMongo = DateTime.Now;
+
+            Log.App.InfoFormat("Documento foi localizado em {0} ms", fimMongo.Subtract(inicioMongo).Milliseconds);
+
             return fileFullPath;
         }
     }
