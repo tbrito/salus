@@ -256,7 +256,7 @@ from system";
             Log.App.InfoFormat("Movendo " + file);
             var downloadedFromFtp = Path.Combine(this.GetImportTempPath(), Path.GetFileName(file));
 
-            this.ftpClient.DownloadFile(directory + "/" + file, downloadedFromFtp);
+            this.ftpClient.DownloadFile(file, downloadedFromFtp);
 
             try
             {
