@@ -299,6 +299,8 @@
     <Compile Include="Search\LuceneIndexerSession.cs" />
     <Compile Include="Search\IndexEngine.cs" />
     <Compile Include="Search\TextQuery.cs" />
+    <Compile Include="Seeds\301602121709_CriaUserAdmin.cs" />
+    <Compile Include="Seeds\301603231214_CriaChavesDoTipo.cs" />
     <Compile Include="Seeds\301604251835_CriaConfiguracoes.cs" />
     <Compile Include="Seeds\RepositorioExtensions.cs" />
     <Compile Include="Storages\MongoStorage.cs" />

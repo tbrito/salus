@@ -7,7 +7,7 @@
             chaves: '=',
             areas: '=',
             documentocode: '@',
-            preindex:'@',
+            preindex:'=',
             tipodocumento: '@'
         },
         link: function (scope, element, attrs, ctrl) {
@@ -20,7 +20,7 @@
             }
 
             scope.salvarIndexacao = function (indexacao) {
-                if (scope.preindex == false){
+                if (scope.preindex === false){
                     indexacaoApi.postSalvarIndexacao(indexacao)
                         .success(function (data) {
                             $location.path('/Home');

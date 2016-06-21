@@ -119,8 +119,8 @@ namespace Salus.Infra.Seeds
                 TipoDocumento = declaracao,
                 Nome = "mes-ano",
                 Obrigatorio = true,
-                TipoDado = TipoDado.Mascara,
-                Mascara = @"(((0[123456789]|10|11|12)([/])(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))"
+                TipoDado = TipoDado.MesAno,
+                Mascara = string.Empty
             }.Persistir();
 
             new Chave
@@ -155,8 +155,8 @@ namespace Salus.Infra.Seeds
                 TipoDocumento = carta,
                 Nome = "mes-ano",
                 Obrigatorio = true,
-                TipoDado = TipoDado.Mascara,
-                Mascara = @"(((0[123456789]|10|11|12)([/])(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))"
+                TipoDado = TipoDado.MesAno,
+                Mascara = string.Empty
             }.Persistir();
 
             new Chave

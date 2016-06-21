@@ -15,7 +15,7 @@ namespace Salus.Infra.Seeds
                 Ativo = true,
                 Abreviacao = "CCB",
                 Parent = null,
-                Segura = false,
+                Segura = false
             }.Persistir();
 
             var administrador = new Perfil
