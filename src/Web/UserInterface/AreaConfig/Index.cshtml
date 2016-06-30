@@ -5,7 +5,7 @@
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionar()">Novo Area</button>
     </div>
 
-    <div class="control-group"  style="height:560px; overflow:auto">
+    <div class="control-group" style="height:560px; overflow:auto">
         <table ng-show="areas.length > 0" class="table table-striped">
             <thead>
                 <tr>
@@ -19,26 +19,24 @@
             <tr ng-class="{'item-inativo': area.Ativo == false}" ng-repeat="area in areas">
                 <td>{{area.Nome}}</td>
                 <td>{{area.Abreviacao}}</td>
-                <td>
-                    <table ng-show="area.SubAreas.length > 0" class="table table-striped">
-                        <tr ng-class="{'item-inativo': sub.Ativo == false}" ng-repeat="sub in area.SubAreas">
-                            <td>{{sub.Nome}}</td>
-                            <td>{{sub.Abreviacao}}</td>
-                            <td><span ng-class="{'salusicon-cadeado': sub.Segura == true}"></span></td>
-                            <td><a ng-click="editarArea(sub.Id)">Editar</a></td>
-                            <td>
-                                <a ng-if="sub.Ativo" ng-click="excluir(sub)">Desativar</a>
-                                <a ng-if="sub.Ativo==false" ng-click="ativar(sub)">Ativar</a>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
                 <td><a ng-click="editarArea(area.Id)">Editar</a></td>
                 <td>
                     <a ng-if="area.Ativo" ng-click="excluir(area)">Desativar</a>
                     <a ng-if="area.Ativo==false" ng-click="ativar(area)">Ativar</a>
                 </td>
             </tr>
+
+            <tr ng-show="area.SubAreas.length > 0" ng-class="{'item-inativo': sub.Ativo == false}" ng-repeat="sub in area.SubAreas">
+                <td>{{sub.Nome}}</td>
+                <td>{{sub.Abreviacao}}</td>
+                <td><span ng-class="{'salusicon-cadeado': sub.Segura == true}"></span></td>
+                <td><a ng-click="editarArea(sub.Id)">Editar</a></td>
+                <td>
+                    <a ng-if="sub.Ativo" ng-click="excluir(sub)">Desativar</a>
+                    <a ng-if="sub.Ativo==false" ng-click="ativar(sub)">Ativar</a>
+                </td>
+            </tr>
+
         </table>
     </div>
 </div>
