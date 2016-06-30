@@ -24,3 +24,5 @@
 /src/SalusCmd/obj
 /src/SalusCmd/bin
 /build
+/src/.vs/salus/v14/.suo
+/src/.vs/config/applicationhost.config
