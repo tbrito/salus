@@ -6,7 +6,7 @@ namespace Salus.Infra.ElasticSearch
 {
     public class ElasticSearchIndex
     {
-        public void Indexar(SearchObject indexacao)
+        public void Indexar(Indexacao indexacao)
         {
             var node = new Uri("http://localhost:9200");
             var settings = new ConnectionSettings(node);

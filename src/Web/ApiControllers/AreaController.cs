@@ -30,17 +30,8 @@
 
             foreach (var area in areas)
             {
-                var viewModel = new AreaViewModel
-                {
-                    Id = area.Id,
-                    Abreviacao = area.Abreviacao,
-                    Ativo = area.Ativo,
-                    Nome = area.Nome,
-                    Segura = area.Segura,
-                    Parent = area.Parent,
-                    SubAreas = area.SubAreas
-                };
-
+                var viewModel = AreaViewModel.Criar(area);
+                
                 areasViewModel.Add(viewModel);
             }
             
