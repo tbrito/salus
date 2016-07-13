@@ -42,8 +42,8 @@
                     Nome = usuario.Nome,
                     Login = usuario.Login,
                     Senha = usuario.Senha,
-                    Area = usuario.Area,
-                    Perfil = usuario.Perfil
+                    Area = AreaViewModel.Criar(usuario.Area),
+                    Perfil = PerfilViewModel.Criar(usuario.Perfil)
                 };
                 
                 usuariosViewModel.Add(viewModel);

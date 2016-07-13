@@ -5,7 +5,7 @@ namespace Salus.Model.Repositorios
 {
     public interface IAreaRepositorio : IRepositorio<Area>
     {
-        IList<Area> ObterTodosAtivos(Usuario usuarioAtual);
+        IList<Area> ObterTodosAtivos();
 
         Area ObterPorIdComParents(int id);
 

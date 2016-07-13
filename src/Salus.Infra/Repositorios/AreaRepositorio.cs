@@ -23,7 +23,7 @@
                 .SingleOrDefault();
         }
 
-        public IList<Area> ObterTodosAtivos(Usuario usuarioAtual)
+        public IList<Area> ObterTodosAtivos()
         {
             return this.Sessao.QueryOver<Area>()
                 .Fetch(x => x.Parent).Eager

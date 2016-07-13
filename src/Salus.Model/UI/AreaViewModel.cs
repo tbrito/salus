@@ -22,18 +22,58 @@ namespace Salus.Model.UI
                 Abreviacao = area.Abreviacao,
                 Ativo = area.Ativo,
                 Nome = area.Nome,
-                Segura = area.Segura
+                Segura = area.Segura,
+                SubAreas = new List<AreaViewModel>()
             };
 
             if (area.Parent != null)
             {
-                viewModel.Parent = Criar(area.Parent);
+                viewModel.Parent = CriarParent(area.Parent);
             }
 
             foreach (var item in area.SubAreas)
             {
-                viewModel.SubAreas.Add(Criar(item));
+                viewModel.SubAreas.Add(CriarSubArea(item));
             }
+
+            return viewModel;
+        }
+
+        private static AreaViewModel CriarSubArea(Area area)
+        {
+            var viewModel = new AreaViewModel
+            {
+                Id = area.Id,
+                Abreviacao = area.Abreviacao,
+                Ativo = area.Ativo,
+                Nome = area.Nome,
+                Segura = area.Segura
+            };
+
+            foreach (var item in area.SubAreas)
+            {
+                viewModel.SubAreas.Add(CriarSubArea(item));
+            }
+
+            return viewModel;
+        }
+
+        private static AreaViewModel CriarParent(Area parent)
+        {
+            var viewModel = new AreaViewModel
+            {
+                Id = parent.Id,
+                Abreviacao = parent.Abreviacao,
+                Ativo = parent.Ativo,
+                Nome = parent.Nome,
+                Segura = parent.Segura
+            };
+
+            if (parent.Parent != null)
+            {
+                viewModel.Parent = CriarParent(parent.Parent);
+            }
+
             return viewModel;
         }
     }

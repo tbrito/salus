@@ -24,7 +24,7 @@
         public IEnumerable<AreaViewModel> Get()
         {
             var areas = this.areaRepositorio
-                .ObterTodosAtivos(this.sessaoDoUsuario.UsuarioAtual);
+                .ObterTodosAtivos();
 
             var areasViewModel = new List<AreaViewModel>();
 

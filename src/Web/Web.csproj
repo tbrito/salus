@@ -449,7 +449,6 @@
     <Content Include="UserInterface\EditarPerfil\Index.cshtml" />
     <Content Include="UserInterface\GrupoDocumentoConfig\Editar.cshtml" />
     <Content Include="UserInterface\GrupoDocumentoConfig\Index.cshtml" />
-    <Content Include="UserInterface\Home\Index.cshtml" />
     <Content Include="UserInterface\Home\Me.cshtml" />
     <Content Include="UserInterface\NaoAutorizado\Index.cshtml" />
     <Content Include="UserInterface\PerfilConfig\Editar.cshtml" />
