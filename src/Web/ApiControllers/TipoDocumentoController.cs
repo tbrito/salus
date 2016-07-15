@@ -20,28 +20,47 @@
         }
 
         [HttpGet]
-        public IEnumerable<TipoDocumento> Todos(int id = 0)
+        public IEnumerable<TipoDocumentoViewModel> Todos(int id = 0)
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
                 .ObterTodosClassificaveis(this.sessaoDoUsuario.UsuarioAtual);
-           
-            return tiposDocumentos as IEnumerable<TipoDocumento>;
+
+            var models = new List<TipoDocumentoViewModel>();
+
+            foreach (var tipoDocumento in tiposDocumentos)
+            {
+                var model = TipoDocumentoViewModel.Criar(tipoDocumento);
+                models.Add(model);
+            }
+
+            return models as IEnumerable<TipoDocumentoViewModel>;
         }
 
         [HttpGet]
-        public IEnumerable<TipoDocumento> ParaIndexar(int id = 0)
+        public IEnumerable<TipoDocumentoViewModel> ParaIndexar(int id = 0)
         {
             var tiposDocumentos = this.tipoDocumentoRepositorio
                 .ObterTodosParaIndexar(this.sessaoDoUsuario.UsuarioAtual);
 
-            return tiposDocumentos as IEnumerable<TipoDocumento>;
+            var models = new List<TipoDocumentoViewModel>();
+
+            foreach (var tipoDocumento in tiposDocumentos)
+            {
+                var model = TipoDocumentoViewModel.Criar(tipoDocumento);
+                models.Add(model);
+            }
+
+            return models as IEnumerable<TipoDocumentoViewModel>;
         }
 
         [HttpGet]
-        public TipoDocumento ObterPorId(int id)
+        public TipoDocumentoViewModel ObterPorId(int id)
         {
             var tipoDocumento = this.tipoDocumentoRepositorio.ObterPorIdComParents(id);
-            return tipoDocumento;
+
+            var model = TipoDocumentoViewModel.Criar(tipoDocumento);
+
+            return model;
         }
 
         [HttpPost]

@@ -349,6 +349,7 @@
     <Content Include="Scripts\controllers\categorizacaoController.js" />
     <Content Include="Scripts\controllers\uploadController.js" />
     <Content Include="Scripts\controllers\loginController.js" />
+    <Content Include="Scripts\directives\salusTitle.js" />
     <Content Include="Scripts\directives\salusMesano.js" />
     <Content Include="Scripts\directives\salusIndexacao.js" />
     <Content Include="Scripts\directives\salusVersionamento.js" />
@@ -417,6 +418,7 @@
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
     <Content Include="UserInterface\Indexacao\_edicao.html" />
+    <Content Include="UserInterface\Title\_title.html" />
     <Content Include="UserInterface\Trilha\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Scripts\knockout.validation.min.js.map" />

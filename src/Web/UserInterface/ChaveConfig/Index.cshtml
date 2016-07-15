@@ -1,5 +1,7 @@
 ﻿<div class="modal-content" ng-controller="chaveConfigController" ng-init="carregarFormularioDeChaves()">
-    <h3>Configurações > Tipo de Documento > Chaves - {{tipoDocumentoNome}}</h3>
+    <salus-title>
+        Configurações > Tipo de Documento > Chaves - {{tipoDocumentoNome}}
+    </salus-title>
 
     <div class="control-group">
         <button class="btn btn-primary" name="novoTipo" ng-click="adicionarChave(tipodocumentoId, tipoDocumentoNome)">Nova chave</button>

@@ -1,6 +1,7 @@
 ﻿namespace Salus.Model.UI
 {
     using Salus.Model.Entidades;
+    using System;
 
     public class PerfilViewModel
     {
@@ -10,12 +11,20 @@
 
         public static PerfilViewModel Criar(Perfil perfil)
         {
-            return new PerfilViewModel
+            var novoPerfil = new PerfilViewModel();
+
+            try
             {
-                Ativo = perfil.Ativo,
-                Id = perfil.Id,
-                Nome = perfil.Nome
-            };
+                novoPerfil.Ativo = perfil.Ativo == null ? false : perfil.Ativo;
+                novoPerfil.Id = perfil.Id;
+                novoPerfil.Nome = string.IsNullOrEmpty(perfil.Nome) ? "sem nome" : perfil.Nome;
+            }
+            catch (Exception exception)
+            {
+                return novoPerfil;
+            }
+
+            return novoPerfil;
         }
     }
 }
