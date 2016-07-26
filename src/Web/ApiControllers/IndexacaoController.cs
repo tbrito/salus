@@ -4,6 +4,7 @@
     using Salus.Model;
     using Salus.Model.Entidades;
     using Salus.Model.Repositorios;
+    using Salus.Model.Search;
     using Salus.Model.Servicos;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,6 +16,7 @@
         private IIndexacaoRepositorio indexacaoRepositorio;
         private IDocumentoRepositorio documentoRepositorio;
         private LogarAcaoDoSistema logarAcaoSistema;
+        private IIndexEngine indexEngine;
 
         public IndexacaoController()
         {
@@ -73,8 +75,10 @@
 
                 this.indexacaoRepositorio.Salvar(indexacao);
             }
-            
-            this.documentoRepositorio.AlterStatus(documentoId, SearchStatus.ToIndex);
+
+            var documento = this.documentoRepositorio.ObterPorIdComTipoDocumentoEIndexacoes(documentoId);
+            this.indexEngine.Index(documento, documento.Indexacao);
+            this.documentoRepositorio.AlterStatus(documentoId, SearchStatus.Indexed);
 
             this.logarAcaoSistema.Execute(
               TipoTrilha.Criacao,
