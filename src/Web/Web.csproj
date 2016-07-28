@@ -456,9 +456,6 @@
     <Content Include="UserInterface\PerfilConfig\Editar.cshtml" />
     <Content Include="UserInterface\PerfilConfig\Index.cshtml" />
     <Content Include="UserInterface\Pesquisa\Resultado.cshtml" />
-    <Content Include="UserInterface\Shared\_LoginPartial.cshtml" />
-    <Content Include="UserInterface\Shared\Error.cshtml" />
-    <Content Include="UserInterface\Shared\Lockout.cshtml" />
     <Content Include="UserInterface\Shared\Topo.cshtml" />
     <Content Include="UserInterface\Shared\TopoStart.cshtml" />
     <Content Include="UserInterface\TipoDocumentoConfig\Editar.cshtml" />
@@ -495,13 +492,13 @@
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
-	<Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
-		<ItemGroup>
-		  <RoslynFiles Include="$(CscToolPath)\*" />
-		</ItemGroup>
-		<MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
-		<Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
-	</Target>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
