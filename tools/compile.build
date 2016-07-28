@@ -34,14 +34,14 @@
 					<property name="Configuration" value="${project.config}" />
 					<property name="OutputPath" value="${binary.dir}" />
 					<property name="PostBuildEvent" value="" />
-					<property name="PlatformTarget" value="x86" />
+					<property name="PlatformTarget" value="AnyCPU" />
 				</msbuild>
 
 				<msbuild projectFile="${project.solution}" targets="Build" verbosity="Minimal" workingDirectory=".">
 					<property name="Configuration" value="${project.config}" />
 					<property name="OutputPath" value="${binary.dir}" />
 					<property name="PostBuildEvent" value="" />
-					<property name="PlatformTarget" value="x86" />
+					<property name="PlatformTarget" value="AnyCPU" />
 				</msbuild>
 
 				<!--

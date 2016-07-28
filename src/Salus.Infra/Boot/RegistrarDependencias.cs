@@ -1,7 +1,7 @@
-﻿using StructureMap;
-
-namespace Salus.Infra.Boot
+﻿namespace Salus.Infra.Boot
 {
+    using StructureMap;
+    
     public class RegistrarDependencias : Registry
     {
         public RegistrarDependencias()
