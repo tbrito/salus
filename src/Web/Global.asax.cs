@@ -2,7 +2,9 @@
 {
     using Salus.Infra;
     using Salus.Infra.Logs;
+    using Salus.Infra.Migrations;
     using System;
+    using System.Configuration;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -22,6 +24,11 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
          
             Aplicacao.Boot(Server.MapPath("bin"));
+
+            var migrator = new Migrator(
+             ConfigurationManager.AppSettings["Database.ConnectionString"]);
+
+            migrator.Migrate(runner => runner.MigrateUp());
         }
 
         protected void Application_Error(object sender, EventArgs e)
