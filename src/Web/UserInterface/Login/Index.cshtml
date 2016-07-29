@@ -1,15 +1,15 @@
 ﻿<div ng-controller="loginController" ng-init="inicio()">
-    <div @*class="pen-title"*@>
+    <div <!--class="pen-title"-->>
         <h1>Salus Login</h1>
     </div>
     {{error}}
     <!-- Form Module-->
-    <div @*class="module form-module"*@>
-        <div @*class="toggle"*@>
-            <i @*class="fa fa-times fa-pencil"*@></i>
-            <div @*class="tooltip"*@>Click Me</div>
+    <div <!--class="module form-module"-->>
+        <div <!--class="toggle"-->>
+            <i <!--class="fa fa-times fa-pencil"-->></i>
+            <div <!--class="tooltip"-->>Click Me</div>
         </div>
-        <div @*class="form"*@>
+        <div <!--class="form"-->>
             <h2>Acesse sua conta</h2>
             <form>
                 <input type="text" placeholder="Nome do usuario" ng-model="usuario.Login" ng-required="true"/>
@@ -17,6 +17,6 @@
                 <button  ng-click="login(usuario)" ng-disabled="form.$invalid">Entrar</button>
             </form>
         </div>
-        <div @*class="cta"*@><a href="#">Esqueci minha senha</a></div>
+        <div <!--class="cta"-->><a href="#">Esqueci minha senha</a></div>
     </div>
 </div>
