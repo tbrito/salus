@@ -76,15 +76,15 @@
 </head>
 
 <body>
-    <!--<div ng-controller="menuControler" ng-open="start()">-->
-        <!--<div ng-if="usuario.Autenticado">-->
+    <div ng-controller="menuControler" ng-open="start()">
+        <div ng-if="usuario.Autenticado">
             <div ng-include="'UserInterface/Shared/Topo.cshtml'"></div>
-        <!--</div>-->
+        </div>
 
-        <!--<div ng-if="usuario.Autenticado==false">-->
-            <!--<div ng-include="'UserInterface/Shared/TopoStart.cshtml'"></div>-->
-        <!--</div>-->
-    <!--</div>-->
+        <div ng-if="usuario.Autenticado==false">
+            <div ng-include="'UserInterface/Shared/TopoStart.cshtml'"></div>
+        </div>
+    </div>
 
     <div class="container body-content">
         <div ng-view></div>
