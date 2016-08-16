@@ -5,16 +5,16 @@
     {{error}}
     <!-- Form Module-->
     <div class="module form-module">
-        <divclass="toggle">
+        <div class="toggle">
             <i class="fa fa-times fa-pencil"></i>
             <div class="tooltip">Click Me</div>
         </div>
         <div class="form">
             <h2>Acesse sua conta</h2>
             <form>
-                <input type="text" placeholder="Nome do usuario" ng-model="usuario.Login" ng-required="true"/>
-                <input type="password" placeholder="Senha" ng-model="usuario.Senha" ng-required="true"/>
-                <button  ng-click="login(usuario)" ng-disabled="form.$invalid">Entrar</button>
+                <input type="text" placeholder="Nome do usuario" ng-model="usuario.Login" ng-required="true" />
+                <input type="password" placeholder="Senha" ng-model="usuario.Senha" ng-required="true" />
+                <button ng-click="login(usuario)" ng-disabled="form.$invalid">Entrar</button>
             </form>
         </div>
     </div>
