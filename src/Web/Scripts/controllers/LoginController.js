@@ -1,6 +1,7 @@
 angular.module("salus-app").controller("loginController", function ($scope, usuarioApi, autorizacaoApi, $location) {
     
     $scope.inicio = function () {
+        console.log("oioioi");
         $scope.usuario = autorizacaoApi.obter("usuario_autenticado");
 
         if ($scope.usuario != undefined) {
