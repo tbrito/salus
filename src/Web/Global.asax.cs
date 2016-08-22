@@ -1,6 +1,7 @@
 ﻿namespace Web
 {
     using Salus.Infra;
+    using Salus.Infra.Extensions;
     using Salus.Infra.Logs;
     using Salus.Infra.Migrations;
     using System;
@@ -8,6 +9,7 @@
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
+    using System.Web.Routing;
 
     public class MvcApplication : HttpApplication
     {
@@ -19,7 +21,7 @@
 
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            ////AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
          
@@ -34,7 +36,7 @@
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
-            Log.App.Error("Erro ao processar requisicao.", exception);
+            Log.App.Error("Erro ao processar requisicao." + exception.GetDetalhesDoErro());
             Server.ClearError();
         }
 

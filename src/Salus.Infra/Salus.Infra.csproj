@@ -225,6 +225,7 @@
     <Compile Include="DataAccess\ThreadSessionStorage.cs" />
     <Compile Include="DataAccess\UnidadeDeTrabalho.cs" />
     <Compile Include="ElasticSearch\SalusElasticSearch.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ForTests\IClearDatabase.cs" />
     <Compile Include="IoC\Dependencias.cs" />

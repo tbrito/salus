@@ -1,6 +1,4 @@
 ﻿using System.Web.Http;
-using Newtonsoft.Json.Serialization;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
 namespace Web
@@ -25,7 +23,6 @@ namespace Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             
