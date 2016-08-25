@@ -255,10 +255,8 @@
     <Compile Include="ApiControllers\VersaoDocumentoController.cs" />
     <Compile Include="Filters\PodeAcessarDocumentoAttribute.cs" />
     <Compile Include="ApiControllers\WorkflowController.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ApiControllers\AtividadeController.cs" />
     <Compile Include="ApiControllers\AccountController.cs" />
