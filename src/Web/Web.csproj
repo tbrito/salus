@@ -253,6 +253,7 @@
     <Compile Include="ApiControllers\ChaveController.cs" />
     <Compile Include="ApiControllers\IndexacaoController.cs" />
     <Compile Include="ApiControllers\VersaoDocumentoController.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Filters\PodeAcessarDocumentoAttribute.cs" />
     <Compile Include="ApiControllers\WorkflowController.cs" />
     <Compile Include="App_Start\DataConfig.cs" />
