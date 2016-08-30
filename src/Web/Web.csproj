@@ -238,6 +238,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\LogViewController.cs" />
     <Compile Include="ApiControllers\TrilhaController.cs" />
     <Compile Include="ApiControllers\ConfiguracaoAppController.cs" />
     <Compile Include="ApiControllers\EdicaoPessoalController.cs" />
@@ -348,6 +349,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\controllers\acessoDocumentoController.js" />
     <Content Include="Scripts\controllers\acessoFuncionalidadeController.js" />
+    <Content Include="Scripts\controllers\logViewController.js" />
     <Content Include="Scripts\controllers\trilhaController.js" />
     <Content Include="Scripts\controllers\configuracaoController.js" />
     <Content Include="Scripts\controllers\pesquisaController.js" />
@@ -406,6 +408,7 @@
     <Content Include="Scripts\sammy-0.7.5.js" />
     <Content Include="Scripts\sammy-0.7.5.min.js" />
     <Content Include="Scripts\services\acessoDocumentoApiService.js" />
+    <Content Include="Scripts\services\logViewApiService.js" />
     <Content Include="Scripts\services\trilhaApiService.js" />
     <Content Include="Scripts\services\versaoDocumentoApiService.js" />
     <Content Include="Scripts\services\autorizacaoApiService.js" />
@@ -481,6 +484,7 @@
     <Content Include="UserInterface\Preindexacao\Index.cshtml" />
     <Content Include="UserInterface\Preindexacao\Imprimir.cshtml" />
     <Content Include="UserInterface\Preindexacao\Adicionar.cshtml" />
+    <Content Include="UserInterface\LogView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

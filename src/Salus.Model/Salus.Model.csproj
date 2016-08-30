@@ -127,6 +127,7 @@
     <Compile Include="UI\AcessoDocumentoViewModel.cs" />
     <Compile Include="UI\AcessoViewModel.cs" />
     <Compile Include="UI\EditarPerfilViewModel.cs" />
+    <Compile Include="UI\LogViewModel.cs" />
     <Compile Include="UI\PerfilViewModel.cs" />
     <Compile Include="UI\PesquisaViewModel.cs" />
     <Compile Include="UI\TiposPermitidosViewModel.cs" />
